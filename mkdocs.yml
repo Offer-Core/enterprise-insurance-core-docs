@@ -1,11 +1,11 @@
 site_name: Enterprise Insurance Platform
 site_description: Architecture and documentation for the Saudi Arabia insurance platform
 site_author: Enterprise Architecture Team
-site_url: https://docs.insurance-platform.example.com
+site_url: https://offer-core.github.io/enterprise-insurance-core-docs/
 
-repo_name: insurance-platform/docs
-repo_url: https://github.com/insurance-platform/docs
-edit_uri: edit/main/knowledge-base/
+repo_name: Offer-Core/enterprise-insurance-core-docs
+repo_url: https://github.com/Offer-Core/enterprise-insurance-core-docs
+edit_uri: edit/master/
 
 copyright: Copyright &copy; 2026 Enterprise Insurance Platform
 

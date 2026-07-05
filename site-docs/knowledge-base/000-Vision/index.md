@@ -24,7 +24,7 @@ Use the navigation menu to explore the content in this section.
 - [Vision & Strategy](../000-Vision/index.md)
 - [Business Context](../100-Business/index.md)
 - [Domain Models](../200-Domains/index.md)
-- [Architecture](../300-Architecture/index.md)
+- [Architecture](../../architecture/README.md)
 - [Standards](../400-Standards/index.md)
 - [API Design](../500-API/index.md)
 - [Database Design](../600-Database/index.md)
@@ -46,5 +46,6 @@ This content was generated on 2026-07-01 19:01:43 UTC.
 ## Questions?
 
 For questions about this documentation, please contact the Enterprise Architecture Team.
+
 
 
