@@ -53,6 +53,7 @@ This repository contains comprehensive documentation organized as follows:
 - **100-Business**: Business context, processes, and requirements
 - **200-Domains**: Domain models and business capabilities
 - **300-Architecture**: System architecture and design patterns
+- **Architecture Docs**: Start here for the living Markdown architecture set in [insurance-core-design/architecture/README.md](insurance-core-design/architecture/README.md)
 - **400-Standards**: Development standards and best practices
 - **500-API**: API design and specifications
 - **600-Database**: Database design and data models
