@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -70,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#authentication-domain" class="md-skip">
+        <a href="#authentication-security-specification" class="md-skip">
           Skip to content
         </a>
       
@@ -839,10 +842,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#domain-overview" class="md-nav__link">
+  <a href="#1-authentication-protocols-flows" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Domain Overview
+        1. Authentication Protocols &amp; Flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Authentication Protocols &amp; Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-spa-flow-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 SPA Flow (Angular)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-service-to-service-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Service-to-Service Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-token-session-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Token &amp; Session Policies
       
     </span>
   </a>
@@ -850,10 +892,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
+  <a href="#3-role-based-access-control-rbac-matrix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Features
+        3. Role-Based Access Control (RBAC) Matrix
       
     </span>
   </a>
@@ -861,46 +903,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#documentation-structure" class="md-nav__link">
+  <a href="#4-spring-security-reference-implementation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation Structure
+        4. Spring Security Reference Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Spring Security Reference Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-dependency-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Dependency Required
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#domain-relationships" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#42-security-configuration-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Domain Relationships
+        4.2 Security Configuration Class
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#team" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#43-controller-method-level-protection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Team
+        4.3 Controller Method-Level Protection
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#last-updated" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Last Updated
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1179,10 +1227,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#domain-overview" class="md-nav__link">
+  <a href="#1-authentication-protocols-flows" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Domain Overview
+        1. Authentication Protocols &amp; Flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Authentication Protocols &amp; Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-spa-flow-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 SPA Flow (Angular)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-service-to-service-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Service-to-Service Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-token-session-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Token &amp; Session Policies
       
     </span>
   </a>
@@ -1190,10 +1277,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
+  <a href="#3-role-based-access-control-rbac-matrix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Features
+        3. Role-Based Access Control (RBAC) Matrix
       
     </span>
   </a>
@@ -1201,46 +1288,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#documentation-structure" class="md-nav__link">
+  <a href="#4-spring-security-reference-implementation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation Structure
+        4. Spring Security Reference Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Spring Security Reference Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-dependency-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Dependency Required
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#domain-relationships" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#42-security-configuration-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Domain Relationships
+        4.2 Security Configuration Class
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#team" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#43-controller-method-level-protection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Team
+        4.3 Controller Method-Level Protection
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#last-updated" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Last Updated
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1264,61 +1357,151 @@
   
 
 
-<h1 id="authentication-domain">Authentication Domain</h1>
-<p>The Authentication domain handles all Authentication related functionality within the Enterprise Insurance Platform.</p>
-<h2 id="domain-overview">Domain Overview</h2>
-<p>This domain is a critical component of the insurance platform, providing comprehensive capabilities for managing Authentication operations.</p>
-<h2 id="key-features">Key Features</h2>
+<h1 id="authentication-security-specification">Authentication &amp; Security Specification</h1>
+<p>This document details the authentication protocols, token management policies, Role-Based Access Control (RBAC) scopes, and Spring Security configurations for the Enterprise Insurance Platform.</p>
+<hr />
+<h2 id="1-authentication-protocols-flows">1. Authentication Protocols &amp; Flows</h2>
+<p>The platform enforces centralized token-based identity management using an OpenID Connect (OIDC) compliant Identity Provider (IdP) (such as Keycloak).</p>
+<h3 id="11-spa-flow-angular">1.1 SPA Flow (Angular)</h3>
 <ul>
-<li>Authentication management</li>
-<li>Authentication lifecycle management</li>
-<li>Authentication processing and validation</li>
-<li>Authentication reporting and analytics</li>
-<li>Authentication integration with other domains</li>
+<li><strong>Flow Pattern:</strong> OAuth2 Authorization Code Flow with <strong>PKCE (Proof Key for Code Exchange)</strong>.</li>
+<li><strong>Storage:</strong> Access tokens are stored in-memory inside the Angular SPA state. Refresh tokens are stored as <strong>HttpOnly, Secure, SameSite=Strict</strong> cookies generated by the gateway proxy to mitigate Cross-Site Scripting (XSS) risks.</li>
+<li><strong>Client Library:</strong> Angular OAuth2 OIDC library.</li>
 </ul>
-<h2 id="documentation-structure">Documentation Structure</h2>
-<p>This directory contains comprehensive documentation for the Authentication domain:</p>
+<h3 id="12-service-to-service-flow">1.2 Service-to-Service Flow</h3>
 <ul>
-<li><strong>overview.md</strong>: High-level domain overview</li>
-<li><strong>purpose.md</strong>: Domain purpose and strategic importance</li>
-<li><strong>business-rules.md</strong>: Business rules and validations</li>
-<li><strong>workflow.md</strong>: Workflow processes and automation</li>
-<li><strong>state-machine.md</strong>: State transitions and lifecycle</li>
-<li><strong>api.md</strong>: API specifications and usage</li>
-<li><strong>openapi.md</strong>: OpenAPI/Swagger specifications</li>
-<li><strong>database.md</strong>: Database schema and data models</li>
-<li><strong>collections.md</strong>: MongoDB collections and structure</li>
-<li><strong>events.md</strong>: Event definitions and handlers</li>
-<li><strong>validation.md</strong>: Validation rules and constraints</li>
-<li><strong>permissions.md</strong>: Access control and permissions</li>
-<li><strong>security.md</strong>: Security considerations</li>
-<li><strong>ui.md</strong>: UI components and user interfaces</li>
-<li><strong>screens.md</strong>: Screen flows and user journeys</li>
-<li><strong>examples.md</strong>: Usage examples and code snippets</li>
-<li><strong>faq.md</strong>: Frequently asked questions</li>
-<li><strong>glossary.md</strong>: Domain terminology</li>
-<li><strong>acceptance.md</strong>: Acceptance criteria and UAT</li>
-<li><strong>test-cases.md</strong>: Test cases and scenarios</li>
-<li><strong>roadmap.md</strong>: Future enhancements and roadmap</li>
+<li><strong>Flow Pattern:</strong> OAuth2 Client Credentials Grant.</li>
+<li><strong>Mechanism:</strong> Internal microservices authenticate with the IdP using client credentials and cache access tokens, passing them via the HTTP <code>Authorization: Bearer &lt;token&gt;</code> header on downstream calls.</li>
 </ul>
-<h2 id="domain-relationships">Domain Relationships</h2>
-<p>The Authentication domain interacts with the following domains:</p>
+<hr />
+<h2 id="2-token-session-policies">2. Token &amp; Session Policies</h2>
 <ul>
-<li>Authentication (for user access)</li>
-<li>Customer (for customer data)</li>
-<li>Organization (for organizational context)</li>
-<li>Policy (for policy management)</li>
-<li>Claims (for claims processing)</li>
-<li>Billing (for billing and payments)</li>
+<li><strong>Access Token Format:</strong> JSON Web Token (JWT) signed using the RS256 algorithm.</li>
+<li><strong>Lifespan Rules:</strong></li>
+<li>Access Token: <strong>15 minutes</strong> (short-lived).</li>
+<li>Refresh Token: <strong>8 hours</strong> (sliding session).</li>
+<li><strong>JWT Mandatory Claims:</strong>
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;iss&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://auth.enterprise-insurance.sa/realms/insurance-platform&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;usr_90a1b2c3-4d5e&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;aud&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;insurance-backend-api&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;exp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1783389000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;preferred_username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;k.saeed@agent.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;roles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;AGENT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PARTNER&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openid email profile policy:read policy:create&quot;</span>
+<span class="p">}</span>
+</code></pre></div></li>
 </ul>
-<h2 id="team">Team</h2>
-<ul>
-<li><strong>Domain Owner</strong>: Product Management</li>
-<li><strong>Technical Lead</strong>: Architecture Team</li>
-<li><strong>Development Team</strong>: Full-stack development team</li>
-</ul>
-<h2 id="last-updated">Last Updated</h2>
-<p>2026-07-01 19:01:45 UTC</p>
+<hr />
+<h2 id="3-role-based-access-control-rbac-matrix">3. Role-Based Access Control (RBAC) Matrix</h2>
+<p>To secure operations, permissions are mapped to fine-grained scopes. Backend endpoints evaluate scopes, whereas the UI displays elements based on roles.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Role</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Assigned Scopes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>CUSTOMER</strong></td>
+<td style="text-align: left;">Policyholders</td>
+<td style="text-align: left;"><code>policy:read</code>, <code>claims:read</code>, <code>claims:create</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AGENT</strong></td>
+<td style="text-align: left;">External brokers/agents</td>
+<td style="text-align: left;"><code>policy:read</code>, <code>policy:create</code>, <code>claims:read</code>, <code>claims:create</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>UNDERWRITER</strong></td>
+<td style="text-align: left;">Internal risk assessment staff</td>
+<td style="text-align: left;"><code>policy:read</code>, <code>underwriting:evaluate</code>, <code>underwriting:override</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CLAIMS_PROCESSOR</strong></td>
+<td style="text-align: left;">Claims adjusters</td>
+<td style="text-align: left;"><code>claims:read</code>, <code>claims:evaluate</code>, <code>claims:adjudicate</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ADMINISTRATOR</strong></td>
+<td style="text-align: left;">Platform configurations</td>
+<td style="text-align: left;"><code>metadata:read</code>, <code>metadata:write</code>, <code>workflow:write</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-spring-security-reference-implementation">4. Spring Security Reference Implementation</h2>
+<p>All resource servers (backend domain APIs) must configure Spring Security to validate the OIDC tokens and enforce method-level security based on scopes.</p>
+<h3 id="41-dependency-required">4.1 Dependency Required</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-oauth2-resource-server<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="42-security-configuration-class">4.2 Security Configuration Class</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">com.enterprise.insurance.core.security</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.context.annotation.Bean</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.context.annotation.Configuration</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.security.config.annotation.web.builders.HttpSecurity</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.security.config.annotation.web.configuration.EnableWebSecurity</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.security.web.SecurityFilterChain</span><span class="p">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSecurity</span>
+<span class="nd">@EnableMethodSecurity</span><span class="w"> </span><span class="c1">// Enables @PreAuthorize on controllers</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SecurityConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">SecurityFilterChain</span><span class="w"> </span><span class="nf">securityFilterChain</span><span class="p">(</span><span class="n">HttpSecurity</span><span class="w"> </span><span class="n">http</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">http</span>
+<span class="w">            </span><span class="p">.</span><span class="na">csrf</span><span class="p">(</span><span class="n">csrf</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">csrf</span><span class="p">.</span><span class="na">disable</span><span class="p">())</span><span class="w"> </span><span class="c1">// Stateless APIs</span>
+<span class="w">            </span><span class="p">.</span><span class="na">authorizeHttpRequests</span><span class="p">(</span><span class="n">auth</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">auth</span>
+<span class="w">                </span><span class="p">.</span><span class="na">requestMatchers</span><span class="p">(</span><span class="s">&quot;/actuator/health&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/actuator/info&quot;</span><span class="p">).</span><span class="na">permitAll</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">requestMatchers</span><span class="p">(</span><span class="s">&quot;/v3/api-docs/**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/swagger-ui/**&quot;</span><span class="p">).</span><span class="na">permitAll</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">anyRequest</span><span class="p">().</span><span class="na">authenticated</span><span class="p">()</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">oauth2ResourceServer</span><span class="p">(</span><span class="n">oauth2</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">oauth2</span>
+<span class="w">                </span><span class="p">.</span><span class="na">jwt</span><span class="p">(</span><span class="n">jwt</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">jwt</span><span class="p">.</span><span class="na">jwtAuthenticationConverter</span><span class="p">(</span><span class="n">jwtAuthenticationConverter</span><span class="p">()))</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">JwtAuthenticationConverter</span><span class="w"> </span><span class="nf">jwtAuthenticationConverter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">JwtGrantedAuthoritiesConverter</span><span class="w"> </span><span class="n">grantedAuthoritiesConverter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JwtGrantedAuthoritiesConverter</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// Extract scopes from JWT claim &quot;scope&quot; and map as &quot;SCOPE_xxx&quot;</span>
+<span class="w">        </span><span class="n">grantedAuthoritiesConverter</span><span class="p">.</span><span class="na">setAuthorityPrefix</span><span class="p">(</span><span class="s">&quot;SCOPE_&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">grantedAuthoritiesConverter</span><span class="p">.</span><span class="na">setAuthoritiesClaimName</span><span class="p">(</span><span class="s">&quot;scope&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">JwtAuthenticationConverter</span><span class="w"> </span><span class="n">jwtAuthenticationConverter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JwtAuthenticationConverter</span><span class="p">();</span>
+<span class="w">        </span><span class="n">jwtAuthenticationConverter</span><span class="p">.</span><span class="na">setJwtGrantedAuthoritiesConverter</span><span class="p">(</span><span class="n">grantedAuthoritiesConverter</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">jwtAuthenticationConverter</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="43-controller-method-level-protection">4.3 Controller Method-Level Protection</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">com.enterprise.insurance.lines.motor.api</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.security.access.prepost.PreAuthorize</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.*</span><span class="p">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/v1/motor/policies&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MotorPolicyController</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@PostMapping</span>
+<span class="w">    </span><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">&quot;hasAuthority(&#39;SCOPE_policy:create&#39;)&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// Enforce scope constraint</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">MotorPolicyResponse</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">createPolicy</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">MotorQuoteRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -1376,6 +1559,10 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

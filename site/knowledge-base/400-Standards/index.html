@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -70,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#standards" class="md-skip">
+        <a href="#spring-boot-backend-development-standards" class="md-skip">
           Skip to content
         </a>
       
@@ -873,79 +876,170 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#1-modular-package-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        1. Modular Package Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Modular Package Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#package-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Structures
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
+  <a href="#2-api-design-rest-guidelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Structure
+        2. API Design &amp; REST Guidelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. API Design &amp; REST Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#controller-structure-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controller Structure Specification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controller Structure Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference Implementation:
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
+  <a href="#3-global-exception-handling-error-envelope" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Navigation
+        3. Global Exception Handling &amp; Error Envelope
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Global Exception Handling &amp; Error Envelope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exception-handler-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception Handler Implementation
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#quick-links" class="md-nav__link">
+  <a href="#4-logging-observability-standards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Links
+        4. Logging &amp; Observability Standards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Logging &amp; Observability Standards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-correlation-id-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Correlation ID Injection
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#last-updated" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#42-slf4j-log-format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Last Updated
+        4.2 SLF4J Log Format
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#maintainers" class="md-nav__link">
+  <a href="#5-testing-guidelines-slices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Maintainers
+        5. Testing Guidelines &amp; Slices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Testing Guidelines &amp; Slices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-controller-slice-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Controller Slice Test:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Questions?
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1188,79 +1282,170 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#1-modular-package-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        1. Modular Package Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Modular Package Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#package-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Structures
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
+  <a href="#2-api-design-rest-guidelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Structure
+        2. API Design &amp; REST Guidelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. API Design &amp; REST Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#controller-structure-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controller Structure Specification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controller Structure Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference Implementation:
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
+  <a href="#3-global-exception-handling-error-envelope" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Navigation
+        3. Global Exception Handling &amp; Error Envelope
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Global Exception Handling &amp; Error Envelope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exception-handler-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception Handler Implementation
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#quick-links" class="md-nav__link">
+  <a href="#4-logging-observability-standards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Links
+        4. Logging &amp; Observability Standards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Logging &amp; Observability Standards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-correlation-id-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Correlation ID Injection
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#last-updated" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#42-slf4j-log-format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Last Updated
+        4.2 SLF4J Log Format
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#maintainers" class="md-nav__link">
+  <a href="#5-testing-guidelines-slices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Maintainers
+        5. Testing Guidelines &amp; Slices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Testing Guidelines &amp; Slices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-controller-slice-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Controller Slice Test:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Questions?
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1284,44 +1469,192 @@
   
 
 
-<h1 id="standards">Standards</h1>
-<p>This section defines development standards, best practices, and coding guidelines.</p>
-<h2 id="overview">Overview</h2>
-<p>This section is part of the Enterprise Insurance Platform documentation repository.</p>
-<h2 id="structure">Structure</h2>
-<p>The documentation is organized to provide clear, accessible information for all stakeholders including:</p>
+<h1 id="spring-boot-backend-development-standards">Spring Boot Backend Development Standards</h1>
+<p>This document establishes the official coding standards, packages layout, architecture rules, and testing practices for all Spring Boot backend modules in the Enterprise Insurance Platform.</p>
+<hr />
+<h2 id="1-modular-package-architecture">1. Modular Package Architecture</h2>
+<p>To maintain clear boundary isolations and support rapid onboarding of future lines of business, all backend source files must follow a <strong>modular package layout</strong> separated by vertical slices.</p>
+<h3 id="package-structures">Package Structures</h3>
+<div class="highlight"><pre><span></span><code>com.enterprise.insurance
+  ├── core                      # Shared platform kernel
+  │    ├── domain               # Core entities: Policy, Claim, Customer
+  │    ├── repository           # Core repository interfaces
+  │    ├── security             # Shared filter chains and security context
+  │    └── exception            # Global exception classes
+  └── lines                     # Lines of business (Vertical slices)
+       └── motor                # Motor Insurance Vertical Slice
+            ├── api             # Controller classes (REST endpoints)
+            ├── application     # Services, rating engines, workflows
+            ├── domain          # Motor entities: MotorVehicle, MotorDriver
+            ├── infrastructure  # Adapters, external clients (Najm, Yakeen)
+            └── repository      # DB persistence layer mapping
+</code></pre></div>
+<hr />
+<h2 id="2-api-design-rest-guidelines">2. API Design &amp; REST Guidelines</h2>
+<p>All Spring Boot controllers must follow the standard API conventions outlined in the <a href="../500-API/">API Design Standards</a>.</p>
+<h3 id="controller-structure-specification">Controller Structure Specification</h3>
 <ul>
-<li><strong>Business Stakeholders</strong>: Understand the platform capabilities and business value</li>
-<li><strong>Development Teams</strong>: Access technical specifications and implementation details</li>
-<li><strong>Operations Teams</strong>: Learn about deployment, monitoring, and infrastructure</li>
-<li><strong>Security Teams</strong>: Review security standards and compliance requirements</li>
+<li>Use <code>@RestController</code> and avoid returning raw map structures. Use strongly typed request/response Data Transfer Objects (DTOs).</li>
+<li>Always validate incoming payloads at the controller boundary using <code>@Valid</code> or <code>@Validated</code>.</li>
 </ul>
-<h2 id="navigation">Navigation</h2>
-<p>Use the navigation menu to explore the content in this section.</p>
-<h2 id="quick-links">Quick Links</h2>
-<ul>
-<li><a href="../000-Vision/">Vision &amp; Strategy</a></li>
-<li><a href="../100-Business/">Business Context</a></li>
-<li><a href="../200-Domains/">Domain Models</a></li>
-<li><a href="../architecture/">Architecture</a></li>
-<li><a href="./">Standards</a></li>
-<li><a href="../500-API/">API Design</a></li>
-<li><a href="../600-Database/">Database Design</a></li>
-<li><a href="../700-UI/">User Interface</a></li>
-<li><a href="../800-Integrations/">Integrations</a></li>
-<li><a href="../900-Decisions/">Decisions</a></li>
-<li><a href="../950-Templates/">Templates</a></li>
-<li><a href="../990-AI/">AI Assistance</a></li>
-</ul>
-<h2 id="last-updated">Last Updated</h2>
-<p>This content was generated on 2026-07-01 19:01:43 UTC.</p>
-<h2 id="maintainers">Maintainers</h2>
-<ul>
-<li>Enterprise Architecture Team</li>
-<li>Documentation Team</li>
-</ul>
-<h2 id="questions">Questions?</h2>
-<p>For questions about this documentation, please contact the Enterprise Architecture Team.</p>
+<h4 id="reference-implementation">Reference Implementation:</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">com.enterprise.insurance.lines.motor.api</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.validation.Valid</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.http.HttpStatus</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.http.ResponseEntity</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.*</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.URI</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.UUID</span><span class="p">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/v1/motor/policies&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MotorPolicyController</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">MotorPolicyService</span><span class="w"> </span><span class="n">policyService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MotorPolicyController</span><span class="p">(</span><span class="n">MotorPolicyService</span><span class="w"> </span><span class="n">policyService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">policyService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">policyService</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@PostMapping</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">MotorPolicyResponse</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">createQuote</span><span class="p">(</span><span class="nd">@Valid</span><span class="w"> </span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">MotorQuoteRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MotorPolicyResponse</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">policyService</span><span class="p">.</span><span class="na">createQuote</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+<span class="w">        </span><span class="n">URI</span><span class="w"> </span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;/v1/motor/policies/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="na">getPolicyId</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">created</span><span class="p">(</span><span class="n">location</span><span class="p">).</span><span class="na">body</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="3-global-exception-handling-error-envelope">3. Global Exception Handling &amp; Error Envelope</h2>
+<p>To ensure the backend returns the standardized JSON error envelope defined in <a href="../500-API/#standard-error-response-payload">API Error Handling</a>, a global <code>@RestControllerAdvice</code> handler must intercept all application boundaries.</p>
+<h3 id="exception-handler-implementation">Exception Handler Implementation</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">com.enterprise.insurance.core.exception</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.http.HttpStatus</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.http.ResponseEntity</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.validation.FieldError</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.MethodArgumentNotValidException</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.ExceptionHandler</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.RestControllerAdvice</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span>
+
+<span class="nd">@RestControllerAdvice</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GlobalExceptionHandler</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// 1. Intercept Validation Failures (HTTP 400)</span>
+<span class="w">    </span><span class="nd">@ExceptionHandler</span><span class="p">(</span><span class="n">MethodArgumentNotValidException</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">ErrorEnvelope</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">handleValidation</span><span class="p">(</span><span class="n">MethodArgumentNotValidException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">details</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="na">getBindingResult</span><span class="p">().</span><span class="na">getFieldErrors</span><span class="p">().</span><span class="na">stream</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">FieldError</span><span class="p">::</span><span class="n">getDefaultMessage</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">toList</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">ErrorEnvelope</span><span class="p">.</span><span class="na">ErrorDetail</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ErrorEnvelope</span><span class="p">.</span><span class="na">ErrorDetail</span><span class="p">(</span>
+<span class="w">                </span><span class="s">&quot;VALIDATION_ERROR&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;Request validation failed&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">details</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">badRequest</span><span class="p">().</span><span class="na">body</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ErrorEnvelope</span><span class="p">(</span><span class="n">error</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 2. Intercept Business Rules Failures (HTTP 409)</span>
+<span class="w">    </span><span class="nd">@ExceptionHandler</span><span class="p">(</span><span class="n">BusinessRuleException</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">ErrorEnvelope</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">handleBusinessRule</span><span class="p">(</span><span class="n">BusinessRuleException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ErrorEnvelope</span><span class="p">.</span><span class="na">ErrorDetail</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ErrorEnvelope</span><span class="p">.</span><span class="na">ErrorDetail</span><span class="p">(</span>
+<span class="w">                </span><span class="n">ex</span><span class="p">.</span><span class="na">getErrorCode</span><span class="p">(),</span>
+<span class="w">                </span><span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">(),</span>
+<span class="w">                </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">()</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">CONFLICT</span><span class="p">).</span><span class="na">body</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ErrorEnvelope</span><span class="p">(</span><span class="n">error</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="4-logging-observability-standards">4. Logging &amp; Observability Standards</h2>
+<p>End-to-end distributed tracing is mandatory for auditability and debugging across microservices.</p>
+<h3 id="41-correlation-id-injection">4.1 Correlation ID Injection</h3>
+<p>Every incoming request must be mapped with a correlation or trace ID using a <strong>Servlet Filter</strong> and injected into the log <strong>Mapped Diagnostic Context (MDC)</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">com.enterprise.insurance.core.security</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.servlet.*</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.servlet.http.HttpServletRequest</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.slf4j.MDC</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.io.IOException</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.UUID</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CorrelationIdFilter</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Filter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">CORRELATION_ID_HEADER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;X-Correlation-ID&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">MDC_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;correlationId&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doFilter</span><span class="p">(</span><span class="n">ServletRequest</span><span class="w"> </span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">ServletResponse</span><span class="w"> </span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">FilterChain</span><span class="w"> </span><span class="n">chain</span><span class="p">)</span><span class="w"> </span>
+<span class="w">            </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="p">,</span><span class="w"> </span><span class="n">ServletException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="p">)</span><span class="w"> </span><span class="n">req</span><span class="p">;</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">correlationId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="na">getHeader</span><span class="p">(</span><span class="n">CORRELATION_ID_HEADER</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">correlationId</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">correlationId</span><span class="p">.</span><span class="na">isBlank</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">correlationId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">MDC</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">MDC_KEY</span><span class="p">,</span><span class="w"> </span><span class="n">correlationId</span><span class="p">);</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">chain</span><span class="p">.</span><span class="na">doFilter</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">MDC</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">MDC_KEY</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="42-slf4j-log-format">4.2 SLF4J Log Format</h3>
+<p>Configure <code>logback-spring.xml</code> to output MDC correlation values to the console and log aggregation server:
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;pattern&gt;</span>%d{yyyy-MM-dd<span class="w"> </span>HH:mm:ss.SSS}<span class="w"> </span>[%thread]<span class="w"> </span>%-5level<span class="w"> </span>%logger{36}<span class="w"> </span>[Trace:%X{correlationId}]<span class="w"> </span>-<span class="w"> </span>%msg%n<span class="nt">&lt;/pattern&gt;</span>
+</code></pre></div></p>
+<hr />
+<h2 id="5-testing-guidelines-slices">5. Testing Guidelines &amp; Slices</h2>
+<p>A strict testing structure is enforced to ensure functional correctness prior to CI/CD promotions.</p>
+<ol>
+<li><strong>Unit Tests</strong>:</li>
+<li>Written for pure domain logic, rating factor engines, and business rules (e.g. <code>MotorRatingEngineTest</code>).</li>
+<li>Mock all dependencies using Mockito.</li>
+<li><strong>Controller Slice Tests (<code>@WebMvcTest</code>)</strong>:</li>
+<li>Test request-response mappings, status codes, validations, and serialization behaviors.</li>
+<li><strong>Database Repository Slices (<code>@DataJpaTest</code>)</strong>:</li>
+<li>Verify JPA mapping constraints, custom queries, and database triggers.</li>
+<li>Use Testcontainers (PostgreSQL container setup) to guarantee matches with production database behavior.</li>
+</ol>
+<h3 id="sample-controller-slice-test">Sample Controller Slice Test:</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">com.enterprise.insurance.lines.motor.api</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.junit.jupiter.api.Test</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.boot.test.mock.mockito.MockBean</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.http.MediaType</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.test.web.servlet.MockMvc</span><span class="p">;</span>
+
+<span class="kn">import static</span><span class="w"> </span><span class="nn">org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post</span><span class="p">;</span>
+<span class="kn">import static</span><span class="w"> </span><span class="nn">org.springframework.test.web.servlet.result.MockMvcResultMatchers.status</span><span class="p">;</span>
+
+<span class="nd">@WebMvcTest</span><span class="p">(</span><span class="n">MotorPolicyController</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MotorPolicyControllerTest</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">MockMvc</span><span class="w"> </span><span class="n">mockMvc</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@MockBean</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">MotorPolicyService</span><span class="w"> </span><span class="n">policyService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">givenInvalidPayload_whenCreateQuote_thenReturnsBadRequest</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">invalidPayload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;{\&quot;garagingAddress\&quot;: null}&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Missing required fields</span>
+
+<span class="w">        </span><span class="n">mockMvc</span><span class="p">.</span><span class="na">perform</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;/v1/motor/policies&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">contentType</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">content</span><span class="p">(</span><span class="n">invalidPayload</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">andExpect</span><span class="p">(</span><span class="n">status</span><span class="p">().</span><span class="na">isBadRequest</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -1379,6 +1712,10 @@
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

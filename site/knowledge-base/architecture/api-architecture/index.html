@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -541,33 +544,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#architectural-principles" class="md-nav__link">
+  <a href="#api-layers-and-topology" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architectural Principles
+        API Layers and Topology
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-layers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Layers
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API Layers">
+    <nav class="md-nav" aria-label="API Layers and Topology">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-edgeapi-gateway" class="md-nav__link">
+  <a href="#1-edge-api-gateway" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Edge/API Gateway
+        1. Edge / API Gateway
       
     </span>
   </a>
@@ -575,10 +567,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-domain-apis" class="md-nav__link">
+  <a href="#2-internal-domain-apis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Domain APIs
+        2. Internal Domain APIs
       
     </span>
   </a>
@@ -586,10 +578,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-integration-apis" class="md-nav__link">
+  <a href="#3-integration-adapter-apis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Integration APIs
+        3. Integration Adapter APIs
       
     </span>
   </a>
@@ -602,43 +594,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-style" class="md-nav__link">
+  <a href="#architectural-principles-communication-patterns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API Style
+        Architectural Principles &amp; Communication Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architectural Principles &amp; Communication Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-synchronous-request-response-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Synchronous Request-Response (REST)
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#suggested-endpoint-groups" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-asynchronous-event-driven-messaging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Suggested Endpoint Groups
+        2. Asynchronous Event-Driven Messaging
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#versioning-strategy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Versioning Strategy
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#dynamic-extension-api" class="md-nav__link">
+  <a href="#dynamic-metadata-extensibility" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dynamic Extension API
+        Dynamic Metadata Extensibility
       
     </span>
   </a>
@@ -1240,33 +1238,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#architectural-principles" class="md-nav__link">
+  <a href="#api-layers-and-topology" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architectural Principles
+        API Layers and Topology
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-layers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Layers
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API Layers">
+    <nav class="md-nav" aria-label="API Layers and Topology">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-edgeapi-gateway" class="md-nav__link">
+  <a href="#1-edge-api-gateway" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Edge/API Gateway
+        1. Edge / API Gateway
       
     </span>
   </a>
@@ -1274,10 +1261,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-domain-apis" class="md-nav__link">
+  <a href="#2-internal-domain-apis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Domain APIs
+        2. Internal Domain APIs
       
     </span>
   </a>
@@ -1285,10 +1272,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-integration-apis" class="md-nav__link">
+  <a href="#3-integration-adapter-apis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Integration APIs
+        3. Integration Adapter APIs
       
     </span>
   </a>
@@ -1301,43 +1288,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-style" class="md-nav__link">
+  <a href="#architectural-principles-communication-patterns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API Style
+        Architectural Principles &amp; Communication Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architectural Principles &amp; Communication Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-synchronous-request-response-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Synchronous Request-Response (REST)
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#suggested-endpoint-groups" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-asynchronous-event-driven-messaging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Suggested Endpoint Groups
+        2. Asynchronous Event-Driven Messaging
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#versioning-strategy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Versioning Strategy
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#dynamic-extension-api" class="md-nav__link">
+  <a href="#dynamic-metadata-extensibility" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dynamic Extension API
+        Dynamic Metadata Extensibility
       
     </span>
   </a>
@@ -1365,67 +1358,71 @@
 
 
 <h1 id="api-architecture">API Architecture</h1>
+<p>This document outlines the system-level API architecture, boundary layers, and communication protocols for the Saudi Arabia MVP platform.</p>
+<p>For concrete developer implementation guidelines, naming standards, status codes, versioning syntax, and JSON structures, refer to the <a href="../../500-API/">API Design Standards</a>.</p>
 <h2 id="purpose">Purpose</h2>
-<p>The platform exposes a set of internal and external APIs that support policy, claims, billing, underwriting, and administration workflows for the Saudi Arabia MVP.</p>
-<h2 id="architectural-principles">Architectural Principles</h2>
-<ul>
-<li>API-first design for all domain capabilities</li>
-<li>Versioned contracts for backward compatibility</li>
-<li>Clear separation between internal application APIs and external partner APIs</li>
-<li>Use of asynchronous events for long-running workflows</li>
-<li>Strong authentication and authorization at every boundary</li>
-</ul>
-<h2 id="api-layers">API Layers</h2>
-<h3 id="1-edgeapi-gateway">1. Edge/API Gateway</h3>
-<p>The API Gateway is the single entry point for external clients and partner systems.</p>
-<p>Responsibilities:
-- request routing
-- authentication and authorization
-- throttling and rate limiting
-- request/response transformation
-- observability and tracing</p>
-<h3 id="2-domain-apis">2. Domain APIs</h3>
-<p>Each line or bounded context exposes its own API surface.</p>
-<p>Suggested modules:
-- Policy API
-- Claims API
-- Billing API
-- Underwriting API
-- Customer API</p>
-<h3 id="3-integration-apis">3. Integration APIs</h3>
-<p>These are adapter-style APIs for external systems such as payment providers, document services, and regulatory reporting interfaces.</p>
-<h2 id="api-style">API Style</h2>
-<ul>
-<li>REST for synchronous operations</li>
-<li>Kafka or event bus for asynchronous integration</li>
-<li>OpenAPI definitions for API contracts</li>
-<li>JSON payloads with consistent envelope structure</li>
-</ul>
-<h2 id="suggested-endpoint-groups">Suggested Endpoint Groups</h2>
-<ul>
-<li><code>/customers</code></li>
-<li><code>/policies</code></li>
-<li><code>/claims</code></li>
-<li><code>/billing/transactions</code></li>
-<li><code>/underwriting/rules</code></li>
-<li><code>/metadata/entities</code></li>
-<li><code>/metadata/forms</code></li>
-</ul>
-<h2 id="versioning-strategy">Versioning Strategy</h2>
-<ul>
-<li>URI versioning such as <code>/v1/</code></li>
-<li>Breaking changes require a new major version</li>
-<li>Non-breaking changes remain compatible within the same major version</li>
-</ul>
-<h2 id="dynamic-extension-api">Dynamic Extension API</h2>
-<p>The metadata layer must expose APIs for runtime extensibility.</p>
-<p>Example endpoints:
-- <code>GET /metadata/entities</code>
-- <code>POST /metadata/entities</code>
-- <code>GET /metadata/entities/{entityCode}/fields</code>
-- <code>POST /metadata/forms</code>
-- <code>GET /metadata/rules</code></p>
-<p>These endpoints allow the UI to render dynamic forms and drive workflow configuration without changing backend code.</p>
+<p>The API architecture serves as the foundation for connecting internal capabilities and external partners, supporting policy administration, claims processing, billing, underwriting, and administrative workflows in compliance with Saudi Arabian regulatory requirements.</p>
+<h2 id="api-layers-and-topology">API Layers and Topology</h2>
+<p>The platform APIs are structured into three distinct logical and physical layers to enforce security boundaries and separate responsibilities.</p>
+<div class="panzoom-box" data-key="none" id="panzoom0" oncontextmenu="return false;">
+    
+    <nav class="panzoom-nav">
+    <button class="panzoom-reset panzoom-button">
+    <svg class="panzoom-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"></path>
+    </svg>
+</button>
+    </nav>
+    <pre class="mermaid"><code>graph TD
+    Client[External Clients / Partners] --&gt; Gateway[API Gateway / Edge Layer]
+    Gateway --&gt; DomainAPI[Domain APIs Layer]
+    Gateway --&gt; IntegrationAPI[Integration Adapter APIs Layer]
+    DomainAPI &lt;--&gt; IntegrationAPI</code></pre> 
+    <div class="panzoom-info-box panzoom-info-box-bottom">
+Use mouse to pan and zoom
+</div>
+</div>
+<h3 id="1-edge-api-gateway">1. Edge / API Gateway</h3>
+<p>The API Gateway serves as the single secure entry point for all external traffic (client applications, agent portals, partner systems).</p>
+<p><strong>Key Responsibilities:</strong>
+- <strong>Request Routing:</strong> Dynamic routing of traffic to downstream domain and integration services.
+- <strong>Security &amp; Threat Mitigation:</strong> SSL/TLS termination, API key validation, OAuth2 JWT inspection, and Web Application Firewall (WAF) integration.
+- <strong>Traffic Management:</strong> Throttling and rate limiting (global and consumer-specific) to prevent denial-of-service attacks.
+- <strong>Observability:</strong> Injection of correlation/trace IDs for distributed tracing, response time monitoring, and access logging.
+- <strong>Payload Transformation:</strong> Cross-cutting request/response header mapping and payload adjustments.</p>
+<h3 id="2-internal-domain-apis">2. Internal Domain APIs</h3>
+<p>Each domain microservice (or bounded context) exposes its own API surface containing business capabilities. These are internal-facing services that operate behind the gateway boundary.</p>
+<p><strong>Core Domain Services:</strong>
+- <strong>Policy API:</strong> Quoting, policy issuance, endorsement, and renewal.
+- <strong>Claims API:</strong> First Notice of Loss (FNOL), claim assessment, and adjudication workflows.
+- <strong>Billing API:</strong> Payment scheduling, invoice generation, and transaction tracking.
+- <strong>Underwriting API:</strong> Risk evaluation, rules validation, and automated decision-making.
+- <strong>Customer API:</strong> Profiles, dynamic document directories, and consent management.</p>
+<h3 id="3-integration-adapter-apis">3. Integration Adapter APIs</h3>
+<p>These are specialized adapters that encapsulate external system integrations, decoupling the core domain services from third-party APIs. In the Saudi Arabia context, integration adapters interact with:
+- <strong>National Databases &amp; Services:</strong> ELM, Yakeen (identity validation), and Najm (accident report verification).
+- <strong>Payment Gateways:</strong> Local payment systems (e.g., Mada, SADAD).
+- <strong>Document Services:</strong> External PDF generation, electronic signature providers, and archiving engines.
+- <strong>Regulatory Reporting:</strong> Integration points for compliance audits and mandatory regulatory feeds.</p>
+<hr />
+<h2 id="architectural-principles-communication-patterns">Architectural Principles &amp; Communication Patterns</h2>
+<p>The platform leverages two main communication patterns to ensure loose coupling, reliability, and low-latency performance:</p>
+<h3 id="1-synchronous-request-response-rest">1. Synchronous Request-Response (REST)</h3>
+<p>Used when immediate feedback is required for a user or system action.
+- <strong>Protocol:</strong> HTTP/S.
+- <strong>Primary Scenarios:</strong> Gateway ingress, policy quoting, portal data loading, and instant verification checks (e.g., fetching driver data via Yakeen).
+- <strong>Standards:</strong> All REST APIs must adhere to standard REST patterns, return consistent envelopes, and be fully documented using OpenAPI 3.0. (See the <a href="../../500-API/">API Design Standards</a>).</p>
+<h3 id="2-asynchronous-event-driven-messaging">2. Asynchronous Event-Driven Messaging</h3>
+<p>Used for long-running workflows, background processing, and inter-service state propagation.
+- <strong>Broker:</strong> Apache Kafka or equivalent enterprise event bus.
+- <strong>Primary Scenarios:</strong> Document generation post-issuance, claims adjudication stages, notifying customers via SMS/email, and sending compliance audit records.
+- <strong>Decoupling:</strong> Prevents cascading failures. If a service (e.g., notification) is temporarily unavailable, domain actions (e.g., policy creation) can still complete.</p>
+<hr />
+<h2 id="dynamic-metadata-extensibility">Dynamic Metadata Extensibility</h2>
+<p>As specified in <a href="../architecture-decisions/#adr-003-metadata-driven-extensibility">ADR-003: Metadata-Driven Extensibility</a>, the system supports business-driven model modifications without backend changes.
+- <strong>UI Engine Integration:</strong> Domain APIs work in tandem with a metadata service. The metadata service exposes schemas defining dynamic form layouts, fields, validation rules, and page sequences.
+- <strong>API Dynamic Payload Handling:</strong> Core APIs leverage JSONB schemas (<a href="../architecture-decisions/#adr-004-jsonb-for-dynamic-attribute-storage">ADR-004</a>) to ingest, validate, and store custom line-of-business parameters defined dynamically via configuration APIs.</p>
+<p>For details on the specific metadata endpoints, see the <a href="../../500-API/#metadata-driven-extension-apis">Metadata-Driven Extension APIs</a> section.</p>
 
 
 
@@ -1483,6 +1480,10 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

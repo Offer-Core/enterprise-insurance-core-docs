@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -502,10 +505,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#objectives" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Objectives
+        Overview
       
     </span>
   </a>
@@ -513,10 +516,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-controls" class="md-nav__link">
+  <a href="#security-layers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Controls
+        Security Layers
       
     </span>
   </a>
@@ -524,10 +527,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-approach" class="md-nav__link">
+  <a href="#authentication-design" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended Approach
+        Authentication Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identity-provider-keycloak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity Provider: Keycloak
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycloak-realm-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keycloak Realm Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwt-claims-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JWT Claims Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authorisation-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authorisation Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authorisation Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#role-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role Definitions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-security-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Security Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-level-security-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method-Level Security Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transport-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transport Security
       
     </span>
   </a>
@@ -535,10 +638,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-review-checklist" class="md-nav__link">
+  <a href="#data-security" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Review Checklist
+        Data Security
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encryption-at-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encryption at Rest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pii-field-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PII Field Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit Logging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sama-cybersecurity-framework-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAMA Cybersecurity Framework Alignment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-checklist-per-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Checklist (Per Service)
       
     </span>
   </a>
@@ -1157,10 +1321,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#objectives" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Objectives
+        Overview
       
     </span>
   </a>
@@ -1168,10 +1332,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-controls" class="md-nav__link">
+  <a href="#security-layers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Controls
+        Security Layers
       
     </span>
   </a>
@@ -1179,10 +1343,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-approach" class="md-nav__link">
+  <a href="#authentication-design" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended Approach
+        Authentication Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identity-provider-keycloak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity Provider: Keycloak
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycloak-realm-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keycloak Realm Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwt-claims-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JWT Claims Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authorisation-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authorisation Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authorisation Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#role-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role Definitions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-security-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Security Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-level-security-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method-Level Security Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transport-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transport Security
       
     </span>
   </a>
@@ -1190,10 +1454,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-review-checklist" class="md-nav__link">
+  <a href="#data-security" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Review Checklist
+        Data Security
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encryption-at-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encryption at Rest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pii-field-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PII Field Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit Logging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sama-cybersecurity-framework-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAMA Cybersecurity Framework Alignment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-checklist-per-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Checklist (Per Service)
       
     </span>
   </a>
@@ -1221,25 +1546,392 @@
 
 
 <h1 id="security-architecture">Security Architecture</h1>
-<h2 id="objectives">Objectives</h2>
-<p>The architecture should protect customer data, enforce access boundaries, and support compliance requirements relevant to Saudi Arabia.</p>
-<h2 id="security-controls">Security Controls</h2>
+<h2 id="overview">Overview</h2>
+<p>The platform security architecture implements a <strong>defence-in-depth</strong> model aligned with Saudi Arabia insurance regulatory requirements (SAMA Cybersecurity Framework).
+Authentication is centralised through an OIDC-compliant identity provider (Keycloak), and authorisation is enforced at both the API Gateway and service layers using JWT claims and role-based rules.</p>
+<hr />
+<h2 id="security-layers">Security Layers</h2>
+<div class="panzoom-box" data-key="none" id="panzoom0" oncontextmenu="return false;">
+    
+    <nav class="panzoom-nav">
+    <button class="panzoom-reset panzoom-button">
+    <svg class="panzoom-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"></path>
+    </svg>
+</button>
+    </nav>
+    <pre class="mermaid"><code>graph TB
+    subgraph "External"
+        User[User Browser]
+        Partner[Partner API Client]
+    end
+
+    subgraph "Perimeter"
+        WAF[Web Application Firewall]
+        DDOS[DDoS Protection]
+        RATELIMIT[Rate Limiter]
+    end
+
+    subgraph "Identity Layer"
+        KEYCLOAK[Keycloak OIDC Provider]
+        MFA[MFA / OTP]
+    end
+
+    subgraph "Gateway Layer"
+        APIGW[API Gateway - JWT Validation]
+        CORS[CORS Policy]
+        TLS[TLS 1.3 Termination]
+    end
+
+    subgraph "Service Layer"
+        SPRING[Spring Security - Method-level RBAC]
+        AUDIT[Audit Logger]
+    end
+
+    subgraph "Data Layer"
+        DB[(PostgreSQL - Encrypted at Rest)]
+        VAULT[Secret Store - Vault]
+    end
+
+    User --&gt; WAF --&gt; DDOS --&gt; RATELIMIT --&gt; TLS --&gt; APIGW
+    Partner --&gt; WAF
+    APIGW --&gt; KEYCLOAK
+    User --&gt; KEYCLOAK --&gt; MFA
+    APIGW --&gt; SPRING
+    SPRING --&gt; AUDIT
+    SPRING --&gt; DB
+    SPRING --&gt; VAULT</code></pre> 
+    <div class="panzoom-info-box panzoom-info-box-bottom">
+Use mouse to pan and zoom
+</div>
+</div>
+<hr />
+<h2 id="authentication-design">Authentication Design</h2>
+<h3 id="identity-provider-keycloak">Identity Provider: Keycloak</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protocol</td>
+<td>OpenID Connect 1.0 / OAuth 2.1</td>
+</tr>
+<tr>
+<td>Flow (Browser)</td>
+<td>Authorization Code + PKCE</td>
+</tr>
+<tr>
+<td>Flow (M2M)</td>
+<td>Client Credentials</td>
+</tr>
+<tr>
+<td>Token format</td>
+<td>JWT (RS256 signed)</td>
+</tr>
+<tr>
+<td>Access token TTL</td>
+<td>15 minutes</td>
+</tr>
+<tr>
+<td>Refresh token TTL</td>
+<td>8 hours (sliding)</td>
+</tr>
+<tr>
+<td>MFA</td>
+<td>TOTP (Google Authenticator / Saudi OTP)</td>
+</tr>
+<tr>
+<td>Session management</td>
+<td>Keycloak session + frontend silent refresh</td>
+</tr>
+</tbody>
+</table>
+<h3 id="keycloak-realm-configuration">Keycloak Realm Configuration</h3>
+<div class="highlight"><pre><span></span><code>Realm: insurance-platform
+  ├── Clients
+  │   ├── insurance-web (public, PKCE, redirect: https://app.insurance.com.sa/*)
+  │   ├── policy-service (confidential, client credentials)
+  │   ├── claims-service (confidential, client credentials)
+  │   └── billing-service (confidential, client credentials)
+  ├── Roles
+  │   ├── ROLE_SUPER_ADMIN
+  │   ├── ROLE_UNDERWRITER
+  │   ├── ROLE_CLAIMS_HANDLER
+  │   ├── ROLE_AGENT
+  │   ├── ROLE_CUSTOMER
+  │   └── ROLE_READONLY_AUDITOR
+  └── Identity Providers
+      └── Saudi National SSO (future - Absher integration)
+</code></pre></div>
+<h3 id="jwt-claims-structure">JWT Claims Structure</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-user-id&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;iss&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://auth.insurance.com.sa/realms/insurance&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;aud&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;insurance-web&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;exp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1751720400</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;iat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1751719500</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;realm_access&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;roles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ROLE_UNDERWRITER&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;resource_access&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;policy-service&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;roles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;policy:write&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;policy:read&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;preferred_username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ahmed.ali@company.com.sa&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;locale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ar&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tenant-001&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="authorisation-model">Authorisation Model</h2>
+<h3 id="role-definitions">Role Definitions</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Description</th>
+<th>Key Permissions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ROLE_SUPER_ADMIN</code></td>
+<td>Full platform administration</td>
+<td>All operations, metadata management, user management</td>
+</tr>
+<tr>
+<td><code>ROLE_UNDERWRITER</code></td>
+<td>Policy underwriting and issuance</td>
+<td>Create/approve policies, view quotes, manage endorsements</td>
+</tr>
+<tr>
+<td><code>ROLE_CLAIMS_HANDLER</code></td>
+<td>Claims processing</td>
+<td>Create/update/close claims, assign adjusters</td>
+</tr>
+<tr>
+<td><code>ROLE_AGENT</code></td>
+<td>Broker/agent access</td>
+<td>Create quotes, submit applications, view own portfolio</td>
+</tr>
+<tr>
+<td><code>ROLE_CUSTOMER</code></td>
+<td>Customer self-service</td>
+<td>View own policies and claims, submit documents</td>
+</tr>
+<tr>
+<td><code>ROLE_READONLY_AUDITOR</code></td>
+<td>Read-only compliance audit</td>
+<td>Read all data, no mutations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="spring-security-configuration">Spring Security Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableMethodSecurity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SecurityConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">SecurityFilterChain</span><span class="w"> </span><span class="nf">filterChain</span><span class="p">(</span><span class="n">HttpSecurity</span><span class="w"> </span><span class="n">http</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">http</span>
+<span class="w">            </span><span class="p">.</span><span class="na">csrf</span><span class="p">(</span><span class="n">AbstractHttpConfigurer</span><span class="p">::</span><span class="n">disable</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">sessionManagement</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">sessionCreationPolicy</span><span class="p">(</span><span class="n">STATELESS</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">authorizeHttpRequests</span><span class="p">(</span><span class="n">auth</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">auth</span>
+<span class="w">                </span><span class="p">.</span><span class="na">requestMatchers</span><span class="p">(</span><span class="s">&quot;/actuator/health/**&quot;</span><span class="p">).</span><span class="na">permitAll</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">requestMatchers</span><span class="p">(</span><span class="s">&quot;/api/v1/auth/**&quot;</span><span class="p">).</span><span class="na">permitAll</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">anyRequest</span><span class="p">().</span><span class="na">authenticated</span><span class="p">()</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">oauth2ResourceServer</span><span class="p">(</span><span class="n">oauth2</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">oauth2</span>
+<span class="w">                </span><span class="p">.</span><span class="na">jwt</span><span class="p">(</span><span class="n">jwt</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">jwt</span><span class="p">.</span><span class="na">jwtAuthenticationConverter</span><span class="p">(</span><span class="n">jwtConverter</span><span class="p">()))</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">JwtAuthenticationConverter</span><span class="w"> </span><span class="nf">jwtAuthenticationConverter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">JwtGrantedAuthoritiesConverter</span><span class="w"> </span><span class="n">converter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JwtGrantedAuthoritiesConverter</span><span class="p">();</span>
+<span class="w">        </span><span class="n">converter</span><span class="p">.</span><span class="na">setAuthoritiesClaimName</span><span class="p">(</span><span class="s">&quot;realm_access.roles&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">converter</span><span class="p">.</span><span class="na">setAuthorityPrefix</span><span class="p">(</span><span class="s">&quot;ROLE_&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JwtAuthenticationConverter</span><span class="w"> </span><span class="n">jwtConverter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JwtAuthenticationConverter</span><span class="p">();</span>
+<span class="w">        </span><span class="n">jwtConverter</span><span class="p">.</span><span class="na">setJwtGrantedAuthoritiesConverter</span><span class="p">(</span><span class="n">converter</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">jwtConverter</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="method-level-security-example">Method-Level Security Example</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PolicyService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">&quot;hasRole(&#39;UNDERWRITER&#39;) or hasRole(&#39;SUPER_ADMIN&#39;)&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">PolicyResponse</span><span class="w"> </span><span class="nf">approvePolicy</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">policyId</span><span class="p">,</span><span class="w"> </span><span class="n">ApprovalRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">&quot;hasRole(&#39;AGENT&#39;) or hasRole(&#39;UNDERWRITER&#39;) or hasRole(&#39;SUPER_ADMIN&#39;)&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">QuoteResponse</span><span class="w"> </span><span class="nf">createQuote</span><span class="p">(</span><span class="n">QuoteRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">&quot;hasRole(&#39;CUSTOMER&#39;) and #customerId == authentication.name&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">PolicySummary</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getCustomerPolicies</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">customerId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="transport-security">Transport Security</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>External HTTPS</td>
+<td>TLS 1.3 only, strong cipher suites</td>
+</tr>
+<tr>
+<td>Internal service-to-service</td>
+<td>mTLS via service mesh (Istio optional) or HTTPS with service account tokens</td>
+</tr>
+<tr>
+<td>Database connections</td>
+<td>TLS-encrypted PostgreSQL connections</td>
+</tr>
+<tr>
+<td>Kafka</td>
+<td>SASL/SSL authenticated connections</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="data-security">Data Security</h2>
+<h3 id="encryption-at-rest">Encryption at Rest</h3>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Encryption</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL data files</td>
+<td>AES-256 via cloud provider volume encryption</td>
+</tr>
+<tr>
+<td>Backups</td>
+<td>AES-256 encrypted before upload</td>
+</tr>
+<tr>
+<td>Kubernetes Secrets</td>
+<td>etcd encrypted at rest</td>
+</tr>
+<tr>
+<td>Application-level PII</td>
+<td>Field-level encryption for NIN, IBAN, and health data</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pii-field-handling">PII Field Handling</h3>
+<p>Sensitive personal data is encrypted at the application level before persistence:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;national_id_encrypted&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@Convert</span><span class="p">(</span><span class="n">converter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EncryptedStringConverter</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w">  </span><span class="c1">// AES-256-GCM</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nationalId</span><span class="p">;</span><span class="w">  </span><span class="c1">// Saudi NIN — encrypted</span>
+
+<span class="w">    </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iban_encrypted&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@Convert</span><span class="p">(</span><span class="n">converter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EncryptedStringConverter</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">iban</span><span class="p">;</span><span class="w">  </span><span class="c1">// IBAN — encrypted</span>
+
+<span class="w">    </span><span class="c1">// Non-sensitive fields stored in plaintext</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">fullNameAr</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">fullNameEn</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="audit-logging">Audit Logging</h2>
+<p>All security-sensitive operations are written to the <code>core.audit_log</code> table and optionally streamed to a SIEM:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Aspect</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AuditAspect</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@AfterReturning</span><span class="p">(</span><span class="s">&quot;@annotation(Auditable)&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">logAuditEvent</span><span class="p">(</span><span class="n">JoinPoint</span><span class="w"> </span><span class="n">jp</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">AuditEvent</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AuditEvent</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">userId</span><span class="p">(</span><span class="n">SecurityContextHolder</span><span class="p">.</span><span class="na">getContext</span><span class="p">().</span><span class="na">getAuthentication</span><span class="p">().</span><span class="na">getName</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">action</span><span class="p">(</span><span class="n">jp</span><span class="p">.</span><span class="na">getSignature</span><span class="p">().</span><span class="na">getName</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">entityType</span><span class="p">(</span><span class="n">extractEntityType</span><span class="p">(</span><span class="n">jp</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">entityId</span><span class="p">(</span><span class="n">extractEntityId</span><span class="p">(</span><span class="n">jp</span><span class="p">.</span><span class="na">getArgs</span><span class="p">()))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">timestamp</span><span class="p">(</span><span class="n">Instant</span><span class="p">.</span><span class="na">now</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">correlationId</span><span class="p">(</span><span class="n">MDC</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;correlationId&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="n">auditRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Audited operations include:</strong>
+- Login, logout, failed authentication
+- Policy creation, approval, cancellation
+- Claims creation, assignment, closure
+- Financial transaction creation
+- Role assignment / user management
+- Administrative configuration changes</p>
+<hr />
+<h2 id="sama-cybersecurity-framework-alignment">SAMA Cybersecurity Framework Alignment</h2>
+<table>
+<thead>
+<tr>
+<th>SAMA Control</th>
+<th>Platform Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IAM — strong authentication</td>
+<td>OIDC + MFA mandatory for all users</td>
+</tr>
+<tr>
+<td>Data classification</td>
+<td>PII fields tagged, encrypted, access-logged</td>
+</tr>
+<tr>
+<td>Audit trail</td>
+<td>Immutable audit log with 7-year retention</td>
+</tr>
+<tr>
+<td>Vulnerability management</td>
+<td>Trivy scans on every build, monthly pen tests</td>
+</tr>
+<tr>
+<td>Incident response</td>
+<td>Alerting on auth failures, automated lockout after 5 attempts</td>
+</tr>
+<tr>
+<td>Secure SDLC</td>
+<td>SonarQube code quality gate, OWASP dependency check</td>
+</tr>
+<tr>
+<td>Data residency</td>
+<td>All data stored in Saudi Arabia region</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="security-checklist-per-service">Security Checklist (Per Service)</h2>
 <ul>
-<li>Authentication and authorization for users, services, and integrations</li>
-<li>Role-based access control for operational and business functions</li>
-<li>Secret management and environment-specific configuration</li>
-<li>Encryption of data in transit and at rest</li>
-<li>Audit logging for sensitive actions and workflow changes</li>
-<li>Controls aligned with local regulatory and operational expectations for insurance data handling</li>
-</ul>
-<h2 id="recommended-approach">Recommended Approach</h2>
-<p>Use centralized identity services for human and service access, and apply least-privilege principles across all components.</p>
-<h2 id="security-review-checklist">Security Review Checklist</h2>
-<ul>
-<li>Are secrets stored outside source control?</li>
-<li>Are authorization rules defined at the service boundary?</li>
-<li>Are audit logs retained and searchable?</li>
-<li>Are sensitive operations protected by approval or policy checks?</li>
+<li>[ ] JWT validation enabled on all endpoints except health probes</li>
+<li>[ ] <code>@PreAuthorize</code> annotations on all mutating operations</li>
+<li>[ ] No secrets in source code or Dockerfiles</li>
+<li>[ ] TLS enabled on all database and broker connections</li>
+<li>[ ] Audit annotations on all sensitive operations</li>
+<li>[ ] Rate limiting applied at the API Gateway</li>
+<li>[ ] CORS restricted to known origins</li>
+<li>[ ] Security scan passes before deployment</li>
 </ul>
 
 
@@ -1298,6 +1990,10 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -70,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#api-design" class="md-skip">
+        <a href="#api-design-standards" class="md-skip">
           Skip to content
         </a>
       
@@ -901,10 +904,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#purpose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        Purpose
       
     </span>
   </a>
@@ -912,10 +915,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
+  <a href="#core-api-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Structure
+        Core API Principles
       
     </span>
   </a>
@@ -923,10 +926,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
+  <a href="#http-rest-api-conventions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Navigation
+        HTTP REST API Conventions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP REST API Conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-endpoint-naming-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Endpoint Naming &amp; Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-standard-http-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Standard HTTP Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-response-status-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Response Status Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contract-and-documentation-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contract and Documentation Standards
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-error-response-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Error Response Payload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versioning-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-expectations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Expectations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-driven-extension-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata-Driven Extension APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documents
       
     </span>
   </a>
@@ -1188,10 +1296,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#purpose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        Purpose
       
     </span>
   </a>
@@ -1199,10 +1307,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
+  <a href="#core-api-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Structure
+        Core API Principles
       
     </span>
   </a>
@@ -1210,10 +1318,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
+  <a href="#http-rest-api-conventions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Navigation
+        HTTP REST API Conventions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP REST API Conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-endpoint-naming-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Endpoint Naming &amp; Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-standard-http-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Standard HTTP Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-response-status-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Response Status Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contract-and-documentation-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contract and Documentation Standards
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-error-response-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Error Response Payload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versioning-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-expectations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Expectations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-driven-extension-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata-Driven Extension APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documents
       
     </span>
   </a>
@@ -1284,20 +1497,115 @@
   
 
 
-<h1 id="api-design">API Design</h1>
-<p>This section documents API design principles, specifications, and guidelines.</p>
-<h2 id="overview">Overview</h2>
-<p>This section is part of the Enterprise Insurance Platform documentation repository.</p>
-<h2 id="structure">Structure</h2>
-<p>The documentation is organized to provide clear, accessible information for all stakeholders including:</p>
+<h1 id="api-design-standards">API Design Standards</h1>
+<p>This section captures the practical API design standards, endpoint conventions, response contracts, and implementation guidance for the insurance platform.</p>
+<p>For a system-level view of API gateways, security topologies, and architectural layers, see the <a href="../architecture/api-architecture/">API Architecture</a>.</p>
+<h2 id="purpose">Purpose</h2>
+<p>Use this document as the entry point and reference for API design decisions. All development teams must adhere to these standards when building services for policy, claims, billing, underwriting, and customer workflows to ensure consistency, security, and interoperability.</p>
+<hr />
+<h2 id="core-api-principles">Core API Principles</h2>
+<ol>
+<li><strong>API-First Design</strong></li>
+<li>Define and align on capability contracts with stakeholders before beginning backend service implementation.</li>
+<li><strong>Contract-First Development</strong></li>
+<li>Use OpenAPI specifications as the single source of truth for both service producers and consumers.</li>
+<li><strong>Secure by Default</strong></li>
+<li>Enforce authentication, role-based authorization, payload validation, and secure audit logging at every API endpoint boundary.</li>
+<li><strong>Graceful Evolution</strong></li>
+<li>Evolve contracts additively to avoid breaking changes. Retain backward compatibility wherever possible.</li>
+</ol>
+<hr />
+<h2 id="http-rest-api-conventions">HTTP REST API Conventions</h2>
+<p>For synchronous request-response actions, the platform standard is REST over HTTP/S.</p>
+<h3 id="1-endpoint-naming-structure">1. Endpoint Naming &amp; Structure</h3>
 <ul>
-<li><strong>Business Stakeholders</strong>: Understand the platform capabilities and business value</li>
-<li><strong>Development Teams</strong>: Access technical specifications and implementation details</li>
-<li><strong>Operations Teams</strong>: Learn about deployment, monitoring, and infrastructure</li>
-<li><strong>Security Teams</strong>: Review security standards and compliance requirements</li>
+<li><strong>Nouns in Plural Form:</strong> Use plural nouns to designate resources. Do not use verbs in resource paths.</li>
+<li><em>Correct:</em> <code>GET /policies</code>, <code>POST /claims</code></li>
+<li><em>Incorrect:</em> <code>GET /getPolicy</code>, <code>POST /submitClaim</code></li>
+<li><strong>Hierarchical Paths:</strong> Map sub-resources under their parent domain.</li>
+<li><code>GET /policies/{policyId}/documents</code></li>
+<li><strong>Lower Kebab-Case:</strong> Use lowercase kebab-case for paths and query parameters.</li>
+<li><code>GET /underwriting/rules</code></li>
+<li><code>GET /policies?page-size=10</code></li>
 </ul>
-<h2 id="navigation">Navigation</h2>
-<p>Use the navigation menu to explore the content in this section.</p>
+<h3 id="2-standard-http-methods">2. Standard HTTP Methods</h3>
+<ul>
+<li><code>GET</code>: Retrieve a resource or a list. Must be safe and idempotent (no side effects).</li>
+<li><code>POST</code>: Create a new resource, or trigger a non-idempotent action (e.g., initiating adjudication).</li>
+<li><code>PUT</code>: Replace an existing resource entirely, or create if not present (idempotent).</li>
+<li><code>PATCH</code>: Perform a partial update to a resource.</li>
+<li><code>DELETE</code>: Remove a resource.</li>
+</ul>
+<h3 id="3-response-status-codes">3. Response Status Codes</h3>
+<p>Services must return standard HTTP status codes indicating the result of the invocation:
+- <strong>200 OK</strong>: Request completed successfully.
+- <strong>201 Created</strong>: Resource created successfully (must include a <code>Location</code> header pointing to the new resource).
+- <strong>202 Accepted</strong>: Request accepted for asynchronous processing (e.g., batch jobs, complex underwriting evaluations).
+- <strong>400 Bad Request</strong>: Input validation failed, or payload is malformed.
+- <strong>401 Unauthorized</strong>: No valid authentication token provided.
+- <strong>403 Forbidden</strong>: Authenticated caller lacks permissions (roles/scopes) for the operation.
+- <strong>404 Not Found</strong>: The requested resource does not exist.
+- <strong>409 Conflict</strong>: State conflict (e.g., trying to endorse a cancelled policy).
+- <strong>500 Internal Server Error</strong>: Unexpected server-side failure.</p>
+<hr />
+<h2 id="contract-and-documentation-standards">Contract and Documentation Standards</h2>
+<ul>
+<li><strong>OpenAPI Specification (OAS):</strong> All REST APIs must be defined using OpenAPI 3.0 or 3.1.</li>
+<li><strong>Self-Documenting Specs:</strong> Include descriptive summaries, parameter types, authentication requirements, rate-limiting headers, and detailed schemas.</li>
+<li><strong>Examples:</strong> Provide complete, representative JSON payload examples for both successful responses and error states.</li>
+</ul>
+<hr />
+<h2 id="standard-error-response-payload">Standard Error Response Payload</h2>
+<p>In the event of an error (4xx or 5xx status codes), services must return a standardized JSON envelope structure to simplify client-side handling.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VALIDATION_ERROR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The request payload is invalid&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;policyNumber is required&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;issueDate must be in the future&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Common Error Codes:</strong>
+- <code>VALIDATION_ERROR</code>: Input payload failed schema validations.
+- <code>RESOURCE_NOT_FOUND</code>: Target resource was not found.
+- <code>UNAUTHORIZED_ACCESS</code>: Missing or invalid security token.
+- <code>INSUFFICIENT_PERMISSIONS</code>: Caller lacks role or scope access.
+- <code>RESOURCE_CONFLICT</code>: Operation conflicts with current resource state.
+- <code>INTERNAL_FAILURE</code>: An unhandled exception occurred on the server.</p>
+<hr />
+<h2 id="versioning-policy">Versioning Policy</h2>
+<p>To manage changes while maintaining stability for partner integrations:
+- <strong>URI Versioning:</strong> Include the major version as a prefix in the URL path.
+  - Format: <code>/v1/policies</code>
+- <strong>Breaking Changes:</strong> Require incrementing the major version (e.g., <code>/v2/policies</code>). A change is breaking if it removes/renames fields, changes status codes, or alters payload structures.
+- <strong>Non-Breaking Changes:</strong> (Adding fields, adding endpoints, optional query params) must be deployed under the same major version without breaking existing integrations.</p>
+<hr />
+<h2 id="security-expectations">Security Expectations</h2>
+<ul>
+<li><strong>Token-Based Authentication:</strong> All API calls must include an OAuth2 bearer token in the <code>Authorization</code> header.</li>
+<li><strong>Fine-Grained Authorization:</strong> Enforce Role-Based Access Control (RBAC) and verify specific OAuth scopes (e.g., <code>policy:read</code>, <code>claims:write</code>) per operation.</li>
+<li><strong>Input Sanitization:</strong> Sanitize all incoming fields to protect against injection attacks (SQL, XSS, etc.).</li>
+<li><strong>Trace Context Propagation:</strong> APIs must extract and propagate the standard trace header (<code>X-B3-TraceId</code> or standard W3C trace context) to ensure end-to-end observability.</li>
+</ul>
+<hr />
+<h2 id="metadata-driven-extension-apis">Metadata-Driven Extension APIs</h2>
+<p>The platform leverages dynamic metadata endpoints to allow the user interface to render fields, validation rules, and custom workflow sequences on-the-fly (supporting the motor-first extensibility specified in <a href="../architecture/architecture-decisions/#adr-003-metadata-driven-extensibility">ADR-003</a>).</p>
+<p>Developers implementing dynamic metadata extensions must expose:
+- <code>GET /metadata/entities</code> - Lists all configurable core and extended entity definitions.
+- <code>POST /metadata/entities</code> - Registers a new entity schema or dynamic attributes definition.
+- <code>GET /metadata/entities/{entityCode}/fields</code> - Returns UI form rules, field types, and labels for a specific business line.
+- <code>POST /metadata/forms</code> - Configures dynamic step-by-step layout definitions for portals.
+- <code>GET /metadata/rules</code> - Evaluates or retrieves rule criteria metadata (e.g., premium discount calculations, basic underwriting bounds).</p>
+<hr />
+<h2 id="related-documents">Related Documents</h2>
+<ul>
+<li><a href="../architecture/api-architecture/">API Architecture</a> - System-level topology and gateway routing</li>
+<li><a href="../architecture/">Architecture Overview</a> - Platform structure and design principles</li>
+<li><a href="../architecture/architecture-decisions/">Architecture Decisions</a> - ADRs and decision log</li>
+</ul>
 <h2 id="quick-links">Quick Links</h2>
 <ul>
 <li><a href="../000-Vision/">Vision &amp; Strategy</a></li>
@@ -1305,7 +1613,6 @@
 <li><a href="../200-Domains/">Domain Models</a></li>
 <li><a href="../architecture/">Architecture</a></li>
 <li><a href="../400-Standards/">Standards</a></li>
-<li><a href="./">API Design</a></li>
 <li><a href="../600-Database/">Database Design</a></li>
 <li><a href="../700-UI/">User Interface</a></li>
 <li><a href="../800-Integrations/">Integrations</a></li>
@@ -1314,14 +1621,14 @@
 <li><a href="../990-AI/">AI Assistance</a></li>
 </ul>
 <h2 id="last-updated">Last Updated</h2>
-<p>This content was generated on 2026-07-01 19:01:44 UTC.</p>
+<p>This content was last updated on 2026-07-05.</p>
 <h2 id="maintainers">Maintainers</h2>
 <ul>
 <li>Enterprise Architecture Team</li>
-<li>Documentation Team</li>
+<li>Platform Engineering Team</li>
 </ul>
 <h2 id="questions">Questions?</h2>
-<p>For questions about this documentation, please contact the Enterprise Architecture Team.</p>
+<p>For questions about API design standards or contract reviews, contact the Enterprise Architecture Team.</p>
 
 
 
@@ -1379,6 +1686,10 @@
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

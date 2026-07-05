@@ -12,7 +12,7 @@ These documents provide a shared, Markdown-based view of the system structure, r
 - [Domain Architecture](domain-architecture.md) — bounded contexts, core domains, and domain responsibilities
 - [Motor-First Extensible Architecture](domain-architecture.md) — MVP Motor architecture with explicit extension points for future lines
 - [Integration Architecture](integration-architecture.md) — APIs, events, and external system connections
-- [API Architecture](api-architecture.md) — API layers, versioning, gateway, and contract strategy
+- [API Architecture](api-architecture.md) — API layers, gateway, communication patterns, and topology
 - [Data Architecture](data-architecture.md) — persistence model, schemas, and migration approach
 - [UI Architecture](ui-architecture.md) — dynamic forms, portal structure, and configurable experience
 - [Operations and Observability](operations-observability.md) — monitoring, alerts, and service health

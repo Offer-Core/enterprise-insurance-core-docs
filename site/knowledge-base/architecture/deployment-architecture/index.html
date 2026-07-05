@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -670,10 +673,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#target-environment-model" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Target Environment Model
+        Overview
       
     </span>
   </a>
@@ -681,10 +684,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#runtime-considerations" class="md-nav__link">
+  <a href="#environment-topology" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Runtime Considerations
+        Environment Topology
       
     </span>
   </a>
@@ -692,10 +695,161 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operational-principles" class="md-nav__link">
+  <a href="#container-strategy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operational Principles
+        Container Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Container Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image Conventions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespace-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace Separation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-deployment-spec-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Deployment Spec (Standard)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Deployment Spec (Standard)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-pod-autoscaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Horizontal Pod Autoscaler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD Pipeline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CI/CD Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Stages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-specific-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment-Specific Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment-Specific Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spring-profile-activation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Profile Activation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PostgreSQL High Availability
       
     </span>
   </a>
@@ -703,10 +857,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#suggested-starting-point" class="md-nav__link">
+  <a href="#secret-management" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Suggested Starting Point
+        Secret Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-checklist-pre-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment Checklist (Pre-Production)
       
     </span>
   </a>
@@ -1157,10 +1322,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#target-environment-model" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Target Environment Model
+        Overview
       
     </span>
   </a>
@@ -1168,10 +1333,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#runtime-considerations" class="md-nav__link">
+  <a href="#environment-topology" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Runtime Considerations
+        Environment Topology
       
     </span>
   </a>
@@ -1179,10 +1344,161 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operational-principles" class="md-nav__link">
+  <a href="#container-strategy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operational Principles
+        Container Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Container Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image Conventions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespace-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace Separation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-deployment-spec-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Deployment Spec (Standard)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Deployment Spec (Standard)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-pod-autoscaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Horizontal Pod Autoscaler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD Pipeline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CI/CD Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Stages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-specific-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment-Specific Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment-Specific Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spring-profile-activation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Profile Activation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PostgreSQL High Availability
       
     </span>
   </a>
@@ -1190,10 +1506,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#suggested-starting-point" class="md-nav__link">
+  <a href="#secret-management" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Suggested Starting Point
+        Secret Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-checklist-pre-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment Checklist (Pre-Production)
       
     </span>
   </a>
@@ -1221,23 +1548,478 @@
 
 
 <h1 id="deployment-architecture">Deployment Architecture</h1>
-<h2 id="target-environment-model">Target Environment Model</h2>
-<p>The platform should be deployable across multiple environments such as development, staging, and production for Saudi Arabia deployment operations.</p>
-<h2 id="runtime-considerations">Runtime Considerations</h2>
+<h2 id="overview">Overview</h2>
+<p>The Enterprise Insurance Platform is deployed as a containerised, cloud-native system targeting the Saudi Arabia market.
+All services are packaged as Docker images, orchestrated by Kubernetes, and promoted through a CI/CD pipeline that supports
+development, staging, and production environments.</p>
+<hr />
+<h2 id="environment-topology">Environment Topology</h2>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>Purpose</th>
+<th>Data</th>
+<th>Promotion Trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dev</code></td>
+<td>Local development, unit/integration testing</td>
+<td>Synthetic / seeded</td>
+<td>On every merge to <code>develop</code></td>
+</tr>
+<tr>
+<td><code>staging</code></td>
+<td>UAT, performance testing, integration with sandbox APIs</td>
+<td>Anonymised production clone</td>
+<td>Manual approval after CI passes</td>
+</tr>
+<tr>
+<td><code>production</code></td>
+<td>Live Saudi Arabia operations</td>
+<td>Real customer data</td>
+<td>Manual release gate + change board</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="container-strategy">Container Strategy</h2>
+<p>Each platform service follows a standardised container specification:</p>
+<div class="highlight"><pre><span></span><code>FROM eclipse-temurin:21-jre-alpine
+
+# Non-root user for security compliance
+RUN addgroup -S appgroup &amp;&amp; adduser -S appuser -G appgroup
+USER appuser
+
+COPY --chown=appuser:appgroup app.jar /app/app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT [&quot;java&quot;, \
+  &quot;-XX:MaxRAMPercentage=75&quot;, \
+  &quot;-Dspring.profiles.active=${SPRING_PROFILE}&quot;, \
+  &quot;-jar&quot;, &quot;/app/app.jar&quot;]
+</code></pre></div>
+<h3 id="image-conventions">Image Conventions</h3>
+<table>
+<thead>
+<tr>
+<th>Convention</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base image</td>
+<td><code>eclipse-temurin:21-jre-alpine</code></td>
+</tr>
+<tr>
+<td>Non-root user</td>
+<td>Required — <code>appuser</code></td>
+</tr>
+<tr>
+<td>Port</td>
+<td><code>8080</code> (HTTP), <code>8443</code> (HTTPS terminated at ingress)</td>
+</tr>
+<tr>
+<td>Config injection</td>
+<td>Environment variables via Kubernetes <code>ConfigMap</code> and <code>Secret</code></td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>Kubernetes <code>Secret</code> objects — never baked into the image</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="kubernetes-architecture">Kubernetes Architecture</h2>
+<div class="panzoom-box" data-key="none" id="panzoom0" oncontextmenu="return false;">
+    
+    <nav class="panzoom-nav">
+    <button class="panzoom-reset panzoom-button">
+    <svg class="panzoom-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"></path>
+    </svg>
+</button>
+    </nav>
+    <pre class="mermaid"><code>graph TB
+    subgraph Internet
+        Client[Browser / Mobile App]
+        Partner[Partner Systems]
+    end
+
+    subgraph "Ingress Layer"
+        NGINX[NGINX Ingress Controller]
+        WAF[Web Application Firewall]
+    end
+
+    subgraph "Application Namespace"
+        GW[API Gateway]
+        AUTH[Auth Service]
+        POLICY[Policy Service]
+        CLAIMS[Claims Service]
+        BILLING[Billing Service]
+        NOTIF[Notification Service]
+        META[Metadata Service]
+    end
+
+    subgraph "Data Namespace"
+        PG[(PostgreSQL Primary)]
+        PGREP[(PostgreSQL Replica)]
+        REDIS[(Redis Cache)]
+        KAFKA[(Kafka Broker)]
+    end
+
+    subgraph "Observability Namespace"
+        PROM[Prometheus]
+        LOKI[Loki]
+        GRAFANA[Grafana]
+        TEMPO[Tempo / Jaeger]
+    end
+
+    Client --&gt; WAF --&gt; NGINX --&gt; GW
+    Partner --&gt; WAF --&gt; NGINX --&gt; GW
+    GW --&gt; AUTH
+    GW --&gt; POLICY
+    GW --&gt; CLAIMS
+    GW --&gt; BILLING
+    GW --&gt; NOTIF
+    GW --&gt; META
+    POLICY --&gt; PG
+    CLAIMS --&gt; PG
+    BILLING --&gt; PG
+    META --&gt; PG
+    POLICY --&gt; REDIS
+    POLICY --&gt; KAFKA
+    CLAIMS --&gt; KAFKA
+    NOTIF --&gt; KAFKA
+    PG --&gt; PGREP
+    POLICY --&gt; PROM
+    CLAIMS --&gt; PROM
+    AUTH --&gt; PROM
+    PROM --&gt; GRAFANA
+    LOKI --&gt; GRAFANA
+    TEMPO --&gt; GRAFANA</code></pre> 
+    <div class="panzoom-info-box panzoom-info-box-bottom">
+Use mouse to pan and zoom
+</div>
+</div>
+<h3 id="namespace-separation">Namespace Separation</h3>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>insurance-app</code></td>
+<td>All Spring Boot microservices</td>
+</tr>
+<tr>
+<td><code>insurance-data</code></td>
+<td>PostgreSQL, Redis, Kafka</td>
+</tr>
+<tr>
+<td><code>insurance-obs</code></td>
+<td>Prometheus, Loki, Tempo, Grafana</td>
+</tr>
+<tr>
+<td><code>insurance-ingress</code></td>
+<td>NGINX Ingress, WAF</td>
+</tr>
+<tr>
+<td><code>insurance-identity</code></td>
+<td>Keycloak (OIDC/OAuth2 provider)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="service-deployment-spec-standard">Service Deployment Spec (Standard)</h2>
+<p>Every application service is deployed with the following Kubernetes resources:</p>
+<h3 id="deployment">Deployment</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">policy-service</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance-app</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RollingUpdate</span>
+<span class="w">    </span><span class="nt">rollingUpdate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">maxUnavailable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">      </span><span class="nt">maxSurge</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">policy-service</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">policy-service</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">policy-service-sa</span>
+<span class="w">      </span><span class="nt">securityContext</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">runAsNonRoot</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">runAsUser</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">policy-service</span>
+<span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/offer-core/policy-service:${VERSION}</span>
+<span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">          </span><span class="nt">envFrom</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">configMapRef</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">policy-service-config</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">secretRef</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">policy-service-secrets</span>
+<span class="w">          </span><span class="nt">readinessProbe</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/actuator/health/readiness</span>
+<span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">            </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">            </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">          </span><span class="nt">livenessProbe</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/actuator/health/liveness</span>
+<span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">            </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="w">            </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<span class="w">          </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;512Mi&quot;</span>
+<span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;250m&quot;</span>
+<span class="w">            </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1Gi&quot;</span>
+<span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1000m&quot;</span>
+</code></pre></div>
+<h3 id="horizontal-pod-autoscaler">Horizontal Pod Autoscaler</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">autoscaling/v2</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HorizontalPodAutoscaler</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">policy-service-hpa</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance-app</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">scaleTargetRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">policy-service</span>
+<span class="w">  </span><span class="nt">minReplicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">maxReplicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">metrics</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Resource</span>
+<span class="w">      </span><span class="nt">resource</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cpu</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Utilization</span>
+<span class="w">          </span><span class="nt">averageUtilization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">70</span>
+</code></pre></div>
+<hr />
+<h2 id="cicd-pipeline">CI/CD Pipeline</h2>
+<div class="panzoom-box" data-key="none" id="panzoom0" oncontextmenu="return false;">
+    
+    <nav class="panzoom-nav">
+    <button class="panzoom-reset panzoom-button">
+    <svg class="panzoom-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"></path>
+    </svg>
+</button>
+    </nav>
+    <pre class="mermaid"><code>flowchart LR
+    PR[Pull Request] --&gt; Build[Maven Build &amp; Tests]
+    Build --&gt; Lint[Code Quality Gate]
+    Lint --&gt; Docker[Docker Image Build]
+    Docker --&gt; Scan[Trivy Security Scan]
+    Scan --&gt; Push[Push to GHCR Registry]
+    Push --&gt; DeployDev[Deploy to Dev]
+    DeployDev --&gt; SmokeTest[Smoke Tests]
+    SmokeTest --&gt; Gate{Manual Approval}
+    Gate -- Approved --&gt; DeployStaging[Deploy to Staging]
+    DeployStaging --&gt; IntTest[Integration + UAT Tests]
+    IntTest --&gt; ReleaseGate{Release Board}
+    ReleaseGate -- Approved --&gt; DeployProd[Deploy to Production]
+    DeployProd --&gt; Monitor[Monitor Health Dashboards]</code></pre> 
+    <div class="panzoom-info-box panzoom-info-box-bottom">
+Use mouse to pan and zoom
+</div>
+</div>
+<h3 id="pipeline-stages">Pipeline Stages</h3>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Tool</th>
+<th>Gate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code build</td>
+<td>GitHub Actions / Maven</td>
+<td>All tests pass</td>
+</tr>
+<tr>
+<td>Code quality</td>
+<td>SonarQube</td>
+<td>Coverage ≥ 80%, no critical issues</td>
+</tr>
+<tr>
+<td>Image build</td>
+<td>Docker Buildx</td>
+<td>Successful build</td>
+</tr>
+<tr>
+<td>Security scan</td>
+<td>Trivy</td>
+<td>No CRITICAL CVEs</td>
+</tr>
+<tr>
+<td>Image registry</td>
+<td>GHCR (<code>ghcr.io/offer-core/</code>)</td>
+<td>Authenticated push</td>
+</tr>
+<tr>
+<td>Dev deployment</td>
+<td><code>kubectl apply</code> / Helm</td>
+<td>Smoke test passes</td>
+</tr>
+<tr>
+<td>Staging deployment</td>
+<td>Helm upgrade + ArgoCD</td>
+<td>UAT sign-off</td>
+</tr>
+<tr>
+<td>Production deployment</td>
+<td>Helm upgrade + ArgoCD</td>
+<td>Change board approval</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="environment-specific-configuration">Environment-Specific Configuration</h2>
+<p>All environment configuration is injected via Kubernetes <code>ConfigMap</code> and <code>Secret</code> objects. Services read config using Spring Boot's environment variable binding.</p>
+<div class="highlight"><pre><span></span><code># ConfigMap keys (non-sensitive)
+SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/insurance
+SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+APP_KEYCLOAK_ISSUER_URI=https://auth.insurance.com.sa/realms/insurance
+
+# Secret keys (sensitive — stored in Kubernetes Secrets, never in source code)
+SPRING_DATASOURCE_PASSWORD=&lt;injected&gt;
+APP_YAKEEN_API_KEY=&lt;injected&gt;
+APP_NAJM_API_KEY=&lt;injected&gt;
+APP_JWT_SECRET=&lt;injected&gt;
+</code></pre></div>
+<h3 id="spring-profile-activation">Spring Profile Activation</h3>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th><code>SPRING_PROFILE</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local development</td>
+<td><code>local</code></td>
+</tr>
+<tr>
+<td>Dev cluster</td>
+<td><code>dev</code></td>
+</tr>
+<tr>
+<td>Staging</td>
+<td><code>staging</code></td>
+</tr>
+<tr>
+<td>Production</td>
+<td><code>prod</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="postgresql-high-availability">PostgreSQL High Availability</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary</td>
+<td><code>PostgreSQL 16</code> — read/write</td>
+</tr>
+<tr>
+<td>Replica</td>
+<td>Streaming replication — read-only queries</td>
+</tr>
+<tr>
+<td>Connection pooling</td>
+<td><code>PgBouncer</code> in transaction mode</td>
+</tr>
+<tr>
+<td>Backup</td>
+<td>Daily <code>pg_dump</code> to encrypted S3-compatible storage</td>
+</tr>
+<tr>
+<td>Point-in-time recovery</td>
+<td>WAL archiving enabled</td>
+</tr>
+<tr>
+<td>Failover</td>
+<td>Manual promotion (Patroni optional for HA)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="secret-management">Secret Management</h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kubernetes Secrets</td>
+<td>Base64-encoded, stored in etcd (encrypted at rest)</td>
+</tr>
+<tr>
+<td>External secrets</td>
+<td>HashiCorp Vault or AWS Secrets Manager via External Secrets Operator</td>
+</tr>
+<tr>
+<td>Rotation</td>
+<td>Secrets rotated on every deployment cycle</td>
+</tr>
+<tr>
+<td>API keys</td>
+<td>Stored as Kubernetes secrets — never in Git or container images</td>
+</tr>
+<tr>
+<td>TLS certificates</td>
+<td>cert-manager + Let's Encrypt (or private CA for Saudi regulatory environments)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="deployment-checklist-pre-production">Deployment Checklist (Pre-Production)</h2>
 <ul>
-<li>Containerized services with clear dependency boundaries</li>
-<li>Environment-specific configuration and secrets</li>
-<li>Health checks and readiness probes for each service</li>
-<li>Centralized logging, metrics, and tracing</li>
+<li>[ ] All environment variables present in <code>ConfigMap</code> and <code>Secret</code></li>
+<li>[ ] Readiness and liveness probes respond correctly</li>
+<li>[ ] Database migrations (Flyway) run successfully before pods start</li>
+<li>[ ] Resource limits set for all containers</li>
+<li>[ ] HPA configured with appropriate thresholds</li>
+<li>[ ] Ingress TLS certificate valid</li>
+<li>[ ] Trivy scan passes with no CRITICAL CVEs</li>
+<li>[ ] Smoke tests pass in staging</li>
+<li>[ ] Rollback procedure documented and tested</li>
+<li>[ ] Change board approval obtained</li>
 </ul>
-<h2 id="operational-principles">Operational Principles</h2>
-<ul>
-<li>Use infrastructure as code for repeatable environment provisioning.</li>
-<li>Apply deployment automation for safe release management.</li>
-<li>Monitor service health and business-critical workflows continuously.</li>
-</ul>
-<h2 id="suggested-starting-point">Suggested Starting Point</h2>
-<p>A container-based deployment model with orchestration, observability, and automated promotion workflows provides a strong foundation for growth.</p>
 
 
 
@@ -1295,6 +2077,10 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

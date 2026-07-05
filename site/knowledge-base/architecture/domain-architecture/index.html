@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -2293,89 +2296,89 @@
 <li><code>FinancialTransaction</code> — abstract financial event type</li>
 </ul>
 <h3 id="12-base-customer-model">1.2 Base Customer Model</h3>
-<pre><code class="language-java">public abstract class Party {
-    private UUID partyId;
-    private String fullName;
-    private Address primaryAddress;
-    private ContactInfo contactInfo;
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Party</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="n">partyId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">fullName</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">primaryAddress</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">ContactInfo</span><span class="w"> </span><span class="n">contactInfo</span><span class="p">;</span>
 
-    public UUID getPartyId() { return partyId; }
-    public void setPartyId(UUID partyId) { this.partyId = partyId; }
-    public String getFullName() { return fullName; }
-    public void setFullName(String fullName) { this.fullName = fullName; }
-    public Address getPrimaryAddress() { return primaryAddress; }
-    public void setPrimaryAddress(Address primaryAddress) { this.primaryAddress = primaryAddress; }
-    public ContactInfo getContactInfo() { return contactInfo; }
-    public void setContactInfo(ContactInfo contactInfo) { this.contactInfo = contactInfo; }
-}
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="nf">getPartyId</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">partyId</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setPartyId</span><span class="p">(</span><span class="n">UUID</span><span class="w"> </span><span class="n">partyId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">partyId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">partyId</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getFullName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">fullName</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setFullName</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">fullName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">fullName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fullName</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="nf">getPrimaryAddress</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">primaryAddress</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setPrimaryAddress</span><span class="p">(</span><span class="n">Address</span><span class="w"> </span><span class="n">primaryAddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">primaryAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">primaryAddress</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ContactInfo</span><span class="w"> </span><span class="nf">getContactInfo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">contactInfo</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setContactInfo</span><span class="p">(</span><span class="n">ContactInfo</span><span class="w"> </span><span class="n">contactInfo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">contactInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contactInfo</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
 
-public class Customer extends Party {
-    private UUID globalCustomerId;
-    private String customerReference;
-    private String customerType;
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Party</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="n">globalCustomerId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">customerReference</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">customerType</span><span class="p">;</span>
 
-    public UUID getGlobalCustomerId() { return globalCustomerId; }
-    public void setGlobalCustomerId(UUID globalCustomerId) { this.globalCustomerId = globalCustomerId; }
-    public String getCustomerReference() { return customerReference; }
-    public void setCustomerReference(String customerReference) { this.customerReference = customerReference; }
-    public String getCustomerType() { return customerType; }
-    public void setCustomerType(String customerType) { this.customerType = customerType; }
-}
-</code></pre>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="nf">getGlobalCustomerId</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">globalCustomerId</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setGlobalCustomerId</span><span class="p">(</span><span class="n">UUID</span><span class="w"> </span><span class="n">globalCustomerId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">globalCustomerId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">globalCustomerId</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getCustomerReference</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">customerReference</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setCustomerReference</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">customerReference</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">customerReference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">customerReference</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getCustomerType</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">customerType</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setCustomerType</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">customerType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">customerType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">customerType</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="13-base-policy-model">1.3 Base Policy Model</h3>
-<pre><code class="language-java">public enum PolicyLifecycleStatus {
-    QUOTE,
-    BOUND,
-    ACTIVE,
-    RENEWED,
-    CANCELLED,
-    EXPIRED
-}
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">PolicyLifecycleStatus</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">QUOTE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">BOUND</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ACTIVE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">RENEWED</span><span class="p">,</span>
+<span class="w">    </span><span class="n">CANCELLED</span><span class="p">,</span>
+<span class="w">    </span><span class="n">EXPIRED</span>
+<span class="p">}</span>
 
-public abstract class Policy {
-    private UUID policyId;
-    private UUID globalCustomerId;
-    private LineOfBusiness lineOfBusiness;
-    private PolicyLifecycleStatus status;
-    private BigDecimal premiumAmount;
-    private Currency currency;
-    private Instant effectiveFrom;
-    private Instant effectiveTo;
-    private JsonNode lineSpecificData;
+<span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Policy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="n">policyId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="n">globalCustomerId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">LineOfBusiness</span><span class="w"> </span><span class="n">lineOfBusiness</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">PolicyLifecycleStatus</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">premiumAmount</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Currency</span><span class="w"> </span><span class="n">currency</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Instant</span><span class="w"> </span><span class="n">effectiveFrom</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Instant</span><span class="w"> </span><span class="n">effectiveTo</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">JsonNode</span><span class="w"> </span><span class="n">lineSpecificData</span><span class="p">;</span>
 
-    // getters and setters
-}
-</code></pre>
+<span class="w">    </span><span class="c1">// getters and setters</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="14-base-claim-model">1.4 Base Claim Model</h3>
-<pre><code class="language-java">public enum ClaimLifecycleStatus {
-    REPORTED,
-    INVESTIGATING,
-    RESERVED,
-    ADJUDICATED,
-    PAID,
-    CLOSED
-}
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">ClaimLifecycleStatus</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">REPORTED</span><span class="p">,</span>
+<span class="w">    </span><span class="n">INVESTIGATING</span><span class="p">,</span>
+<span class="w">    </span><span class="n">RESERVED</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ADJUDICATED</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PAID</span><span class="p">,</span>
+<span class="w">    </span><span class="n">CLOSED</span>
+<span class="p">}</span>
 
-public abstract class Claim {
-    private UUID claimId;
-    private UUID policyId;
-    private ClaimLifecycleStatus status;
-    private BigDecimal claimAmount;
-    private String claimReference;
-    private JsonNode lineSpecificData;
+<span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Claim</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="n">claimId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="n">policyId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">ClaimLifecycleStatus</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">claimAmount</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">claimReference</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">JsonNode</span><span class="w"> </span><span class="n">lineSpecificData</span><span class="p">;</span>
 
-    // getters and setters
-}
-</code></pre>
+<span class="w">    </span><span class="c1">// getters and setters</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="15-base-financial-transaction-types">1.5 Base Financial Transaction Types</h3>
-<pre><code class="language-java">public enum FinancialTransactionType {
-    PREMIUM,
-    ENDORSEMENT,
-    REFUND,
-    COMMISSION,
-    RECOVERY
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">FinancialTransactionType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">PREMIUM</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ENDORSEMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">REFUND</span><span class="p">,</span>
+<span class="w">    </span><span class="n">COMMISSION</span><span class="p">,</span>
+<span class="w">    </span><span class="n">RECOVERY</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="16-dynamic-extension-model">1.6 Dynamic Extension Model</h3>
 <p>The platform uses a metadata-driven extension layer that allows the UI and runtime to introduce new schema elements without hard-coding them in the core domain model.</p>
 <h4 id="core-concepts">Core Concepts</h4>
@@ -2385,22 +2388,22 @@ public abstract class Claim {
 <li><code>FormDefinition</code> — defines which fields appear on a screen and in what order</li>
 <li><code>RuleDefinition</code> — defines validation, calculation, or workflow triggers</li>
 </ul>
-<pre><code class="language-java">public class EntityDefinition {
-    private String entityCode;
-    private String displayName;
-    private String tableName;
-    private List&lt;FieldDefinition&gt; fields;
-}
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EntityDefinition</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">entityCode</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">displayName</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">tableName</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">FieldDefinition</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fields</span><span class="p">;</span>
+<span class="p">}</span>
 
-public class FieldDefinition {
-    private String fieldCode;
-    private String displayName;
-    private FieldType fieldType;
-    private boolean required;
-    private boolean searchable;
-    private String defaultValue;
-}
-</code></pre>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FieldDefinition</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">fieldCode</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">displayName</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">FieldType</span><span class="w"> </span><span class="n">fieldType</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">required</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">searchable</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">defaultValue</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h4 id="runtime-behavior">Runtime Behavior</h4>
 <ul>
 <li>UI forms are generated from <code>FormDefinition</code> metadata</li>
@@ -2421,49 +2424,49 @@ public class FieldDefinition {
 <h2 id="section-2-the-motor-vertical-slice">Section 2: The Motor Vertical Slice</h2>
 <p>Motor is the only line implemented today. All Motor-specific logic sits under the Motor vertical slice so the team can move quickly without contaminating the core.</p>
 <h3 id="21-motor-policy-model">2.1 Motor Policy Model</h3>
-<pre><code class="language-java">public class MotorPolicy extends Policy {
-    private String vin;
-    private String vehicleMake;
-    private String vehicleModel;
-    private Integer vehicleYear;
-    private Address garagingAddress;
-    private Integer annualMileage;
-    private VehicleUseType primaryUse;
-    private boolean antiTheftDeviceInstalled;
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MotorPolicy</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Policy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">vin</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">vehicleMake</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">vehicleModel</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">vehicleYear</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">garagingAddress</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">annualMileage</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">VehicleUseType</span><span class="w"> </span><span class="n">primaryUse</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">antiTheftDeviceInstalled</span><span class="p">;</span>
 
-    // getters and setters
-}
+<span class="w">    </span><span class="c1">// getters and setters</span>
+<span class="p">}</span>
 
-public enum VehicleUseType {
-    PERSONAL,
-    COMMERCIAL
-}
-</code></pre>
+<span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">VehicleUseType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">PERSONAL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">COMMERCIAL</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="22-motor-driver-entity">2.2 Motor Driver Entity</h3>
-<pre><code class="language-java">public class MotorDriver {
-    private UUID driverId;
-    private UUID policyId;
-    private String licenseNumber;
-    private LocalDate dateOfBirth;
-    private List&lt;String&gt; drivingViolations;
-    private List&lt;String&gt; claimsHistory;
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MotorDriver</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="n">driverId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="n">policyId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">licenseNumber</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">dateOfBirth</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">drivingViolations</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">claimsHistory</span><span class="p">;</span>
 
-    // getters and setters
-}
-</code></pre>
+<span class="w">    </span><span class="c1">// getters and setters</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="23-motor-vehicle-entity">2.3 Motor Vehicle Entity</h3>
-<pre><code class="language-java">public class MotorVehicle {
-    private UUID vehicleId;
-    private UUID policyId;
-    private String vin;
-    private String vehicleMake;
-    private String vehicleModel;
-    private Integer vehicleYear;
-    private Address garagingAddress;
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MotorVehicle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="n">vehicleId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="n">policyId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">vin</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">vehicleMake</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">vehicleModel</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">vehicleYear</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">garagingAddress</span><span class="p">;</span>
 
-    // getters and setters
-}
-</code></pre>
+<span class="w">    </span><span class="c1">// getters and setters</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="24-motor-rating-engine">2.4 Motor Rating Engine</h3>
 <p>The Motor rating engine must live in the Motor vertical slice and use line-specific factors only.</p>
 <h4 id="rating-factors">Rating Factors</h4>
@@ -2477,25 +2480,25 @@ public enum VehicleUseType {
 <li>Claims history surcharge</li>
 <li>Violations surcharge</li>
 </ul>
-<pre><code class="language-java">public class MotorRatingEngine {
-    public BigDecimal calculatePremium(MotorPolicy policy, List&lt;MotorDriver&gt; drivers) {
-        BigDecimal baseRate = new BigDecimal(&quot;1000&quot;);
-        BigDecimal territoryFactor = getTerritoryFactor(policy.getGaragingAddress());
-        BigDecimal ageMultiplier = getAgeMultiplier(drivers);
-        BigDecimal valueDepreciationFactor = getDepreciationFactor(policy.getVehicleYear());
-        BigDecimal mileageFactor = getMileageFactor(policy.getAnnualMileage());
-        BigDecimal useFactor = policy.getPrimaryUse() == VehicleUseType.COMMERCIAL ? new BigDecimal(&quot;1.25&quot;) : BigDecimal.ONE;
-        BigDecimal theftDiscount = policy.isAntiTheftDeviceInstalled() ? new BigDecimal(&quot;0.90&quot;) : BigDecimal.ONE;
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MotorRatingEngine</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="nf">calculatePremium</span><span class="p">(</span><span class="n">MotorPolicy</span><span class="w"> </span><span class="n">policy</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">MotorDriver</span><span class="o">&gt;</span><span class="w"> </span><span class="n">drivers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">baseRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;1000&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">territoryFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getTerritoryFactor</span><span class="p">(</span><span class="n">policy</span><span class="p">.</span><span class="na">getGaragingAddress</span><span class="p">());</span>
+<span class="w">        </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">ageMultiplier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getAgeMultiplier</span><span class="p">(</span><span class="n">drivers</span><span class="p">);</span>
+<span class="w">        </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">valueDepreciationFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getDepreciationFactor</span><span class="p">(</span><span class="n">policy</span><span class="p">.</span><span class="na">getVehicleYear</span><span class="p">());</span>
+<span class="w">        </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">mileageFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getMileageFactor</span><span class="p">(</span><span class="n">policy</span><span class="p">.</span><span class="na">getAnnualMileage</span><span class="p">());</span>
+<span class="w">        </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">useFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">policy</span><span class="p">.</span><span class="na">getPrimaryUse</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">VehicleUseType</span><span class="p">.</span><span class="na">COMMERCIAL</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;1.25&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">.</span><span class="na">ONE</span><span class="p">;</span>
+<span class="w">        </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">theftDiscount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">policy</span><span class="p">.</span><span class="na">isAntiTheftDeviceInstalled</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.90&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">.</span><span class="na">ONE</span><span class="p">;</span>
 
-        return baseRate.multiply(territoryFactor)
-                .multiply(ageMultiplier)
-                .multiply(valueDepreciationFactor)
-                .multiply(mileageFactor)
-                .multiply(useFactor)
-                .multiply(theftDiscount);
-    }
-}
-</code></pre>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">baseRate</span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">territoryFactor</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">ageMultiplier</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">valueDepreciationFactor</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">mileageFactor</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">useFactor</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">theftDiscount</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="25-motor-claims-workflow">2.5 Motor Claims Workflow</h3>
 <p>Motor claims need specialized handling that should not leak into the core.</p>
 <h4 id="motor-claim-types">Motor Claim Types</h4>
@@ -2512,16 +2515,16 @@ public enum VehicleUseType {
 <li>Repair shop network management</li>
 <li>Salvage valuation</li>
 </ul>
-<pre><code class="language-java">public class MotorClaim extends Claim {
-    private String lossLocation;
-    private String repairShopId;
-    private boolean towTruckRequested;
-    private Instant towTruckDispatchedAt;
-    private String appraisalReference;
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MotorClaim</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Claim</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lossLocation</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">repairShopId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">towTruckRequested</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Instant</span><span class="w"> </span><span class="n">towTruckDispatchedAt</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">appraisalReference</span><span class="p">;</span>
 
-    // getters and setters
-}
-</code></pre>
+<span class="w">    </span><span class="c1">// getters and setters</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h2 id="section-3-the-pluggable-extension-points">Section 3: The Pluggable Extension Points</h2>
 <p>These are the explicit seams that allow future lines to plug in without rewriting the platform.</p>
@@ -2542,108 +2545,108 @@ public enum VehicleUseType {
 <li>It avoids the performance and join complexity of EAV</li>
 </ul>
 <h4 id="data-model-pattern">Data Model Pattern</h4>
-<pre><code class="language-sql">CREATE TABLE customer (
-  customer_id UUID PRIMARY KEY,
-  global_customer_id UUID NOT NULL,
-  customer_type TEXT NOT NULL,
-  core_profile JSONB NOT NULL,
-  line_specific_data JSONB NOT NULL DEFAULT '{}'::jsonb
-);
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customer</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">customer_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">  </span><span class="n">global_customer_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n">customer_type</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n">core_profile</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n">line_specific_data</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">::</span><span class="n">jsonb</span>
+<span class="p">);</span>
 
-CREATE TABLE policy (
-  policy_id UUID PRIMARY KEY,
-  global_customer_id UUID NOT NULL,
-  line_of_business TEXT NOT NULL,
-  status TEXT NOT NULL,
-  line_specific_data JSONB NOT NULL DEFAULT '{}'::jsonb
-);
-</code></pre>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">policy</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">policy_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">  </span><span class="n">global_customer_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n">line_of_business</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n">status</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n">line_specific_data</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">::</span><span class="n">jsonb</span>
+<span class="p">);</span>
+</code></pre></div>
 <h4 id="example-motor-payload">Example Motor Payload</h4>
-<pre><code class="language-json">{
-  &quot;vehicle&quot;: {
-    &quot;vin&quot;: &quot;1HGCM82633A004352&quot;,
-    &quot;make&quot;: &quot;Toyota&quot;,
-    &quot;model&quot;: &quot;Corolla&quot;,
-    &quot;year&quot;: 2021,
-    &quot;annualMileage&quot;: 12000,
-    &quot;primaryUse&quot;: &quot;Personal&quot;,
-    &quot;antiTheftDeviceInstalled&quot;: true
-  },
-  &quot;drivers&quot;: [
-    {
-      &quot;licenseNumber&quot;: &quot;ABC123&quot;,
-      &quot;dateOfBirth&quot;: &quot;1990-05-15&quot;,
-      &quot;violations&quot;: [],
-      &quot;claimsHistory&quot;: []
-    }
-  ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;vehicle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;vin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1HGCM82633A004352&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;make&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Corolla&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;annualMileage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;primaryUse&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Personal&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;antiTheftDeviceInstalled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;drivers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;licenseNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ABC123&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;dateOfBirth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1990-05-15&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;violations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">&quot;claimsHistory&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Future lines can use the same column for health or travel-specific payloads.</p>
 <h3 id="extension-point-b-pluggable-rating-engine">Extension Point B: Pluggable Rating Engine</h3>
 <p>The rating engine is a runtime extension point.</p>
-<pre><code class="language-java">public interface IRatingCalculator {
-    LineOfBusiness getLineOfBusiness();
-    BigDecimal calculate(Policy policy);
-}
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">IRatingCalculator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">LineOfBusiness</span><span class="w"> </span><span class="nf">getLineOfBusiness</span><span class="p">();</span>
+<span class="w">    </span><span class="n">BigDecimal</span><span class="w"> </span><span class="nf">calculate</span><span class="p">(</span><span class="n">Policy</span><span class="w"> </span><span class="n">policy</span><span class="p">);</span>
+<span class="p">}</span>
 
-public class MotorRatingCalculator implements IRatingCalculator {
-    @Override
-    public LineOfBusiness getLineOfBusiness() {
-        return LineOfBusiness.MOTOR;
-    }
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MotorRatingCalculator</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IRatingCalculator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">LineOfBusiness</span><span class="w"> </span><span class="nf">getLineOfBusiness</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">LineOfBusiness</span><span class="p">.</span><span class="na">MOTOR</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    @Override
-    public BigDecimal calculate(Policy policy) {
-        MotorPolicy motorPolicy = (MotorPolicy) policy;
-        return new MotorRatingEngine().calculatePremium(motorPolicy, List.of());
-    }
-}
-</code></pre>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="nf">calculate</span><span class="p">(</span><span class="n">Policy</span><span class="w"> </span><span class="n">policy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MotorPolicy</span><span class="w"> </span><span class="n">motorPolicy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">MotorPolicy</span><span class="p">)</span><span class="w"> </span><span class="n">policy</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MotorRatingEngine</span><span class="p">().</span><span class="na">calculatePremium</span><span class="p">(</span><span class="n">motorPolicy</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Runtime resolution:</p>
-<pre><code class="language-java">public class RatingService {
-    private final List&lt;IRatingCalculator&gt; calculators;
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RatingService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">IRatingCalculator</span><span class="o">&gt;</span><span class="w"> </span><span class="n">calculators</span><span class="p">;</span>
 
-    public RatingService(List&lt;IRatingCalculator&gt; calculators) {
-        this.calculators = calculators;
-    }
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">RatingService</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">IRatingCalculator</span><span class="o">&gt;</span><span class="w"> </span><span class="n">calculators</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">calculators</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calculators</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    public BigDecimal calculate(Policy policy) {
-        return calculators.stream()
-                .filter(c -&gt; c.getLineOfBusiness() == policy.getLineOfBusiness())
-                .findFirst()
-                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;No calculator registered&quot;))
-                .calculate(policy);
-    }
-}
-</code></pre>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="nf">calculate</span><span class="p">(</span><span class="n">Policy</span><span class="w"> </span><span class="n">policy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">calculators</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">getLineOfBusiness</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">policy</span><span class="p">.</span><span class="na">getLineOfBusiness</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">findFirst</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">orElseThrow</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;No calculator registered&quot;</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">calculate</span><span class="p">(</span><span class="n">policy</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h4 id="di-registration">DI Registration</h4>
-<pre><code class="language-java">@Bean
-public IRatingCalculator motorRatingCalculator() {
-    return new MotorRatingCalculator();
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">IRatingCalculator</span><span class="w"> </span><span class="nf">motorRatingCalculator</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MotorRatingCalculator</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>When Health is onboarded, a new implementation such as <code>HealthRatingCalculator</code> can be added without changing the service interface.</p>
 <h3 id="extension-point-c-configurable-workflow-engine">Extension Point C: Configurable Workflow Engine</h3>
 <p>Motor claims need custom states and transitions, and future lines will need their own state machines.</p>
 <h4 id="generic-workflow-model">Generic Workflow Model</h4>
-<pre><code class="language-java">public class WorkflowDefinition {
-    private String workflowKey;
-    private List&lt;WorkflowState&gt; states;
-    private List&lt;WorkflowTransition&gt; transitions;
-}
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WorkflowDefinition</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">workflowKey</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">WorkflowState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">states</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">WorkflowTransition</span><span class="o">&gt;</span><span class="w"> </span><span class="n">transitions</span><span class="p">;</span>
+<span class="p">}</span>
 
-public class WorkflowState {
-    private String stateCode;
-    private String displayName;
-}
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WorkflowState</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">stateCode</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">displayName</span><span class="p">;</span>
+<span class="p">}</span>
 
-public class WorkflowTransition {
-    private String fromState;
-    private String toState;
-    private String trigger;
-}
-</code></pre>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WorkflowTransition</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">fromState</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">toState</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">trigger</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h4 id="motor-example">Motor Example</h4>
 <ul>
 <li><code>REPORTED -&gt; INSPECTION_REQUIRED</code></li>
@@ -2660,53 +2663,53 @@ public class WorkflowTransition {
 <p>The workflow engine itself stays generic. Each line registers its states and transitions from configuration or a database-backed rules table.</p>
 <h3 id="extension-point-d-line-specific-underwriting-rules">Extension Point D: Line-Specific Underwriting Rules</h3>
 <p>Underwriting rules are injected at runtime by line.</p>
-<pre><code class="language-java">public interface IUnderwritingRule {
-    LineOfBusiness getLineOfBusiness();
-    boolean evaluate(Policy policy, UnderwritingContext context);
-    String getRuleCode();
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">IUnderwritingRule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">LineOfBusiness</span><span class="w"> </span><span class="nf">getLineOfBusiness</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">Policy</span><span class="w"> </span><span class="n">policy</span><span class="p">,</span><span class="w"> </span><span class="n">UnderwritingContext</span><span class="w"> </span><span class="n">context</span><span class="p">);</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">getRuleCode</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
 <h4 id="motor-example_1">Motor Example</h4>
-<pre><code class="language-java">public class DriverAgeRule implements IUnderwritingRule {
-    @Override
-    public LineOfBusiness getLineOfBusiness() {
-        return LineOfBusiness.MOTOR;
-    }
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DriverAgeRule</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IUnderwritingRule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">LineOfBusiness</span><span class="w"> </span><span class="nf">getLineOfBusiness</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">LineOfBusiness</span><span class="p">.</span><span class="na">MOTOR</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    @Override
-    public String getRuleCode() {
-        return &quot;MOTOR_DRIVER_AGE_REFERRAL&quot;;
-    }
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getRuleCode</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;MOTOR_DRIVER_AGE_REFERRAL&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    @Override
-    public boolean evaluate(Policy policy, UnderwritingContext context) {
-        return context.getDriverAge() &lt; 21;
-    }
-}
-</code></pre>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">Policy</span><span class="w"> </span><span class="n">policy</span><span class="p">,</span><span class="w"> </span><span class="n">UnderwritingContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">getDriverAge</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">21</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h4 id="runtime-loading">Runtime Loading</h4>
-<pre><code class="language-java">public class UnderwritingService {
-    private final List&lt;IUnderwritingRule&gt; rules;
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UnderwritingService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">IUnderwritingRule</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rules</span><span class="p">;</span>
 
-    public UnderwritingService(List&lt;IUnderwritingRule&gt; rules) {
-        this.rules = rules;
-    }
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UnderwritingService</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">IUnderwritingRule</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rules</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">rules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rules</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    public List&lt;String&gt; evaluate(Policy policy) {
-        return rules.stream()
-                .filter(rule -&gt; rule.getLineOfBusiness() == policy.getLineOfBusiness())
-                .filter(rule -&gt; rule.evaluate(policy, new UnderwritingContext()))
-                .map(IUnderwritingRule::getRuleCode)
-                .toList();
-    }
-}
-</code></pre>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">Policy</span><span class="w"> </span><span class="n">policy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">rules</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">rule</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">rule</span><span class="p">.</span><span class="na">getLineOfBusiness</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">policy</span><span class="p">.</span><span class="na">getLineOfBusiness</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">rule</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">rule</span><span class="p">.</span><span class="na">evaluate</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UnderwritingContext</span><span class="p">()))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">IUnderwritingRule</span><span class="p">::</span><span class="n">getRuleCode</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">toList</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Rules can be loaded from a database table such as <code>underwriting_rule_definition</code> or from an external rule repository service.</p>
 <hr />
 <h2 id="section-4-repository-and-team-structure">Section 4: Repository and Team Structure</h2>
 <p>This repository structure is designed to keep Motor output fast today while keeping future lines isolated.</p>
 <h3 id="41-folder-structure">4.1 Folder Structure</h3>
-<pre><code class="language-text">/src
+<div class="highlight"><pre><span></span><code>/src
   /Core
     /Domain
       Policy.cs
@@ -2735,7 +2738,7 @@ public class WorkflowTransition {
     /GL
     /Reinsurance
     /Documents
-</code></pre>
+</code></pre></div>
 <h3 id="42-ownership-rules">4.2 Ownership Rules</h3>
 <ul>
 <li><code>Core</code> owns the abstract models and platform contracts</li>
@@ -2753,17 +2756,17 @@ public class WorkflowTransition {
 <li>Shared services remain independent and own their own migration sets</li>
 </ul>
 <h4 id="example">Example</h4>
-<pre><code class="language-sql">-- Shared schema
-CREATE TABLE policy (...);
-CREATE TABLE claim (...);
-CREATE TABLE customer (...);
+<div class="highlight"><pre><span></span><code><span class="c1">-- Shared schema</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">policy</span><span class="w"> </span><span class="p">(...);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">claim</span><span class="w"> </span><span class="p">(...);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customer</span><span class="w"> </span><span class="p">(...);</span>
 
--- Motor schema
-CREATE TABLE motor_policy_extension (...);
-CREATE TABLE motor_driver (...);
-CREATE TABLE motor_vehicle (...);
-CREATE TABLE motor_claim_detail (...);
-</code></pre>
+<span class="c1">-- Motor schema</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">motor_policy_extension</span><span class="w"> </span><span class="p">(...);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">motor_driver</span><span class="w"> </span><span class="p">(...);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">motor_vehicle</span><span class="w"> </span><span class="p">(...);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">motor_claim_detail</span><span class="w"> </span><span class="p">(...);</span>
+</code></pre></div>
 <p>This means Team Motor can add a column to <code>motor_policy_extension</code> without changing the shared kernel schema.</p>
 <hr />
 <h2 id="section-5-the-onboarding-playbook-for-a-new-line">Section 5: The Onboarding Playbook for a New Line</h2>
@@ -2877,6 +2880,10 @@ CREATE TABLE motor_claim_detail (...);
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

@@ -1,52 +1,94 @@
-# Integrations
+# Saudi Arabia National Integration Specifications
 
-This section covers integration patterns, external systems, and event-driven architecture.
+This document outlines the API contracts, integration patterns, and security constraints for connecting with Saudi national systems and financial transaction entities.
 
-## Overview
+For system-level integration architecture and adapter patterns, see the [Integration Architecture](../architecture/integration-architecture.md).
 
-This section is part of the Enterprise Insurance Platform documentation repository.
+---
 
-## Structure
+## 1. Yakeen ID Integration (Identity Verification)
 
-The documentation is organized to provide clear, accessible information for all stakeholders including:
+The **ELM Yakeen** integration validates customer identity (National ID or Iqama) and fetches demographic data.
 
-- **Business Stakeholders**: Understand the platform capabilities and business value
-- **Development Teams**: Access technical specifications and implementation details
-- **Operations Teams**: Learn about deployment, monitoring, and infrastructure
-- **Security Teams**: Review security standards and compliance requirements
+### API Contract Details
+- **Protocol:** REST over HTTPS (Mutual TLS required).
+- **Endpoint:** `POST /yakeen/v1/verify-citizen`
+- **Request Schema:**
+  ```json
+  {
+    "nationalId": "1098765432",
+    "dateOfBirthG": "1990-05-15"
+  }
+  ```
+- **Response Schema:**
+  ```json
+  {
+    "status": "VALID",
+    "firstNameAr": "أحمد",
+    "lastNameAr": "الحربي",
+    "firstNameEn": "Ahmed",
+    "lastNameEn": "Al-Harbi",
+    "gender": "M",
+    "occupation": "Engineer"
+  }
+  ```
 
-## Navigation
+---
 
-Use the navigation menu to explore the content in this section.
+## 2. Najm Integration (Motor Accident History)
 
-## Quick Links
+The **Najm** integration retrieves claims and accident history for rating calculations.
 
-- [Vision & Strategy](../000-Vision/index.md)
-- [Business Context](../100-Business/index.md)
-- [Domain Models](../200-Domains/index.md)
-- [Architecture](../architecture/README.md)
-- [Standards](../400-Standards/index.md)
-- [API Design](../500-API/index.md)
-- [Database Design](../600-Database/index.md)
-- [User Interface](../700-UI/index.md)
-- [Integrations](../800-Integrations/index.md)
-- [Decisions](../900-Decisions/index.md)
-- [Templates](../950-Templates/index.md)
-- [AI Assistance](../990-AI/index.md)
+### API Contract Details
+- **Protocol:** SOAP/XML or REST (SOAP WSDL used for MVP).
+- **Endpoint:** `POST /najm/v2/accident-history`
+- **Request Payload:**
+  ```xml
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:naj="http://najm.sa/api">
+     <soapenv:Header/>
+     <soapenv:Body>
+        <naj:GetAccidentHistoryRequest>
+           <naj:NationalId>1098765432</naj:NationalId>
+           <naj:SequenceNumber>123456789</naj:SequenceNumber>
+        </naj:GetAccidentHistoryRequest>
+     </soapenv:Body>
+  </soapenv:Envelope>
+  ```
+- **Response Data:** Returns number of historical accidents, fault percentages, and claim status records used as multipliers in the [Motor Rating Engine](../architecture/domain-architecture.md#24-motor-rating-engine).
 
-## Last Updated
+---
 
-This content was generated on 2026-07-01 19:01:44 UTC.
+## 3. Local Payment Gateways (Mada / SADAD)
 
-## Maintainers
+The billing and payment module orchestrates transactions through licensed payment aggregators.
 
-- Enterprise Architecture Team
-- Documentation Team
+### Flow Architecture
+1. **Initiate Payment**: Frontend requests payment url from Spring Boot backend.
+2. **Redirection**: User completes authentication on the secure Mada/SADAD gateway.
+3. **Webhook Callback**: The gateway sends a signed POST webhook containing status:
+   ```json
+   {
+     "transactionId": "tx_90812739128",
+     "amount": 1050.00,
+     "currency": "SAR",
+     "status": "CAPTURED",
+     "signature": "sha256_hash_here"
+   }
+   ```
+4. **Settlement**: Backend validates the signature, posts to [core.financial_transaction](../600-Database/index.md#corefinancial_transaction), and transitions policy status to `ACTIVE`.
 
-## Questions?
+---
 
-For questions about this documentation, please contact the Enterprise Architecture Team.
+## 4. Resilience & Circuit Breakers (Resilience4j)
 
+All national API integrations must implement circuit breakers to prevent cascading failures using **Resilience4j**.
 
-
-
+```yaml
+resilience4j.circuitbreaker:
+  instances:
+    yakeenService:
+      slidingWindowSize: 20
+      failureRateThreshold: 50
+      waitDurationInOpenState: 15s
+      permittedNumberOfCallsInHalfOpenState: 5
+```

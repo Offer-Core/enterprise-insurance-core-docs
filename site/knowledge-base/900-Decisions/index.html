@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -70,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#decisions" class="md-skip">
+        <a href="#architecture-decision-records-adrs" class="md-skip">
           Skip to content
         </a>
       
@@ -1013,10 +1016,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#how-to-read-adrs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        How to Read ADRs
       
     </span>
   </a>
@@ -1024,10 +1027,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
+  <a href="#decision-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Structure
+        Decision Summary
       
     </span>
   </a>
@@ -1035,10 +1038,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
+  <a href="#technology-stack-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Navigation
+        Technology Stack Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technology Stack Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-add-a-new-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Add a New ADR
       
     </span>
   </a>
@@ -1046,43 +1088,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-links" class="md-nav__link">
+  <a href="#related-documents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Links
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#last-updated" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Last Updated
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#maintainers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Maintainers
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Questions?
+        Related Documents
       
     </span>
   </a>
@@ -1188,10 +1197,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#how-to-read-adrs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        How to Read ADRs
       
     </span>
   </a>
@@ -1199,10 +1208,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
+  <a href="#decision-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Structure
+        Decision Summary
       
     </span>
   </a>
@@ -1210,10 +1219,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
+  <a href="#technology-stack-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Navigation
+        Technology Stack Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technology Stack Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-add-a-new-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Add a New ADR
       
     </span>
   </a>
@@ -1221,43 +1269,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-links" class="md-nav__link">
+  <a href="#related-documents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Links
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#last-updated" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Last Updated
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#maintainers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Maintainers
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Questions?
+        Related Documents
       
     </span>
   </a>
@@ -1284,44 +1299,254 @@
   
 
 
-<h1 id="decisions">Decisions</h1>
-<p>This section contains Architecture Decision Records (ADRs) and key decisions.</p>
-<h2 id="overview">Overview</h2>
-<p>This section is part of the Enterprise Insurance Platform documentation repository.</p>
-<h2 id="structure">Structure</h2>
-<p>The documentation is organized to provide clear, accessible information for all stakeholders including:</p>
+<h1 id="architecture-decision-records-adrs">Architecture Decision Records (ADRs)</h1>
+<p>This section contains all Architecture Decision Records (ADRs) for the Enterprise Insurance Platform.
+ADRs document significant technical decisions, their context, rationale, and consequences to serve as a permanent reference for the team.</p>
+<hr />
+<h2 id="how-to-read-adrs">How to Read ADRs</h2>
+<p>Each ADR follows this structure:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Status</strong></td>
+<td><code>Proposed</code> → <code>Accepted</code> → <code>Deprecated</code> / <code>Superseded by ADR-XXX</code></td>
+</tr>
+<tr>
+<td><strong>Date</strong></td>
+<td>When the decision was made</td>
+</tr>
+<tr>
+<td><strong>Context</strong></td>
+<td>The problem or situation that required a decision</td>
+</tr>
+<tr>
+<td><strong>Decision</strong></td>
+<td>The chosen approach</td>
+</tr>
+<tr>
+<td><strong>Rationale</strong></td>
+<td>Why this option was selected over alternatives</td>
+</tr>
+<tr>
+<td><strong>Consequences</strong></td>
+<td>✅ Benefits and ⚠️ trade-offs</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="decision-summary">Decision Summary</h2>
+<table>
+<thead>
+<tr>
+<th>ADR</th>
+<th>Title</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../architecture/architecture-decisions/">ADR-001</a></td>
+<td>Java 21 + Spring Boot 3.x as Core Backend Stack</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td><a href="../architecture/architecture-decisions/">ADR-002</a></td>
+<td>Angular + PrimeNG + TailwindCSS for Frontend</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td><a href="../architecture/architecture-decisions/">ADR-003</a></td>
+<td>Metadata-Driven Extensibility</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td><a href="../architecture/architecture-decisions/">ADR-004</a></td>
+<td>JSONB for Dynamic Attribute Storage</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td><a href="../architecture/architecture-decisions/">ADR-005</a></td>
+<td>Schema Isolation for Line-Specific Data</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td><a href="../architecture/architecture-decisions/">ADR-006</a></td>
+<td>Event-Driven Integration via Kafka</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td><a href="../architecture/architecture-decisions/">ADR-007</a></td>
+<td>Keycloak as Identity Provider</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td><a href="../architecture/architecture-decisions/">ADR-008</a></td>
+<td>PostgreSQL 16 as Primary Database</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td><a href="../architecture/architecture-decisions/">ADR-009</a></td>
+<td>Flyway for Database Migration Management</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td><a href="../architecture/architecture-decisions/">ADR-010</a></td>
+<td>Resilience4j for Integration Resilience</td>
+<td>✅ Accepted</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="technology-stack-summary">Technology Stack Summary</h2>
+<p>The following stack decisions are the result of the ADRs above:</p>
+<h3 id="backend">Backend</h3>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Technology</th>
+<th>ADR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Language</td>
+<td>Java 21 (LTS)</td>
+<td>ADR-001</td>
+</tr>
+<tr>
+<td>Framework</td>
+<td>Spring Boot 3.3+</td>
+<td>ADR-001</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>PostgreSQL 16</td>
+<td>ADR-008</td>
+</tr>
+<tr>
+<td>DB Migration</td>
+<td>Flyway 10.x</td>
+<td>ADR-009</td>
+</tr>
+<tr>
+<td>ORM</td>
+<td>Spring Data JPA (Hibernate 6)</td>
+<td>ADR-001</td>
+</tr>
+<tr>
+<td>Messaging</td>
+<td>Apache Kafka</td>
+<td>ADR-006</td>
+</tr>
+<tr>
+<td>Cache</td>
+<td>Redis 7</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>Spring Security + Keycloak</td>
+<td>ADR-007</td>
+</tr>
+<tr>
+<td>Resilience</td>
+<td>Resilience4j</td>
+<td>ADR-010</td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>Micrometer + Prometheus + Loki + Tempo</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>Maven 3.9+</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Containerisation</td>
+<td>Docker + Kubernetes</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="frontend">Frontend</h3>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Technology</th>
+<th>ADR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Framework</td>
+<td>Angular 18+</td>
+<td>ADR-002</td>
+</tr>
+<tr>
+<td>UI Components</td>
+<td>PrimeNG 17+</td>
+<td>ADR-002</td>
+</tr>
+<tr>
+<td>Styling</td>
+<td>TailwindCSS 3.x</td>
+<td>ADR-002</td>
+</tr>
+<tr>
+<td>State Management</td>
+<td>Angular Signals / RxJS</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Internationalisation</td>
+<td>ngx-translate</td>
+<td>-</td>
+</tr>
+<tr>
+<td>HTTP Client</td>
+<td>Angular HttpClient + interceptors</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Forms</td>
+<td>Angular Reactive Forms</td>
+<td>ADR-003</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>Angular CLI + Vite</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="how-to-add-a-new-adr">How to Add a New ADR</h2>
+<ol>
+<li>Use the next available ADR number</li>
+<li>Add the decision to <a href="../architecture/architecture-decisions/">architecture-decisions.md</a></li>
+<li>Add a row to the Decision Summary table above</li>
+<li>Status must start as <code>Proposed</code> — move to <code>Accepted</code> after team review</li>
+<li>If superseding an existing ADR, mark the old one as <code>Superseded by ADR-XXX</code></li>
+</ol>
+<hr />
+<h2 id="related-documents">Related Documents</h2>
 <ul>
-<li><strong>Business Stakeholders</strong>: Understand the platform capabilities and business value</li>
-<li><strong>Development Teams</strong>: Access technical specifications and implementation details</li>
-<li><strong>Operations Teams</strong>: Learn about deployment, monitoring, and infrastructure</li>
-<li><strong>Security Teams</strong>: Review security standards and compliance requirements</li>
+<li><a href="../architecture/architecture-decisions/">Architecture Decisions (Full)</a> — complete ADR text</li>
+<li><a href="../architecture/overview/">Architecture Overview</a> — high-level platform architecture</li>
+<li><a href="../600-Database/">Database Design</a> — schema details driven by ADR-004/005/008</li>
+<li><a href="../200-Domains/Authentication/">Security Design</a> — security decisions from ADR-007</li>
+<li><a href="../800-Integrations/">Integration Design</a> — integration patterns from ADR-006/010</li>
 </ul>
-<h2 id="navigation">Navigation</h2>
-<p>Use the navigation menu to explore the content in this section.</p>
-<h2 id="quick-links">Quick Links</h2>
-<ul>
-<li><a href="../000-Vision/">Vision &amp; Strategy</a></li>
-<li><a href="../100-Business/">Business Context</a></li>
-<li><a href="../200-Domains/">Domain Models</a></li>
-<li><a href="../architecture/">Architecture</a></li>
-<li><a href="../400-Standards/">Standards</a></li>
-<li><a href="../500-API/">API Design</a></li>
-<li><a href="../600-Database/">Database Design</a></li>
-<li><a href="../700-UI/">User Interface</a></li>
-<li><a href="../800-Integrations/">Integrations</a></li>
-<li><a href="./">Decisions</a></li>
-<li><a href="../950-Templates/">Templates</a></li>
-<li><a href="../990-AI/">AI Assistance</a></li>
-</ul>
-<h2 id="last-updated">Last Updated</h2>
-<p>This content was generated on 2026-07-01 19:01:44 UTC.</p>
-<h2 id="maintainers">Maintainers</h2>
-<ul>
-<li>Enterprise Architecture Team</li>
-<li>Documentation Team</li>
-</ul>
-<h2 id="questions">Questions?</h2>
-<p>For questions about this documentation, please contact the Enterprise Architecture Team.</p>
 
 
 
@@ -1379,6 +1604,10 @@
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -642,57 +645,612 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#adr-1-java-and-spring-boot-as-the-core-platform-stack" class="md-nav__link">
+  <a href="#adr-001-java-21-spring-boot-3x-as-the-core-backend-stack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 1: Java and Spring Boot as the Core Platform Stack
+        ADR-001: Java 21 + Spring Boot 3.x as the Core Backend Stack
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-001: Java 21 + Spring Boot 3.x as the Core Backend Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#adr-2-metadata-driven-extensibility" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 2: Metadata-Driven Extensibility
+        Decision
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#adr-3-jsonb-based-dynamic-attributes" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 3: JSONB-Based Dynamic Attributes
+        Rationale
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#adr-4-schema-isolation-for-line-specific-data" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 4: Schema Isolation for Line-Specific Data
+        Consequences
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#adr-5-event-driven-integration-for-workflow-coordination" class="md-nav__link">
+  <a href="#adr-002-angular-primeng-tailwindcss-for-the-frontend" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 5: Event-Driven Integration for Workflow Coordination
+        ADR-002: Angular + PrimeNG + TailwindCSS for the Frontend
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="ADR-002: Angular + PrimeNG + TailwindCSS for the Frontend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-003-metadata-driven-extensibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-003: Metadata-Driven Extensibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-003: Metadata-Driven Extensibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-004-jsonb-for-dynamic-attribute-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-004: JSONB for Dynamic Attribute Storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-004: JSONB for Dynamic Attribute Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-005-schema-isolation-for-line-specific-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-005: Schema Isolation for Line-Specific Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-005: Schema Isolation for Line-Specific Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-006-event-driven-integration-for-workflow-coordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-006: Event-Driven Integration for Workflow Coordination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-006: Event-Driven Integration for Workflow Coordination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-007-keycloak-as-the-identity-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-007: Keycloak as the Identity Provider
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-007: Keycloak as the Identity Provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-008-postgresql-16-as-the-primary-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-008: PostgreSQL 16 as the Primary Database
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-008: PostgreSQL 16 as the Primary Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-009-flyway-for-database-migration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-009: Flyway for Database Migration Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-009: Flyway for Database Migration Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-010-resilience4j-for-integration-resilience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-010: Resilience4j for Integration Resilience
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-010: Resilience4j for Integration Resilience">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1168,57 +1726,612 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#adr-1-java-and-spring-boot-as-the-core-platform-stack" class="md-nav__link">
+  <a href="#adr-001-java-21-spring-boot-3x-as-the-core-backend-stack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 1: Java and Spring Boot as the Core Platform Stack
+        ADR-001: Java 21 + Spring Boot 3.x as the Core Backend Stack
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-001: Java 21 + Spring Boot 3.x as the Core Backend Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#adr-2-metadata-driven-extensibility" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 2: Metadata-Driven Extensibility
+        Decision
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#adr-3-jsonb-based-dynamic-attributes" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 3: JSONB-Based Dynamic Attributes
+        Rationale
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#adr-4-schema-isolation-for-line-specific-data" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 4: Schema Isolation for Line-Specific Data
+        Consequences
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#adr-5-event-driven-integration-for-workflow-coordination" class="md-nav__link">
+  <a href="#adr-002-angular-primeng-tailwindcss-for-the-frontend" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 5: Event-Driven Integration for Workflow Coordination
+        ADR-002: Angular + PrimeNG + TailwindCSS for the Frontend
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="ADR-002: Angular + PrimeNG + TailwindCSS for the Frontend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-003-metadata-driven-extensibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-003: Metadata-Driven Extensibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-003: Metadata-Driven Extensibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-004-jsonb-for-dynamic-attribute-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-004: JSONB for Dynamic Attribute Storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-004: JSONB for Dynamic Attribute Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-005-schema-isolation-for-line-specific-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-005: Schema Isolation for Line-Specific Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-005: Schema Isolation for Line-Specific Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-006-event-driven-integration-for-workflow-coordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-006: Event-Driven Integration for Workflow Coordination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-006: Event-Driven Integration for Workflow Coordination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-007-keycloak-as-the-identity-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-007: Keycloak as the Identity Provider
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-007: Keycloak as the Identity Provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-008-postgresql-16-as-the-primary-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-008: PostgreSQL 16 as the Primary Database
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-008: PostgreSQL 16 as the Primary Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-009-flyway-for-database-migration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-009: Flyway for Database Migration Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-009: Flyway for Database Migration Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adr-010-resilience4j-for-integration-resilience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADR-010: Resilience4j for Integration Resilience
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ADR-010: Resilience4j for Integration Resilience">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1243,37 +2356,238 @@
 
 
 <h1 id="architecture-decisions">Architecture Decisions</h1>
-<p>This document captures the key architectural decisions for the platform and the rationale behind them.</p>
-<h2 id="adr-1-java-and-spring-boot-as-the-core-platform-stack">ADR 1: Java and Spring Boot as the Core Platform Stack</h2>
-<p>Decision: Use Java with Spring Boot for backend services.</p>
-<p>Reason:
-- strong enterprise support
-- mature ecosystem for APIs, persistence, and security
-- good fit for modular service design</p>
-<h2 id="adr-2-metadata-driven-extensibility">ADR 2: Metadata-Driven Extensibility</h2>
-<p>Decision: Support business-driven field and workflow extension through metadata.</p>
-<p>Reason:
-- reduces the need for code changes for new business requirements
-- supports future line onboarding
-- keeps the core system stable while allowing line-specific evolution</p>
-<h2 id="adr-3-jsonb-based-dynamic-attributes">ADR 3: JSONB-Based Dynamic Attributes</h2>
-<p>Decision: Use JSONB storage for dynamic attributes rather than a fully generic EAV model.</p>
-<p>Reason:
-- simpler and more performant for the current scope
-- easier to query and reason about than a universal EAV structure
-- suitable for nested and future line-specific data</p>
-<h2 id="adr-4-schema-isolation-for-line-specific-data">ADR 4: Schema Isolation for Line-Specific Data</h2>
-<p>Decision: Keep line-specific tables and migrations isolated from the shared kernel schema.</p>
-<p>Reason:
-- reduces change risk
-- avoids cross-team migration conflicts
-- supports independent delivery of future lines</p>
-<h2 id="adr-5-event-driven-integration-for-workflow-coordination">ADR 5: Event-Driven Integration for Workflow Coordination</h2>
-<p>Decision: Use events for asynchronous business workflows and cross-service communication.</p>
-<p>Reason:
-- decouples services
-- improves scalability
-- simplifies future integration points</p>
+<p>This document captures the key Architecture Decision Records (ADRs) for the Enterprise Insurance Platform.
+Each ADR describes the context, decision, rationale, and consequences.</p>
+<hr />
+<h2 id="adr-001-java-21-spring-boot-3x-as-the-core-backend-stack">ADR-001: Java 21 + Spring Boot 3.x as the Core Backend Stack</h2>
+<p><strong>Status:</strong> Accepted<br />
+<strong>Date:</strong> 2026-07</p>
+<h3 id="context">Context</h3>
+<p>The platform requires a stable, enterprise-grade backend capable of supporting complex domain logic (policy lifecycle, claims, billing) with strong ecosystem support for persistence, security, messaging, and observability.</p>
+<h3 id="decision">Decision</h3>
+<p>Use Java 21 (LTS) with Spring Boot 3.3+ for all backend services.</p>
+<h3 id="rationale">Rationale</h3>
+<ul>
+<li>Java 21 LTS provides long-term support and virtual thread support (Project Loom) for high throughput</li>
+<li>Spring Boot 3.x provides production-ready auto-configuration for all required capabilities (JPA, Security, Kafka, Actuator)</li>
+<li>Strong ecosystem for insurance domain (DDD, event-driven patterns)</li>
+<li>Alignment with Saudi Arabia market preference for enterprise Java solutions</li>
+<li>Team familiarity and extensive community support</li>
+</ul>
+<h3 id="consequences">Consequences</h3>
+<ul>
+<li>✅ Rich ecosystem and mature libraries</li>
+<li>✅ Strong security with Spring Security OAuth2</li>
+<li>✅ Native GraalVM compilation available for future cold-start optimisation</li>
+<li>⚠️ Higher memory footprint than Go/Node.js (mitigated by JVM tuning)</li>
+</ul>
+<hr />
+<h2 id="adr-002-angular-primeng-tailwindcss-for-the-frontend">ADR-002: Angular + PrimeNG + TailwindCSS for the Frontend</h2>
+<p><strong>Status:</strong> Accepted<br />
+<strong>Date:</strong> 2026-07</p>
+<h3 id="context_1">Context</h3>
+<p>The platform requires a sophisticated web UI that supports dual-language (Arabic/English), RTL/LTR layouts, complex dynamic forms, and a premium design aesthetic for both internal operations staff and customers.</p>
+<h3 id="decision_1">Decision</h3>
+<p>Use Angular 18+ with PrimeNG component library and TailwindCSS for styling.</p>
+<h3 id="rationale_1">Rationale</h3>
+<ul>
+<li>Angular's strong typing and DI framework suits enterprise-scale form-heavy applications</li>
+<li>PrimeNG provides RTL-ready, accessibility-compliant components out of the box (DataTable, Calendar, Dropdown, etc.)</li>
+<li>TailwindCSS enables rapid, consistent styling without CSS bloat</li>
+<li>Angular's reactive forms align naturally with the metadata-driven form rendering architecture</li>
+<li>PrimeNG's Arabic locale support satisfies Saudi market requirements</li>
+</ul>
+<h3 id="consequences_1">Consequences</h3>
+<ul>
+<li>✅ Comprehensive RTL/LTR support with minimal custom CSS</li>
+<li>✅ Rich UI components reduce build time for data-heavy screens</li>
+<li>✅ Strong TypeScript typing reduces runtime errors</li>
+<li>⚠️ Bundle size requires careful lazy-loading strategy</li>
+</ul>
+<hr />
+<h2 id="adr-003-metadata-driven-extensibility">ADR-003: Metadata-Driven Extensibility</h2>
+<p><strong>Status:</strong> Accepted<br />
+<strong>Date:</strong> 2026-07</p>
+<h3 id="context_2">Context</h3>
+<p>Insurance products (motor, health, travel, property) differ significantly in their required fields, validation rules, and workflow steps. Hard-coding each product's fields creates a tight coupling that slows product configuration and requires developer involvement for every new product variant.</p>
+<h3 id="decision_2">Decision</h3>
+<p>Implement a metadata-driven field and form system where product fields, validation rules, and form sections are defined in database configuration tables (<code>metadata.field_definitions</code>, <code>metadata.product_configurations</code>) and rendered dynamically by the Angular UI engine.</p>
+<h3 id="rationale_2">Rationale</h3>
+<ul>
+<li>Business analysts can configure new products and fields without code deployments</li>
+<li>New insurance lines can be onboarded by adding metadata — not code</li>
+<li>Reduces time-to-market for product variations and endorsements</li>
+<li>Aligns with the platform's configuration-driven domain model principle</li>
+</ul>
+<h3 id="consequences_2">Consequences</h3>
+<ul>
+<li>✅ Business team autonomy for product configuration</li>
+<li>✅ Faster product launch cycles</li>
+<li>✅ Reduced developer involvement in product-level changes</li>
+<li>⚠️ Metadata schema must be versioned and migrated carefully</li>
+<li>⚠️ Complex validation logic still requires developer involvement for non-standard rules</li>
+</ul>
+<hr />
+<h2 id="adr-004-jsonb-for-dynamic-attribute-storage">ADR-004: JSONB for Dynamic Attribute Storage</h2>
+<p><strong>Status:</strong> Accepted<br />
+<strong>Date:</strong> 2026-07</p>
+<h3 id="context_3">Context</h3>
+<p>Line-specific fields (e.g., motor vehicle details, Najm results, health declarations) vary by product and evolve over time. Two alternatives were considered: a generic Entity-Attribute-Value (EAV) model, or structured JSONB columns.</p>
+<h3 id="decision_3">Decision</h3>
+<p>Store dynamic and line-specific attributes as JSONB columns (<code>line_specific_data</code>, <code>dynamic_attributes</code>) on core entities (policies, claims).</p>
+<h3 id="rationale_3">Rationale</h3>
+<ul>
+<li>JSONB is natively indexed (GIN index) and queryable — avoiding full-table scans</li>
+<li>Simpler than EAV: one column per entity, not hundreds of EAV rows per policy</li>
+<li>PostgreSQL JSONB operators (<code>-&gt;</code>, <code>-&gt;&gt;</code>, <code>@&gt;</code>, <code>#&gt;</code>) support rich queries</li>
+<li>Nested structures can represent complex motor/health data naturally</li>
+<li>Avoids premature normalisation for fields that may change or be dropped</li>
+</ul>
+<h3 id="consequences_3">Consequences</h3>
+<ul>
+<li>✅ No schema migration required to add new optional fields</li>
+<li>✅ GIN-indexed JSONB supports performant attribute queries</li>
+<li>✅ Supports nested objects (Najm result, Yakeen response cache)</li>
+<li>⚠️ Not strongly typed in the database — application must validate structure</li>
+<li>⚠️ Reporting on JSONB fields requires JSONB operators or materialised views</li>
+</ul>
+<hr />
+<h2 id="adr-005-schema-isolation-for-line-specific-data">ADR-005: Schema Isolation for Line-Specific Data</h2>
+<p><strong>Status:</strong> Accepted<br />
+<strong>Date:</strong> 2026-07</p>
+<h3 id="context_4">Context</h3>
+<p>As the platform grows to support multiple insurance lines (motor, health, travel), tables specific to each line should not pollute the shared core schema, which could create migration conflicts between teams.</p>
+<h3 id="decision_4">Decision</h3>
+<p>Line-specific tables are stored in dedicated PostgreSQL schemas (<code>motor</code>, <code>health</code>, <code>travel</code>). The <code>core</code> schema contains only shared kernel entities.</p>
+<h3 id="rationale_4">Rationale</h3>
+<ul>
+<li>Teams can evolve their line schema independently without risking core data integrity</li>
+<li>Flyway migrations are owned by the team responsible for each schema</li>
+<li>PostgreSQL schema-level permissions allow per-team database access control</li>
+<li>Clear architecture boundary: core is stable, lines are variable</li>
+</ul>
+<h3 id="consequences_4">Consequences</h3>
+<ul>
+<li>✅ Independent delivery for each insurance line</li>
+<li>✅ No cross-team migration conflicts</li>
+<li>✅ Clear data ownership</li>
+<li>⚠️ Cross-schema joins (e.g., <code>core.policies JOIN motor.motor_vehicles</code>) are permitted but should be limited to read-only reporting queries</li>
+</ul>
+<hr />
+<h2 id="adr-006-event-driven-integration-for-workflow-coordination">ADR-006: Event-Driven Integration for Workflow Coordination</h2>
+<p><strong>Status:</strong> Accepted<br />
+<strong>Date:</strong> 2026-07</p>
+<h3 id="context_5">Context</h3>
+<p>Business workflows span multiple services (e.g., policy issuance triggers billing, which triggers a notification). Synchronous chaining of service calls creates tight coupling and reduces resilience.</p>
+<h3 id="decision_5">Decision</h3>
+<p>Use Apache Kafka for asynchronous domain event publishing. Services react to events (<code>PolicyIssued</code>, <code>ClaimRegistered</code>, <code>PaymentReceived</code>) instead of calling each other directly.</p>
+<h3 id="rationale_5">Rationale</h3>
+<ul>
+<li>Decouples services — downstream consumers don't affect the producer's availability</li>
+<li>Kafka provides durable, ordered, replayable event log</li>
+<li>Simplifies future integration of new consumers (analytics, audit, partner systems)</li>
+<li>Supports retry and dead-letter queue patterns for resilience</li>
+</ul>
+<h3 id="consequences_5">Consequences</h3>
+<ul>
+<li>✅ Loose coupling between services</li>
+<li>✅ Replayable event history for audit and debugging</li>
+<li>✅ New consumers can be added without modifying producers</li>
+<li>⚠️ Eventual consistency — downstream services may lag briefly</li>
+<li>⚠️ Requires careful idempotency design in consumers</li>
+</ul>
+<hr />
+<h2 id="adr-007-keycloak-as-the-identity-provider">ADR-007: Keycloak as the Identity Provider</h2>
+<p><strong>Status:</strong> Accepted<br />
+<strong>Date:</strong> 2026-07</p>
+<h3 id="context_6">Context</h3>
+<p>The platform requires centralised authentication for browser users (Angular SPA), internal service accounts (client credentials), and future B2B partner access.</p>
+<h3 id="decision_6">Decision</h3>
+<p>Deploy Keycloak as the OIDC-compliant identity provider. Use Authorization Code + PKCE for browser clients and Client Credentials for service-to-service authentication.</p>
+<h3 id="rationale_6">Rationale</h3>
+<ul>
+<li>Open-source, enterprise-grade, battle-tested OIDC implementation</li>
+<li>Native support for Saudi locale, Arabic UI, and OTP SMS integrations</li>
+<li>Role-based and realm-level access control aligned with platform security model</li>
+<li>Future-ready for Absher (Saudi national SSO) federation</li>
+</ul>
+<h3 id="consequences_6">Consequences</h3>
+<ul>
+<li>✅ Standards-compliant (OAuth 2.1, OpenID Connect, PKCE)</li>
+<li>✅ Rich admin UI for user and role management</li>
+<li>✅ Multi-realm and federation support for B2B scenarios</li>
+<li>⚠️ Additional operational complexity — Keycloak must be HA-deployed</li>
+<li>⚠️ Upgrade management required</li>
+</ul>
+<hr />
+<h2 id="adr-008-postgresql-16-as-the-primary-database">ADR-008: PostgreSQL 16 as the Primary Database</h2>
+<p><strong>Status:</strong> Accepted<br />
+<strong>Date:</strong> 2026-07</p>
+<h3 id="context_7">Context</h3>
+<p>The platform requires ACID-compliant transactional storage for financial and insurance data, with strong JSONB support for dynamic attributes.</p>
+<h3 id="decision_7">Decision</h3>
+<p>Use PostgreSQL 16 as the primary relational database for all services.</p>
+<h3 id="rationale_7">Rationale</h3>
+<ul>
+<li>Best-in-class JSONB support with GIN indexing</li>
+<li>ACID compliance for financial data integrity</li>
+<li>Row-level security available for multi-tenant data isolation</li>
+<li>Mature, well-supported in Kubernetes environments</li>
+<li>Flyway migration tooling has first-class PostgreSQL support</li>
+<li>Open-source — no vendor lock-in</li>
+</ul>
+<h3 id="consequences_7">Consequences</h3>
+<ul>
+<li>✅ ACID transactions for policy/financial operations</li>
+<li>✅ JSONB with GIN indexes for metadata-driven attribute storage</li>
+<li>✅ No licensing cost</li>
+<li>⚠️ Horizontal write scaling requires sharding (not needed at initial scale)</li>
+</ul>
+<hr />
+<h2 id="adr-009-flyway-for-database-migration-management">ADR-009: Flyway for Database Migration Management</h2>
+<p><strong>Status:</strong> Accepted<br />
+<strong>Date:</strong> 2026-07</p>
+<h3 id="context_8">Context</h3>
+<p>Schema evolution must be version-controlled, auditable, and repeatable across all environments (dev, staging, production).</p>
+<h3 id="decision_8">Decision</h3>
+<p>Use Flyway 10.x for all database schema migrations, with Spring Boot auto-run on startup.</p>
+<h3 id="rationale_8">Rationale</h3>
+<ul>
+<li>Versioned SQL files with checksum validation prevent drift</li>
+<li>Native Spring Boot integration via <code>spring.flyway.*</code> configuration</li>
+<li>Supports schema-separated migration paths</li>
+<li>Simple, file-based approach with no additional tooling required</li>
+</ul>
+<h3 id="consequences_8">Consequences</h3>
+<ul>
+<li>✅ Schema history tracked in <code>flyway_schema_history</code> table</li>
+<li>✅ Migrations validated before application starts</li>
+<li>✅ Dev/staging/production stay in sync</li>
+<li>⚠️ Baseline migration required for existing schemas</li>
+</ul>
+<hr />
+<h2 id="adr-010-resilience4j-for-integration-resilience">ADR-010: Resilience4j for Integration Resilience</h2>
+<p><strong>Status:</strong> Accepted<br />
+<strong>Date:</strong> 2026-07</p>
+<h3 id="context_9">Context</h3>
+<p>External integrations (Yakeen, Najm, MADA payment) may be unavailable or slow. Without protection, a downstream failure could cascade and bring down the entire platform.</p>
+<h3 id="decision_9">Decision</h3>
+<p>Apply Resilience4j circuit breaker, retry, and time limiter patterns to all external integration calls.</p>
+<h3 id="rationale_9">Rationale</h3>
+<ul>
+<li>Native Spring Boot integration via <code>resilience4j-spring-boot3</code></li>
+<li>Composable annotations: <code>@CircuitBreaker</code>, <code>@Retry</code>, <code>@TimeLimiter</code></li>
+<li>Configurable per-integration — Yakeen vs. MADA have different timeout requirements</li>
+<li>Metrics exposed to Prometheus for circuit breaker state monitoring</li>
+<li>Fallback methods allow graceful degradation (e.g., defer Yakeen verification)</li>
+</ul>
+<h3 id="consequences_9">Consequences</h3>
+<ul>
+<li>✅ Platform remains operational when external systems are down</li>
+<li>✅ Fallback logic enables manual override paths</li>
+<li>✅ Circuit breaker state visible in Grafana dashboards</li>
+<li>⚠️ Fallback business logic must be explicitly designed and tested per integration</li>
+</ul>
 
 
 
@@ -1331,6 +2645,10 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -614,21 +617,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operational-principles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Operational Principles
+        Overview
       
     </span>
   </a>
@@ -647,10 +639,205 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-metrics" class="md-nav__link">
+  <a href="#structured-logging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Metrics
+        Structured Logging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structured Logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdc-correlation-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDC Correlation Filter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logback-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logback Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spring-boot-actuator-micrometer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Boot Actuator + Micrometer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-business-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Business Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-metrics-catalogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Metrics Catalogue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Tracing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributed Tracing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trace-propagation-to-kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trace Propagation to Kafka
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Checks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Health Checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-health-indicator-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Health Indicator Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alerting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alerting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alertmanager-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AlertManager Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grafana-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grafana Dashboards
       
     </span>
   </a>
@@ -658,13 +845,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operational-controls" class="md-nav__link">
+  <a href="#operational-runbooks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operational Controls
+        Operational Runbooks
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Operational Runbooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#runbook-policy-service-degraded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runbook: Policy Service Degraded
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runbook-payment-failure-spike" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runbook: Payment Failure Spike
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runbook-database-connection-exhaustion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runbook: Database Connection Exhaustion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1168,21 +1394,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operational-principles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Operational Principles
+        Overview
       
     </span>
   </a>
@@ -1201,10 +1416,205 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-metrics" class="md-nav__link">
+  <a href="#structured-logging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Metrics
+        Structured Logging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structured Logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdc-correlation-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDC Correlation Filter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logback-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logback Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spring-boot-actuator-micrometer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Boot Actuator + Micrometer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-business-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Business Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-metrics-catalogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Metrics Catalogue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Tracing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributed Tracing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trace-propagation-to-kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trace Propagation to Kafka
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Checks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Health Checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-health-indicator-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Health Indicator Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alerting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alerting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alertmanager-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AlertManager Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grafana-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grafana Dashboards
       
     </span>
   </a>
@@ -1212,13 +1622,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operational-controls" class="md-nav__link">
+  <a href="#operational-runbooks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operational Controls
+        Operational Runbooks
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Operational Runbooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#runbook-policy-service-degraded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runbook: Policy Service Degraded
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runbook-payment-failure-spike" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runbook: Payment Failure Spike
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runbook-database-connection-exhaustion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runbook: Database Connection Exhaustion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1243,38 +1692,450 @@
 
 
 <h1 id="operations-and-observability">Operations and Observability</h1>
-<h2 id="purpose">Purpose</h2>
-<p>The platform must be operable in production with strong visibility into health, performance, and business events.</p>
-<h2 id="operational-principles">Operational Principles</h2>
-<ul>
-<li>Every service must expose health and readiness endpoints</li>
-<li>Logs, metrics, and traces must be centralized</li>
-<li>Alerts should be driven by service health and business outcomes</li>
-<li>Runbooks should exist for critical workflows such as claims intake and policy issuance</li>
-</ul>
+<h2 id="overview">Overview</h2>
+<p>The platform uses a <strong>three-pillar observability model</strong>: structured logs, metrics, and distributed traces.
+All services expose standard Spring Boot Actuator endpoints and emit telemetry that is collected by a centralised observability stack (Prometheus + Loki + Tempo + Grafana).</p>
+<hr />
 <h2 id="observability-stack">Observability Stack</h2>
-<ul>
-<li>Application logs in a centralized log platform</li>
-<li>Metrics via Prometheus or equivalent</li>
-<li>Distributed tracing for request flow across services</li>
-<li>Dashboarding for business and technical KPIs</li>
-</ul>
-<h2 id="key-metrics">Key Metrics</h2>
-<ul>
-<li>API latency</li>
-<li>policy issuance success rate</li>
-<li>claim processing throughput</li>
-<li>underwriting rule evaluation failures</li>
-<li>billing reconciliation exceptions</li>
-</ul>
-<h2 id="operational-controls">Operational Controls</h2>
-<ul>
-<li>deployment health checks</li>
-<li>rolling deployments</li>
-<li>environment-specific secrets management</li>
-<li>incident escalation workflow</li>
-<li>audit logging for administrator and business-user actions</li>
-</ul>
+<div class="panzoom-box" data-key="none" id="panzoom0" oncontextmenu="return false;">
+    
+    <nav class="panzoom-nav">
+    <button class="panzoom-reset panzoom-button">
+    <svg class="panzoom-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"></path>
+    </svg>
+</button>
+    </nav>
+    <pre class="mermaid"><code>graph TB
+    subgraph "Application Services"
+        PS[Policy Service]
+        CS[Claims Service]
+        BS[Billing Service]
+        AS[Auth Service]
+    end
+
+    subgraph "Collection Layer"
+        PROM[Prometheus\nMetrics Scrape]
+        LOKI[Loki\nLog Aggregation]
+        TEMPO[Tempo / Jaeger\nTrace Collection]
+    end
+
+    subgraph "Visualisation"
+        GRAFANA[Grafana Dashboards]
+        ALERT[AlertManager\nPagerDuty / Slack]
+    end
+
+    PS -- /actuator/prometheus --&gt; PROM
+    CS -- /actuator/prometheus --&gt; PROM
+    BS -- /actuator/prometheus --&gt; PROM
+    AS -- /actuator/prometheus --&gt; PROM
+
+    PS -- JSON Logs --&gt; LOKI
+    CS -- JSON Logs --&gt; LOKI
+    BS -- JSON Logs --&gt; LOKI
+
+    PS -- OTLP Traces --&gt; TEMPO
+    CS -- OTLP Traces --&gt; TEMPO
+    BS -- OTLP Traces --&gt; TEMPO
+
+    PROM --&gt; GRAFANA
+    LOKI --&gt; GRAFANA
+    TEMPO --&gt; GRAFANA
+    PROM --&gt; ALERT</code></pre> 
+    <div class="panzoom-info-box panzoom-info-box-bottom">
+Use mouse to pan and zoom
+</div>
+</div>
+<hr />
+<h2 id="structured-logging">Structured Logging</h2>
+<p>All services use <strong>Logback + Logstash encoder</strong> to emit JSON-structured logs. Every log line includes a <code>correlationId</code> propagated through the request via MDC.</p>
+<h3 id="log-format">Log Format</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-07-05T20:15:00.123Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;logger&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;com.insurance.policy.PolicyService&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Policy approved successfully&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;correlationId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;req-a1b2c3d4&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;userId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-user-id&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;policyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-2026-00123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;productCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MOTOR_COMP&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;duration_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">142</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;service&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;policy-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;environment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;production&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="mdc-correlation-filter">MDC Correlation Filter</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="nd">@Order</span><span class="p">(</span><span class="n">Ordered</span><span class="p">.</span><span class="na">HIGHEST_PRECEDENCE</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CorrelationIdFilter</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">OncePerRequestFilter</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">CORRELATION_HEADER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;X-Correlation-Id&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doFilterInternal</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span>
+<span class="w">                                    </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">response</span><span class="p">,</span>
+<span class="w">                                    </span><span class="n">FilterChain</span><span class="w"> </span><span class="n">chain</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">ServletException</span><span class="p">,</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">correlationId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Optional</span><span class="p">.</span><span class="na">ofNullable</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="na">getHeader</span><span class="p">(</span><span class="n">CORRELATION_HEADER</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">orElse</span><span class="p">(</span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">());</span>
+<span class="w">        </span><span class="n">MDC</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;correlationId&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">correlationId</span><span class="p">);</span>
+<span class="w">        </span><span class="n">response</span><span class="p">.</span><span class="na">setHeader</span><span class="p">(</span><span class="n">CORRELATION_HEADER</span><span class="p">,</span><span class="w"> </span><span class="n">correlationId</span><span class="p">);</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">chain</span><span class="p">.</span><span class="na">doFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">MDC</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="logback-configuration">Logback Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- logback-spring.xml --&gt;</span>
+<span class="nt">&lt;configuration&gt;</span>
+<span class="w">  </span><span class="nt">&lt;appender</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;JSON_STDOUT&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;ch.qos.logback.core.ConsoleAppender&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;encoder</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;net.logstash.logback.encoder.LogstashEncoder&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;includeMdcKeyName&gt;</span>correlationId<span class="nt">&lt;/includeMdcKeyName&gt;</span>
+<span class="w">      </span><span class="nt">&lt;includeMdcKeyName&gt;</span>userId<span class="nt">&lt;/includeMdcKeyName&gt;</span>
+<span class="w">      </span><span class="nt">&lt;customFields&gt;</span>{&quot;service&quot;:&quot;policy-service&quot;,&quot;environment&quot;:&quot;${SPRING_PROFILES_ACTIVE}&quot;}<span class="nt">&lt;/customFields&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/encoder&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/appender&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;root</span><span class="w"> </span><span class="na">level=</span><span class="s">&quot;INFO&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;appender-ref</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;JSON_STDOUT&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/root&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="metrics">Metrics</h2>
+<h3 id="spring-boot-actuator-micrometer">Spring Boot Actuator + Micrometer</h3>
+<p>All services expose a <code>/actuator/prometheus</code> endpoint scraped by Prometheus every 15 seconds.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># application.yml</span>
+<span class="nt">management</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">web</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">exposure</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">include</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">health, info, prometheus, metrics</span>
+<span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">health</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">show-details</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">when-authorized</span>
+<span class="w">      </span><span class="nt">probes</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">metrics</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">tags</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${spring.application.name}</span>
+<span class="w">      </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${spring.profiles.active}</span>
+<span class="w">    </span><span class="nt">distribution</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">percentiles-histogram</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">http.server.requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">percentiles</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">http.server.requests</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.50</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.95</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.99</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<h3 id="custom-business-metrics">Custom Business Metrics</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PolicyMetrics</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Counter</span><span class="w"> </span><span class="n">policiesIssuedCounter</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Counter</span><span class="w"> </span><span class="n">policiesRejectedCounter</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Timer</span><span class="w"> </span><span class="n">policyApprovalTimer</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">PolicyMetrics</span><span class="p">(</span><span class="n">MeterRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">policiesIssuedCounter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Counter</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">&quot;insurance.policy.issued&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">description</span><span class="p">(</span><span class="s">&quot;Total policies issued&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">tag</span><span class="p">(</span><span class="s">&quot;product&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;unknown&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">policiesRejectedCounter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Counter</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">&quot;insurance.policy.rejected&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">description</span><span class="p">(</span><span class="s">&quot;Total policies rejected by underwriting&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">policyApprovalTimer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Timer</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">&quot;insurance.policy.approval.duration&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">description</span><span class="p">(</span><span class="s">&quot;Time from submission to approval&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">publishPercentiles</span><span class="p">(</span><span class="mf">0.50</span><span class="p">,</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span><span class="w"> </span><span class="mf">0.99</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">recordPolicyIssued</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">productCode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">policiesIssuedCounter</span><span class="p">.</span><span class="na">toBuilder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">tag</span><span class="p">(</span><span class="s">&quot;product&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">productCode</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">increment</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="key-metrics-catalogue">Key Metrics Catalogue</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Type</th>
+<th>Description</th>
+<th>Alert Threshold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>insurance.policy.issued_total</code></td>
+<td>Counter</td>
+<td>Total policies issued</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><code>insurance.policy.rejected_total</code></td>
+<td>Counter</td>
+<td>Policies rejected by underwriting</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><code>insurance.claim.registered_total</code></td>
+<td>Counter</td>
+<td>Total claims registered</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><code>insurance.payment.failed_total</code></td>
+<td>Counter</td>
+<td>Failed payment attempts</td>
+<td>&gt; 10 in 5 min</td>
+</tr>
+<tr>
+<td><code>insurance.yakeen.error_total</code></td>
+<td>Counter</td>
+<td>Yakeen integration errors</td>
+<td>&gt; 5 in 5 min</td>
+</tr>
+<tr>
+<td><code>insurance.najm.error_total</code></td>
+<td>Counter</td>
+<td>Najm integration errors</td>
+<td>&gt; 5 in 5 min</td>
+</tr>
+<tr>
+<td><code>http.server.requests.p95</code></td>
+<td>Timer</td>
+<td>95th percentile API response time</td>
+<td>&gt; 2000ms</td>
+</tr>
+<tr>
+<td><code>http.server.requests.p99</code></td>
+<td>Timer</td>
+<td>99th percentile API response time</td>
+<td>&gt; 5000ms</td>
+</tr>
+<tr>
+<td><code>spring.data.repository.invocations</code></td>
+<td>Timer</td>
+<td>Database query duration</td>
+<td>&gt; 1000ms</td>
+</tr>
+<tr>
+<td><code>resilience4j.circuitbreaker.state</code></td>
+<td>Gauge</td>
+<td>Circuit breaker open/closed state</td>
+<td>OPEN state</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="distributed-tracing">Distributed Tracing</h2>
+<p>All services use <strong>OpenTelemetry</strong> instrumented via Spring Boot's Micrometer Tracing auto-configuration.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># application.yml</span>
+<span class="nt">management</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tracing</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">sampling</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">probability</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w">   </span><span class="c1"># 100% in dev/staging; reduce to 0.1 in production</span>
+<span class="w">  </span><span class="nt">otlp</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">tracing</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://tempo:4318/v1/traces</span>
+</code></pre></div>
+<p>Every inbound HTTP request receives a <code>traceparent</code> header (W3C Trace Context) that is propagated to all downstream services and Kafka consumers, enabling full distributed trace reconstruction in Grafana.</p>
+<h3 id="trace-propagation-to-kafka">Trace Propagation to Kafka</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@KafkaListener</span><span class="p">(</span><span class="n">topics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;insurance.policy.events&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">handlePolicyEvent</span><span class="p">(</span><span class="n">PolicyIssuedEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                               </span><span class="nd">@Header</span><span class="p">(</span><span class="n">KafkaHeaders</span><span class="p">.</span><span class="na">RECEIVED_TOPIC</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">topic</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Spring Kafka auto-propagates trace context from message headers</span>
+<span class="w">    </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Processing PolicyIssuedEvent for policy: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">policyId</span><span class="p">());</span>
+<span class="w">    </span><span class="c1">// Processing logic</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="health-checks">Health Checks</h2>
+<p>All services expose standardised Kubernetes-compatible health probes:</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Purpose</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/actuator/health/liveness</code></td>
+<td>K8s liveness — is the JVM alive?</td>
+<td><code>{"status": "UP"}</code></td>
+</tr>
+<tr>
+<td><code>/actuator/health/readiness</code></td>
+<td>K8s readiness — is the service ready to serve traffic?</td>
+<td>Includes DB, Kafka, Redis checks</td>
+</tr>
+<tr>
+<td><code>/actuator/health</code></td>
+<td>Full health details (authenticated only)</td>
+<td>All component statuses</td>
+</tr>
+</tbody>
+</table>
+<h3 id="custom-health-indicator-example">Custom Health Indicator Example</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">YakeenHealthIndicator</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">HealthIndicator</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">YakeenApiClient</span><span class="w"> </span><span class="n">client</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Health</span><span class="w"> </span><span class="nf">health</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">boolean</span><span class="w"> </span><span class="n">alive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">ping</span><span class="p">();</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">alive</span><span class="w"> </span>
+<span class="w">                </span><span class="o">?</span><span class="w"> </span><span class="n">Health</span><span class="p">.</span><span class="na">up</span><span class="p">().</span><span class="na">withDetail</span><span class="p">(</span><span class="s">&quot;yakeen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;reachable&quot;</span><span class="p">).</span><span class="na">build</span><span class="p">()</span>
+<span class="w">                </span><span class="p">:</span><span class="w"> </span><span class="n">Health</span><span class="p">.</span><span class="na">down</span><span class="p">().</span><span class="na">withDetail</span><span class="p">(</span><span class="s">&quot;yakeen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;unreachable&quot;</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Health</span><span class="p">.</span><span class="na">down</span><span class="p">(</span><span class="n">ex</span><span class="p">).</span><span class="na">withDetail</span><span class="p">(</span><span class="s">&quot;yakeen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;error&quot;</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="alerting">Alerting</h2>
+<h3 id="alertmanager-rules">AlertManager Rules</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># prometheus-alerts.yml</span>
+<span class="nt">groups</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance-platform</span>
+<span class="w">    </span><span class="nt">rules</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HighAPILatency</span>
+<span class="w">        </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http_server_requests_seconds{quantile=&quot;0.95&quot;} &gt; 2</span>
+<span class="w">        </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span>
+<span class="w">        </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">warning</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High</span><span class="nv"> </span><span class="s">API</span><span class="nv"> </span><span class="s">latency</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.service</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CircuitBreakerOpen</span>
+<span class="w">        </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resilience4j_circuitbreaker_state{state=&quot;open&quot;} == 1</span>
+<span class="w">        </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1m</span>
+<span class="w">        </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">critical</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Circuit</span><span class="nv"> </span><span class="s">breaker</span><span class="nv"> </span><span class="s">OPEN</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.name</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PaymentFailureSpike</span>
+<span class="w">        </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">increase(insurance_payment_failed_total[5m]) &gt; 10</span>
+<span class="w">        </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2m</span>
+<span class="w">        </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">critical</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Payment</span><span class="nv"> </span><span class="s">failure</span><span class="nv"> </span><span class="s">spike</span><span class="nv"> </span><span class="s">detected&quot;</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DatabaseSlowQuery</span>
+<span class="w">        </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spring_data_repository_invocations_seconds{quantile=&quot;0.99&quot;} &gt; 1</span>
+<span class="w">        </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span>
+<span class="w">        </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">warning</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Slow</span><span class="nv"> </span><span class="s">database</span><span class="nv"> </span><span class="s">queries</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.service</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</code></pre></div>
+<h3 id="alert-routing">Alert Routing</h3>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Channel</th>
+<th>Response Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>critical</code></td>
+<td>PagerDuty + Slack <code>#alerts-critical</code></td>
+<td>Immediate (24/7)</td>
+</tr>
+<tr>
+<td><code>warning</code></td>
+<td>Slack <code>#alerts-warning</code></td>
+<td>Within 30 minutes</td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td>Slack <code>#alerts-info</code></td>
+<td>Business hours</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="grafana-dashboards">Grafana Dashboards</h2>
+<table>
+<thead>
+<tr>
+<th>Dashboard</th>
+<th>Audience</th>
+<th>Key Panels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Platform Overview</strong></td>
+<td>All teams</td>
+<td>Request rate, error rate, latency p95/p99</td>
+</tr>
+<tr>
+<td><strong>Policy KPIs</strong></td>
+<td>Business</td>
+<td>Policies issued/day, rejection rate, product breakdown</td>
+</tr>
+<tr>
+<td><strong>Claims KPIs</strong></td>
+<td>Business</td>
+<td>Claims registered, average settlement time, open claims</td>
+</tr>
+<tr>
+<td><strong>Integration Health</strong></td>
+<td>Engineering</td>
+<td>Yakeen/Najm circuit breaker status, payment success rate</td>
+</tr>
+<tr>
+<td><strong>Infrastructure</strong></td>
+<td>Ops</td>
+<td>CPU, memory, pod count, JVM heap</td>
+</tr>
+<tr>
+<td><strong>Security Events</strong></td>
+<td>Security</td>
+<td>Auth failures, rate limit hits, suspicious patterns</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="operational-runbooks">Operational Runbooks</h2>
+<h3 id="runbook-policy-service-degraded">Runbook: Policy Service Degraded</h3>
+<ol>
+<li>Check circuit breaker state on Grafana → Integration Health dashboard</li>
+<li>If Yakeen circuit open: alert <code>#integrations</code> channel, manual underwriting fallback</li>
+<li>Check DB connection pool exhaustion: <code>insurance_db_pool_active</code> metric</li>
+<li>Restart pod if JVM heap is above 90%: <code>kubectl rollout restart deployment/policy-service -n insurance-app</code></li>
+<li>Escalate to on-call architect if issue persists after 15 minutes</li>
+</ol>
+<h3 id="runbook-payment-failure-spike">Runbook: Payment Failure Spike</h3>
+<ol>
+<li>Check MADA/SADAD gateway status pages</li>
+<li>Review <code>insurance.payment.failed_total</code> by payment method in Grafana</li>
+<li>If gateway-side: raise incident with payment provider, notify business team</li>
+<li>If platform-side: check Billing Service logs for correlation ID, escalate to engineering</li>
+<li>Manual reconciliation may be required: run <code>billing-reconcile</code> script from <code>scripts/</code></li>
+</ol>
+<h3 id="runbook-database-connection-exhaustion">Runbook: Database Connection Exhaustion</h3>
+<ol>
+<li>Check <code>pg_stat_activity</code> on PostgreSQL</li>
+<li>Identify long-running queries: <code>SELECT pid, now() - pg_stat_activity.query_start AS duration, query FROM pg_stat_activity WHERE state != 'idle' ORDER BY duration DESC LIMIT 20;</code></li>
+<li>Terminate blocking queries if safe: <code>SELECT pg_terminate_backend(pid) WHERE ...</code></li>
+<li>Review PgBouncer pool settings if throughput is insufficient</li>
+<li>Scale read replicas if read load is the bottleneck</li>
+</ol>
 
 
 
@@ -1332,6 +2193,10 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

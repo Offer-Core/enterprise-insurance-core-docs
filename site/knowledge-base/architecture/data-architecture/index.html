@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -580,10 +583,99 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-data-domains" class="md-nav__link">
+  <a href="#schema-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Data Domains
+        Schema Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-domain-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Domain Entities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Domain Entities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claim
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#financial-transaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Financial Transaction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-schema-configuration-driven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata Schema (Configuration-Driven)
       
     </span>
   </a>
@@ -591,22 +683,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#persistence-strategy" class="md-nav__link">
+  <a href="#motor-line-schema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Persistence Strategy
+        Motor Line Schema
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Persistence Strategy">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jsonb-dynamic-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSONB Dynamic Attributes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JSONB Dynamic Attributes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-strongly-typed-core-tables" class="md-nav__link">
+  <a href="#example-motor-policy-line_specific_data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Strongly Typed Core Tables
+        Example: Motor Policy line_specific_data
       
     </span>
   </a>
@@ -614,21 +717,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-line-specific-tables" class="md-nav__link">
+  <a href="#jsonb-query-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Line-Specific Tables
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-dynamic-attribute-store" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Dynamic Attribute Store
+        JSONB Query Examples
       
     </span>
   </a>
@@ -648,6 +740,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Data Migration Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migration-ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Ownership
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1240,10 +1349,99 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-data-domains" class="md-nav__link">
+  <a href="#schema-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Data Domains
+        Schema Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-domain-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Domain Entities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Domain Entities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claim
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#financial-transaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Financial Transaction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-schema-configuration-driven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata Schema (Configuration-Driven)
       
     </span>
   </a>
@@ -1251,22 +1449,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#persistence-strategy" class="md-nav__link">
+  <a href="#motor-line-schema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Persistence Strategy
+        Motor Line Schema
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Persistence Strategy">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jsonb-dynamic-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSONB Dynamic Attributes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JSONB Dynamic Attributes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-strongly-typed-core-tables" class="md-nav__link">
+  <a href="#example-motor-policy-line_specific_data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Strongly Typed Core Tables
+        Example: Motor Policy line_specific_data
       
     </span>
   </a>
@@ -1274,21 +1483,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-line-specific-tables" class="md-nav__link">
+  <a href="#jsonb-query-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Line-Specific Tables
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-dynamic-attribute-store" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Dynamic Attribute Store
+        JSONB Query Examples
       
     </span>
   </a>
@@ -1308,6 +1506,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Data Migration Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migration-ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Ownership
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1344,55 +1559,462 @@
 
 <h1 id="data-architecture">Data Architecture</h1>
 <h2 id="overview">Overview</h2>
-<p>The data architecture follows a layered model that keeps the core shared data stable while allowing line-specific data and dynamic extensions to evolve independently.</p>
+<p>The data architecture follows a <strong>layered, schema-separated model</strong> that keeps core shared data stable while allowing line-specific data and dynamic extensions to evolve independently.
+Data ownership is aligned to domain boundaries — each service owns its tables and is the sole writer to them.</p>
+<hr />
 <h2 id="data-principles">Data Principles</h2>
-<ul>
-<li>Shared core data is modeled as stable domain entities</li>
-<li>Line-specific fields are isolated in line-owned schemas or JSONB payloads</li>
-<li>Dynamic extensions are stored as metadata-driven attributes</li>
-<li>Data access is governed by domain boundaries and service ownership</li>
-</ul>
-<h2 id="core-data-domains">Core Data Domains</h2>
-<ul>
-<li>Customer and party data</li>
-<li>Policy data</li>
-<li>Claims data</li>
-<li>Financial transaction data</li>
-<li>Audit and event data</li>
-</ul>
-<h2 id="persistence-strategy">Persistence Strategy</h2>
-<h3 id="1-strongly-typed-core-tables">1. Strongly Typed Core Tables</h3>
-<p>These tables store the shared kernel entities:
-- customer
-- policy
-- claim
-- financial_transaction
-- audit_log</p>
-<h3 id="2-line-specific-tables">2. Line-Specific Tables</h3>
-<p>Motor-specific tables are stored in a separate schema or database namespace:
-- motor_policy_extension
-- motor_driver
-- motor_vehicle
-- motor_claim_detail</p>
-<h3 id="3-dynamic-attribute-store">3. Dynamic Attribute Store</h3>
-<p>Dynamic fields are stored in JSONB columns such as:
-- <code>line_specific_data</code>
-- <code>dynamic_attributes</code></p>
-<p>This supports UI-driven extensions without requiring immediate schema changes.</p>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Domain data ownership</strong></td>
+<td>Each service owns its tables; no cross-service direct DB writes</td>
+</tr>
+<tr>
+<td><strong>Stable core, flexible extensions</strong></td>
+<td>Core entities are strongly typed; line-specific fields use JSONB or dedicated tables</td>
+</tr>
+<tr>
+<td><strong>Configuration-driven fields</strong></td>
+<td>UI-driven metadata allows adding fields without code changes</td>
+</tr>
+<tr>
+<td><strong>Audit-first</strong></td>
+<td>Every significant state change is recorded in <code>core.audit_log</code></td>
+</tr>
+<tr>
+<td><strong>Data residency</strong></td>
+<td>All data stored in Saudi Arabia — no cross-border transfer of PII</td>
+</tr>
+<tr>
+<td><strong>Encryption at rest</strong></td>
+<td>PostgreSQL volumes encrypted; PII fields additionally encrypted at application level</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="schema-architecture">Schema Architecture</h2>
+<p>The database is partitioned into three primary schemas:</p>
+<div class="panzoom-box" data-key="none" id="panzoom0" oncontextmenu="return false;">
+    
+    <nav class="panzoom-nav">
+    <button class="panzoom-reset panzoom-button">
+    <svg class="panzoom-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"></path>
+    </svg>
+</button>
+    </nav>
+    <pre class="mermaid"><code>erDiagram
+    CORE_SCHEMA ||--o{ METADATA_SCHEMA : "references"
+    CORE_SCHEMA ||--o{ MOTOR_SCHEMA : "extended by"
+
+    CORE_SCHEMA {
+        table customers
+        table policies
+        table claims
+        table financial_transactions
+        table audit_log
+        table notifications
+    }
+
+    METADATA_SCHEMA {
+        table product_configurations
+        table field_definitions
+        table validation_rules
+        table workflow_definitions
+        table lookup_values
+    }
+
+    MOTOR_SCHEMA {
+        table motor_policy_extensions
+        table motor_vehicles
+        table motor_drivers
+        table motor_claims_details
+    }</code></pre> 
+    <div class="panzoom-info-box panzoom-info-box-bottom">
+Use mouse to pan and zoom
+</div>
+</div>
+<h3 id="schema-responsibilities">Schema Responsibilities</h3>
+<table>
+<thead>
+<tr>
+<th>Schema</th>
+<th>Owner</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core</code></td>
+<td>Platform team</td>
+<td>Shared kernel entities used across all lines</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>Platform team</td>
+<td>Configuration-driven field, product, and workflow definitions</td>
+</tr>
+<tr>
+<td><code>motor</code></td>
+<td>Motor line team</td>
+<td>Motor-specific extension tables</td>
+</tr>
+<tr>
+<td><code>health</code></td>
+<td>Health line team (future)</td>
+<td>Health-specific extension tables</td>
+</tr>
+<tr>
+<td><code>travel</code></td>
+<td>Travel line team (future)</td>
+<td>Travel-specific extension tables</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="core-domain-entities">Core Domain Entities</h2>
+<h3 id="customer">Customer</h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w">                      </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">customer_number</span><span class="w">         </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Identity (encrypted at application level)</span>
+<span class="w">    </span><span class="n">national_id_encrypted</span><span class="w">   </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">       </span><span class="c1">-- Saudi NIN or Iqama (AES-256-GCM)</span>
+<span class="w">    </span><span class="n">identity_type</span><span class="w">           </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="c1">-- CITIZEN, RESIDENT, COMPANY</span>
+
+<span class="w">    </span><span class="c1">-- Names</span>
+<span class="w">    </span><span class="n">full_name_ar</span><span class="w">            </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">full_name_en</span><span class="w">            </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span>
+
+<span class="w">    </span><span class="c1">-- Contact</span>
+<span class="w">    </span><span class="n">email</span><span class="w">                   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="w">    </span><span class="n">mobile_number</span><span class="w">           </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+
+<span class="w">    </span><span class="c1">-- Metadata</span>
+<span class="w">    </span><span class="n">status</span><span class="w">                  </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;ACTIVE&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dynamic_attributes</span><span class="w">      </span><span class="n">JSONB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">-- Extensible metadata</span>
+
+<span class="w">    </span><span class="c1">-- Audit</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w">              </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w">              </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">created_by</span><span class="w">              </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">version</span><span class="w">                 </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="w">  </span><span class="c1">-- Optimistic locking</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_customers_number</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">customers</span><span class="p">(</span><span class="n">customer_number</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_customers_gin</span><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GIN</span><span class="p">(</span><span class="n">dynamic_attributes</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="policy">Policy</h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w">                      </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">policy_number</span><span class="w">           </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">product_code</span><span class="w">            </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">       </span><span class="c1">-- e.g. MOTOR_COMP, MOTOR_TPL</span>
+<span class="w">    </span><span class="n">line_of_business</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">       </span><span class="c1">-- MOTOR, HEALTH, TRAVEL</span>
+
+<span class="w">    </span><span class="n">customer_id</span><span class="w">             </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">customers</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">agent_id</span><span class="w">                </span><span class="n">UUID</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">customers</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+
+<span class="w">    </span><span class="c1">-- Policy lifecycle</span>
+<span class="w">    </span><span class="n">status</span><span class="w">                  </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">       </span><span class="c1">-- DRAFT, ACTIVE, CANCELLED, EXPIRED</span>
+<span class="w">    </span><span class="n">effective_date</span><span class="w">          </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">expiry_date</span><span class="w">             </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Financials</span>
+<span class="w">    </span><span class="n">annual_premium</span><span class="w">          </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">currency</span><span class="w">                </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;SAR&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tax_amount</span><span class="w">              </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Dynamic extensions</span>
+<span class="w">    </span><span class="n">line_specific_data</span><span class="w">      </span><span class="n">JSONB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">,</span><span class="w">         </span><span class="c1">-- Motor/Health/Travel specific fields</span>
+<span class="w">    </span><span class="n">dynamic_attributes</span><span class="w">      </span><span class="n">JSONB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">,</span><span class="w">         </span><span class="c1">-- Metadata-driven custom fields</span>
+
+<span class="w">    </span><span class="c1">-- Audit</span>
+<span class="w">    </span><span class="n">issued_at</span><span class="w">               </span><span class="n">TIMESTAMPTZ</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cancelled_at</span><span class="w">            </span><span class="n">TIMESTAMPTZ</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cancellation_reason</span><span class="w">     </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w">              </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w">              </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">created_by</span><span class="w">              </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">version</span><span class="w">                 </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_policies_customer</span><span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="p">(</span><span class="n">customer_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_policies_status</span><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_policies_product</span><span class="w">   </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="p">(</span><span class="n">product_code</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_policies_dates</span><span class="w">     </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="p">(</span><span class="n">effective_date</span><span class="p">,</span><span class="w"> </span><span class="n">expiry_date</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_policies_line_gin</span><span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GIN</span><span class="p">(</span><span class="n">line_specific_data</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_policies_dyn_gin</span><span class="w">   </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GIN</span><span class="p">(</span><span class="n">dynamic_attributes</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="claim">Claim</h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">claims</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w">                      </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">claim_number</span><span class="w">            </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">policy_id</span><span class="w">               </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+
+<span class="w">    </span><span class="c1">-- Claim lifecycle</span>
+<span class="w">    </span><span class="n">status</span><span class="w">                  </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;REGISTERED&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">incident_date</span><span class="w">           </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">registered_at</span><span class="w">           </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">closed_at</span><span class="w">               </span><span class="n">TIMESTAMPTZ</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Financial</span>
+<span class="w">    </span><span class="n">claimed_amount</span><span class="w">          </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">approved_amount</span><span class="w">         </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">currency</span><span class="w">                </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;SAR&#39;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Dynamic extensions</span>
+<span class="w">    </span><span class="n">line_specific_data</span><span class="w">      </span><span class="n">JSONB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dynamic_attributes</span><span class="w">      </span><span class="n">JSONB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Assignment</span>
+<span class="w">    </span><span class="n">handler_id</span><span class="w">              </span><span class="n">UUID</span><span class="p">,</span><span class="w">                       </span><span class="c1">-- Claims handler user ID</span>
+
+<span class="w">    </span><span class="c1">-- Audit</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w">              </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w">              </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">created_by</span><span class="w">              </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">version</span><span class="w">                 </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="financial-transaction">Financial Transaction</h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">financial_transactions</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w">                      </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">transaction_reference</span><span class="w">   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">transaction_type</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">   </span><span class="c1">-- PREMIUM, REFUND, CLAIM_PAYMENT</span>
+<span class="w">    </span><span class="n">policy_id</span><span class="w">               </span><span class="n">UUID</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">claim_id</span><span class="w">                </span><span class="n">UUID</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">claims</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+
+<span class="w">    </span><span class="n">amount</span><span class="w">                  </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">currency</span><span class="w">                </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;SAR&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">payment_method</span><span class="w">          </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="w">            </span><span class="c1">-- MADA, SADAD, BANK_TRANSFER</span>
+
+<span class="w">    </span><span class="n">status</span><span class="w">                  </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;PENDING&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">gateway_reference</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w">           </span><span class="c1">-- External payment gateway ref</span>
+<span class="w">    </span><span class="n">processed_at</span><span class="w">            </span><span class="n">TIMESTAMPTZ</span><span class="p">,</span>
+
+<span class="w">    </span><span class="n">created_at</span><span class="w">              </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">created_by</span><span class="w">              </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="metadata-schema-configuration-driven">Metadata Schema (Configuration-Driven)</h2>
+<p>The metadata schema drives the dynamic form engine and product configuration system.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Product configuration</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">product_configurations</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w">              </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">product_code</span><span class="w">    </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">product_name_ar</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">product_name_en</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">line_of_business</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">is_active</span><span class="w">       </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">config</span><span class="w">          </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">,</span><span class="w">   </span><span class="c1">-- Underwriting rules, limits, etc.</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w">      </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w">      </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="c1">-- Dynamic field definitions (drives UI form rendering)</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">field_definitions</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w">              </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">product_code</span><span class="w">    </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">field_key</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">field_type</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">   </span><span class="c1">-- TEXT, NUMBER, DATE, SELECT, BOOLEAN, PHONE</span>
+<span class="w">    </span><span class="n">label_ar</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">label_en</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">placeholder_ar</span><span class="w">  </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span>
+<span class="w">    </span><span class="n">placeholder_en</span><span class="w">  </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span>
+<span class="w">    </span><span class="n">is_required</span><span class="w">     </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">display_order</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">section</span><span class="w">         </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">validation_rules</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;[]&#39;</span><span class="p">,</span><span class="w">   </span><span class="c1">-- [{type: &quot;MIN_LENGTH&quot;, value: 3}]</span>
+<span class="w">    </span><span class="n">lookup_key</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w">          </span><span class="c1">-- References metadata.lookup_values</span>
+<span class="w">    </span><span class="n">is_active</span><span class="w">       </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="k">UNIQUE</span><span class="p">(</span><span class="n">product_code</span><span class="p">,</span><span class="w"> </span><span class="n">field_key</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">-- Lookup values (dropdown/radio options)</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">lookup_values</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w">          </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">lookup_key</span><span class="w">  </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">value</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">label_ar</span><span class="w">    </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">label_en</span><span class="w">    </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sort_order</span><span class="w">  </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">is_active</span><span class="w">   </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="k">UNIQUE</span><span class="p">(</span><span class="n">lookup_key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="motor-line-schema">Motor Line Schema</h2>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="n">motor_vehicles</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w">                  </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">policy_id</span><span class="w">           </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">sequence_number</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">          </span><span class="c1">-- Saudi vehicle sequence number</span>
+<span class="w">    </span><span class="n">plate_number</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">plate_type</span><span class="w">          </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w">                   </span><span class="c1">-- PRIVATE, TRANSPORT, etc.</span>
+<span class="w">    </span><span class="n">make</span><span class="w">                </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">model</span><span class="w">               </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">model_year</span><span class="w">          </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">chassis_number</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="w">    </span><span class="n">engine_capacity</span><span class="w">     </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vehicle_value</span><span class="w">       </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">vehicle_use</span><span class="w">         </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="w">                   </span><span class="c1">-- PRIVATE, COMMERCIAL</span>
+<span class="w">    </span><span class="n">color</span><span class="w">               </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="w">    </span><span class="n">dynamic_attributes</span><span class="w">  </span><span class="n">JSONB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="n">motor_drivers</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w">                  </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">policy_id</span><span class="w">           </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">driver_type</span><span class="w">         </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">          </span><span class="c1">-- MAIN, ADDITIONAL</span>
+<span class="w">    </span><span class="n">national_id_encrypted</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">full_name_ar</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">full_name_en</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span>
+<span class="w">    </span><span class="n">date_of_birth_hijri</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+<span class="w">    </span><span class="n">license_number</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+<span class="w">    </span><span class="n">license_issue_date</span><span class="w">  </span><span class="nb">DATE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">license_expiry_date</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">years_of_experience</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dynamic_attributes</span><span class="w">  </span><span class="n">JSONB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="jsonb-dynamic-attributes">JSONB Dynamic Attributes</h2>
+<p>Dynamic attributes allow the business to capture additional information without schema changes.
+Field definitions in <code>metadata.field_definitions</code> define what fields exist; the values are stored as JSONB in the owning entity row.</p>
+<h3 id="example-motor-policy-line_specific_data">Example: Motor Policy <code>line_specific_data</code></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;vehicle_use_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PRIVATE&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;parking_location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GARAGE&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;annual_mileage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;deductible_percentage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;najm_result&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;claims_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_claim_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-03-15&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;risk_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LOW&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="jsonb-query-examples">JSONB Query Examples</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Find all comprehensive motor policies with low Najm risk</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">policy_number</span><span class="p">,</span><span class="w"> </span><span class="n">annual_premium</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">product_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MOTOR_COMP&#39;</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">line_specific_data</span><span class="o">-&gt;&gt;</span><span class="s1">&#39;najm_result&#39;</span><span class="o">-&gt;&gt;</span><span class="s1">&#39;risk_score&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;LOW&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Find policies with a specific dynamic attribute</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">policy_number</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">dynamic_attributes</span><span class="w"> </span><span class="o">@&gt;</span><span class="w"> </span><span class="s1">&#39;{&quot;renewal_reminder_sent&quot;: true}&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Index-assisted JSONB query (GIN index required)</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_policies_line_gin</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GIN</span><span class="p">(</span><span class="n">line_specific_data</span><span class="p">);</span>
+</code></pre></div>
+<hr />
 <h2 id="data-migration-strategy">Data Migration Strategy</h2>
-<ul>
-<li>Use Flyway or Liquibase for controlled schema changes</li>
-<li>Keep shared schema migrations separate from line-specific migrations</li>
-<li>Assign migration ownership by team and service</li>
-<li>Avoid shared-table changes for line-local requirements</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Flyway 10.x</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Migration location</td>
+<td><code>src/main/resources/db/migration/</code></td>
+</tr>
+<tr>
+<td>File naming</td>
+<td><code>V{version}__{description}.sql</code> (e.g. <code>V1__init_core_schema.sql</code>)</td>
+</tr>
+<tr>
+<td>Schema separation</td>
+<td>Core migrations in <code>core/</code> subfolder; motor in <code>motor/</code> subfolder</td>
+</tr>
+<tr>
+<td>Baseline</td>
+<td><code>V0__baseline.sql</code> represents the initial state</td>
+</tr>
+<tr>
+<td>Repair</td>
+<td><code>flyway repair</code> resolves failed migrations in non-production environments</td>
+</tr>
+</tbody>
+</table>
+<h3 id="migration-ownership">Migration Ownership</h3>
+<table>
+<thead>
+<tr>
+<th>Schema</th>
+<th>Owning Team</th>
+<th>Migration Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core</code></td>
+<td>Platform team</td>
+<td><code>db/migration/core/</code></td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>Platform team</td>
+<td><code>db/migration/metadata/</code></td>
+</tr>
+<tr>
+<td><code>motor</code></td>
+<td>Motor line team</td>
+<td><code>db/migration/motor/</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule:</strong> No cross-schema migrations. Motor team may not modify <code>core</code> tables in their migration scripts.</p>
+<hr />
 <h2 id="data-governance">Data Governance</h2>
-<ul>
-<li>Every entity should have an owner</li>
-<li>Sensitive data should be encrypted at rest and in transit</li>
-<li>Audit trails must be retained for policy and claims events</li>
-<li>Data retention policies must reflect regulatory needs for Saudi operations</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Policy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PII fields</td>
+<td>Encrypted at application level (NIN, IBAN, health data)</td>
+</tr>
+<tr>
+<td>Data retention</td>
+<td>Policy data: 10 years; Audit logs: 7 years (SAMA requirement)</td>
+</tr>
+<tr>
+<td>Data residency</td>
+<td>Saudi Arabia region only — no cross-border transfer</td>
+</tr>
+<tr>
+<td>Access control</td>
+<td>Database users scoped per service — no shared superuser access</td>
+</tr>
+<tr>
+<td>Audit trail</td>
+<td>All writes produce an audit_log entry</td>
+</tr>
+<tr>
+<td>Backup</td>
+<td>Daily encrypted backup; 30-day retention</td>
+</tr>
+<tr>
+<td>Data classification</td>
+<td>Tagged in field_definitions (<code>sensitivity</code> attribute: PUBLIC, INTERNAL, CONFIDENTIAL, PII)</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1450,6 +2072,10 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -929,79 +932,374 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#1-database-architecture-schema-separation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        1. Database Architecture &amp; Schema Separation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Database Architecture &amp; Schema Separation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entity-relationship-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity Relationship Diagram
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
+  <a href="#2-ddl-specification" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Structure
+        2. DDL Specification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. DDL Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-schema-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Schema Initialization
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#22-core-schema-core" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Navigation
+        2.2 Core Schema (core)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Core Schema (core)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coreparty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        core.party
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-links" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#corecustomer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Links
+        core.customer
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#last-updated" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#corepolicy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Last Updated
+        core.policy
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#maintainers" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#coreclaim" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Maintainers
+        core.claim
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#corefinancial_transaction" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Questions?
+        core.financial_transaction
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coreaudit_log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        core.audit_log
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-metadata-schema-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Metadata Schema (metadata)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Metadata Schema (metadata)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadataentity_definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.entity_definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatafield_definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.field_definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadataform_definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.form_definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatarule_definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.rule_definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadataworkflow_definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.workflow_definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadataworkflow_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.workflow_state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadataworkflow_transition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.workflow_transition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-motor-schema-motor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Motor Schema (motor)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Motor Schema (motor)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motormotor_policy_extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        motor.motor_policy_extension
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motormotor_driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        motor.motor_driver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motormotor_vehicle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        motor.motor_vehicle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motormotor_claim_detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        motor.motor_claim_detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configuration-driven-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configuration-Driven Mechanism
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configuration-Driven Mechanism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-dynamic-attributes-walk-through-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Dynamic Attributes Walk Through the Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-payload-example-health-insurance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Payload Example: Health Insurance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-database-indexing-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Database Indexing &amp; Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Database Indexing &amp; Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-b-tree-indexes-on-primaryforeign-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 B-Tree Indexes on Primary/Foreign Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-gin-indexes-on-jsonb-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 GIN Indexes on JSONB Columns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1188,79 +1486,374 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#1-database-architecture-schema-separation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        1. Database Architecture &amp; Schema Separation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Database Architecture &amp; Schema Separation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entity-relationship-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity Relationship Diagram
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
+  <a href="#2-ddl-specification" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Structure
+        2. DDL Specification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. DDL Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-schema-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Schema Initialization
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#22-core-schema-core" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Navigation
+        2.2 Core Schema (core)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Core Schema (core)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coreparty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        core.party
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-links" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#corecustomer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Links
+        core.customer
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#last-updated" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#corepolicy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Last Updated
+        core.policy
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#maintainers" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#coreclaim" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Maintainers
+        core.claim
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#corefinancial_transaction" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Questions?
+        core.financial_transaction
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coreaudit_log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        core.audit_log
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-metadata-schema-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Metadata Schema (metadata)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Metadata Schema (metadata)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadataentity_definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.entity_definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatafield_definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.field_definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadataform_definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.form_definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatarule_definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.rule_definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadataworkflow_definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.workflow_definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadataworkflow_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.workflow_state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadataworkflow_transition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata.workflow_transition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-motor-schema-motor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Motor Schema (motor)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Motor Schema (motor)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motormotor_policy_extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        motor.motor_policy_extension
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motormotor_driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        motor.motor_driver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motormotor_vehicle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        motor.motor_vehicle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motormotor_claim_detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        motor.motor_claim_detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configuration-driven-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configuration-Driven Mechanism
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configuration-Driven Mechanism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-dynamic-attributes-walk-through-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Dynamic Attributes Walk Through the Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-payload-example-health-insurance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Payload Example: Health Insurance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-database-indexing-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Database Indexing &amp; Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Database Indexing &amp; Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-b-tree-indexes-on-primaryforeign-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 B-Tree Indexes on Primary/Foreign Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-gin-indexes-on-jsonb-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 GIN Indexes on JSONB Columns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1285,43 +1878,339 @@
 
 
 <h1 id="database-design">Database Design</h1>
-<p>This section covers database schemas, data models, and persistence strategies.</p>
-<h2 id="overview">Overview</h2>
-<p>This section is part of the Enterprise Insurance Platform documentation repository.</p>
-<h2 id="structure">Structure</h2>
-<p>The documentation is organized to provide clear, accessible information for all stakeholders including:</p>
-<ul>
-<li><strong>Business Stakeholders</strong>: Understand the platform capabilities and business value</li>
-<li><strong>Development Teams</strong>: Access technical specifications and implementation details</li>
-<li><strong>Operations Teams</strong>: Learn about deployment, monitoring, and infrastructure</li>
-<li><strong>Security Teams</strong>: Review security standards and compliance requirements</li>
-</ul>
-<h2 id="navigation">Navigation</h2>
-<p>Use the navigation menu to explore the content in this section.</p>
-<h2 id="quick-links">Quick Links</h2>
-<ul>
-<li><a href="../000-Vision/">Vision &amp; Strategy</a></li>
-<li><a href="../100-Business/">Business Context</a></li>
-<li><a href="../200-Domains/">Domain Models</a></li>
-<li><a href="../architecture/">Architecture</a></li>
-<li><a href="../400-Standards/">Standards</a></li>
-<li><a href="../500-API/">API Design</a></li>
-<li><a href="./">Database Design</a></li>
-<li><a href="../700-UI/">User Interface</a></li>
-<li><a href="../800-Integrations/">Integrations</a></li>
-<li><a href="../900-Decisions/">Decisions</a></li>
-<li><a href="../950-Templates/">Templates</a></li>
-<li><a href="../990-AI/">AI Assistance</a></li>
-</ul>
-<h2 id="last-updated">Last Updated</h2>
-<p>This content was generated on 2026-07-01 19:01:44 UTC.</p>
-<h2 id="maintainers">Maintainers</h2>
-<ul>
-<li>Enterprise Architecture Team</li>
-<li>Documentation Team</li>
-</ul>
-<h2 id="questions">Questions?</h2>
-<p>For questions about this documentation, please contact the Enterprise Architecture Team.</p>
+<p>This document details the physical database design, table structures, and relationships for the Enterprise Insurance Platform. </p>
+<p>For a high-level conceptual overview of the data principles, migration patterns, and schema ownership rules, see the <a href="../architecture/data-architecture/">Data Architecture</a>.</p>
+<hr />
+<h2 id="1-database-architecture-schema-separation">1. Database Architecture &amp; Schema Separation</h2>
+<p>The platform utilizes a <strong>PostgreSQL</strong> database engine. PostgreSQL is selected for its robust support for relational structures, ACID compliance, and advanced JSONB query capabilities.</p>
+<p>To support independent updates, logical isolation, and a configuration-driven runtime, the database is split into three distinct logical schemas:</p>
+<ol>
+<li><strong><code>core</code> Schema</strong>: Relational models for core transaction entities. These represent stable primitives shared by all lines of business.</li>
+<li><strong><code>metadata</code> Schema</strong>: Configurations and definitions for dynamic entities, custom fields, validation rules, and workflow state machines. This powers the configuration-driven domain models.</li>
+<li><strong><code>motor</code> Schema</strong>: Relational extension tables for the Motor line-of-business (the MVP line).</li>
+</ol>
+<h3 id="entity-relationship-diagram">Entity Relationship Diagram</h3>
+<div class="panzoom-box" data-key="none" id="panzoom0" oncontextmenu="return false;">
+    
+    <nav class="panzoom-nav">
+    <button class="panzoom-reset panzoom-button">
+    <svg class="panzoom-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"></path>
+    </svg>
+</button>
+    </nav>
+    <pre class="mermaid"><code>erDiagram
+    %% Core Schema
+    party ||--o| customer : "extends to"
+    customer ||--o{ policy : "owns"
+    policy ||--o{ claim : "associated with"
+    policy ||--o{ financial_transaction : "has"
+
+    %% Motor Schema
+    policy ||--o| motor_policy_extension : "extended by"
+    policy ||--o{ motor_driver : "has"
+    policy ||--o{ motor_vehicle : "has"
+    claim ||--o| motor_claim_detail : "extended by"
+
+    %% Metadata Schema
+    entity_definition ||--o{ field_definition : "defines fields for"
+    entity_definition ||--o{ form_definition : "defines forms for"
+    entity_definition ||--o{ rule_definition : "defines rules for"
+    entity_definition ||--o{ workflow_definition : "defines workflow for"
+    workflow_definition ||--o{ workflow_state : "contains states"
+    workflow_definition ||--o{ workflow_transition : "contains transitions"</code></pre> 
+    <div class="panzoom-info-box panzoom-info-box-bottom">
+Use mouse to pan and zoom
+</div>
+</div>
+<hr />
+<h2 id="2-ddl-specification">2. DDL Specification</h2>
+<p>The following SQL DDL statements create the physical schemas, tables, relationships, and performance indexes.</p>
+<h3 id="21-schema-initialization">2.1 Schema Initialization</h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">core</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">metadata</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">motor</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="22-core-schema-core">2.2 Core Schema (<code>core</code>)</h3>
+<h4 id="coreparty"><code>core.party</code></h4>
+<p>Stores person or organization records.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">party</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">party_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">full_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">primary_address</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">::</span><span class="n">jsonb</span><span class="p">,</span>
+<span class="w">    </span><span class="n">contact_info</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">::</span><span class="n">jsonb</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="corecustomer"><code>core.customer</code></h4>
+<p>Extends <code>party</code> with customer-specific flags, references, and core profile values.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">customer</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">customer_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">party</span><span class="p">(</span><span class="n">party_id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">global_customer_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">customer_reference</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">customer_type</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">customer_type</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;INDIVIDUAL&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CORPORATE&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">core_profile</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">::</span><span class="n">jsonb</span><span class="p">,</span>
+<span class="w">    </span><span class="n">line_specific_data</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">::</span><span class="n">jsonb</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="corepolicy"><code>core.policy</code></h4>
+<p>Base table for all policies. Extensible parameters are stored in the <code>line_specific_data</code> <code>JSONB</code> column.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policy</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">policy_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">global_customer_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">customer</span><span class="p">(</span><span class="n">global_customer_id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">line_of_business</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">status</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;QUOTE&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;BOUND&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ACTIVE&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;RENEWED&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CANCELLED&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;EXPIRED&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">premium_amount</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0000</span><span class="p">,</span>
+<span class="w">    </span><span class="n">currency</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;SAR&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">effective_from</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">effective_to</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">line_specific_data</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">::</span><span class="n">jsonb</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="coreclaim"><code>core.claim</code></h4>
+<p>Base claims tracking table.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">claim</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">claim_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">policy_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policy</span><span class="p">(</span><span class="n">policy_id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">status</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;REPORTED&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;INVESTIGATING&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;RESERVED&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ADJUDICATED&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;PAID&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CLOSED&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">claim_amount</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0000</span><span class="p">,</span>
+<span class="w">    </span><span class="n">claim_reference</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">line_specific_data</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">::</span><span class="n">jsonb</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="corefinancial_transaction"><code>core.financial_transaction</code></h4>
+<p>Logs double-entry ledger transactions mapping to billing events.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">financial_transaction</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">transaction_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">policy_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policy</span><span class="p">(</span><span class="n">policy_id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">transaction_type</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">transaction_type</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;PREMIUM&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ENDORSEMENT&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;REFUND&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;COMMISSION&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;RECOVERY&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">amount</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">currency</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;SAR&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">posted_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="coreaudit_log"><code>core.audit_log</code></h4>
+<p>Tracks modification history for core business domains.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">audit_log</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">log_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">actor</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">action</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">entity_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">entity_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">previous_state</span><span class="w"> </span><span class="n">JSONB</span><span class="p">,</span>
+<span class="w">    </span><span class="n">new_state</span><span class="w"> </span><span class="n">JSONB</span><span class="p">,</span>
+<span class="w">    </span><span class="n">logged_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<hr />
+<h3 id="23-metadata-schema-metadata">2.3 Metadata Schema (<code>metadata</code>)</h3>
+<p>This schema holds configuration definitions which define and drive dynamic domain models, validations, and workflows.</p>
+<h4 id="metadataentity_definition"><code>metadata.entity_definition</code></h4>
+<p>Defines configuration-driven domains or sub-domains (e.g. <code>MotorPolicy</code>, <code>HealthMember</code>).
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">entity_definition</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">entity_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">display_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">table_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="metadatafield_definition"><code>metadata.field_definition</code></h4>
+<p>Stores configuration metadata for fields within dynamic entities.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">field_definition</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">field_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">entity_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">entity_definition</span><span class="p">(</span><span class="n">entity_code</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">display_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">field_type</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">field_type</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;TEXT&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;NUMBER&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;BOOLEAN&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;NESTED&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;SELECT&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">is_required</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">is_searchable</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">validation_regex</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="w">    </span><span class="n">default_value</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">entity_code</span><span class="p">,</span><span class="w"> </span><span class="n">field_code</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="metadataform_definition"><code>metadata.form_definition</code></h4>
+<p>Configures dynamic form layouts and field sequences rendered in the customer or agent portal.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">form_definition</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">form_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">entity_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">entity_definition</span><span class="p">(</span><span class="n">entity_code</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">step_number</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">display_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">field_mappings</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;[]&#39;</span><span class="p">::</span><span class="n">jsonb</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="metadatarule_definition"><code>metadata.rule_definition</code></h4>
+<p>Evaluates validation, pricing, and business logic dynamically.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">rule_definition</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">rule_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">entity_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">entity_definition</span><span class="p">(</span><span class="n">entity_code</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rule_type</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">rule_type</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;VALIDATION&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CALCULATION&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;UNDERWRITING&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">expression</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="c1">-- Spring Expression Language (SpEL) or Script code</span>
+<span class="w">    </span><span class="n">error_message</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="w">    </span><span class="n">is_active</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="metadataworkflow_definition"><code>metadata.workflow_definition</code></h4>
+<p>Stores dynamic workflow definitions.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">workflow_definition</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">workflow_key</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">entity_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">entity_definition</span><span class="p">(</span><span class="n">entity_code</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">description</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="w">    </span><span class="n">is_active</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="metadataworkflow_state"><code>metadata.workflow_state</code></h4>
+<p>Defines operational states for a given workflow.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">workflow_state</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">state_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">workflow_key</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">workflow_definition</span><span class="p">(</span><span class="n">workflow_key</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">display_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">is_initial</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">workflow_key</span><span class="p">,</span><span class="w"> </span><span class="n">state_code</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="metadataworkflow_transition"><code>metadata.workflow_transition</code></h4>
+<p>Defines valid transitions and their trigger events.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">workflow_transition</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">transition_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">workflow_key</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">workflow_definition</span><span class="p">(</span><span class="n">workflow_key</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">from_state</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">to_state</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">trigger_event</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">required_permission</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">-- Composite foreign keys to state</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">workflow_key</span><span class="p">,</span><span class="w"> </span><span class="n">from_state</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">workflow_state</span><span class="p">(</span><span class="n">workflow_key</span><span class="p">,</span><span class="w"> </span><span class="n">state_code</span><span class="p">),</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">workflow_key</span><span class="p">,</span><span class="w"> </span><span class="n">to_state</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="n">workflow_state</span><span class="p">(</span><span class="n">workflow_key</span><span class="p">,</span><span class="w"> </span><span class="n">state_code</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<hr />
+<h3 id="24-motor-schema-motor">2.4 Motor Schema (<code>motor</code>)</h3>
+<p>Holds structured tables specific to the Motor Insurance vertical.</p>
+<h4 id="motormotor_policy_extension"><code>motor.motor_policy_extension</code></h4>
+<p>Stores structured policy attributes for Motor contracts.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="n">motor_policy_extension</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">policy_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policy</span><span class="p">(</span><span class="n">policy_id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vin</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vehicle_make</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vehicle_model</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vehicle_year</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">annual_mileage</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">primary_use</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">primary_use</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;PERSONAL&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;COMMERCIAL&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">anti_theft_device_installed</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="motormotor_driver"><code>motor.motor_driver</code></h4>
+<p>Relates policy to drivers.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="n">motor_driver</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">driver_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">policy_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policy</span><span class="p">(</span><span class="n">policy_id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">license_number</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">date_of_birth</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">driving_violations</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;[]&#39;</span><span class="p">::</span><span class="n">jsonb</span><span class="p">,</span>
+<span class="w">    </span><span class="n">claims_history</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;[]&#39;</span><span class="p">::</span><span class="n">jsonb</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="motormotor_vehicle"><code>motor.motor_vehicle</code></h4>
+<p>Tracks assets associated with the Motor Policy.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="n">motor_vehicle</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">vehicle_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">policy_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policy</span><span class="p">(</span><span class="n">policy_id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vin</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vehicle_make</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vehicle_model</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vehicle_year</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">garaging_address</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">::</span><span class="n">jsonb</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<h4 id="motormotor_claim_detail"><code>motor.motor_claim_detail</code></h4>
+<p>Stores line-specific details for automobile claims.
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="n">motor_claim_detail</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">claim_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">claim</span><span class="p">(</span><span class="n">claim_id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">loss_location</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">repair_shop_id</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">tow_truck_requested</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tow_truck_dispatched_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">appraisal_reference</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<hr />
+<h2 id="3-configuration-driven-mechanism">3. Configuration-Driven Mechanism</h2>
+<p>The engine relies on <code>metadata</code> tables to dynamically validate and store schemas for lines of business.</p>
+<h3 id="how-dynamic-attributes-walk-through-the-database">How Dynamic Attributes Walk Through the Database</h3>
+<ol>
+<li><strong>Definition</strong>: An administrator registers a new <code>EntityDefinition</code> (e.g., <code>HealthPolicy</code>) and associates several <code>FieldDefinition</code> parameters (e.g. <code>member_age</code>, <code>pre_existing_conditions</code>).</li>
+<li><strong>Ingress</strong>: When a <code>HealthPolicy</code> quote request arrives at the Gateway:</li>
+<li>The validation engine queries <code>metadata.field_definition</code> and <code>metadata.rule_definition</code> dynamically.</li>
+<li>It validates inputs against configured regexes and rules.</li>
+<li><strong>Storage</strong>: Approved values are nested inside the <code>line_specific_data</code> <code>JSONB</code> column on the <a href="file:///c:/Kashif/Development/insurance-core-design/knowledge-base/600-Database/index.md#corepolicy">core.policy</a> table.</li>
+</ol>
+<h3 id="dynamic-payload-example-health-insurance">Dynamic Payload Example: Health Insurance</h3>
+<p>A future Health Insurance extension stores its attributes in the <code>core.policy.line_specific_data</code> column like so:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;memberCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VIP&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;deductibleOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Zero-Deductible&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;insuredMembers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;nationalId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1023456789&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;dateOfBirth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1988-12-01&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;preExistingConditions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;Hypertension&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This JSON matches configuration-driven field definitions registered in the metadata schema, allowing full extensibility without altering SQL tables.</p>
+<hr />
+<h2 id="4-database-indexing-optimization">4. Database Indexing &amp; Optimization</h2>
+<p>To maintain rapid responses in production, the database uses tailored SQL indexes:</p>
+<h3 id="41-b-tree-indexes-on-primaryforeign-keys">4.1 B-Tree Indexes on Primary/Foreign Keys</h3>
+<p>All FK relationships require B-Tree indexes to prevent performance degradation on cascades and joins:
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_policy_customer</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policy</span><span class="p">(</span><span class="n">global_customer_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_claim_policy</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">claim</span><span class="p">(</span><span class="n">policy_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_transaction_policy</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">financial_transaction</span><span class="p">(</span><span class="n">policy_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_motor_driver_policy</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="n">motor_driver</span><span class="p">(</span><span class="n">policy_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_motor_vehicle_policy</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="n">motor_vehicle</span><span class="p">(</span><span class="n">policy_id</span><span class="p">);</span>
+</code></pre></div></p>
+<h3 id="42-gin-indexes-on-jsonb-columns">4.2 GIN Indexes on JSONB Columns</h3>
+<p>To query dynamic attributes inside the <code>JSONB</code> payload efficiently (e.g., retrieving policies by a specific vehicle year nested in JSONB), we create <strong>Generalized Inverted Index (GIN)</strong> structures:
+<div class="highlight"><pre><span></span><code><span class="c1">-- GIN Index on Policy dynamic attributes</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_policy_dynamic_data</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policy</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">gin</span><span class="w"> </span><span class="p">(</span><span class="n">line_specific_data</span><span class="p">);</span>
+
+<span class="c1">-- GIN Index on Customer dynamic attributes</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_customer_dynamic_data</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">customer</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">gin</span><span class="w"> </span><span class="p">(</span><span class="n">line_specific_data</span><span class="p">);</span>
+</code></pre></div></p>
+<p>The GIN index supports PostgreSQL containment operators (e.g. <code>@&gt;</code>), meaning deep queries execute instantly:
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">policy_id</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policy</span><span class="w"> </span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">line_specific_data</span><span class="w"> </span><span class="o">@&gt;</span><span class="w"> </span><span class="s1">&#39;{&quot;vehicle&quot;: {&quot;year&quot;: 2021}}&#39;</span><span class="p">;</span>
+</code></pre></div></p>
 
 
 
@@ -1379,6 +2268,10 @@
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

@@ -52,13 +52,16 @@
       
     
     
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     <body dir="ltr">
@@ -474,10 +477,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#integration-goals" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Integration Goals
+        Overview
       
     </span>
   </a>
@@ -496,10 +499,138 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-integration-areas" class="md-nav__link">
+  <a href="#national-system-integrations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Integration Areas
+        National System Integrations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="National System Integrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-yakeen-national-identity-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Yakeen — National Identity Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-najm-accident-and-claims-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Najm — Accident and Claims History
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-payment-gateways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Payment Gateways
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Payment Gateways">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mada-card-payments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MADA (Card Payments)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sadad-bill-payment-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SADAD (Bill Payment Integration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-driven-integration-internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event-Driven Integration (Internal)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Event-Driven Integration (Internal)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-catalogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Catalogue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-schema-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Schema Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-topic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kafka Topic Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resilience-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resilience Patterns
       
     </span>
   </a>
@@ -507,10 +638,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#guidance" class="md-nav__link">
+  <a href="#notification-integration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Guidance
+        Notification Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regulatory-reporting-sama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regulatory Reporting (SAMA)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Governance
       
     </span>
   </a>
@@ -1157,10 +1310,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#integration-goals" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Integration Goals
+        Overview
       
     </span>
   </a>
@@ -1179,10 +1332,138 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-integration-areas" class="md-nav__link">
+  <a href="#national-system-integrations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Integration Areas
+        National System Integrations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="National System Integrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-yakeen-national-identity-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Yakeen — National Identity Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-najm-accident-and-claims-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Najm — Accident and Claims History
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-payment-gateways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Payment Gateways
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Payment Gateways">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mada-card-payments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MADA (Card Payments)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sadad-bill-payment-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SADAD (Bill Payment Integration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-driven-integration-internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event-Driven Integration (Internal)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Event-Driven Integration (Internal)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-catalogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Catalogue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-schema-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Schema Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-topic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kafka Topic Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resilience-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resilience Patterns
       
     </span>
   </a>
@@ -1190,10 +1471,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#guidance" class="md-nav__link">
+  <a href="#notification-integration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Guidance
+        Notification Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regulatory-reporting-sama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regulatory Reporting (SAMA)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Governance
       
     </span>
   </a>
@@ -1221,26 +1524,412 @@
 
 
 <h1 id="integration-architecture">Integration Architecture</h1>
-<h2 id="integration-goals">Integration Goals</h2>
-<p>The platform must connect internal capabilities with external systems in a predictable and secure way for Saudi Arabia operations.</p>
+<h2 id="overview">Overview</h2>
+<p>The platform integrates with Saudi Arabia national systems, payment providers, and internal service boundaries using a standardised set of integration patterns.
+All integrations are wrapped in anti-corruption layers (ACL) that translate between external API schemas and internal domain models, ensuring the core platform is never directly coupled to third-party contracts.</p>
+<hr />
 <h2 id="integration-patterns">Integration Patterns</h2>
-<ul>
-<li><strong>REST APIs</strong> for synchronous request-response interactions</li>
-<li><strong>Events</strong> for asynchronous workflows and decoupled processing</li>
-<li><strong>Message queues</strong> for reliable delivery of domain events</li>
-<li><strong>Adapters</strong> for third-party policy, billing, and claims systems</li>
-</ul>
-<h2 id="key-integration-areas">Key Integration Areas</h2>
-<ul>
-<li>Policy and billing providers</li>
-<li>Claims and fraud verification services</li>
-<li>Notification and document delivery channels</li>
-<li>Customer identity and access providers</li>
-<li>Saudi-local payment, document, and regulatory integration points</li>
-<li>Metadata and configuration services that expose dynamic field and workflow definitions to the UI</li>
-</ul>
-<h2 id="guidance">Guidance</h2>
-<p>All integrations should expose clear contracts, include error handling, and support observability and retry behavior where needed.</p>
+<div class="panzoom-box" data-key="none" id="panzoom0" oncontextmenu="return false;">
+    
+    <nav class="panzoom-nav">
+    <button class="panzoom-reset panzoom-button">
+    <svg class="panzoom-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"></path>
+    </svg>
+</button>
+    </nav>
+    <pre class="mermaid"><code>graph LR
+    subgraph "Platform Services"
+        PS[Policy Service]
+        CS[Claims Service]
+        BS[Billing Service]
+        NS[Notification Service]
+    end
+
+    subgraph "Integration Layer"
+        ACL_Y[Yakeen ACL Adapter]
+        ACL_N[Najm ACL Adapter]
+        ACL_P[Payment ACL Adapter]
+        ACL_SM[SMS ACL Adapter]
+        ACL_FLY[Flyway Migration]
+        KAFKA[Kafka Event Bus]
+        CB[Circuit Breaker / Resilience4j]
+    end
+
+    subgraph "External Systems"
+        YAKEEN[Yakeen - Saudi NIN Lookup]
+        NAJM[Najm - Accident Records]
+        MADA[MADA Payment Gateway]
+        SADAD[SADAD Bill Payment]
+        SMS[SMS Provider - Unifonic]
+        SAMA_RPT[SAMA Regulatory Reporting]
+    end
+
+    PS --&gt; ACL_Y --&gt; CB --&gt; YAKEEN
+    CS --&gt; ACL_N --&gt; CB --&gt; NAJM
+    BS --&gt; ACL_P --&gt; CB --&gt; MADA
+    BS --&gt; ACL_P --&gt; CB --&gt; SADAD
+    NS --&gt; ACL_SM --&gt; SMS
+    PS --&gt; KAFKA
+    CS --&gt; KAFKA
+    BS --&gt; KAFKA</code></pre> 
+    <div class="panzoom-info-box panzoom-info-box-bottom">
+Use mouse to pan and zoom
+</div>
+</div>
+<hr />
+<h2 id="national-system-integrations">National System Integrations</h2>
+<h3 id="1-yakeen-national-identity-verification">1. Yakeen — National Identity Verification</h3>
+<p>Yakeen is the Saudi government system for verifying citizen and resident identity (NIN/Iqama).</p>
+<p><strong>Integration Type:</strong> REST (SOAP wrapper in older versions)
+<strong>Trigger:</strong> Policy application — verify customer identity before quote binding</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Internal port (domain interface)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">IdentityVerificationPort</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">IdentityVerificationResult</span><span class="w"> </span><span class="nf">verify</span><span class="p">(</span><span class="n">IdentityVerificationRequest</span><span class="w"> </span><span class="n">request</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// External adapter</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">YakeenIdentityAdapter</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IdentityVerificationPort</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">YakeenApiClient</span><span class="w"> </span><span class="n">client</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">YakeenRequestMapper</span><span class="w"> </span><span class="n">mapper</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="nd">@CircuitBreaker</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;yakeen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fallbackMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;verificationFallback&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@Retry</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;yakeen&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@TimeLimiter</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;yakeen&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">IdentityVerificationResult</span><span class="w"> </span><span class="nf">verify</span><span class="p">(</span><span class="n">IdentityVerificationRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">YakeenRequest</span><span class="w"> </span><span class="n">yakeenRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapper</span><span class="p">.</span><span class="na">toExternal</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+<span class="w">        </span><span class="n">YakeenResponse</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">getCitizenInfo</span><span class="p">(</span><span class="n">yakeenRequest</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">mapper</span><span class="p">.</span><span class="na">toDomain</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">IdentityVerificationResult</span><span class="w"> </span><span class="nf">verificationFallback</span><span class="p">(</span>
+<span class="w">            </span><span class="n">IdentityVerificationRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">&quot;Yakeen unavailable — deferring verification for NIN: {}&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">MaskUtil</span><span class="p">.</span><span class="na">maskNin</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="na">getNationalId</span><span class="p">()));</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">IdentityVerificationResult</span><span class="p">.</span><span class="na">deferred</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="na">getNationalId</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Request/Response Contract:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Internal domain model — never exposes Yakeen schema to core</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">IdentityVerificationRequest</span><span class="p">(</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">nationalId</span><span class="p">,</span><span class="w">         </span><span class="c1">// Saudi NIN or Iqama</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">dateOfBirth</span><span class="p">,</span><span class="w">        </span><span class="c1">// Hijri format: 1400-01-01</span>
+<span class="w">    </span><span class="n">IdentityType</span><span class="w"> </span><span class="n">identityType</span><span class="w">  </span><span class="c1">// CITIZEN, RESIDENT</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">IdentityVerificationResult</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">verified</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">fullNameAr</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">fullNameEn</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">dateOfBirth</span><span class="p">,</span>
+<span class="w">    </span><span class="n">VerificationStatus</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w">  </span><span class="c1">// VERIFIED, DEFERRED, FAILED</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">referenceNumber</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<hr />
+<h3 id="2-najm-accident-and-claims-history">2. Najm — Accident and Claims History</h3>
+<p>Najm provides access to vehicle accident history for Saudi motor insurance underwriting.</p>
+<p><strong>Integration Type:</strong> REST API
+<strong>Trigger:</strong> Motor policy underwriting — fetch vehicle/driver loss history</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">AccidentHistoryPort</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">AccidentHistoryResult</span><span class="w"> </span><span class="nf">getVehicleHistory</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">vehicleSequenceNumber</span><span class="p">);</span>
+<span class="w">    </span><span class="n">AccidentHistoryResult</span><span class="w"> </span><span class="nf">getDriverHistory</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nationalId</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">NajmAccidentAdapter</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">AccidentHistoryPort</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="nd">@CircuitBreaker</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;najm&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fallbackMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;historyFallback&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@Retry</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;najm&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">AccidentHistoryResult</span><span class="w"> </span><span class="nf">getVehicleHistory</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">vehicleSequenceNumber</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">NajmVehicleResponse</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">najmClient</span><span class="p">.</span><span class="na">getVehicleAccidents</span><span class="p">(</span><span class="n">vehicleSequenceNumber</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">najmMapper</span><span class="p">.</span><span class="na">toDomain</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">AccidentHistoryResult</span><span class="w"> </span><span class="nf">historyFallback</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">vsn</span><span class="p">,</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">&quot;Najm unavailable for VSN: {} — using manual underwriting flag&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vsn</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AccidentHistoryResult</span><span class="p">.</span><span class="na">requiresManualReview</span><span class="p">(</span><span class="n">vsn</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="3-payment-gateways">3. Payment Gateways</h3>
+<h4 id="mada-card-payments">MADA (Card Payments)</h4>
+<p><strong>Integration Type:</strong> REST (PCI-DSS compliant tokenised flow)
+<strong>Trigger:</strong> Policy premium payment, claim settlement</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">PaymentGatewayPort</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">PaymentInitiationResult</span><span class="w"> </span><span class="nf">initiate</span><span class="p">(</span><span class="n">PaymentRequest</span><span class="w"> </span><span class="n">request</span><span class="p">);</span>
+<span class="w">    </span><span class="n">PaymentStatusResult</span><span class="w"> </span><span class="nf">checkStatus</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">paymentReference</span><span class="p">);</span>
+<span class="w">    </span><span class="n">RefundResult</span><span class="w"> </span><span class="nf">refund</span><span class="p">(</span><span class="n">RefundRequest</span><span class="w"> </span><span class="n">request</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">PaymentRequest</span><span class="p">(</span>
+<span class="w">    </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">currency</span><span class="p">,</span><span class="w">          </span><span class="c1">// SAR</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">policyReference</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">customerReference</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PaymentMethod</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w">     </span><span class="c1">// MADA, SADAD, APPLE_PAY</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">returnUrl</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">cancelUrl</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<h4 id="sadad-bill-payment-integration">SADAD (Bill Payment Integration)</h4>
+<p>SADAD is the Saudi national bill payment system. Policies generate SADAD bill numbers for customer payment at banks or mobile apps.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">SadadBillRequest</span><span class="p">(</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">billReference</span><span class="p">,</span><span class="w">      </span><span class="c1">// Policy number</span>
+<span class="w">    </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">dueDate</span><span class="p">,</span><span class="w">            </span><span class="c1">// ISO-8601</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">billerCode</span><span class="p">,</span><span class="w">         </span><span class="c1">// SAMA-assigned biller code</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">customerName</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<hr />
+<h2 id="event-driven-integration-internal">Event-Driven Integration (Internal)</h2>
+<p>Services communicate asynchronously via Kafka domain events. Each event is a typed record representing a business fact.</p>
+<h3 id="event-catalogue">Event Catalogue</h3>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Producer</th>
+<th>Consumer(s)</th>
+<th>Trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PolicyIssued</code></td>
+<td>Policy Service</td>
+<td>Billing, Notification, Audit</td>
+<td>Policy binding confirmed</td>
+</tr>
+<tr>
+<td><code>PolicyCancelled</code></td>
+<td>Policy Service</td>
+<td>Billing, Notification</td>
+<td>Cancellation approved</td>
+</tr>
+<tr>
+<td><code>ClaimRegistered</code></td>
+<td>Claims Service</td>
+<td>Notification, Audit</td>
+<td>New claim filed</td>
+</tr>
+<tr>
+<td><code>ClaimClosed</code></td>
+<td>Claims Service</td>
+<td>Billing, Notification</td>
+<td>Claim settled</td>
+</tr>
+<tr>
+<td><code>PaymentReceived</code></td>
+<td>Billing Service</td>
+<td>Policy, Notification</td>
+<td>Payment confirmed</td>
+</tr>
+<tr>
+<td><code>IdentityVerified</code></td>
+<td>Policy Service</td>
+<td>Audit</td>
+<td>Yakeen verification result</td>
+</tr>
+</tbody>
+</table>
+<h3 id="event-schema-example">Event Schema Example</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// All events implement DomainEvent</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">PolicyIssuedEvent</span><span class="p">(</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">eventId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">policyId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">policyNumber</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">productCode</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">customerId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">annualPremium</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">currency</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">effectiveDate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">expiryDate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Instant</span><span class="w"> </span><span class="n">occurredAt</span>
+<span class="p">)</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">DomainEvent</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<h3 id="kafka-topic-configuration">Kafka Topic Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># application.yml — Kafka producer config</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">kafka</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">bootstrap-servers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${KAFKA_BOOTSTRAP_SERVERS}</span>
+<span class="w">    </span><span class="nt">producer</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">key-serializer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.apache.kafka.common.serialization.StringSerializer</span>
+<span class="w">      </span><span class="nt">value-serializer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.springframework.kafka.support.serializer.JsonSerializer</span>
+<span class="w">      </span><span class="nt">acks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">enable.idempotence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">topics</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">policy-events</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance.policy.events</span>
+<span class="w">      </span><span class="nt">claims-events</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance.claims.events</span>
+<span class="w">      </span><span class="nt">billing-events</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance.billing.events</span>
+</code></pre></div>
+<hr />
+<h2 id="resilience-patterns">Resilience Patterns</h2>
+<p>All external integrations apply the following Resilience4j patterns:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># application.yml — Resilience4j config</span>
+<span class="nt">resilience4j</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">circuitbreaker</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">instances</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">yakeen</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">slidingWindowSize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">        </span><span class="nt">failureRateThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
+<span class="w">        </span><span class="nt">waitDurationInOpenState</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+<span class="w">        </span><span class="nt">permittedNumberOfCallsInHalfOpenState</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">      </span><span class="nt">najm</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">slidingWindowSize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">        </span><span class="nt">failureRateThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
+<span class="w">        </span><span class="nt">waitDurationInOpenState</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60s</span>
+<span class="w">      </span><span class="nt">mada-payment</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">slidingWindowSize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">        </span><span class="nt">failureRateThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="w">        </span><span class="nt">waitDurationInOpenState</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+
+<span class="w">  </span><span class="nt">retry</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">instances</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">yakeen</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">maxAttempts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">        </span><span class="nt">waitDuration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1s</span>
+<span class="w">        </span><span class="nt">exponentialBackoffMultiplier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">      </span><span class="nt">najm</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">maxAttempts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">        </span><span class="nt">waitDuration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2s</span>
+
+<span class="w">  </span><span class="nt">timelimiter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">instances</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">yakeen</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">timeoutDuration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">      </span><span class="nt">najm</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">timeoutDuration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8s</span>
+<span class="w">      </span><span class="nt">mada-payment</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">timeoutDuration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+</code></pre></div>
+<hr />
+<h2 id="notification-integration">Notification Integration</h2>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Provider</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SMS</td>
+<td>Unifonic</td>
+<td>OTP, policy issuance confirmations, claim updates</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>AWS SES / SMTP relay</td>
+<td>Policy documents, renewal reminders</td>
+</tr>
+<tr>
+<td>Push notification</td>
+<td>Firebase FCM</td>
+<td>Mobile app event notifications</td>
+</tr>
+<tr>
+<td>WhatsApp</td>
+<td>Twilio (optional)</td>
+<td>Document sharing, status updates</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">NotificationPort</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="n">NotificationRequest</span><span class="w"> </span><span class="n">request</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">NotificationRequest</span><span class="p">(</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">recipientId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">mobileNumber</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NotificationChannel</span><span class="w"> </span><span class="n">channel</span><span class="p">,</span><span class="w">   </span><span class="c1">// SMS, EMAIL, PUSH</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">templateKey</span><span class="p">,</span><span class="w">            </span><span class="c1">// &quot;POLICY_ISSUED&quot;, &quot;CLAIM_REGISTERED&quot;</span>
+<span class="w">    </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">params</span><span class="p">,</span><span class="w">    </span><span class="c1">// Template variable substitution</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">locale</span><span class="w">                  </span><span class="c1">// &quot;ar&quot;, &quot;en&quot;</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<hr />
+<h2 id="regulatory-reporting-sama">Regulatory Reporting (SAMA)</h2>
+<p>Motor insurance data is reported to SAMA (Saudi Arabia Monetary Authority) at defined intervals:</p>
+<table>
+<thead>
+<tr>
+<th>Report</th>
+<th>Frequency</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Motor policy register</td>
+<td>Monthly</td>
+<td>SAMA-specified XML/CSV</td>
+</tr>
+<tr>
+<td>Claims register</td>
+<td>Monthly</td>
+<td>SAMA-specified XML/CSV</td>
+</tr>
+<tr>
+<td>Financial solvency</td>
+<td>Quarterly</td>
+<td>SAMA portal upload</td>
+</tr>
+<tr>
+<td>Fraud incident report</td>
+<td>Ad-hoc</td>
+<td>SAMA secure portal</td>
+</tr>
+</tbody>
+</table>
+<p>Reporting is handled by a dedicated scheduled job in the Policy and Claims services using Spring <code>@Scheduled</code> tasks, generating extracts from the database and transmitting via SAMA's secure file transfer endpoint.</p>
+<hr />
+<h2 id="integration-governance">Integration Governance</h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Practice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contract versioning</td>
+<td>External API contracts versioned and stored in <code>integrations/</code> directory</td>
+</tr>
+<tr>
+<td>Schema validation</td>
+<td>All external responses validated against internal schema before mapping</td>
+</tr>
+<tr>
+<td>Error logging</td>
+<td>All integration failures logged with correlation ID, masked sensitive data</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>All API keys injected via Kubernetes Secrets — never hardcoded</td>
+</tr>
+<tr>
+<td>Timeout policy</td>
+<td>All HTTP clients have explicit connect (5s) and read (30s) timeouts</td>
+</tr>
+<tr>
+<td>Retry policy</td>
+<td>Idempotent reads retry up to 3 times; mutations retry only on network errors</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1298,6 +1987,10 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
       
     
   </body>

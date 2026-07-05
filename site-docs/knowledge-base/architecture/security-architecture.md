@@ -1,25 +1,289 @@
 # Security Architecture
 
-## Objectives
+## Overview
 
-The architecture should protect customer data, enforce access boundaries, and support compliance requirements relevant to Saudi Arabia.
+The platform security architecture implements a **defence-in-depth** model aligned with Saudi Arabia insurance regulatory requirements (SAMA Cybersecurity Framework).
+Authentication is centralised through an OIDC-compliant identity provider (Keycloak), and authorisation is enforced at both the API Gateway and service layers using JWT claims and role-based rules.
 
-## Security Controls
+---
 
-- Authentication and authorization for users, services, and integrations
-- Role-based access control for operational and business functions
-- Secret management and environment-specific configuration
-- Encryption of data in transit and at rest
-- Audit logging for sensitive actions and workflow changes
-- Controls aligned with local regulatory and operational expectations for insurance data handling
+## Security Layers
 
-## Recommended Approach
+```mermaid
+graph TB
+    subgraph "External"
+        User[User Browser]
+        Partner[Partner API Client]
+    end
 
-Use centralized identity services for human and service access, and apply least-privilege principles across all components.
+    subgraph "Perimeter"
+        WAF[Web Application Firewall]
+        DDOS[DDoS Protection]
+        RATELIMIT[Rate Limiter]
+    end
 
-## Security Review Checklist
+    subgraph "Identity Layer"
+        KEYCLOAK[Keycloak OIDC Provider]
+        MFA[MFA / OTP]
+    end
 
-- Are secrets stored outside source control?
-- Are authorization rules defined at the service boundary?
-- Are audit logs retained and searchable?
-- Are sensitive operations protected by approval or policy checks?
+    subgraph "Gateway Layer"
+        APIGW[API Gateway - JWT Validation]
+        CORS[CORS Policy]
+        TLS[TLS 1.3 Termination]
+    end
+
+    subgraph "Service Layer"
+        SPRING[Spring Security - Method-level RBAC]
+        AUDIT[Audit Logger]
+    end
+
+    subgraph "Data Layer"
+        DB[(PostgreSQL - Encrypted at Rest)]
+        VAULT[Secret Store - Vault]
+    end
+
+    User --> WAF --> DDOS --> RATELIMIT --> TLS --> APIGW
+    Partner --> WAF
+    APIGW --> KEYCLOAK
+    User --> KEYCLOAK --> MFA
+    APIGW --> SPRING
+    SPRING --> AUDIT
+    SPRING --> DB
+    SPRING --> VAULT
+```
+
+---
+
+## Authentication Design
+
+### Identity Provider: Keycloak
+
+| Property | Value |
+|---|---|
+| Protocol | OpenID Connect 1.0 / OAuth 2.1 |
+| Flow (Browser) | Authorization Code + PKCE |
+| Flow (M2M) | Client Credentials |
+| Token format | JWT (RS256 signed) |
+| Access token TTL | 15 minutes |
+| Refresh token TTL | 8 hours (sliding) |
+| MFA | TOTP (Google Authenticator / Saudi OTP) |
+| Session management | Keycloak session + frontend silent refresh |
+
+### Keycloak Realm Configuration
+
+```
+Realm: insurance-platform
+  ├── Clients
+  │   ├── insurance-web (public, PKCE, redirect: https://app.insurance.com.sa/*)
+  │   ├── policy-service (confidential, client credentials)
+  │   ├── claims-service (confidential, client credentials)
+  │   └── billing-service (confidential, client credentials)
+  ├── Roles
+  │   ├── ROLE_SUPER_ADMIN
+  │   ├── ROLE_UNDERWRITER
+  │   ├── ROLE_CLAIMS_HANDLER
+  │   ├── ROLE_AGENT
+  │   ├── ROLE_CUSTOMER
+  │   └── ROLE_READONLY_AUDITOR
+  └── Identity Providers
+      └── Saudi National SSO (future - Absher integration)
+```
+
+### JWT Claims Structure
+
+```json
+{
+  "sub": "uuid-user-id",
+  "iss": "https://auth.insurance.com.sa/realms/insurance",
+  "aud": "insurance-web",
+  "exp": 1751720400,
+  "iat": 1751719500,
+  "realm_access": {
+    "roles": ["ROLE_UNDERWRITER"]
+  },
+  "resource_access": {
+    "policy-service": {
+      "roles": ["policy:write", "policy:read"]
+    }
+  },
+  "preferred_username": "ahmed.ali@company.com.sa",
+  "locale": "ar",
+  "tenant_id": "tenant-001"
+}
+```
+
+---
+
+## Authorisation Model
+
+### Role Definitions
+
+| Role | Description | Key Permissions |
+|---|---|---|
+| `ROLE_SUPER_ADMIN` | Full platform administration | All operations, metadata management, user management |
+| `ROLE_UNDERWRITER` | Policy underwriting and issuance | Create/approve policies, view quotes, manage endorsements |
+| `ROLE_CLAIMS_HANDLER` | Claims processing | Create/update/close claims, assign adjusters |
+| `ROLE_AGENT` | Broker/agent access | Create quotes, submit applications, view own portfolio |
+| `ROLE_CUSTOMER` | Customer self-service | View own policies and claims, submit documents |
+| `ROLE_READONLY_AUDITOR` | Read-only compliance audit | Read all data, no mutations |
+
+### Spring Security Configuration
+
+```java
+@Configuration
+@EnableMethodSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf(AbstractHttpConfigurer::disable)
+            .sessionManagement(s -> s.sessionCreationPolicy(STATELESS))
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/actuator/health/**").permitAll()
+                .requestMatchers("/api/v1/auth/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtConverter()))
+            );
+        return http.build();
+    }
+
+    @Bean
+    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+        JwtGrantedAuthoritiesConverter converter = new JwtGrantedAuthoritiesConverter();
+        converter.setAuthoritiesClaimName("realm_access.roles");
+        converter.setAuthorityPrefix("ROLE_");
+        JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
+        jwtConverter.setJwtGrantedAuthoritiesConverter(converter);
+        return jwtConverter;
+    }
+}
+```
+
+### Method-Level Security Example
+
+```java
+@Service
+public class PolicyService {
+
+    @PreAuthorize("hasRole('UNDERWRITER') or hasRole('SUPER_ADMIN')")
+    public PolicyResponse approvePolicy(String policyId, ApprovalRequest request) { ... }
+
+    @PreAuthorize("hasRole('AGENT') or hasRole('UNDERWRITER') or hasRole('SUPER_ADMIN')")
+    public QuoteResponse createQuote(QuoteRequest request) { ... }
+
+    @PreAuthorize("hasRole('CUSTOMER') and #customerId == authentication.name")
+    public List<PolicySummary> getCustomerPolicies(String customerId) { ... }
+}
+```
+
+---
+
+## Transport Security
+
+| Layer | Configuration |
+|---|---|
+| External HTTPS | TLS 1.3 only, strong cipher suites |
+| Internal service-to-service | mTLS via service mesh (Istio optional) or HTTPS with service account tokens |
+| Database connections | TLS-encrypted PostgreSQL connections |
+| Kafka | SASL/SSL authenticated connections |
+
+---
+
+## Data Security
+
+### Encryption at Rest
+
+| Data | Encryption |
+|---|---|
+| PostgreSQL data files | AES-256 via cloud provider volume encryption |
+| Backups | AES-256 encrypted before upload |
+| Kubernetes Secrets | etcd encrypted at rest |
+| Application-level PII | Field-level encryption for NIN, IBAN, and health data |
+
+### PII Field Handling
+
+Sensitive personal data is encrypted at the application level before persistence:
+
+```java
+@Entity
+public class Customer {
+
+    @Column(name = "national_id_encrypted")
+    @Convert(converter = EncryptedStringConverter.class)  // AES-256-GCM
+    private String nationalId;  // Saudi NIN — encrypted
+
+    @Column(name = "iban_encrypted")
+    @Convert(converter = EncryptedStringConverter.class)
+    private String iban;  // IBAN — encrypted
+
+    // Non-sensitive fields stored in plaintext
+    private String fullNameAr;
+    private String fullNameEn;
+    private String email;
+}
+```
+
+---
+
+## Audit Logging
+
+All security-sensitive operations are written to the `core.audit_log` table and optionally streamed to a SIEM:
+
+```java
+@Aspect
+@Component
+public class AuditAspect {
+
+    @AfterReturning("@annotation(Auditable)")
+    public void logAuditEvent(JoinPoint jp, Object result) {
+        AuditEvent event = AuditEvent.builder()
+            .userId(SecurityContextHolder.getContext().getAuthentication().getName())
+            .action(jp.getSignature().getName())
+            .entityType(extractEntityType(jp))
+            .entityId(extractEntityId(jp.getArgs()))
+            .timestamp(Instant.now())
+            .correlationId(MDC.get("correlationId"))
+            .build();
+        auditRepository.save(event);
+    }
+}
+```
+
+**Audited operations include:**
+- Login, logout, failed authentication
+- Policy creation, approval, cancellation
+- Claims creation, assignment, closure
+- Financial transaction creation
+- Role assignment / user management
+- Administrative configuration changes
+
+---
+
+## SAMA Cybersecurity Framework Alignment
+
+| SAMA Control | Platform Implementation |
+|---|---|
+| IAM — strong authentication | OIDC + MFA mandatory for all users |
+| Data classification | PII fields tagged, encrypted, access-logged |
+| Audit trail | Immutable audit log with 7-year retention |
+| Vulnerability management | Trivy scans on every build, monthly pen tests |
+| Incident response | Alerting on auth failures, automated lockout after 5 attempts |
+| Secure SDLC | SonarQube code quality gate, OWASP dependency check |
+| Data residency | All data stored in Saudi Arabia region |
+
+---
+
+## Security Checklist (Per Service)
+
+- [ ] JWT validation enabled on all endpoints except health probes
+- [ ] `@PreAuthorize` annotations on all mutating operations
+- [ ] No secrets in source code or Dockerfiles
+- [ ] TLS enabled on all database and broker connections
+- [ ] Audit annotations on all sensitive operations
+- [ ] Rate limiting applied at the API Gateway
+- [ ] CORS restricted to known origins
+- [ ] Security scan passes before deployment
