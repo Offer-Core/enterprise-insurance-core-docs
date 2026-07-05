@@ -174,3 +174,6 @@ Thumbs.db
 !package-lock.json
 !*.schema.json
 
+
+# MkDocs
+site/

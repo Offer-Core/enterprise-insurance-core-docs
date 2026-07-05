@@ -1,4 +1,5 @@
 name: Deploy MkDocs to GitHub Pages
+
 on:
   push:
     branches:
@@ -22,9 +23,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: |
-          pip install mkdocs mkdocs-material # Add any plugins you use here
+        run: pip install -r requirements.txt
 
       - name: Build and Deploy
-        run: |
-          mkdocs gh-deploy --force
+        run: mkdocs gh-deploy --force
