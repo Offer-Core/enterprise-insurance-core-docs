@@ -1,0 +1,2883 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Architecture and documentation for the Saudi Arabia insurance platform">
+      
+      
+        <meta name="author" content="Enterprise Architecture Team">
+      
+      
+        <link rel="canonical" href="https://docs.insurance-platform.example.com/architecture/domain-architecture/">
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../integration-architecture/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Domain Architecture - Enterprise Insurance Platform</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#domain-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Insurance Platform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Domain Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/insurance-platform/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    insurance-platform/docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Insurance Platform
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/insurance-platform/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    insurance-platform/docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#motor-first-extensible-by-design-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor-First, Extensible-by-Design Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-1-the-extensible-core-shared-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 1: The Extensible Core (Shared Kernel)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 1: The Extensible Core (Shared Kernel)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-core-base-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Core Base Entities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-base-customer-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Base Customer Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-base-policy-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Base Policy Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-base-claim-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Base Claim Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-base-financial-transaction-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Base Financial Transaction Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-dynamic-extension-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Dynamic Extension Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.6 Dynamic Extension Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-shared-kernel-ownership-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 Shared Kernel Ownership Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-2-the-motor-vertical-slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 2: The Motor Vertical Slice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 2: The Motor Vertical Slice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-motor-policy-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Motor Policy Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-motor-driver-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Motor Driver Entity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-motor-vehicle-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Motor Vehicle Entity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-motor-rating-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Motor Rating Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Motor Rating Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rating-factors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rating Factors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-motor-claims-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Motor Claims Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Motor Claims Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motor-claim-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor Claim Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motor-specific-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor-Specific Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-3-the-pluggable-extension-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 3: The Pluggable Extension Points
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 3: The Pluggable Extension Points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-point-a-dynamic-data-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Point A: Dynamic Data Schema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Point A: Dynamic Data Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-jsonb-instead-of-eav" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why JSONB instead of EAV?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-model-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-motor-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Motor Payload
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-point-b-pluggable-rating-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Point B: Pluggable Rating Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Point B: Pluggable Rating Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#di-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DI Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-point-c-configurable-workflow-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Point C: Configurable Workflow Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Point C: Configurable Workflow Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generic-workflow-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generic Workflow Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motor-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-example-later" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Example Later
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-point-d-line-specific-underwriting-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Point D: Line-Specific Underwriting Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Point D: Line-Specific Underwriting Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motor-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-4-repository-and-team-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 4: Repository and Team Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 4: Repository and Team Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-folder-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Folder Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ownership-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Ownership Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-database-migration-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Database Migration Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Database Migration Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-5-the-onboarding-playbook-for-a-new-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 5: The Onboarding Playbook for a New Line
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 5: The Onboarding Playbook for a New Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#30-day-onboarding-path-for-team-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        30-Day Onboarding Path for Team Health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-execution-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Execution Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensibility-scorecard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extensibility Scorecard
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ui-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations and Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Knowledge Base
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/000-Vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/100-Business/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Domains
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/200-Domains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/200-Domains/Authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/400-Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/500-API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/600-Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/700-UI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/800-Integrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/900-Decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/950-Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../knowledge-base/990-AI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#motor-first-extensible-by-design-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor-First, Extensible-by-Design Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-1-the-extensible-core-shared-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 1: The Extensible Core (Shared Kernel)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 1: The Extensible Core (Shared Kernel)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-core-base-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Core Base Entities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-base-customer-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Base Customer Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-base-policy-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Base Policy Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-base-claim-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Base Claim Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-base-financial-transaction-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Base Financial Transaction Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-dynamic-extension-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Dynamic Extension Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.6 Dynamic Extension Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-shared-kernel-ownership-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 Shared Kernel Ownership Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-2-the-motor-vertical-slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 2: The Motor Vertical Slice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 2: The Motor Vertical Slice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-motor-policy-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Motor Policy Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-motor-driver-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Motor Driver Entity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-motor-vehicle-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Motor Vehicle Entity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-motor-rating-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Motor Rating Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Motor Rating Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rating-factors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rating Factors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-motor-claims-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Motor Claims Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Motor Claims Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motor-claim-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor Claim Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motor-specific-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor-Specific Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-3-the-pluggable-extension-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 3: The Pluggable Extension Points
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 3: The Pluggable Extension Points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-point-a-dynamic-data-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Point A: Dynamic Data Schema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Point A: Dynamic Data Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-jsonb-instead-of-eav" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why JSONB instead of EAV?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-model-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-motor-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Motor Payload
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-point-b-pluggable-rating-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Point B: Pluggable Rating Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Point B: Pluggable Rating Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#di-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DI Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-point-c-configurable-workflow-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Point C: Configurable Workflow Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Point C: Configurable Workflow Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generic-workflow-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generic Workflow Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motor-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-example-later" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Example Later
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-point-d-line-specific-underwriting-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Point D: Line-Specific Underwriting Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Point D: Line-Specific Underwriting Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motor-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-4-repository-and-team-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 4: Repository and Team Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 4: Repository and Team Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-folder-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Folder Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ownership-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Ownership Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-database-migration-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Database Migration Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Database Migration Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-5-the-onboarding-playbook-for-a-new-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 5: The Onboarding Playbook for a New Line
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 5: The Onboarding Playbook for a New Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#30-day-onboarding-path-for-team-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        30-Day Onboarding Path for Team Health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-execution-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Execution Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensibility-scorecard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extensibility Scorecard
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="domain-architecture">Domain Architecture</h1>
+<h2 id="motor-first-extensible-by-design-architecture">Motor-First, Extensible-by-Design Architecture</h2>
+<p>This document defines the architecture for an MVP that ships with Motor Insurance first for the Saudi Arabia market, while keeping the platform extensible for Health, Travel, and Malpractice in a later phase. The design is intentionally metadata-driven so business users and administrators can add new fields, entities, and rules from the UI with minimal engineering intervention.</p>
+<hr />
+<h2 id="section-1-the-extensible-core-shared-kernel">Section 1: The Extensible Core (Shared Kernel)</h2>
+<p>The shared kernel contains abstractions that are owned by the platform and must not become line-specific. These types define the contract that every line must honor.</p>
+<h3 id="11-core-base-entities">1.1 Core Base Entities</h3>
+<ul>
+<li><code>Party</code> — base person or organization entity</li>
+<li><code>Customer</code> — concrete extension of <code>Party</code> that owns the global identity</li>
+<li><code>Policy</code> — abstract base policy class</li>
+<li><code>Claim</code> — abstract base claim class</li>
+<li><code>FinancialTransaction</code> — abstract financial event type</li>
+</ul>
+<h3 id="12-base-customer-model">1.2 Base Customer Model</h3>
+<pre><code class="language-java">public abstract class Party {
+    private UUID partyId;
+    private String fullName;
+    private Address primaryAddress;
+    private ContactInfo contactInfo;
+
+    public UUID getPartyId() { return partyId; }
+    public void setPartyId(UUID partyId) { this.partyId = partyId; }
+    public String getFullName() { return fullName; }
+    public void setFullName(String fullName) { this.fullName = fullName; }
+    public Address getPrimaryAddress() { return primaryAddress; }
+    public void setPrimaryAddress(Address primaryAddress) { this.primaryAddress = primaryAddress; }
+    public ContactInfo getContactInfo() { return contactInfo; }
+    public void setContactInfo(ContactInfo contactInfo) { this.contactInfo = contactInfo; }
+}
+
+public class Customer extends Party {
+    private UUID globalCustomerId;
+    private String customerReference;
+    private String customerType;
+
+    public UUID getGlobalCustomerId() { return globalCustomerId; }
+    public void setGlobalCustomerId(UUID globalCustomerId) { this.globalCustomerId = globalCustomerId; }
+    public String getCustomerReference() { return customerReference; }
+    public void setCustomerReference(String customerReference) { this.customerReference = customerReference; }
+    public String getCustomerType() { return customerType; }
+    public void setCustomerType(String customerType) { this.customerType = customerType; }
+}
+</code></pre>
+<h3 id="13-base-policy-model">1.3 Base Policy Model</h3>
+<pre><code class="language-java">public enum PolicyLifecycleStatus {
+    QUOTE,
+    BOUND,
+    ACTIVE,
+    RENEWED,
+    CANCELLED,
+    EXPIRED
+}
+
+public abstract class Policy {
+    private UUID policyId;
+    private UUID globalCustomerId;
+    private LineOfBusiness lineOfBusiness;
+    private PolicyLifecycleStatus status;
+    private BigDecimal premiumAmount;
+    private Currency currency;
+    private Instant effectiveFrom;
+    private Instant effectiveTo;
+    private JsonNode lineSpecificData;
+
+    // getters and setters
+}
+</code></pre>
+<h3 id="14-base-claim-model">1.4 Base Claim Model</h3>
+<pre><code class="language-java">public enum ClaimLifecycleStatus {
+    REPORTED,
+    INVESTIGATING,
+    RESERVED,
+    ADJUDICATED,
+    PAID,
+    CLOSED
+}
+
+public abstract class Claim {
+    private UUID claimId;
+    private UUID policyId;
+    private ClaimLifecycleStatus status;
+    private BigDecimal claimAmount;
+    private String claimReference;
+    private JsonNode lineSpecificData;
+
+    // getters and setters
+}
+</code></pre>
+<h3 id="15-base-financial-transaction-types">1.5 Base Financial Transaction Types</h3>
+<pre><code class="language-java">public enum FinancialTransactionType {
+    PREMIUM,
+    ENDORSEMENT,
+    REFUND,
+    COMMISSION,
+    RECOVERY
+}
+</code></pre>
+<h3 id="16-dynamic-extension-model">1.6 Dynamic Extension Model</h3>
+<p>The platform uses a metadata-driven extension layer that allows the UI and runtime to introduce new schema elements without hard-coding them in the core domain model.</p>
+<h4 id="core-concepts">Core Concepts</h4>
+<ul>
+<li><code>EntityDefinition</code> — defines a logical entity such as <code>MotorPolicy</code>, <code>Claim</code>, or a future <code>HealthMember</code></li>
+<li><code>FieldDefinition</code> — defines a field with type, validation, UI rendering, and default behavior</li>
+<li><code>FormDefinition</code> — defines which fields appear on a screen and in what order</li>
+<li><code>RuleDefinition</code> — defines validation, calculation, or workflow triggers</li>
+</ul>
+<pre><code class="language-java">public class EntityDefinition {
+    private String entityCode;
+    private String displayName;
+    private String tableName;
+    private List&lt;FieldDefinition&gt; fields;
+}
+
+public class FieldDefinition {
+    private String fieldCode;
+    private String displayName;
+    private FieldType fieldType;
+    private boolean required;
+    private boolean searchable;
+    private String defaultValue;
+}
+</code></pre>
+<h4 id="runtime-behavior">Runtime Behavior</h4>
+<ul>
+<li>UI forms are generated from <code>FormDefinition</code> metadata</li>
+<li>Data is stored in a flexible attribute store for dynamic fields</li>
+<li>Validation and calculation rules are executed from <code>RuleDefinition</code></li>
+<li>New extensions are versioned so they can be safely rolled out and reverted</li>
+</ul>
+<h3 id="17-shared-kernel-ownership-rules">1.7 Shared Kernel Ownership Rules</h3>
+<p>The shared kernel must remain stable and should not contain:</p>
+<ul>
+<li>Motor-only fields such as VIN</li>
+<li>Health-only fields such as ICD codes</li>
+<li>Travel-only fields such as trip destination</li>
+<li>Malpractice-only fields such as specialty code</li>
+</ul>
+<p>This is the invariant: the shared kernel defines lifecycle, identity, and financial primitives only.</p>
+<hr />
+<h2 id="section-2-the-motor-vertical-slice">Section 2: The Motor Vertical Slice</h2>
+<p>Motor is the only line implemented today. All Motor-specific logic sits under the Motor vertical slice so the team can move quickly without contaminating the core.</p>
+<h3 id="21-motor-policy-model">2.1 Motor Policy Model</h3>
+<pre><code class="language-java">public class MotorPolicy extends Policy {
+    private String vin;
+    private String vehicleMake;
+    private String vehicleModel;
+    private Integer vehicleYear;
+    private Address garagingAddress;
+    private Integer annualMileage;
+    private VehicleUseType primaryUse;
+    private boolean antiTheftDeviceInstalled;
+
+    // getters and setters
+}
+
+public enum VehicleUseType {
+    PERSONAL,
+    COMMERCIAL
+}
+</code></pre>
+<h3 id="22-motor-driver-entity">2.2 Motor Driver Entity</h3>
+<pre><code class="language-java">public class MotorDriver {
+    private UUID driverId;
+    private UUID policyId;
+    private String licenseNumber;
+    private LocalDate dateOfBirth;
+    private List&lt;String&gt; drivingViolations;
+    private List&lt;String&gt; claimsHistory;
+
+    // getters and setters
+}
+</code></pre>
+<h3 id="23-motor-vehicle-entity">2.3 Motor Vehicle Entity</h3>
+<pre><code class="language-java">public class MotorVehicle {
+    private UUID vehicleId;
+    private UUID policyId;
+    private String vin;
+    private String vehicleMake;
+    private String vehicleModel;
+    private Integer vehicleYear;
+    private Address garagingAddress;
+
+    // getters and setters
+}
+</code></pre>
+<h3 id="24-motor-rating-engine">2.4 Motor Rating Engine</h3>
+<p>The Motor rating engine must live in the Motor vertical slice and use line-specific factors only.</p>
+<h4 id="rating-factors">Rating Factors</h4>
+<ul>
+<li>Territory factor</li>
+<li>Driver age multiplier</li>
+<li>Vehicle value depreciation curve</li>
+<li>Annual mileage factor</li>
+<li>Use type factor (Commercial vs Personal)</li>
+<li>Anti-theft device discount</li>
+<li>Claims history surcharge</li>
+<li>Violations surcharge</li>
+</ul>
+<pre><code class="language-java">public class MotorRatingEngine {
+    public BigDecimal calculatePremium(MotorPolicy policy, List&lt;MotorDriver&gt; drivers) {
+        BigDecimal baseRate = new BigDecimal(&quot;1000&quot;);
+        BigDecimal territoryFactor = getTerritoryFactor(policy.getGaragingAddress());
+        BigDecimal ageMultiplier = getAgeMultiplier(drivers);
+        BigDecimal valueDepreciationFactor = getDepreciationFactor(policy.getVehicleYear());
+        BigDecimal mileageFactor = getMileageFactor(policy.getAnnualMileage());
+        BigDecimal useFactor = policy.getPrimaryUse() == VehicleUseType.COMMERCIAL ? new BigDecimal(&quot;1.25&quot;) : BigDecimal.ONE;
+        BigDecimal theftDiscount = policy.isAntiTheftDeviceInstalled() ? new BigDecimal(&quot;0.90&quot;) : BigDecimal.ONE;
+
+        return baseRate.multiply(territoryFactor)
+                .multiply(ageMultiplier)
+                .multiply(valueDepreciationFactor)
+                .multiply(mileageFactor)
+                .multiply(useFactor)
+                .multiply(theftDiscount);
+    }
+}
+</code></pre>
+<h3 id="25-motor-claims-workflow">2.5 Motor Claims Workflow</h3>
+<p>Motor claims need specialized handling that should not leak into the core.</p>
+<h4 id="motor-claim-types">Motor Claim Types</h4>
+<ul>
+<li>Auto Physical Damage (APD)</li>
+<li>Third-Party Liability</li>
+<li>Theft claim</li>
+<li>Towing assistance</li>
+</ul>
+<h4 id="motor-specific-operations">Motor-Specific Operations</h4>
+<ul>
+<li>APD appraisal</li>
+<li>Tow truck dispatch</li>
+<li>Repair shop network management</li>
+<li>Salvage valuation</li>
+</ul>
+<pre><code class="language-java">public class MotorClaim extends Claim {
+    private String lossLocation;
+    private String repairShopId;
+    private boolean towTruckRequested;
+    private Instant towTruckDispatchedAt;
+    private String appraisalReference;
+
+    // getters and setters
+}
+</code></pre>
+<hr />
+<h2 id="section-3-the-pluggable-extension-points">Section 3: The Pluggable Extension Points</h2>
+<p>These are the explicit seams that allow future lines to plug in without rewriting the platform.</p>
+<h3 id="extension-point-a-dynamic-data-schema">Extension Point A: Dynamic Data Schema</h3>
+<p>The platform should support dynamic data extension through a metadata layer and a flexible persistence structure.</p>
+<h4 id="recommended-approach">Recommended Approach</h4>
+<p>Use a hybrid strategy:
+- Core business entities remain strongly typed in Java classes
+- Dynamic fields are stored in <code>JSONB</code> and resolved by the metadata layer
+- UI forms are rendered from <code>FieldDefinition</code> and <code>FormDefinition</code></p>
+<p>This enables the system to stay robust for the core while remaining flexible for business-driven changes.</p>
+<p>Recommendation: use PostgreSQL <code>JSONB</code> in the shared policy and customer records for extensible attributes.</p>
+<h4 id="why-jsonb-instead-of-eav">Why <code>JSONB</code> instead of EAV?</h4>
+<ul>
+<li><code>JSONB</code> supports nested structures naturally for future lines</li>
+<li>It is easier to query than a generic EAV model</li>
+<li>It preserves a strong, schema-aware shape for the current Motor implementation</li>
+<li>It avoids the performance and join complexity of EAV</li>
+</ul>
+<h4 id="data-model-pattern">Data Model Pattern</h4>
+<pre><code class="language-sql">CREATE TABLE customer (
+  customer_id UUID PRIMARY KEY,
+  global_customer_id UUID NOT NULL,
+  customer_type TEXT NOT NULL,
+  core_profile JSONB NOT NULL,
+  line_specific_data JSONB NOT NULL DEFAULT '{}'::jsonb
+);
+
+CREATE TABLE policy (
+  policy_id UUID PRIMARY KEY,
+  global_customer_id UUID NOT NULL,
+  line_of_business TEXT NOT NULL,
+  status TEXT NOT NULL,
+  line_specific_data JSONB NOT NULL DEFAULT '{}'::jsonb
+);
+</code></pre>
+<h4 id="example-motor-payload">Example Motor Payload</h4>
+<pre><code class="language-json">{
+  &quot;vehicle&quot;: {
+    &quot;vin&quot;: &quot;1HGCM82633A004352&quot;,
+    &quot;make&quot;: &quot;Toyota&quot;,
+    &quot;model&quot;: &quot;Corolla&quot;,
+    &quot;year&quot;: 2021,
+    &quot;annualMileage&quot;: 12000,
+    &quot;primaryUse&quot;: &quot;Personal&quot;,
+    &quot;antiTheftDeviceInstalled&quot;: true
+  },
+  &quot;drivers&quot;: [
+    {
+      &quot;licenseNumber&quot;: &quot;ABC123&quot;,
+      &quot;dateOfBirth&quot;: &quot;1990-05-15&quot;,
+      &quot;violations&quot;: [],
+      &quot;claimsHistory&quot;: []
+    }
+  ]
+}
+</code></pre>
+<p>Future lines can use the same column for health or travel-specific payloads.</p>
+<h3 id="extension-point-b-pluggable-rating-engine">Extension Point B: Pluggable Rating Engine</h3>
+<p>The rating engine is a runtime extension point.</p>
+<pre><code class="language-java">public interface IRatingCalculator {
+    LineOfBusiness getLineOfBusiness();
+    BigDecimal calculate(Policy policy);
+}
+
+public class MotorRatingCalculator implements IRatingCalculator {
+    @Override
+    public LineOfBusiness getLineOfBusiness() {
+        return LineOfBusiness.MOTOR;
+    }
+
+    @Override
+    public BigDecimal calculate(Policy policy) {
+        MotorPolicy motorPolicy = (MotorPolicy) policy;
+        return new MotorRatingEngine().calculatePremium(motorPolicy, List.of());
+    }
+}
+</code></pre>
+<p>Runtime resolution:</p>
+<pre><code class="language-java">public class RatingService {
+    private final List&lt;IRatingCalculator&gt; calculators;
+
+    public RatingService(List&lt;IRatingCalculator&gt; calculators) {
+        this.calculators = calculators;
+    }
+
+    public BigDecimal calculate(Policy policy) {
+        return calculators.stream()
+                .filter(c -&gt; c.getLineOfBusiness() == policy.getLineOfBusiness())
+                .findFirst()
+                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;No calculator registered&quot;))
+                .calculate(policy);
+    }
+}
+</code></pre>
+<h4 id="di-registration">DI Registration</h4>
+<pre><code class="language-java">@Bean
+public IRatingCalculator motorRatingCalculator() {
+    return new MotorRatingCalculator();
+}
+</code></pre>
+<p>When Health is onboarded, a new implementation such as <code>HealthRatingCalculator</code> can be added without changing the service interface.</p>
+<h3 id="extension-point-c-configurable-workflow-engine">Extension Point C: Configurable Workflow Engine</h3>
+<p>Motor claims need custom states and transitions, and future lines will need their own state machines.</p>
+<h4 id="generic-workflow-model">Generic Workflow Model</h4>
+<pre><code class="language-java">public class WorkflowDefinition {
+    private String workflowKey;
+    private List&lt;WorkflowState&gt; states;
+    private List&lt;WorkflowTransition&gt; transitions;
+}
+
+public class WorkflowState {
+    private String stateCode;
+    private String displayName;
+}
+
+public class WorkflowTransition {
+    private String fromState;
+    private String toState;
+    private String trigger;
+}
+</code></pre>
+<h4 id="motor-example">Motor Example</h4>
+<ul>
+<li><code>REPORTED -&gt; INSPECTION_REQUIRED</code></li>
+<li><code>INSPECTION_REQUIRED -&gt; TOW_DISPATCHED</code></li>
+<li><code>TOW_DISPATCHED -&gt; REPAIR_SCHEDULED</code></li>
+<li><code>REPAIR_SCHEDULED -&gt; ADJUDICATED</code></li>
+</ul>
+<h4 id="health-example-later">Health Example Later</h4>
+<ul>
+<li><code>REPORTED -&gt; PREAUTH_REQUIRED</code></li>
+<li><code>PREAUTH_REQUIRED -&gt; APPROVED</code></li>
+<li><code>APPROVED -&gt; CLAIM_PAID</code></li>
+</ul>
+<p>The workflow engine itself stays generic. Each line registers its states and transitions from configuration or a database-backed rules table.</p>
+<h3 id="extension-point-d-line-specific-underwriting-rules">Extension Point D: Line-Specific Underwriting Rules</h3>
+<p>Underwriting rules are injected at runtime by line.</p>
+<pre><code class="language-java">public interface IUnderwritingRule {
+    LineOfBusiness getLineOfBusiness();
+    boolean evaluate(Policy policy, UnderwritingContext context);
+    String getRuleCode();
+}
+</code></pre>
+<h4 id="motor-example_1">Motor Example</h4>
+<pre><code class="language-java">public class DriverAgeRule implements IUnderwritingRule {
+    @Override
+    public LineOfBusiness getLineOfBusiness() {
+        return LineOfBusiness.MOTOR;
+    }
+
+    @Override
+    public String getRuleCode() {
+        return &quot;MOTOR_DRIVER_AGE_REFERRAL&quot;;
+    }
+
+    @Override
+    public boolean evaluate(Policy policy, UnderwritingContext context) {
+        return context.getDriverAge() &lt; 21;
+    }
+}
+</code></pre>
+<h4 id="runtime-loading">Runtime Loading</h4>
+<pre><code class="language-java">public class UnderwritingService {
+    private final List&lt;IUnderwritingRule&gt; rules;
+
+    public UnderwritingService(List&lt;IUnderwritingRule&gt; rules) {
+        this.rules = rules;
+    }
+
+    public List&lt;String&gt; evaluate(Policy policy) {
+        return rules.stream()
+                .filter(rule -&gt; rule.getLineOfBusiness() == policy.getLineOfBusiness())
+                .filter(rule -&gt; rule.evaluate(policy, new UnderwritingContext()))
+                .map(IUnderwritingRule::getRuleCode)
+                .toList();
+    }
+}
+</code></pre>
+<p>Rules can be loaded from a database table such as <code>underwriting_rule_definition</code> or from an external rule repository service.</p>
+<hr />
+<h2 id="section-4-repository-and-team-structure">Section 4: Repository and Team Structure</h2>
+<p>This repository structure is designed to keep Motor output fast today while keeping future lines isolated.</p>
+<h3 id="41-folder-structure">4.1 Folder Structure</h3>
+<pre><code class="language-text">/src
+  /Core
+    /Domain
+      Policy.cs
+      Claim.cs
+      Party.cs
+      FinancialTransaction.cs
+    /Contracts
+      IRatingCalculator.cs
+      IUnderwritingRule.cs
+    /SharedKernel
+      enums/
+      value-objects/
+  /Lines
+    /Motor
+      /Api
+      /Application
+      /Domain
+      /Infrastructure
+      /Db
+        /Migrations
+      /README.md
+    /Health
+      /README.md
+  /SharedServices
+    /Billing
+    /GL
+    /Reinsurance
+    /Documents
+</code></pre>
+<h3 id="42-ownership-rules">4.2 Ownership Rules</h3>
+<ul>
+<li><code>Core</code> owns the abstract models and platform contracts</li>
+<li><code>Lines/Motor</code> owns all Motor-specific code, APIs, database migrations, and workflow definitions</li>
+<li><code>Lines/Health</code> is empty today and acts as a future onboarding skeleton</li>
+<li><code>SharedServices</code> owns line-agnostic services used by all lines</li>
+</ul>
+<h3 id="43-database-migration-strategy">4.3 Database Migration Strategy</h3>
+<p>Motor must not force migrations against a central shared schema.</p>
+<h4 id="recommended-pattern">Recommended Pattern</h4>
+<ul>
+<li>Shared kernel tables live in a shared schema or shared database</li>
+<li>Motor-specific tables live in a <code>motor</code> schema or a <code>motor</code> database</li>
+<li>Motor migrations run only against the Motor schema</li>
+<li>Shared services remain independent and own their own migration sets</li>
+</ul>
+<h4 id="example">Example</h4>
+<pre><code class="language-sql">-- Shared schema
+CREATE TABLE policy (...);
+CREATE TABLE claim (...);
+CREATE TABLE customer (...);
+
+-- Motor schema
+CREATE TABLE motor_policy_extension (...);
+CREATE TABLE motor_driver (...);
+CREATE TABLE motor_vehicle (...);
+CREATE TABLE motor_claim_detail (...);
+</code></pre>
+<p>This means Team Motor can add a column to <code>motor_policy_extension</code> without changing the shared kernel schema.</p>
+<hr />
+<h2 id="section-5-the-onboarding-playbook-for-a-new-line">Section 5: The Onboarding Playbook for a New Line</h2>
+<h3 id="30-day-onboarding-path-for-team-health">30-Day Onboarding Path for Team Health</h3>
+<ol>
+<li>Create a new folder under <code>/src/Lines/Health</code>.</li>
+<li>Implement <code>IRatingCalculator</code> with a <code>HealthRatingCalculator</code>.</li>
+<li>Register workflow states and transitions in the workflow engine configuration.</li>
+<li>Extend the base customer or policy via the <code>line_specific_data</code> JSONB column.</li>
+<li>Deploy an independently scalable microservice that registers itself with the API Gateway.</li>
+</ol>
+<h3 id="detailed-execution-notes">Detailed Execution Notes</h3>
+<ul>
+<li>Use the existing shared kernel interfaces and avoid creating line-specific overrides in the core</li>
+<li>Keep the new line's domain logic isolated under its own folder</li>
+<li>Use the same API contract patterns as Motor for discoverability and future interoperability</li>
+<li>Ensure the line service emits events compatible with the platform event bus</li>
+</ul>
+<hr />
+<h2 id="extensibility-scorecard">Extensibility Scorecard</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Motor Implementation Today</th>
+<th>Extensibility Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Policy Data</td>
+<td><code>MotorPolicy : Policy</code> with VIN, vehicle attributes, garaging address, annual mileage, use type, anti-theft flag</td>
+<td><code>Policy.LineSpecificData</code> JSONB plus line-specific tables in the Motor schema</td>
+</tr>
+<tr>
+<td>Rating</td>
+<td><code>MotorRatingEngine</code> and <code>MotorRatingCalculator</code></td>
+<td><code>IRatingCalculator</code> with DI-based registration per <code>LineOfBusiness</code></td>
+</tr>
+<tr>
+<td>Underwriting</td>
+<td>Rules such as driver age referral and violation-based review</td>
+<td><code>IUnderwritingRule</code> with runtime-loaded rules from DB or external repository</td>
+</tr>
+<tr>
+<td>Claims</td>
+<td><code>MotorClaim</code> with APD appraisal, tow truck dispatch, repair shop handling</td>
+<td>Configurable workflow engine with line-specific states and transitions</td>
+</tr>
+<tr>
+<td>Billing</td>
+<td>Line-agnostic financial transactions using <code>FinancialTransactionType</code></td>
+<td>Shared services in <code>/src/SharedServices</code> plus line-specific extension data for billing context</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Enterprise Insurance Platform
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -9,7 +9,7 @@ edit_uri: edit/main/knowledge-base/
 
 copyright: Copyright &copy; 2026 Enterprise Insurance Platform
 
-docs_dir: insurance-core-design/architecture
+docs_dir: site-docs
 site_dir: site
 
 theme:
@@ -19,15 +19,30 @@ theme:
     - search.highlight
 
 nav:
-  - Home: README.md
-  - Architecture Overview: overview.md
-  - Domain Architecture: domain-architecture.md
-  - Integration Architecture: integration-architecture.md
-  - Security Architecture: security-architecture.md
-  - API Architecture: api-architecture.md
-  - Data Architecture: data-architecture.md
-  - UI Architecture: ui-architecture.md
-  - Operations and Observability: operations-observability.md
-  - Architecture Decisions: architecture-decisions.md
-  - Deployment Architecture: deployment-architecture.md
+  - Home: architecture/README.md
+  - Architecture:
+      - Overview: architecture/overview.md
+      - Domain Architecture: architecture/domain-architecture.md
+      - Integration Architecture: architecture/integration-architecture.md
+      - Security Architecture: architecture/security-architecture.md
+      - API Architecture: architecture/api-architecture.md
+      - Data Architecture: architecture/data-architecture.md
+      - UI Architecture: architecture/ui-architecture.md
+      - Operations and Observability: architecture/operations-observability.md
+      - Architecture Decisions: architecture/architecture-decisions.md
+      - Deployment Architecture: architecture/deployment-architecture.md
+  - Knowledge Base:
+      - Vision: knowledge-base/000-Vision/index.md
+      - Business: knowledge-base/100-Business/index.md
+      - Domains:
+          - Overview: knowledge-base/200-Domains/index.md
+          - Authentication: knowledge-base/200-Domains/Authentication/README.md
+      - Standards: knowledge-base/400-Standards/index.md
+      - API: knowledge-base/500-API/index.md
+      - Database: knowledge-base/600-Database/index.md
+      - UI: knowledge-base/700-UI/index.md
+      - Integrations: knowledge-base/800-Integrations/index.md
+      - Decisions: knowledge-base/900-Decisions/index.md
+      - Templates: knowledge-base/950-Templates/index.md
+      - AI: knowledge-base/990-AI/index.md
 

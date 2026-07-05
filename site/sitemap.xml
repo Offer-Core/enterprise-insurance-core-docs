@@ -1,47 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://docs.insurance-platform.example.com/</loc>
+         <loc>https://docs.insurance-platform.example.com/300-Architecture/</loc>
          <lastmod>2026-07-05</lastmod>
     </url>
     <url>
-         <loc>https://docs.insurance-platform.example.com/api-architecture/</loc>
+         <loc>https://docs.insurance-platform.example.com/architecture/</loc>
          <lastmod>2026-07-05</lastmod>
     </url>
     <url>
-         <loc>https://docs.insurance-platform.example.com/architecture-decisions/</loc>
+         <loc>https://docs.insurance-platform.example.com/architecture/api-architecture/</loc>
          <lastmod>2026-07-05</lastmod>
     </url>
     <url>
-         <loc>https://docs.insurance-platform.example.com/data-architecture/</loc>
+         <loc>https://docs.insurance-platform.example.com/architecture/architecture-decisions/</loc>
          <lastmod>2026-07-05</lastmod>
     </url>
     <url>
-         <loc>https://docs.insurance-platform.example.com/deployment-architecture/</loc>
+         <loc>https://docs.insurance-platform.example.com/architecture/data-architecture/</loc>
          <lastmod>2026-07-05</lastmod>
     </url>
     <url>
-         <loc>https://docs.insurance-platform.example.com/domain-architecture/</loc>
+         <loc>https://docs.insurance-platform.example.com/architecture/deployment-architecture/</loc>
          <lastmod>2026-07-05</lastmod>
     </url>
     <url>
-         <loc>https://docs.insurance-platform.example.com/integration-architecture/</loc>
+         <loc>https://docs.insurance-platform.example.com/architecture/domain-architecture/</loc>
          <lastmod>2026-07-05</lastmod>
     </url>
     <url>
-         <loc>https://docs.insurance-platform.example.com/operations-observability/</loc>
+         <loc>https://docs.insurance-platform.example.com/architecture/integration-architecture/</loc>
          <lastmod>2026-07-05</lastmod>
     </url>
     <url>
-         <loc>https://docs.insurance-platform.example.com/overview/</loc>
+         <loc>https://docs.insurance-platform.example.com/architecture/operations-observability/</loc>
          <lastmod>2026-07-05</lastmod>
     </url>
     <url>
-         <loc>https://docs.insurance-platform.example.com/security-architecture/</loc>
+         <loc>https://docs.insurance-platform.example.com/architecture/overview/</loc>
          <lastmod>2026-07-05</lastmod>
     </url>
     <url>
-         <loc>https://docs.insurance-platform.example.com/ui-architecture/</loc>
+         <loc>https://docs.insurance-platform.example.com/architecture/security-architecture/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/architecture/ui-architecture/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/000-Vision/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/100-Business/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/200-Domains/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/200-Domains/Authentication/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/400-Standards/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/500-API/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/600-Database/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/700-UI/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/800-Integrations/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/900-Decisions/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/950-Templates/</loc>
+         <lastmod>2026-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.insurance-platform.example.com/knowledge-base/990-AI/</loc>
          <lastmod>2026-07-05</lastmod>
     </url>
 </urlset>

@@ -12,22 +12,26 @@
         <meta name="author" content="Enterprise Architecture Team">
       
       
+        <link rel="canonical" href="https://docs.insurance-platform.example.com/architecture/">
       
+      
+      
+        <link rel="next" href="overview/">
       
       
         
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Enterprise Insurance Platform</title>
+        <title>Home - Enterprise Insurance Platform</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -46,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -63,6 +67,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#architecture-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -75,7 +84,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+    <a href=".." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -95,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Home
             
           </span>
         </div>
@@ -185,7 +194,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+    <a href=".." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -212,10 +221,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/architecture/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -231,6 +267,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Working Guidelines
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -294,7 +383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/architecture/overview/" class="md-nav__link">
+      <a href="overview/" class="md-nav__link">
         
   
   
@@ -322,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/architecture/domain-architecture/" class="md-nav__link">
+      <a href="domain-architecture/" class="md-nav__link">
         
   
   
@@ -350,7 +439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/architecture/integration-architecture/" class="md-nav__link">
+      <a href="integration-architecture/" class="md-nav__link">
         
   
   
@@ -378,7 +467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/architecture/security-architecture/" class="md-nav__link">
+      <a href="security-architecture/" class="md-nav__link">
         
   
   
@@ -406,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/architecture/api-architecture/" class="md-nav__link">
+      <a href="api-architecture/" class="md-nav__link">
         
   
   
@@ -434,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/architecture/data-architecture/" class="md-nav__link">
+      <a href="data-architecture/" class="md-nav__link">
         
   
   
@@ -462,7 +551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/architecture/ui-architecture/" class="md-nav__link">
+      <a href="ui-architecture/" class="md-nav__link">
         
   
   
@@ -490,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/architecture/operations-observability/" class="md-nav__link">
+      <a href="operations-observability/" class="md-nav__link">
         
   
   
@@ -518,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/architecture/architecture-decisions/" class="md-nav__link">
+      <a href="architecture-decisions/" class="md-nav__link">
         
   
   
@@ -546,7 +635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/architecture/deployment-architecture/" class="md-nav__link">
+      <a href="deployment-architecture/" class="md-nav__link">
         
   
   
@@ -633,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/000-Vision/" class="md-nav__link">
+      <a href="../knowledge-base/000-Vision/" class="md-nav__link">
         
   
   
@@ -661,7 +750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/100-Business/" class="md-nav__link">
+      <a href="../knowledge-base/100-Business/" class="md-nav__link">
         
   
   
@@ -738,7 +827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/200-Domains/" class="md-nav__link">
+      <a href="../knowledge-base/200-Domains/" class="md-nav__link">
         
   
   
@@ -766,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/200-Domains/Authentication/" class="md-nav__link">
+      <a href="../knowledge-base/200-Domains/Authentication/" class="md-nav__link">
         
   
   
@@ -802,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/400-Standards/" class="md-nav__link">
+      <a href="../knowledge-base/400-Standards/" class="md-nav__link">
         
   
   
@@ -830,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/500-API/" class="md-nav__link">
+      <a href="../knowledge-base/500-API/" class="md-nav__link">
         
   
   
@@ -858,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/600-Database/" class="md-nav__link">
+      <a href="../knowledge-base/600-Database/" class="md-nav__link">
         
   
   
@@ -886,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/700-UI/" class="md-nav__link">
+      <a href="../knowledge-base/700-UI/" class="md-nav__link">
         
   
   
@@ -914,7 +1003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/800-Integrations/" class="md-nav__link">
+      <a href="../knowledge-base/800-Integrations/" class="md-nav__link">
         
   
   
@@ -942,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/900-Decisions/" class="md-nav__link">
+      <a href="../knowledge-base/900-Decisions/" class="md-nav__link">
         
   
   
@@ -970,7 +1059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/950-Templates/" class="md-nav__link">
+      <a href="../knowledge-base/950-Templates/" class="md-nav__link">
         
   
   
@@ -998,7 +1087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge-base/990-AI/" class="md-nav__link">
+      <a href="../knowledge-base/990-AI/" class="md-nav__link">
         
   
   
@@ -1043,6 +1132,49 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Working Guidelines
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1055,8 +1187,51 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="architecture-documentation">Architecture Documentation</h1>
+<p>This folder contains the core architecture documentation for the insurance platform.</p>
+<h2 id="purpose">Purpose</h2>
+<p>These documents provide a shared, Markdown-based view of the system structure, responsibilities, integrations, security controls, and deployment model. They are intended to support planning, review, and implementation alignment.</p>
+<h2 id="document-map">Document Map</h2>
+<ul>
+<li><a href="overview/">Architecture Overview</a> — purpose, goals, principles, and high-level structure</li>
+<li><a href="domain-architecture/">Domain Architecture</a> — bounded contexts, core domains, and domain responsibilities</li>
+<li><a href="domain-architecture/">Motor-First Extensible Architecture</a> — MVP Motor architecture with explicit extension points for future lines</li>
+<li><a href="integration-architecture/">Integration Architecture</a> — APIs, events, and external system connections</li>
+<li><a href="api-architecture/">API Architecture</a> — API layers, versioning, gateway, and contract strategy</li>
+<li><a href="data-architecture/">Data Architecture</a> — persistence model, schemas, and migration approach</li>
+<li><a href="ui-architecture/">UI Architecture</a> — dynamic forms, portal structure, and configurable experience</li>
+<li><a href="operations-observability/">Operations and Observability</a> — monitoring, alerts, and service health</li>
+<li><a href="architecture-decisions/">Architecture Decisions</a> — key ADRs and design rationale</li>
+<li><a href="security-architecture/">Security Architecture</a> — authentication, authorization, data protection, and controls</li>
+<li><a href="deployment-architecture/">Deployment Architecture</a> — environments, runtime topology, and observability</li>
+</ul>
+<h2 id="working-guidelines">Working Guidelines</h2>
+<ul>
+<li>Keep each document focused on one architectural concern.</li>
+<li>Update the documents whenever a significant design decision changes.</li>
+<li>Prefer short, structured sections with clear ownership and status.</li>
+<li>Use links between documents to connect related decisions and components.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -1097,10 +1272,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/", "features": ["navigation.sections", "search.highlight"], "search": "/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
