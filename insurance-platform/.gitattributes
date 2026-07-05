@@ -1,0 +1,116 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code
+*.java text diff=java
+*.kt text diff=kotlin
+*.kts text diff=kotlin
+*.groovy text diff=groovy
+*.js text diff=javascript
+*.ts text diff=typescript
+*.jsx text diff=javascript
+*.tsx text diff=typescript
+*.html text diff=html
+*.css text diff=css
+*.scss text diff=css
+*.sass text diff=css
+*.less text diff=css
+*.xml text diff=xml
+*.xsd text diff=xml
+*.xsl text diff=xml
+*.xslt text diff=xml
+*.yaml text
+*.yml text
+*.json text
+*.properties text
+*.sql text
+
+# Documentation
+*.md text diff=markdown
+*.markdown text diff=markdown
+*.txt text
+*.rst text
+*.adoc text
+
+# Build files
+*.gradle text
+gradle-wrapper.jar binary
+*.jar binary
+*.war binary
+*.ear binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.tgz binary
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+*.ico binary
+*.webp binary
+
+# Fonts
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+
+# Documents
+*.pdf binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary
+
+# Archives
+*.zip binary
+*.tar.gz binary
+*.tgz binary
+*.rar binary
+*.7z binary
+
+# Media
+*.mp4 binary
+*.mp3 binary
+*.wav binary
+*.avi binary
+*.mov binary
+*.mkv binary
+*.flv binary
+
+# Database
+*.db binary
+*.sqlite binary
+*.mongo binary
+
+# Secrets
+*.pem binary
+*.key binary
+*.crt binary
+*.p12 binary
+*.jks binary
+*.keystore binary
+*.truststore binary
+*.cer binary
+*.pfx binary
+*.der binary
+*.pub binary
+
+# OS
+.DS_Store binary
+Thumbs.db binary
+
+# Linguist overrides
+knowledge-base/** linguist-documentation
+docs/** linguist-documentation
+*.md linguist-documentation
+*.yml linguist-configuration
+*.yaml linguist-configuration
+*.json linguist-configuration
+

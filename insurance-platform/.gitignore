@@ -1,0 +1,176 @@
+# Compiled class files
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.tmp
+*.pid
+*.gz
+*.zip
+*.tar
+*.tgz
+
+# Java
+target/
+build/
+out/
+gradle-app.setting
+!gradle-wrapper.jar
+.apt_generated
+.classpath
+.project
+.settings/
+bin/
+gradle/
+
+# Spring Boot
+spring-boot-devtools.properties
+application-local.properties
+application-*.properties
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+dist/
+.angular/
+.ng_pkg_build/
+.temp/
+
+# Angular
+*.ngfactory.ts
+*.ngsummary.json
+.angular-cli.json
+
+# IDE
+.idea/
+*.iml
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.development
+.env.staging
+.env.production
+
+# Logs
+logs/
+*.log
+*.out
+*.tmp
+
+# Backup
+*.bak
+*.backup
+*.old
+*.orig
+
+# Database
+*.db
+*.sqlite
+*.mongo
+mongodb-data/
+redis-data/
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Kubernetes
+*.kubeconfig
+*.kubeconfig.*
+*.secret.yaml
+*.secrets.yaml
+secrets/
+!secrets/examples
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+terraform.tfvars.json
+*.plan
+override.tf
+override.tf.json
+.terraformrc
+terraform.rc
+
+# Ansible
+*.retry
+*.vault
+hosts
+inventory
+
+# Security
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+*.keystore
+*.truststore
+*.cer
+*.p7b
+*.pfx
+*.der
+*.pub
+
+# Test
+coverage/
+.nyc_output/
+test-results/
+test-output/
+surefire-reports/
+failsafe-reports/
+jacoco.exec
+
+# Build
+*.tmp
+*.temp
+*.cache
+.cache/
+.idea/
+build/
+dist/
+out/
+target/
+.directory
+
+# OS
+.DS_Store
+Thumbs.db
+.directory
+*.swp
+*.swo
+*~
+
+# Misc
+*.log
+*.lock
+*.pid
+*.seed
+*.sql
+*.dump
+*.dat
+*.data
+*.json
+!package.json
+!package-lock.json
+!*.schema.json
+

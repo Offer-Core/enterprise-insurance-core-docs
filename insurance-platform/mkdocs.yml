@@ -1,0 +1,187 @@
+site_name: Enterprise Insurance Platform
+site_description: Comprehensive documentation for the Enterprise Insurance Platform
+site_author: Enterprise Architecture Team
+site_url: https://docs.insurance-platform.example.com
+
+repo_name: insurance-platform/docs
+repo_url: https://github.com/insurance-platform/docs
+edit_uri: edit/main/knowledge-base/
+
+copyright: Copyright &copy; 2024 Enterprise Insurance Platform
+
+theme:
+  name: material
+  language: en
+  palette:
+    - scheme: default
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - header.autohide
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+plugins:
+  - search
+  - git-revision-date-localized
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
+  - diagrams:
+      cache: true
+      cache_dir: '.cache/diagrams'
+      version: 'latest'
+      theme: 'default'
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - tables
+  - footnotes
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - Home: README.md
+  - Vision:
+    - 000-Vision/index.md
+    - Mission: 000-Vision/mission.md
+    - Strategy: 000-Vision/strategy.md
+    - Goals: 000-Vision/goals.md
+  - Business:
+    - 100-Business/index.md
+    - Overview: 100-Business/overview.md
+    - Processes: 100-Business/processes.md
+    - Requirements: 100-Business/requirements.md
+  - Domains:
+    - 200-Domains/index.md
+    - Authentication: 200-Domains/Authentication/index.md
+    - Customer: 200-Domains/Customer/index.md
+    - Organization: 200-Domains/Organization/index.md
+    - Product: 200-Domains/Product/index.md
+    - Quotation: 200-Domains/Quotation/index.md
+    - Proposal: 200-Domains/Proposal/index.md
+    - Policy: 200-Domains/Policy/index.md
+    - Claims: 200-Domains/Claims/index.md
+    - Payment: 200-Domains/Payment/index.md
+    - Billing: 200-Domains/Billing/index.md
+  - Architecture:
+    - 300-Architecture/index.md
+    - Overview: 300-Architecture/overview.md
+    - Principles: 300-Architecture/principles.md
+    - Patterns: 300-Architecture/patterns.md
+    - Hexagonal: 300-Architecture/hexagonal.md
+    - DDD: 300-Architecture/ddd.md
+    - CQRS: 300-Architecture/cqrs.md
+    - Event-Driven: 300-Architecture/event-driven.md
+    - Microservices: 300-Architecture/microservices.md
+    - Security: 300-Architecture/security.md
+    - Deployment: 300-Architecture/deployment.md
+  - Standards:
+    - 400-Standards/index.md
+    - Coding: 400-Standards/coding.md
+    - API: 400-Standards/api.md
+    - Database: 400-Standards/database.md
+    - UI: 400-Standards/ui.md
+    - Security: 400-Standards/security.md
+    - Testing: 400-Standards/testing.md
+  - API:
+    - 500-API/index.md
+    - REST: 500-API/rest.md
+    - GraphQL: 500-API/graphql.md
+    - Authentication: 500-API/authentication.md
+    - Authorization: 500-API/authorization.md
+    - Versioning: 500-API/versioning.md
+    - Error Handling: 500-API/error-handling.md
+  - Database:
+    - 600-Database/index.md
+    - Schema: 600-Database/schema.md
+    - Collections: 600-Database/collections.md
+    - Indexes: 600-Database/indexes.md
+    - Audit: 600-Database/audit.md
+    - Security: 600-Database/security.md
+  - UI:
+    - 700-UI/index.md
+    - Guidelines: 700-UI/guidelines.md
+    - Components: 700-UI/components.md
+    - Accessibility: 700-UI/accessibility.md
+    - Localization: 700-UI/localization.md
+  - Integrations:
+    - 800-Integrations/index.md
+    - External APIs: 800-Integrations/external-apis.md
+    - Events: 800-Integrations/events.md
+    - Messaging: 800-Integrations/messaging.md
+  - Decisions:
+    - 900-Decisions/index.md
+    - ADR 001: 900-Decisions/adr-001.md
+    - ADR 002: 900-Decisions/adr-002.md
+    - ADR 003: 900-Decisions/adr-003.md
+  - AI:
+    - 990-AI/index.md
+    - AGENTS.md: 990-AI/AGENTS.md
+    - CLAUDE.md: 990-AI/CLAUDE.md
+    - GEMINI.md: 990-AI/GEMINI.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/insurance-platform
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/insurance_platform
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/company/insurance-platform
+  analytics:
+    provider: google
+    property: UA-XXXXXX-X
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
