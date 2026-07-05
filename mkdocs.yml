@@ -19,19 +19,19 @@ theme:
     - search.highlight
 
 nav:
-  - Home: architecture/README.md
-  - Architecture:
-      - Overview: architecture/overview.md
-      - Domain Architecture: architecture/domain-architecture.md
-      - Integration Architecture: architecture/integration-architecture.md
-      - Security Architecture: architecture/security-architecture.md
-      - API Architecture: architecture/api-architecture.md
-      - Data Architecture: architecture/data-architecture.md
-      - UI Architecture: architecture/ui-architecture.md
-      - Operations and Observability: architecture/operations-observability.md
-      - Architecture Decisions: architecture/architecture-decisions.md
-      - Deployment Architecture: architecture/deployment-architecture.md
+  - Home: knowledge-base/architecture/README.md
   - Knowledge Base:
+      - Architecture:
+          - Overview: knowledge-base/architecture/overview.md
+          - Domain Architecture: knowledge-base/architecture/domain-architecture.md
+          - Integration Architecture: knowledge-base/architecture/integration-architecture.md
+          - Security Architecture: knowledge-base/architecture/security-architecture.md
+          - API Architecture: knowledge-base/architecture/api-architecture.md
+          - Data Architecture: knowledge-base/architecture/data-architecture.md
+          - UI Architecture: knowledge-base/architecture/ui-architecture.md
+          - Operations and Observability: knowledge-base/architecture/operations-observability.md
+          - Architecture Decisions: knowledge-base/architecture/architecture-decisions.md
+          - Deployment Architecture: knowledge-base/architecture/deployment-architecture.md
       - Vision: knowledge-base/000-Vision/index.md
       - Business: knowledge-base/100-Business/index.md
       - Domains:

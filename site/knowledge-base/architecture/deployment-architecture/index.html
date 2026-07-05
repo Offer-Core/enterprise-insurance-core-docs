@@ -12,28 +12,28 @@
         <meta name="author" content="Enterprise Architecture Team">
       
       
-        <link rel="canonical" href="https://offer-core.github.io/enterprise-insurance-core-docs/architecture/integration-architecture/">
+        <link rel="canonical" href="https://offer-core.github.io/enterprise-insurance-core-docs/knowledge-base/architecture/deployment-architecture/">
       
       
-        <link rel="prev" href="../domain-architecture/">
+        <link rel="prev" href="../architecture-decisions/">
       
       
-        <link rel="next" href="../security-architecture/">
+        <link rel="next" href="../../000-Vision/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Integration Architecture - Enterprise Insurance Platform</title>
+        <title>Deployment Architecture - Enterprise Insurance Platform</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -52,7 +52,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#integration-architecture" class="md-skip">
+        <a href="#deployment-architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Integration Architecture
+              Deployment Architecture
             
           </span>
         </div>
@@ -196,7 +196,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -278,7 +278,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Knowledge Base
   
 
     
@@ -291,6 +291,57 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Knowledge Base
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -360,37 +411,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Integration Architecture
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../integration-architecture/" class="md-nav__link">
         
   
   
@@ -406,70 +430,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#integration-goals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Integration Goals
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Integration Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-integration-areas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Integration Areas
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#guidance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Guidance
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -647,10 +607,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../deployment-architecture/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -666,6 +653,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#target-environment-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Target Environment Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suggested-starting-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suggested Starting Point
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -677,58 +728,7 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Knowledge Base
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Knowledge Base
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -737,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/000-Vision/" class="md-nav__link">
+      <a href="../../000-Vision/" class="md-nav__link">
         
   
   
@@ -765,7 +765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/100-Business/" class="md-nav__link">
+      <a href="../../100-Business/" class="md-nav__link">
         
   
   
@@ -803,10 +803,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
             
   
   
@@ -824,8 +824,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -842,7 +842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/200-Domains/" class="md-nav__link">
+      <a href="../../200-Domains/" class="md-nav__link">
         
   
   
@@ -870,7 +870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/200-Domains/Authentication/" class="md-nav__link">
+      <a href="../../200-Domains/Authentication/" class="md-nav__link">
         
   
   
@@ -906,7 +906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/400-Standards/" class="md-nav__link">
+      <a href="../../400-Standards/" class="md-nav__link">
         
   
   
@@ -934,7 +934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/500-API/" class="md-nav__link">
+      <a href="../../500-API/" class="md-nav__link">
         
   
   
@@ -962,7 +962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/600-Database/" class="md-nav__link">
+      <a href="../../600-Database/" class="md-nav__link">
         
   
   
@@ -990,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/700-UI/" class="md-nav__link">
+      <a href="../../700-UI/" class="md-nav__link">
         
   
   
@@ -1018,7 +1018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/800-Integrations/" class="md-nav__link">
+      <a href="../../800-Integrations/" class="md-nav__link">
         
   
   
@@ -1046,7 +1046,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/900-Decisions/" class="md-nav__link">
+      <a href="../../900-Decisions/" class="md-nav__link">
         
   
   
@@ -1074,7 +1074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/950-Templates/" class="md-nav__link">
+      <a href="../../950-Templates/" class="md-nav__link">
         
   
   
@@ -1102,7 +1102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/990-AI/" class="md-nav__link">
+      <a href="../../990-AI/" class="md-nav__link">
         
   
   
@@ -1157,10 +1157,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#integration-goals" class="md-nav__link">
+  <a href="#target-environment-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Integration Goals
+        Target Environment Model
       
     </span>
   </a>
@@ -1168,10 +1168,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-patterns" class="md-nav__link">
+  <a href="#runtime-considerations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Integration Patterns
+        Runtime Considerations
       
     </span>
   </a>
@@ -1179,10 +1179,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-integration-areas" class="md-nav__link">
+  <a href="#operational-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Integration Areas
+        Operational Principles
       
     </span>
   </a>
@@ -1190,10 +1190,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#guidance" class="md-nav__link">
+  <a href="#suggested-starting-point" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Guidance
+        Suggested Starting Point
       
     </span>
   </a>
@@ -1220,27 +1220,24 @@
   
 
 
-<h1 id="integration-architecture">Integration Architecture</h1>
-<h2 id="integration-goals">Integration Goals</h2>
-<p>The platform must connect internal capabilities with external systems in a predictable and secure way for Saudi Arabia operations.</p>
-<h2 id="integration-patterns">Integration Patterns</h2>
+<h1 id="deployment-architecture">Deployment Architecture</h1>
+<h2 id="target-environment-model">Target Environment Model</h2>
+<p>The platform should be deployable across multiple environments such as development, staging, and production for Saudi Arabia deployment operations.</p>
+<h2 id="runtime-considerations">Runtime Considerations</h2>
 <ul>
-<li><strong>REST APIs</strong> for synchronous request-response interactions</li>
-<li><strong>Events</strong> for asynchronous workflows and decoupled processing</li>
-<li><strong>Message queues</strong> for reliable delivery of domain events</li>
-<li><strong>Adapters</strong> for third-party policy, billing, and claims systems</li>
+<li>Containerized services with clear dependency boundaries</li>
+<li>Environment-specific configuration and secrets</li>
+<li>Health checks and readiness probes for each service</li>
+<li>Centralized logging, metrics, and tracing</li>
 </ul>
-<h2 id="key-integration-areas">Key Integration Areas</h2>
+<h2 id="operational-principles">Operational Principles</h2>
 <ul>
-<li>Policy and billing providers</li>
-<li>Claims and fraud verification services</li>
-<li>Notification and document delivery channels</li>
-<li>Customer identity and access providers</li>
-<li>Saudi-local payment, document, and regulatory integration points</li>
-<li>Metadata and configuration services that expose dynamic field and workflow definitions to the UI</li>
+<li>Use infrastructure as code for repeatable environment provisioning.</li>
+<li>Apply deployment automation for safe release management.</li>
+<li>Monitor service health and business-critical workflows continuously.</li>
 </ul>
-<h2 id="guidance">Guidance</h2>
-<p>All integrations should expose clear contracts, include error handling, and support observability and retry behavior where needed.</p>
+<h2 id="suggested-starting-point">Suggested Starting Point</h2>
+<p>A container-based deployment model with orchestration, observability, and automated promotion workflows provides a strong foundation for growth.</p>
 
 
 
@@ -1294,10 +1291,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

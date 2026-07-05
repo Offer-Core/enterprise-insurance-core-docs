@@ -12,28 +12,28 @@
         <meta name="author" content="Enterprise Architecture Team">
       
       
-        <link rel="canonical" href="https://offer-core.github.io/enterprise-insurance-core-docs/architecture/architecture-decisions/">
+        <link rel="canonical" href="https://offer-core.github.io/enterprise-insurance-core-docs/knowledge-base/architecture/api-architecture/">
       
       
-        <link rel="prev" href="../operations-observability/">
+        <link rel="prev" href="../security-architecture/">
       
       
-        <link rel="next" href="../deployment-architecture/">
+        <link rel="next" href="../data-architecture/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Architecture Decisions - Enterprise Insurance Platform</title>
+        <title>API Architecture - Enterprise Insurance Platform</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -52,7 +52,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#architecture-decisions" class="md-skip">
+        <a href="#api-architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Architecture Decisions
+              API Architecture
             
           </span>
         </div>
@@ -196,7 +196,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -278,7 +278,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Knowledge Base
   
 
     
@@ -291,6 +291,57 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Knowledge Base
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -416,10 +467,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../api-architecture/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -435,6 +513,142 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architectural-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Layers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Layers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-edgeapi-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Edge/API Gateway
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-domain-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Domain APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-integration-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Integration APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Style
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suggested-endpoint-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suggested Endpoint Groups
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versioning-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-extension-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Extension API
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -528,37 +742,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture Decisions
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../architecture-decisions/" class="md-nav__link">
         
   
   
@@ -574,81 +761,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#adr-1-java-and-spring-boot-as-the-core-platform-stack" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ADR 1: Java and Spring Boot as the Core Platform Stack
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adr-2-metadata-driven-extensibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ADR 2: Metadata-Driven Extensibility
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adr-3-jsonb-based-dynamic-attributes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ADR 3: JSONB-Based Dynamic Attributes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adr-4-schema-isolation-for-line-specific-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ADR 4: Schema Isolation for Line-Specific Data
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adr-5-event-driven-integration-for-workflow-coordination" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ADR 5: Event-Driven Integration for Workflow Coordination
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -688,58 +800,7 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Knowledge Base
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Knowledge Base
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -748,7 +809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/000-Vision/" class="md-nav__link">
+      <a href="../../000-Vision/" class="md-nav__link">
         
   
   
@@ -776,7 +837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/100-Business/" class="md-nav__link">
+      <a href="../../100-Business/" class="md-nav__link">
         
   
   
@@ -814,10 +875,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
             
   
   
@@ -835,8 +896,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -853,7 +914,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/200-Domains/" class="md-nav__link">
+      <a href="../../200-Domains/" class="md-nav__link">
         
   
   
@@ -881,7 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/200-Domains/Authentication/" class="md-nav__link">
+      <a href="../../200-Domains/Authentication/" class="md-nav__link">
         
   
   
@@ -917,7 +978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/400-Standards/" class="md-nav__link">
+      <a href="../../400-Standards/" class="md-nav__link">
         
   
   
@@ -945,7 +1006,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/500-API/" class="md-nav__link">
+      <a href="../../500-API/" class="md-nav__link">
         
   
   
@@ -973,7 +1034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/600-Database/" class="md-nav__link">
+      <a href="../../600-Database/" class="md-nav__link">
         
   
   
@@ -1001,7 +1062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/700-UI/" class="md-nav__link">
+      <a href="../../700-UI/" class="md-nav__link">
         
   
   
@@ -1029,7 +1090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/800-Integrations/" class="md-nav__link">
+      <a href="../../800-Integrations/" class="md-nav__link">
         
   
   
@@ -1057,7 +1118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/900-Decisions/" class="md-nav__link">
+      <a href="../../900-Decisions/" class="md-nav__link">
         
   
   
@@ -1085,7 +1146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/950-Templates/" class="md-nav__link">
+      <a href="../../950-Templates/" class="md-nav__link">
         
   
   
@@ -1113,7 +1174,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../knowledge-base/990-AI/" class="md-nav__link">
+      <a href="../../990-AI/" class="md-nav__link">
         
   
   
@@ -1168,10 +1229,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#adr-1-java-and-spring-boot-as-the-core-platform-stack" class="md-nav__link">
+  <a href="#purpose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 1: Java and Spring Boot as the Core Platform Stack
+        Purpose
       
     </span>
   </a>
@@ -1179,10 +1240,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adr-2-metadata-driven-extensibility" class="md-nav__link">
+  <a href="#architectural-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 2: Metadata-Driven Extensibility
+        Architectural Principles
       
     </span>
   </a>
@@ -1190,10 +1251,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adr-3-jsonb-based-dynamic-attributes" class="md-nav__link">
+  <a href="#api-layers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 3: JSONB-Based Dynamic Attributes
+        API Layers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Layers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-edgeapi-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Edge/API Gateway
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-domain-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Domain APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-integration-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Integration APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Style
       
     </span>
   </a>
@@ -1201,10 +1312,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adr-4-schema-isolation-for-line-specific-data" class="md-nav__link">
+  <a href="#suggested-endpoint-groups" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 4: Schema Isolation for Line-Specific Data
+        Suggested Endpoint Groups
       
     </span>
   </a>
@@ -1212,10 +1323,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adr-5-event-driven-integration-for-workflow-coordination" class="md-nav__link">
+  <a href="#versioning-strategy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADR 5: Event-Driven Integration for Workflow Coordination
+        Versioning Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-extension-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Extension API
       
     </span>
   </a>
@@ -1242,38 +1364,68 @@
   
 
 
-<h1 id="architecture-decisions">Architecture Decisions</h1>
-<p>This document captures the key architectural decisions for the platform and the rationale behind them.</p>
-<h2 id="adr-1-java-and-spring-boot-as-the-core-platform-stack">ADR 1: Java and Spring Boot as the Core Platform Stack</h2>
-<p>Decision: Use Java with Spring Boot for backend services.</p>
-<p>Reason:
-- strong enterprise support
-- mature ecosystem for APIs, persistence, and security
-- good fit for modular service design</p>
-<h2 id="adr-2-metadata-driven-extensibility">ADR 2: Metadata-Driven Extensibility</h2>
-<p>Decision: Support business-driven field and workflow extension through metadata.</p>
-<p>Reason:
-- reduces the need for code changes for new business requirements
-- supports future line onboarding
-- keeps the core system stable while allowing line-specific evolution</p>
-<h2 id="adr-3-jsonb-based-dynamic-attributes">ADR 3: JSONB-Based Dynamic Attributes</h2>
-<p>Decision: Use JSONB storage for dynamic attributes rather than a fully generic EAV model.</p>
-<p>Reason:
-- simpler and more performant for the current scope
-- easier to query and reason about than a universal EAV structure
-- suitable for nested and future line-specific data</p>
-<h2 id="adr-4-schema-isolation-for-line-specific-data">ADR 4: Schema Isolation for Line-Specific Data</h2>
-<p>Decision: Keep line-specific tables and migrations isolated from the shared kernel schema.</p>
-<p>Reason:
-- reduces change risk
-- avoids cross-team migration conflicts
-- supports independent delivery of future lines</p>
-<h2 id="adr-5-event-driven-integration-for-workflow-coordination">ADR 5: Event-Driven Integration for Workflow Coordination</h2>
-<p>Decision: Use events for asynchronous business workflows and cross-service communication.</p>
-<p>Reason:
-- decouples services
-- improves scalability
-- simplifies future integration points</p>
+<h1 id="api-architecture">API Architecture</h1>
+<h2 id="purpose">Purpose</h2>
+<p>The platform exposes a set of internal and external APIs that support policy, claims, billing, underwriting, and administration workflows for the Saudi Arabia MVP.</p>
+<h2 id="architectural-principles">Architectural Principles</h2>
+<ul>
+<li>API-first design for all domain capabilities</li>
+<li>Versioned contracts for backward compatibility</li>
+<li>Clear separation between internal application APIs and external partner APIs</li>
+<li>Use of asynchronous events for long-running workflows</li>
+<li>Strong authentication and authorization at every boundary</li>
+</ul>
+<h2 id="api-layers">API Layers</h2>
+<h3 id="1-edgeapi-gateway">1. Edge/API Gateway</h3>
+<p>The API Gateway is the single entry point for external clients and partner systems.</p>
+<p>Responsibilities:
+- request routing
+- authentication and authorization
+- throttling and rate limiting
+- request/response transformation
+- observability and tracing</p>
+<h3 id="2-domain-apis">2. Domain APIs</h3>
+<p>Each line or bounded context exposes its own API surface.</p>
+<p>Suggested modules:
+- Policy API
+- Claims API
+- Billing API
+- Underwriting API
+- Customer API</p>
+<h3 id="3-integration-apis">3. Integration APIs</h3>
+<p>These are adapter-style APIs for external systems such as payment providers, document services, and regulatory reporting interfaces.</p>
+<h2 id="api-style">API Style</h2>
+<ul>
+<li>REST for synchronous operations</li>
+<li>Kafka or event bus for asynchronous integration</li>
+<li>OpenAPI definitions for API contracts</li>
+<li>JSON payloads with consistent envelope structure</li>
+</ul>
+<h2 id="suggested-endpoint-groups">Suggested Endpoint Groups</h2>
+<ul>
+<li><code>/customers</code></li>
+<li><code>/policies</code></li>
+<li><code>/claims</code></li>
+<li><code>/billing/transactions</code></li>
+<li><code>/underwriting/rules</code></li>
+<li><code>/metadata/entities</code></li>
+<li><code>/metadata/forms</code></li>
+</ul>
+<h2 id="versioning-strategy">Versioning Strategy</h2>
+<ul>
+<li>URI versioning such as <code>/v1/</code></li>
+<li>Breaking changes require a new major version</li>
+<li>Non-breaking changes remain compatible within the same major version</li>
+</ul>
+<h2 id="dynamic-extension-api">Dynamic Extension API</h2>
+<p>The metadata layer must expose APIs for runtime extensibility.</p>
+<p>Example endpoints:
+- <code>GET /metadata/entities</code>
+- <code>POST /metadata/entities</code>
+- <code>GET /metadata/entities/{entityCode}/fields</code>
+- <code>POST /metadata/forms</code>
+- <code>GET /metadata/rules</code></p>
+<p>These endpoints allow the UI to render dynamic forms and drive workflow configuration without changing backend code.</p>
 
 
 
@@ -1327,10 +1479,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
