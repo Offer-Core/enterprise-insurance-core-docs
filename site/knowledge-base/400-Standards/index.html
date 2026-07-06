@@ -18,7 +18,7 @@
         <link rel="prev" href="../200-Domains/Authentication/">
       
       
-        <link rel="next" href="../500-API/">
+        <link rel="next" href="../950-Templates/">
       
       
         
@@ -1059,146 +1059,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../500-API/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../600-Database/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Database
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../700-UI/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    UI
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../800-Integrations/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Integrations
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../900-Decisions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Decisions
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../950-Templates/" class="md-nav__link">
         
   
@@ -1491,7 +1351,7 @@
 </code></pre></div>
 <hr />
 <h2 id="2-api-design-rest-guidelines">2. API Design &amp; REST Guidelines</h2>
-<p>All Spring Boot controllers must follow the standard API conventions outlined in the <a href="../500-API/">API Design Standards</a>.</p>
+<p>All Spring Boot controllers must follow the standard API conventions outlined in the <a href="../architecture/api-architecture/">API Architecture</a>.</p>
 <h3 id="controller-structure-specification">Controller Structure Specification</h3>
 <ul>
 <li>Use <code>@RestController</code> and avoid returning raw map structures. Use strongly typed request/response Data Transfer Objects (DTOs).</li>
@@ -1527,7 +1387,7 @@
 </code></pre></div>
 <hr />
 <h2 id="3-global-exception-handling-error-envelope">3. Global Exception Handling &amp; Error Envelope</h2>
-<p>To ensure the backend returns the standardized JSON error envelope defined in <a href="../500-API/#standard-error-response-payload">API Error Handling</a>, a global <code>@RestControllerAdvice</code> handler must intercept all application boundaries.</p>
+<p>To ensure the backend returns the standardized JSON error envelope defined in <a href="../architecture/api-architecture/#standard-error-response-payload">API Error Handling</a>, a global <code>@RestControllerAdvice</code> handler must intercept all application boundaries.</p>
 <h3 id="exception-handler-implementation">Exception Handler Implementation</h3>
 <div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">com.enterprise.insurance.core.exception</span><span class="p">;</span>
 

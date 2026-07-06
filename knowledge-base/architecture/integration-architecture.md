@@ -5,6 +5,8 @@
 The platform integrates with Saudi Arabia national systems, payment providers, and internal service boundaries using a standardised set of integration patterns.
 All integrations are wrapped in anti-corruption layers (ACL) that translate between external API schemas and internal domain models, ensuring the core platform is never directly coupled to third-party contracts.
 
+This document covers both the **integration architecture patterns** (adapters, resilience, event-driven communication) and the **specific integration contracts** (Yakeen, Najm, MADA, SADAD, etc.).
+
 ---
 
 ## Integration Patterns
@@ -58,6 +60,30 @@ Yakeen is the Saudi government system for verifying citizen and resident identit
 **Integration Type:** REST (SOAP wrapper in older versions)
 **Trigger:** Policy application — verify customer identity before quote binding
 
+#### API Contract Details
+- **Protocol:** REST over HTTPS (Mutual TLS required).
+- **Endpoint:** `POST /yakeen/v1/verify-citizen`
+- **Request Schema:**
+  ```json
+  {
+    "nationalId": "1098765432",
+    "dateOfBirthG": "1990-05-15"
+  }
+  ```
+- **Response Schema:**
+  ```json
+  {
+    "status": "VALID",
+    "firstNameAr": "أحمد",
+    "lastNameAr": "الحربي",
+    "firstNameEn": "Ahmed",
+    "lastNameEn": "Al-Harbi",
+    "gender": "M",
+    "occupation": "Engineer"
+  }
+  ```
+
+#### Adapter Implementation
 ```java
 // Internal port (domain interface)
 public interface IdentityVerificationPort {
@@ -116,9 +142,26 @@ public record IdentityVerificationResult(
 
 Najm provides access to vehicle accident history for Saudi motor insurance underwriting.
 
-**Integration Type:** REST API
+**Integration Type:** SOAP/XML or REST (SOAP WSDL used for MVP)
 **Trigger:** Motor policy underwriting — fetch vehicle/driver loss history
 
+#### API Contract Details
+- **Endpoint:** `POST /najm/v2/accident-history`
+- **Request Payload:**
+  ```xml
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:naj="http://najm.sa/api">
+     <soapenv:Header/>
+     <soapenv:Body>
+        <naj:GetAccidentHistoryRequest>
+           <naj:NationalId>1098765432</naj:NationalId>
+           <naj:SequenceNumber>123456789</naj:SequenceNumber>
+        </naj:GetAccidentHistoryRequest>
+     </soapenv:Body>
+  </soapenv:Envelope>
+  ```
+- **Response Data:** Returns number of historical accidents, fault percentages, and claim status records used as multipliers in the Motor Rating Engine.
+
+#### Adapter Implementation
 ```java
 public interface AccidentHistoryPort {
     AccidentHistoryResult getVehicleHistory(String vehicleSequenceNumber);
@@ -183,6 +226,21 @@ public record SadadBillRequest(
     String customerName
 ) {}
 ```
+
+#### Payment Flow Architecture
+1. **Initiate Payment**: Frontend requests payment url from Spring Boot backend.
+2. **Redirection**: User completes authentication on the secure Mada/SADAD gateway.
+3. **Webhook Callback**: The gateway sends a signed POST webhook containing status:
+   ```json
+   {
+     "transactionId": "tx_90812739128",
+     "amount": 1050.00,
+     "currency": "SAR",
+     "status": "CAPTURED",
+     "signature": "sha256_hash_here"
+   }
+   ```
+4. **Settlement**: Backend validates the signature, posts to `core.financial_transaction`, and transitions policy status to `ACTIVE`.
 
 ---
 

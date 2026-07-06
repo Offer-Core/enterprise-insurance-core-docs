@@ -26,11 +26,11 @@ Use the navigation menu to explore the content in this section.
 - [Domain Models](../200-Domains/index.md)
 - [Architecture](../architecture/README.md)
 - [Standards](../400-Standards/index.md)
-- [API Design](../500-API/index.md)
-- [Database Design](../600-Database/index.md)
-- [User Interface](../700-UI/index.md)
-- [Integrations](../800-Integrations/index.md)
-- [Decisions](../900-Decisions/index.md)
+- [API Architecture](../architecture/api-architecture.md)
+- [Data Architecture](../architecture/data-architecture.md)
+- [UI Architecture](../architecture/ui-architecture.md)
+- [Integration Architecture](../architecture/integration-architecture.md)
+- [Architecture Decisions](../architecture/architecture-decisions.md)
 - [Templates](../950-Templates/index.md)
 - [AI Assistance](../990-AI/index.md)
 
@@ -46,7 +46,3 @@ This content was generated on 2026-07-01 19:01:44 UTC.
 ## Questions?
 
 For questions about this documentation, please contact the Enterprise Architecture Team.
-
-
-
-

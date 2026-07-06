@@ -5,6 +5,8 @@
 The data architecture follows a **layered, schema-separated model** that keeps core shared data stable while allowing line-specific data and dynamic extensions to evolve independently.
 Data ownership is aligned to domain boundaries — each service owns its tables and is the sole writer to them.
 
+This document covers both the **conceptual data architecture** (principles, schema ownership, governance) and the **physical database design** (DDL, indexing, migration scripts).
+
 ---
 
 ## Data Principles
@@ -369,3 +371,71 @@ CREATE INDEX idx_policies_line_gin ON core.policies USING GIN(line_specific_data
 | Audit trail | All writes produce an audit_log entry |
 | Backup | Daily encrypted backup; 30-day retention |
 | Data classification | Tagged in field_definitions (`sensitivity` attribute: PUBLIC, INTERNAL, CONFIDENTIAL, PII) |
+
+---
+
+## Database Indexing & Optimization
+
+To maintain rapid responses in production, the database uses tailored SQL indexes:
+
+### B-Tree Indexes on Primary/Foreign Keys
+All FK relationships require B-Tree indexes to prevent performance degradation on cascades and joins:
+```sql
+CREATE INDEX idx_policy_customer ON core.policy(global_customer_id);
+CREATE INDEX idx_claim_policy ON core.claim(policy_id);
+CREATE INDEX idx_transaction_policy ON core.financial_transaction(policy_id);
+CREATE INDEX idx_motor_driver_policy ON motor.motor_driver(policy_id);
+CREATE INDEX idx_motor_vehicle_policy ON motor.motor_vehicle(policy_id);
+```
+
+### GIN Indexes on JSONB Columns
+To query dynamic attributes inside the `JSONB` payload efficiently, we create **Generalized Inverted Index (GIN)** structures:
+```sql
+-- GIN Index on Policy dynamic attributes
+CREATE INDEX idx_policy_dynamic_data ON core.policy USING gin (line_specific_data);
+
+-- GIN Index on Customer dynamic attributes
+CREATE INDEX idx_customer_dynamic_data ON core.customer USING gin (line_specific_data);
+```
+
+The GIN index supports PostgreSQL containment operators (e.g. `@>`), meaning deep queries execute instantly:
+```sql
+SELECT policy_id 
+FROM core.policy 
+WHERE line_specific_data @> '{"vehicle": {"year": 2021}}';
+```
+
+---
+
+## Configuration-Driven Mechanism
+
+The engine relies on `metadata` tables to dynamically validate and store schemas for lines of business.
+
+### How Dynamic Attributes Walk Through the Database
+1. **Definition**: An administrator registers a new `EntityDefinition` (e.g., `HealthPolicy`) and associates several `FieldDefinition` parameters (e.g. `member_age`, `pre_existing_conditions`).
+2. **Ingress**: When a `HealthPolicy` quote request arrives at the Gateway:
+   - The validation engine queries `metadata.field_definition` and `metadata.rule_definition` dynamically.
+   - It validates inputs against configured regexes and rules.
+3. **Storage**: Approved values are nested inside the `line_specific_data` `JSONB` column on the `core.policy` table.
+
+### Dynamic Payload Example: Health Insurance
+A future Health Insurance extension stores its attributes in the `core.policy.line_specific_data` column like so:
+
+```json
+{
+  "memberCount": 4,
+  "class": "VIP",
+  "deductibleOption": "Zero-Deductible",
+  "insuredMembers": [
+    {
+      "nationalId": "1023456789",
+      "dateOfBirth": "1988-12-01",
+      "preExistingConditions": [
+        "Hypertension"
+      ]
+    }
+  ]
+}
+```
+
+This JSON matches configuration-driven field definitions registered in the metadata schema, allowing full extensibility without altering SQL tables.

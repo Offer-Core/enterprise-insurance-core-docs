@@ -5,6 +5,84 @@ Each ADR describes the context, decision, rationale, and consequences.
 
 ---
 
+## How to Read ADRs
+
+Each ADR follows this structure:
+
+| Field | Description |
+|---|---|
+| **Status** | `Proposed` → `Accepted` → `Deprecated` / `Superseded by ADR-XXX` |
+| **Date** | When the decision was made |
+| **Context** | The problem or situation that required a decision |
+| **Decision** | The chosen approach |
+| **Rationale** | Why this option was selected over alternatives |
+| **Consequences** | ✅ Benefits and ⚠️ trade-offs |
+
+---
+
+## Decision Summary
+
+| ADR | Title | Status |
+|---|---|---|
+| [ADR-001](#adr-001-java-21--spring-boot-3x-as-the-core-backend-stack) | Java 21 + Spring Boot 3.x as Core Backend Stack | ✅ Accepted |
+| [ADR-002](#adr-002-angular--primeng--tailwindcss-for-the-frontend) | Angular + PrimeNG + TailwindCSS for Frontend | ✅ Accepted |
+| [ADR-003](#adr-003-metadata-driven-extensibility) | Metadata-Driven Extensibility | ✅ Accepted |
+| [ADR-004](#adr-004-jsonb-for-dynamic-attribute-storage) | JSONB for Dynamic Attribute Storage | ✅ Accepted |
+| [ADR-005](#adr-005-schema-isolation-for-line-specific-data) | Schema Isolation for Line-Specific Data | ✅ Accepted |
+| [ADR-006](#adr-006-event-driven-integration-for-workflow-coordination) | Event-Driven Integration via Kafka | ✅ Accepted |
+| [ADR-007](#adr-007-keycloak-as-the-identity-provider) | Keycloak as Identity Provider | ✅ Accepted |
+| [ADR-008](#adr-008-postgresql-16-as-the-primary-database) | PostgreSQL 16 as Primary Database | ✅ Accepted |
+| [ADR-009](#adr-009-flyway-for-database-migration-management) | Flyway for Database Migration Management | ✅ Accepted |
+| [ADR-010](#adr-010-resilience4j-for-integration-resilience) | Resilience4j for Integration Resilience | ✅ Accepted |
+
+---
+
+## Technology Stack Summary
+
+The following stack decisions are the result of the ADRs above:
+
+### Backend
+
+| Concern | Technology | ADR |
+|---|---|---|
+| Language | Java 21 (LTS) | ADR-001 |
+| Framework | Spring Boot 3.3+ | ADR-001 |
+| Database | PostgreSQL 16 | ADR-008 |
+| DB Migration | Flyway 10.x | ADR-009 |
+| ORM | Spring Data JPA (Hibernate 6) | ADR-001 |
+| Messaging | Apache Kafka | ADR-006 |
+| Cache | Redis 7 | - |
+| Security | Spring Security + Keycloak | ADR-007 |
+| Resilience | Resilience4j | ADR-010 |
+| Observability | Micrometer + Prometheus + Loki + Tempo | - |
+| Build | Maven 3.9+ | - |
+| Containerisation | Docker + Kubernetes | - |
+
+### Frontend
+
+| Concern | Technology | ADR |
+|---|---|---|
+| Framework | Angular 18+ | ADR-002 |
+| UI Components | PrimeNG 17+ | ADR-002 |
+| Styling | TailwindCSS 3.x | ADR-002 |
+| State Management | Angular Signals / RxJS | - |
+| Internationalisation | ngx-translate | - |
+| HTTP Client | Angular HttpClient + interceptors | - |
+| Forms | Angular Reactive Forms | ADR-003 |
+| Build | Angular CLI + Vite | - |
+
+---
+
+## How to Add a New ADR
+
+1. Use the next available ADR number
+2. Add the decision to this document following the existing format
+3. Add a row to the Decision Summary table above
+4. Status must start as `Proposed` — move to `Accepted` after team review
+5. If superseding an existing ADR, mark the old one as `Superseded by ADR-XXX`
+
+---
+
 ## ADR-001: Java 21 + Spring Boot 3.x as the Core Backend Stack
 
 **Status:** Accepted  

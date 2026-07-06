@@ -29,7 +29,7 @@ com.enterprise.insurance
 
 ## 2. API Design & REST Guidelines
 
-All Spring Boot controllers must follow the standard API conventions outlined in the [API Design Standards](../500-API/index.md).
+All Spring Boot controllers must follow the standard API conventions outlined in the [API Architecture](../architecture/api-architecture.md).
 
 ### Controller Structure Specification
 - Use `@RestController` and avoid returning raw map structures. Use strongly typed request/response Data Transfer Objects (DTOs).
@@ -69,7 +69,7 @@ public class MotorPolicyController {
 
 ## 3. Global Exception Handling & Error Envelope
 
-To ensure the backend returns the standardized JSON error envelope defined in [API Error Handling](../500-API/index.md#standard-error-response-payload), a global `@RestControllerAdvice` handler must intercept all application boundaries.
+To ensure the backend returns the standardized JSON error envelope defined in [API Error Handling](../architecture/api-architecture.md#standard-error-response-payload), a global `@RestControllerAdvice` handler must intercept all application boundaries.
 
 ### Exception Handler Implementation
 ```java
