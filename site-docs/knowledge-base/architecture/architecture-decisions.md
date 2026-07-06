@@ -1,342 +1,372 @@
-# Architecture Decisions
+# Architecture Decisions (ADRs)
 
-This document captures the key Architecture Decision Records (ADRs) for the Enterprise Insurance Platform.
-Each ADR describes the context, decision, rationale, and consequences.
+This document records key architectural decisions and the rationale behind them.
 
 ---
 
-## How to Read ADRs
+## ADR-001: Event-Sourced Metadata for Configuration Changes
 
-Each ADR follows this structure:
+**Status:** Accepted  
+**Date:** 2026-07-06  
+**Domain:** Data Architecture, Metadata Engine
 
-| Field | Description |
+### Context
+
+The platform needs to support dynamic configuration changes (product definitions, field definitions, form layouts, workflow definitions) without downtime. Changes must be fully auditable, reversible, and traceable.
+
+### Decision
+
+All metadata configuration changes will be stored as **immutable events** in an event store (`event_store.metadata_events`). The current state is materialized via snapshots (`event_store.snapshot_store`). This follows the event sourcing pattern applied specifically to the metadata/configuration domain.
+
+### Consequences
+
+**Positive:**
+- Full audit trail of every configuration change (who, what, when)
+- Point-in-time reconstruction of configuration state
+- Zero-downtime configuration changes (no direct table mutations)
+- Event-driven cache invalidation for downstream consumers
+- Natural versioning of configuration
+
+**Negative:**
+- Additional infrastructure (event store tables, snapshot management)
+- Eventual consistency between event write and snapshot materialization
+- Requires snapshot compaction strategy for long-running aggregates
+
+### Alternatives Considered
+
+| Alternative | Reason for Rejection |
 |---|---|
-| **Status** | `Proposed` → `Accepted` → `Deprecated` / `Superseded by ADR-XXX` |
-| **Date** | When the decision was made |
-| **Context** | The problem or situation that required a decision |
-| **Decision** | The chosen approach |
-| **Rationale** | Why this option was selected over alternatives |
-| **Consequences** | ✅ Benefits and ⚠️ trade-offs |
+| Direct CRUD on metadata tables | No audit trail, no versioning, no point-in-time recovery |
+| Database triggers + audit table | Tight coupling, hard to reconstruct state at a point in time |
+| Outbox pattern with Kafka | Over-engineered for metadata; event store in PostgreSQL is sufficient |
 
 ---
 
-## Decision Summary
+## ADR-002: Hybrid Persistence — Strongly Typed Core + JSONB Extensions
+
+**Status:** Accepted  
+**Date:** 2026-07-06  
+**Domain:** Data Architecture
+
+### Context
+
+The platform must support multiple lines of business (Motor, Health, Travel) with different data shapes while maintaining a stable core schema. New lines should be onboarded without schema changes to core tables.
+
+### Decision
+
+Use a **hybrid persistence model**:
+1. **Core entities** (customer, policy, claim, financial transaction) are strongly typed with dedicated columns
+2. **Line-specific data** is stored in `JSONB` columns (`line_specific_data`, `dynamic_attributes`) on core tables
+3. **Line-specific entities** (vehicles, drivers, health members) use dedicated tables in line-owned schemas (`motor.*`, `health.*`)
+4. **Field definitions** are stored in `metadata.field_definitions` and drive UI rendering and validation
+
+### Consequences
+
+**Positive:**
+- Core schema remains stable across lines of business
+- JSONB supports nested structures naturally (no EAV complexity)
+- GIN indexes enable efficient querying of JSONB data
+- Line teams own their schema migrations independently
+- UI-driven field additions without code changes
+
+**Negative:**
+- JSONB lacks native referential integrity (enforced at application layer)
+- Querying JSONB is less performant than typed columns for high-volume queries
+- Requires discipline to avoid "JSONB dump" anti-pattern
+
+### Alternatives Considered
+
+| Alternative | Reason for Rejection |
+|---|---|
+| Entity-Attribute-Value (EAV) | Complex queries, poor performance, no nested structure support |
+| Fully dynamic (all JSONB) | Loses type safety, no FK constraints, harder to maintain |
+| Schema-per-line-of-business | Duplication of core entities, cross-line reporting complexity |
+
+---
+
+## ADR-003: Multi-Tenant Isolation via Row-Level Security
+
+**Status:** Accepted  
+**Date:** 2026-07-06  
+**Domain:** Data Architecture, Security
+
+### Context
+
+The platform serves multiple insurance companies (tenants) in the Saudi market. Data isolation is a regulatory requirement. The architecture must support both SaaS (multi-tenant) and self-hosted (single-tenant) deployment models.
+
+### Decision
+
+Use **Row-Level Security (RLS)** on PostgreSQL as the default isolation mechanism for SaaS deployments. Each table includes a `tenant_id` column, and RLS policies filter rows based on the current session's tenant context.
+
+For self-hosted deployments, use **schema-per-tenant** or **database-per-tenant** isolation.
+
+### Consequences
+
+**Positive:**
+- Single database instance, lower operational overhead
+- RLS policies are enforced at the database level (cannot be bypassed by application)
+- Tenant context is set at connection time, not in application code
+- Schema-per-tenant option available for clients with strict isolation requirements
+
+**Negative:**
+- RLS adds query overhead (policy evaluation per row)
+- All queries must include `tenant_id` or rely on RLS (can mask bugs)
+- Connection pooling must set tenant context per request
+
+### Alternatives Considered
+
+| Alternative | Reason for Rejection |
+|---|---|
+| Application-level filtering | Risk of data leakage if filter is forgotten; not defense-in-depth |
+| Database-per-tenant | Higher operational cost, suitable only for enterprise self-hosted |
+| Schema-per-tenant | Good for self-hosted, but adds migration complexity for SaaS |
+
+---
+
+## ADR-004: Data Quality Framework with Metadata-Driven Rules
+
+**Status:** Accepted  
+**Date:** 2026-07-06  
+**Domain:** Data Architecture, Operations
+
+### Context
+
+Regulatory compliance (SAMA) requires data accuracy, completeness, and timeliness. The platform needs a systematic approach to data quality that is configurable, measurable, and auditable.
+
+### Decision
+
+Implement a **metadata-driven data quality framework**:
+1. Quality rules are defined in `metadata.data_quality_rules` with type, severity, and logic
+2. Rules are enforced at multiple levels: schema (DDL constraints), application (Bean Validation), and scheduled (cron jobs)
+3. Quality metrics are exposed via Prometheus and visualized in Grafana
+4. Failures trigger alerts via AlertManager
+
+### Consequences
+
+**Positive:**
+- Quality rules are configurable without code changes
+- Consistent enforcement across all lines of business
+- Measurable quality metrics for regulatory reporting
+- Early detection of data issues
+
+**Negative:**
+- Additional infrastructure for scheduled quality checks
+- Rule definition requires domain expertise
+- False positives can cause alert fatigue
+
+---
+
+## ADR-005: Data Product Catalog with Versioned Contracts
+
+**Status:** Accepted  
+**Date:** 2026-07-06  
+**Domain:** Data Architecture, Integration
+
+### Context
+
+Multiple services and teams consume data from different domains. Without clear contracts, schema changes can break downstream consumers. The platform needs a mechanism to document, version, and communicate data schemas.
+
+### Decision
+
+Each domain publishes **data contracts** in `core.data_contracts` with:
+- Schema definition (JSON Schema)
+- SLA (availability, latency, freshness)
+- Data quality expectations
+- Known consumers
+
+Contracts are versioned using semantic versioning. Breaking changes require a new contract version and consumer notification.
+
+### Consequences
+
+**Positive:**
+- Clear ownership and expectations for data products
+- Breaking changes are explicitly managed
+- Consumers can discover available data products
+- Supports data mesh / data-as-a-product paradigm
+
+**Negative:**
+- Requires discipline to keep contracts up to date
+- Initial overhead to define and publish contracts
+- Contract enforcement requires tooling (schema registry)
+
+---
+
+## ADR-006: Reporting Schema with Materialized Views
+
+**Status:** Accepted  
+**Date:** 2026-07-06  
+**Domain:** Data Architecture, Operations
+
+### Context
+
+Business dashboards and SAMA regulatory reports require aggregated data that is expensive to compute from transactional tables in real-time. The platform needs a dedicated reporting layer.
+
+### Decision
+
+Create a `reporting` schema with:
+1. **Daily snapshot tables** for policy, claims, and financial aggregates
+2. **Materialized views** for KPI dashboards (refreshed periodically)
+3. **SAMA reporting table** for regulatory report generation and submission tracking
+
+### Consequences
+
+**Positive:**
+- Reporting queries don't impact transactional performance
+- Materialized views provide fast dashboard loading
+- SAMA reports have dedicated tracking (status, submission, acknowledgment)
+- Historical snapshots enable trend analysis
+
+**Negative:**
+- Data freshness is bounded by refresh schedule (daily for snapshots)
+- Additional storage for snapshot tables
+- Snapshot refresh jobs need monitoring
+
+---
+
+## ADR-007: Saudi-Specific Reference Data Management
+
+**Status:** Accepted  
+**Date:** 2026-07-06  
+**Domain:** Data Architecture
+
+### Context
+
+The platform needs to manage Saudi-specific reference data: administrative regions, SAMA codes, occupation classifications, vehicle plate types, etc. This data is used across multiple domains and must be centrally managed.
+
+### Decision
+
+Create a `metadata.reference_data` table for all Saudi-specific reference data. Each reference type (e.g., `SAUDI_CITY`, `SAMA_CODE`, `OCCUPATION`, `PLATE_TYPE`) has its own namespace with codes, Arabic/English labels, and hierarchical relationships.
+
+### Consequences
+
+**Positive:**
+- Single source of truth for reference data
+- Arabic/English bilingual support
+- Hierarchical relationships (parent-child) for region/city structures
+- Easy to extend with new reference types
+
+**Negative:**
+- Requires data seeding and maintenance
+- Reference data changes need coordination across domains
+
+---
+
+## ADR-008: Data Retention and Archival Strategy
+
+**Status:** Accepted  
+**Date:** 2026-07-06  
+**Domain:** Data Architecture, Operations
+
+### Context
+
+SAMA regulations require specific data retention periods. The platform must manage data lifecycle — from active storage through archival to purging — while maintaining regulatory compliance.
+
+### Decision
+
+Implement a **tiered data retention strategy**:
+
+| Tier | Storage | Access Pattern | Retention |
+|---|---|---|---|
+| Hot (Active) | PostgreSQL | Real-time queries | Current + 1 year |
+| Warm (Archive) | S3-compatible cold storage | Occasional, with restore | Up to retention limit |
+| Cold (Purge) | Deleted | N/A | After retention period |
+
+Retention schedules are defined per data category in the data governance policy. PII is anonymized before archival.
+
+### Consequences
+
+**Positive:**
+- Regulatory compliance with SAMA retention requirements
+- Cost optimization (hot storage is expensive)
+- Clear data lifecycle management
+
+**Negative:**
+- Archival and purge jobs need monitoring
+- Restore from warm storage has latency
+- Anonymization logic must be verified
+
+---
+
+## ADR-009: Data Classification and Sensitivity Tagging
+
+**Status:** Accepted  
+**Date:** 2026-07-06  
+**Domain:** Data Architecture, Security
+
+### Context
+
+The platform handles sensitive data (NIN, IBAN, health information) that requires different levels of protection. SAMA regulations require data classification and appropriate controls per classification level.
+
+### Decision
+
+Implement a **data classification model**:
+1. Classification levels defined in `metadata.data_classification` (PUBLIC, INTERNAL, CONFIDENTIAL, PII, RESTRICTED)
+2. Each field in `metadata.field_definitions` has a `sensitivity` attribute
+3. PII fields are encrypted at the application level (AES-256-GCM)
+4. Access control is enforced per classification level via RBAC
+
+### Consequences
+
+**Positive:**
+- Clear data handling requirements per classification level
+- Encryption applied consistently to all PII fields
+- Audit trail for access to sensitive data
+- Regulatory compliance with SAMA data classification requirements
+
+**Negative:**
+- Classification must be maintained as new fields are added
+- Application-level encryption adds complexity for search and reporting
+- Encryption key management requires Vault or similar tool
+
+---
+
+## ADR-010: Schema Ownership and Migration Isolation
+
+**Status:** Accepted  
+**Date:** 2026-07-06  
+**Domain:** Data Architecture, DevOps
+
+### Context
+
+Multiple teams (Platform, Motor, Health, Data/Analytics) need to evolve the database schema independently. Cross-schema migrations create coupling and deployment conflicts.
+
+### Decision
+
+Each schema is owned by a single team. Migrations are organized by schema:
+- `db/migration/core/` — Platform team
+- `db/migration/metadata/` — Platform team
+- `db/migration/event_store/` — Platform team
+- `db/migration/motor/` — Motor line team
+- `db/migration/reporting/` — Data/Analytics team
+
+**Rule:** No migration script may modify tables outside its owning schema. Cross-schema changes require coordination and a joint migration.
+
+### Consequences
+
+**Positive:**
+- Teams can evolve their schema independently
+- No deployment conflicts between teams
+- Clear ownership and accountability
+- Faster iteration for line teams
+
+**Negative:**
+- Cross-schema changes require coordination overhead
+- Schema-level foreign keys across schemas are allowed but need careful management
+- Requires CI/CD pipeline to run migrations per schema
+
+---
+
+## ADR Index
 
 | ADR | Title | Status |
 |---|---|---|
-| [ADR-001](#adr-001-java-21--spring-boot-3x-as-the-core-backend-stack) | Java 21 + Spring Boot 3.x as Core Backend Stack | ✅ Accepted |
-| [ADR-002](#adr-002-angular--primeng--tailwindcss-for-the-frontend) | Angular + PrimeNG + TailwindCSS for Frontend | ✅ Accepted |
-| [ADR-003](#adr-003-metadata-driven-extensibility) | Metadata-Driven Extensibility | ✅ Accepted |
-| [ADR-004](#adr-004-jsonb-for-dynamic-attribute-storage) | JSONB for Dynamic Attribute Storage | ✅ Accepted |
-| [ADR-005](#adr-005-schema-isolation-for-line-specific-data) | Schema Isolation for Line-Specific Data | ✅ Accepted |
-| [ADR-006](#adr-006-event-driven-integration-for-workflow-coordination) | Event-Driven Integration via Kafka | ✅ Accepted |
-| [ADR-007](#adr-007-keycloak-as-the-identity-provider) | Keycloak as Identity Provider | ✅ Accepted |
-| [ADR-008](#adr-008-postgresql-16-as-the-primary-database) | PostgreSQL 16 as Primary Database | ✅ Accepted |
-| [ADR-009](#adr-009-flyway-for-database-migration-management) | Flyway for Database Migration Management | ✅ Accepted |
-| [ADR-010](#adr-010-resilience4j-for-integration-resilience) | Resilience4j for Integration Resilience | ✅ Accepted |
-
----
-
-## Technology Stack Summary
-
-The following stack decisions are the result of the ADRs above:
-
-### Backend
-
-| Concern | Technology | ADR |
-|---|---|---|
-| Language | Java 21 (LTS) | ADR-001 |
-| Framework | Spring Boot 3.3+ | ADR-001 |
-| Database | PostgreSQL 16 | ADR-008 |
-| DB Migration | Flyway 10.x | ADR-009 |
-| ORM | Spring Data JPA (Hibernate 6) | ADR-001 |
-| Messaging | Apache Kafka | ADR-006 |
-| Cache | Redis 7 | - |
-| Security | Spring Security + Keycloak | ADR-007 |
-| Resilience | Resilience4j | ADR-010 |
-| Observability | Micrometer + Prometheus + Loki + Tempo | - |
-| Build | Maven 3.9+ | - |
-| Containerisation | Docker + Kubernetes | - |
-
-### Frontend
-
-| Concern | Technology | ADR |
-|---|---|---|
-| Framework | Angular 18+ | ADR-002 |
-| UI Components | PrimeNG 17+ | ADR-002 |
-| Styling | TailwindCSS 3.x | ADR-002 |
-| State Management | Angular Signals / RxJS | - |
-| Internationalisation | ngx-translate | - |
-| HTTP Client | Angular HttpClient + interceptors | - |
-| Forms | Angular Reactive Forms | ADR-003 |
-| Build | Angular CLI + Vite | - |
-
----
-
-## How to Add a New ADR
-
-1. Use the next available ADR number
-2. Add the decision to this document following the existing format
-3. Add a row to the Decision Summary table above
-4. Status must start as `Proposed` — move to `Accepted` after team review
-5. If superseding an existing ADR, mark the old one as `Superseded by ADR-XXX`
-
----
-
-## ADR-001: Java 21 + Spring Boot 3.x as the Core Backend Stack
-
-**Status:** Accepted  
-**Date:** 2026-07
-
-### Context
-The platform requires a stable, enterprise-grade backend capable of supporting complex domain logic (policy lifecycle, claims, billing) with strong ecosystem support for persistence, security, messaging, and observability.
-
-### Decision
-Use Java 21 (LTS) with Spring Boot 3.3+ for all backend services.
-
-### Rationale
-- Java 21 LTS provides long-term support and virtual thread support (Project Loom) for high throughput
-- Spring Boot 3.x provides production-ready auto-configuration for all required capabilities (JPA, Security, Kafka, Actuator)
-- Strong ecosystem for insurance domain (DDD, event-driven patterns)
-- Alignment with Saudi Arabia market preference for enterprise Java solutions
-- Team familiarity and extensive community support
-
-### Consequences
-- ✅ Rich ecosystem and mature libraries
-- ✅ Strong security with Spring Security OAuth2
-- ✅ Native GraalVM compilation available for future cold-start optimisation
-- ⚠️ Higher memory footprint than Go/Node.js (mitigated by JVM tuning)
-
----
-
-## ADR-002: Angular + PrimeNG + TailwindCSS for the Frontend
-
-**Status:** Accepted  
-**Date:** 2026-07
-
-### Context
-The platform requires a sophisticated web UI that supports dual-language (Arabic/English), RTL/LTR layouts, complex dynamic forms, and a premium design aesthetic for both internal operations staff and customers.
-
-### Decision
-Use Angular 18+ with PrimeNG component library and TailwindCSS for styling.
-
-### Rationale
-- Angular's strong typing and DI framework suits enterprise-scale form-heavy applications
-- PrimeNG provides RTL-ready, accessibility-compliant components out of the box (DataTable, Calendar, Dropdown, etc.)
-- TailwindCSS enables rapid, consistent styling without CSS bloat
-- Angular's reactive forms align naturally with the metadata-driven form rendering architecture
-- PrimeNG's Arabic locale support satisfies Saudi market requirements
-
-### Consequences
-- ✅ Comprehensive RTL/LTR support with minimal custom CSS
-- ✅ Rich UI components reduce build time for data-heavy screens
-- ✅ Strong TypeScript typing reduces runtime errors
-- ⚠️ Bundle size requires careful lazy-loading strategy
-
----
-
-## ADR-003: Metadata-Driven Extensibility
-
-**Status:** Accepted  
-**Date:** 2026-07
-
-### Context
-Insurance products (motor, health, travel, property) differ significantly in their required fields, validation rules, and workflow steps. Hard-coding each product's fields creates a tight coupling that slows product configuration and requires developer involvement for every new product variant.
-
-### Decision
-Implement a metadata-driven field and form system where product fields, validation rules, and form sections are defined in database configuration tables (`metadata.field_definitions`, `metadata.product_configurations`) and rendered dynamically by the Angular UI engine.
-
-### Rationale
-- Business analysts can configure new products and fields without code deployments
-- New insurance lines can be onboarded by adding metadata — not code
-- Reduces time-to-market for product variations and endorsements
-- Aligns with the platform's configuration-driven domain model principle
-
-### Consequences
-- ✅ Business team autonomy for product configuration
-- ✅ Faster product launch cycles
-- ✅ Reduced developer involvement in product-level changes
-- ⚠️ Metadata schema must be versioned and migrated carefully
-- ⚠️ Complex validation logic still requires developer involvement for non-standard rules
-
----
-
-## ADR-004: JSONB for Dynamic Attribute Storage
-
-**Status:** Accepted  
-**Date:** 2026-07
-
-### Context
-Line-specific fields (e.g., motor vehicle details, Najm results, health declarations) vary by product and evolve over time. Two alternatives were considered: a generic Entity-Attribute-Value (EAV) model, or structured JSONB columns.
-
-### Decision
-Store dynamic and line-specific attributes as JSONB columns (`line_specific_data`, `dynamic_attributes`) on core entities (policies, claims).
-
-### Rationale
-- JSONB is natively indexed (GIN index) and queryable — avoiding full-table scans
-- Simpler than EAV: one column per entity, not hundreds of EAV rows per policy
-- PostgreSQL JSONB operators (`->`, `->>`, `@>`, `#>`) support rich queries
-- Nested structures can represent complex motor/health data naturally
-- Avoids premature normalisation for fields that may change or be dropped
-
-### Consequences
-- ✅ No schema migration required to add new optional fields
-- ✅ GIN-indexed JSONB supports performant attribute queries
-- ✅ Supports nested objects (Najm result, Yakeen response cache)
-- ⚠️ Not strongly typed in the database — application must validate structure
-- ⚠️ Reporting on JSONB fields requires JSONB operators or materialised views
-
----
-
-## ADR-005: Schema Isolation for Line-Specific Data
-
-**Status:** Accepted  
-**Date:** 2026-07
-
-### Context
-As the platform grows to support multiple insurance lines (motor, health, travel), tables specific to each line should not pollute the shared core schema, which could create migration conflicts between teams.
-
-### Decision
-Line-specific tables are stored in dedicated PostgreSQL schemas (`motor`, `health`, `travel`). The `core` schema contains only shared kernel entities.
-
-### Rationale
-- Teams can evolve their line schema independently without risking core data integrity
-- Flyway migrations are owned by the team responsible for each schema
-- PostgreSQL schema-level permissions allow per-team database access control
-- Clear architecture boundary: core is stable, lines are variable
-
-### Consequences
-- ✅ Independent delivery for each insurance line
-- ✅ No cross-team migration conflicts
-- ✅ Clear data ownership
-- ⚠️ Cross-schema joins (e.g., `core.policies JOIN motor.motor_vehicles`) are permitted but should be limited to read-only reporting queries
-
----
-
-## ADR-006: Event-Driven Integration for Workflow Coordination
-
-**Status:** Accepted  
-**Date:** 2026-07
-
-### Context
-Business workflows span multiple services (e.g., policy issuance triggers billing, which triggers a notification). Synchronous chaining of service calls creates tight coupling and reduces resilience.
-
-### Decision
-Use Apache Kafka for asynchronous domain event publishing. Services react to events (`PolicyIssued`, `ClaimRegistered`, `PaymentReceived`) instead of calling each other directly.
-
-### Rationale
-- Decouples services — downstream consumers don't affect the producer's availability
-- Kafka provides durable, ordered, replayable event log
-- Simplifies future integration of new consumers (analytics, audit, partner systems)
-- Supports retry and dead-letter queue patterns for resilience
-
-### Consequences
-- ✅ Loose coupling between services
-- ✅ Replayable event history for audit and debugging
-- ✅ New consumers can be added without modifying producers
-- ⚠️ Eventual consistency — downstream services may lag briefly
-- ⚠️ Requires careful idempotency design in consumers
-
----
-
-## ADR-007: Keycloak as the Identity Provider
-
-**Status:** Accepted  
-**Date:** 2026-07
-
-### Context
-The platform requires centralised authentication for browser users (Angular SPA), internal service accounts (client credentials), and future B2B partner access.
-
-### Decision
-Deploy Keycloak as the OIDC-compliant identity provider. Use Authorization Code + PKCE for browser clients and Client Credentials for service-to-service authentication.
-
-### Rationale
-- Open-source, enterprise-grade, battle-tested OIDC implementation
-- Native support for Saudi locale, Arabic UI, and OTP SMS integrations
-- Role-based and realm-level access control aligned with platform security model
-- Future-ready for Absher (Saudi national SSO) federation
-
-### Consequences
-- ✅ Standards-compliant (OAuth 2.1, OpenID Connect, PKCE)
-- ✅ Rich admin UI for user and role management
-- ✅ Multi-realm and federation support for B2B scenarios
-- ⚠️ Additional operational complexity — Keycloak must be HA-deployed
-- ⚠️ Upgrade management required
-
----
-
-## ADR-008: PostgreSQL 16 as the Primary Database
-
-**Status:** Accepted  
-**Date:** 2026-07
-
-### Context
-The platform requires ACID-compliant transactional storage for financial and insurance data, with strong JSONB support for dynamic attributes.
-
-### Decision
-Use PostgreSQL 16 as the primary relational database for all services.
-
-### Rationale
-- Best-in-class JSONB support with GIN indexing
-- ACID compliance for financial data integrity
-- Row-level security available for multi-tenant data isolation
-- Mature, well-supported in Kubernetes environments
-- Flyway migration tooling has first-class PostgreSQL support
-- Open-source — no vendor lock-in
-
-### Consequences
-- ✅ ACID transactions for policy/financial operations
-- ✅ JSONB with GIN indexes for metadata-driven attribute storage
-- ✅ No licensing cost
-- ⚠️ Horizontal write scaling requires sharding (not needed at initial scale)
-
----
-
-## ADR-009: Flyway for Database Migration Management
-
-**Status:** Accepted  
-**Date:** 2026-07
-
-### Context
-Schema evolution must be version-controlled, auditable, and repeatable across all environments (dev, staging, production).
-
-### Decision
-Use Flyway 10.x for all database schema migrations, with Spring Boot auto-run on startup.
-
-### Rationale
-- Versioned SQL files with checksum validation prevent drift
-- Native Spring Boot integration via `spring.flyway.*` configuration
-- Supports schema-separated migration paths
-- Simple, file-based approach with no additional tooling required
-
-### Consequences
-- ✅ Schema history tracked in `flyway_schema_history` table
-- ✅ Migrations validated before application starts
-- ✅ Dev/staging/production stay in sync
-- ⚠️ Baseline migration required for existing schemas
-
----
-
-## ADR-010: Resilience4j for Integration Resilience
-
-**Status:** Accepted  
-**Date:** 2026-07
-
-### Context
-External integrations (Yakeen, Najm, MADA payment) may be unavailable or slow. Without protection, a downstream failure could cascade and bring down the entire platform.
-
-### Decision
-Apply Resilience4j circuit breaker, retry, and time limiter patterns to all external integration calls.
-
-### Rationale
-- Native Spring Boot integration via `resilience4j-spring-boot3`
-- Composable annotations: `@CircuitBreaker`, `@Retry`, `@TimeLimiter`
-- Configurable per-integration — Yakeen vs. MADA have different timeout requirements
-- Metrics exposed to Prometheus for circuit breaker state monitoring
-- Fallback methods allow graceful degradation (e.g., defer Yakeen verification)
-
-### Consequences
-- ✅ Platform remains operational when external systems are down
-- ✅ Fallback logic enables manual override paths
-- ✅ Circuit breaker state visible in Grafana dashboards
-- ⚠️ Fallback business logic must be explicitly designed and tested per integration
+| ADR-001 | Event-Sourced Metadata for Configuration Changes | Accepted |
+| ADR-002 | Hybrid Persistence — Strongly Typed Core + JSONB Extensions | Accepted |
+| ADR-003 | Multi-Tenant Isolation via Row-Level Security | Accepted |
+| ADR-004 | Data Quality Framework with Metadata-Driven Rules | Accepted |
+| ADR-005 | Data Product Catalog with Versioned Contracts | Accepted |
+| ADR-006 | Reporting Schema with Materialized Views | Accepted |
+| ADR-007 | Saudi-Specific Reference Data Management | Accepted |
+| ADR-008 | Data Retention and Archival Strategy | Accepted |
+| ADR-009 | Data Classification and Sensitivity Tagging | Accepted |
+| ADR-010 | Schema Ownership and Migration Isolation | Accepted |

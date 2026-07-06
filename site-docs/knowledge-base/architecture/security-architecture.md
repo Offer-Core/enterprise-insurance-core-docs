@@ -2,8 +2,7 @@
 
 ## Overview
 
-The platform security architecture implements a **defence-in-depth** model aligned with Saudi Arabia insurance regulatory requirements (SAMA Cybersecurity Framework).
-Authentication is centralised through an OIDC-compliant identity provider (Keycloak), and authorisation is enforced at both the API Gateway and service layers using JWT claims and role-based rules.
+The platform security architecture implements a **defence-in-depth** model aligned with Saudi Arabia insurance regulatory requirements (SAMA Cybersecurity Framework). Authentication is centralised through an OIDC-compliant identity provider (Keycloak), and authorisation is enforced at both the API Gateway and service layers using JWT claims and role-based rules.
 
 ---
 
@@ -113,6 +112,62 @@ Realm: insurance-platform
 }
 ```
 
+### Tenant Resolution Flow
+
+Every request must resolve to a valid tenant. The tenant is resolved in the following order:
+
+1. **Primary**: From the `tenant_id` claim in the JWT (most secure, tamper-proof).
+2. **Fallback**: From the `X-Tenant-ID` header (used for service-to-service and legacy clients).
+3. **Block**: If no tenant is resolved, the request is rejected with a `400 Bad Request`.
+
+```java
+@Component
+public class TenantInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        String tenantId = null;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.getPrincipal() instanceof Jwt) {
+            tenantId = ((Jwt) auth.getPrincipal()).getClaimAsString("tenant_id");
+        }
+        if (tenantId == null || tenantId.isBlank()) {
+            tenantId = request.getHeader("X-Tenant-ID");
+        }
+        if (tenantId == null || tenantId.isBlank()) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("{\"error\":\"Missing tenant context\"}");
+            return false;
+        }
+        TenantContextHolder.setCurrentTenant(tenantId);
+        return true;
+    }
+}
+```
+
+---
+
+## Session & Logout Management
+
+### Logout Flow (Angular SPA)
+
+1. **Client-side**: Clear token state in Angular.
+2. **IdP logout**: Redirect to Keycloak's logout endpoint:
+
+```
+GET https://auth.insurance.com.sa/realms/insurance/protocol/openid-connect/logout?id_token_hint={id_token}
+```
+
+3. **Cookie revocation**: The refresh token cookie (HttpOnly) is invalidated.
+
+### Session Termination Policies
+
+| Policy | Value |
+|---|---|
+| User-initiated logout | Immediate session termination |
+| Idle timeout | 30 minutes of inactivity |
+| Absolute timeout | 8 hours (refresh token expiry) |
+| Admin revocation | Admin can revoke user sessions via Keycloak admin console |
+
 ---
 
 ## Authorisation Model
@@ -193,6 +248,26 @@ public class PolicyService {
 
 ---
 
+## Rate Limiting & DDoS Protection
+
+Rate limiting is enforced at the API Gateway layer:
+
+| Endpoint Category | Rate Limit | Enforcement |
+|---|---|---|
+| Public endpoints (`/api/v1/auth/**`) | 20 requests per minute per IP | API Gateway |
+| Authenticated user endpoints | 100 requests per minute per user | API Gateway |
+| Admin endpoints | 500 requests per minute | API Gateway |
+| Operational endpoints (`/actuator/health/**`) | 10 requests per minute per IP | Kubernetes Readiness Probe |
+| Login attempts | 5 failed attempts = 5-minute lockout | Keycloak |
+
+### DDoS Protection
+
+- **WAF**: AWS WAF or Cloudflare rules block SQL injection, XSS, and known attack patterns.
+- **Global Rate Limiting**: 10,000 requests per second per region at the CDN/Edge layer.
+- **Auto-Scaling**: Kubernetes HPA scales pods horizontally during traffic spikes.
+
+---
+
 ## Data Security
 
 ### Encryption at Rest
@@ -226,6 +301,27 @@ public class Customer {
     private String email;
 }
 ```
+
+---
+
+## Secrets Management
+
+All secrets (database passwords, API keys, JWT signing keys) are managed centrally:
+
+| Tool | Use |
+|---|---|
+| HashiCorp Vault | Store and rotate secrets, dynamic database credentials |
+| Kubernetes External Secrets | Sync Vault secrets to K8s secrets for pod consumption |
+| Git | No secrets in source code — verified by pre-commit hooks |
+
+### Secret Rotation Policy
+
+| Secret | Rotation Period | Automation |
+|---|---|---|
+| Database passwords | 30 days | Vault automatic rotation |
+| JWT signing keys | 90 days | Manual rotation via Keycloak |
+| API keys (integrations) | 90 days | Manual, with notification |
+| TLS certificates | 90 days | Cert-manager automatic renewal |
 
 ---
 
@@ -277,6 +373,33 @@ public class AuditAspect {
 
 ---
 
+## Deployment-Specific Security Configurations
+
+The platform supports two deployment models with distinct security setups:
+
+| Aspect | Cloud SaaS (Managed by Us) | Self-Hosted (Client-Managed) |
+|---|---|---|
+| Identity Provider | Managed Keycloak instance | Client's own Keycloak or Active Directory |
+| JWT Issuer URI | `https://auth.saas.insurance.sa/realms/insurance` | Client-defined (e.g., `https://auth.client-insurer.sa/...`) |
+| Certificate Management | Platform team manages signing keys | Client manages their own certificates |
+| Audit Log Storage | Centralized SaaS database | Client's on-premises database |
+| Network Security | VPC, WAF, DDoS protection | Client's internal security controls |
+
+### Self-Hosted Security Configuration
+
+```yaml
+# application-selfhosted.yml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${SELF_HOSTED_ISSUER:https://auth.client-insurance.sa/realms/insurance-platform}
+          jwk-set-uri: ${SELF_HOSTED_JWKS:https://auth.client-insurance.sa/realms/insurance-platform/protocol/openid-connect/certs}
+```
+
+---
+
 ## Security Checklist (Per Service)
 
 - [ ] JWT validation enabled on all endpoints except health probes
@@ -287,3 +410,14 @@ public class AuditAspect {
 - [ ] Rate limiting applied at the API Gateway
 - [ ] CORS restricted to known origins
 - [ ] Security scan passes before deployment
+
+---
+
+## Document Maintenance
+
+| Aspect | Detail |
+|---|---|
+| Last Updated | 2026-07-06 |
+| Owner | Enterprise Architecture Team |
+| Review Cycle | Quarterly, or after significant security events |
+| Approval | Security Review Board |

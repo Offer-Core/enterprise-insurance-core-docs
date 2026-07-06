@@ -17,8 +17,9 @@ The shared kernel contains abstractions that are owned by the platform and must 
 - `Policy` — abstract base policy class
 - `Claim` — abstract base claim class
 - `FinancialTransaction` — abstract financial event type
+- `Document` — abstract document entity for policy schedules, claim reports, invoices
 
-### 1.2 Base Customer Model
+### 1.2 Base Party Model
 
 ```java
 public abstract class Party {
@@ -26,28 +27,26 @@ public abstract class Party {
     private String fullName;
     private Address primaryAddress;
     private ContactInfo contactInfo;
+    private PartyType partyType;  // PERSON, ORGANIZATION
 
-    public UUID getPartyId() { return partyId; }
-    public void setPartyId(UUID partyId) { this.partyId = partyId; }
-    public String getFullName() { return fullName; }
-    public void setFullName(String fullName) { this.fullName = fullName; }
-    public Address getPrimaryAddress() { return primaryAddress; }
-    public void setPrimaryAddress(Address primaryAddress) { this.primaryAddress = primaryAddress; }
-    public ContactInfo getContactInfo() { return contactInfo; }
-    public void setContactInfo(ContactInfo contactInfo) { this.contactInfo = contactInfo; }
+    // getters and setters
 }
 
 public class Customer extends Party {
     private UUID globalCustomerId;
     private String customerReference;
     private String customerType;
+    private String nationalIdEncrypted;
+    private String identityType;       // CITIZEN, RESIDENT, COMPANY
+    private String nationalityCode;    // ISO country code
+    private String dateOfBirthHijri;
+    private LocalDate dateOfBirthGregorian;
+    private String gender;
+    private String occupationCode;     // SAMA classification
+    private String regionCode;         // Saudi administrative region
+    private String tenantId;
 
-    public UUID getGlobalCustomerId() { return globalCustomerId; }
-    public void setGlobalCustomerId(UUID globalCustomerId) { this.globalCustomerId = globalCustomerId; }
-    public String getCustomerReference() { return customerReference; }
-    public void setCustomerReference(String customerReference) { this.customerReference = customerReference; }
-    public String getCustomerType() { return customerType; }
-    public void setCustomerType(String customerType) { this.customerType = customerType; }
+    // getters and setters
 }
 ```
 
@@ -68,11 +67,15 @@ public abstract class Policy {
     private UUID globalCustomerId;
     private LineOfBusiness lineOfBusiness;
     private PolicyLifecycleStatus status;
-    private BigDecimal premiumAmount;
+    private BigDecimal annualPremium;
+    private BigDecimal commissionAmount;
+    private BigDecimal commissionRate;
     private Currency currency;
-    private Instant effectiveFrom;
-    private Instant effectiveTo;
+    private LocalDate effectiveFrom;
+    private LocalDate effectiveTo;
     private JsonNode lineSpecificData;
+    private JsonNode dynamicAttributes;
+    private String tenantId;
 
     // getters and setters
 }
@@ -94,9 +97,15 @@ public abstract class Claim {
     private UUID claimId;
     private UUID policyId;
     private ClaimLifecycleStatus status;
-    private BigDecimal claimAmount;
+    private BigDecimal claimedAmount;
+    private BigDecimal approvedAmount;
+    private BigDecimal paidAmount;
+    private BigDecimal excessAmount;
     private String claimReference;
     private JsonNode lineSpecificData;
+    private BigDecimal fraudScore;
+    private boolean fraudReviewRequired;
+    private String tenantId;
 
     // getters and setters
 }
@@ -110,7 +119,15 @@ public enum FinancialTransactionType {
     ENDORSEMENT,
     REFUND,
     COMMISSION,
-    RECOVERY
+    RECOVERY,
+    CLAIM_PAYMENT
+}
+
+public enum PaymentMethod {
+    MADA,
+    SADAD,
+    BANK_TRANSFER,
+    APPLE_PAY
 }
 ```
 
@@ -124,22 +141,28 @@ The platform uses a metadata-driven extension layer that allows the UI and runti
 - `FieldDefinition` — defines a field with type, validation, UI rendering, and default behavior
 - `FormDefinition` — defines which fields appear on a screen and in what order
 - `RuleDefinition` — defines validation, calculation, or workflow triggers
+- `DataQualityRule` — defines quality expectations for completeness, uniqueness, consistency
 
 ```java
 public class EntityDefinition {
     private String entityCode;
-    private String displayName;
+    private String displayNameAr;
+    private String displayNameEn;
     private String tableName;
+    private boolean isCore;
     private List<FieldDefinition> fields;
 }
 
 public class FieldDefinition {
     private String fieldCode;
-    private String displayName;
-    private FieldType fieldType;
+    private String displayNameAr;
+    private String displayNameEn;
+    private FieldType fieldType;       // TEXT, NUMBER, DATE, SELECT, BOOLEAN, PHONE, EMAIL, NIN
     private boolean required;
     private boolean searchable;
     private String defaultValue;
+    private String sensitivity;        // PUBLIC, INTERNAL, CONFIDENTIAL, PII
+    private List<ValidationRule> validationRules;
 }
 ```
 
@@ -149,6 +172,7 @@ public class FieldDefinition {
 - Data is stored in a flexible attribute store for dynamic fields
 - Validation and calculation rules are executed from `RuleDefinition`
 - New extensions are versioned so they can be safely rolled out and reverted
+- All configuration changes are recorded as immutable events in the event store
 
 ### 1.7 Shared Kernel Ownership Rules
 
@@ -179,6 +203,10 @@ public class MotorPolicy extends Policy {
     private Integer annualMileage;
     private VehicleUseType primaryUse;
     private boolean antiTheftDeviceInstalled;
+    private String parkingLocation;    // GARAGE, STREET, LOT
+    private String plateNumber;
+    private String plateType;
+    private String sequenceNumber;     // Saudi vehicle sequence number
 
     // getters and setters
 }
@@ -195,10 +223,21 @@ public enum VehicleUseType {
 public class MotorDriver {
     private UUID driverId;
     private UUID policyId;
-    private String licenseNumber;
+    private String driverType;             // MAIN, ADDITIONAL
+    private String nationalIdEncrypted;
+    private String fullNameAr;
+    private String fullNameEn;
+    private String dateOfBirthHijri;
     private LocalDate dateOfBirth;
-    private List<String> drivingViolations;
-    private List<String> claimsHistory;
+    private String gender;
+    private String licenseNumber;
+    private String licenseType;
+    private LocalDate licenseIssueDate;
+    private LocalDate licenseExpiryDate;
+    private Integer yearsOfExperience;
+    private BigDecimal noClaimsDiscount;
+    private Integer violationsCount;
+    private Integer claimsCount;
 
     // getters and setters
 }
@@ -210,11 +249,22 @@ public class MotorDriver {
 public class MotorVehicle {
     private UUID vehicleId;
     private UUID policyId;
+    private String sequenceNumber;        // Saudi vehicle sequence number
+    private String plateNumber;
+    private String plateType;
+    private String plateColor;
     private String vin;
     private String vehicleMake;
     private String vehicleModel;
     private Integer vehicleYear;
-    private Address garagingAddress;
+    private String chassisNumber;
+    private Integer engineCapacity;
+    private BigDecimal vehicleValue;
+    private String vehicleUse;
+    private String color;
+    private String parkingLocation;
+    private Integer annualMileage;
+    private LocalDate registrationExpiry;
 
     // getters and setters
 }
@@ -234,24 +284,35 @@ The Motor rating engine must live in the Motor vertical slice and use line-speci
 - Anti-theft device discount
 - Claims history surcharge
 - Violations surcharge
+- No-claims discount (NCD)
 
 ```java
 public class MotorRatingEngine {
     public BigDecimal calculatePremium(MotorPolicy policy, List<MotorDriver> drivers) {
-        BigDecimal baseRate = new BigDecimal("1000");
+        BigDecimal baseRate = getBaseRate(policy.getProductCode());
         BigDecimal territoryFactor = getTerritoryFactor(policy.getGaragingAddress());
         BigDecimal ageMultiplier = getAgeMultiplier(drivers);
         BigDecimal valueDepreciationFactor = getDepreciationFactor(policy.getVehicleYear());
         BigDecimal mileageFactor = getMileageFactor(policy.getAnnualMileage());
         BigDecimal useFactor = policy.getPrimaryUse() == VehicleUseType.COMMERCIAL ? new BigDecimal("1.25") : BigDecimal.ONE;
         BigDecimal theftDiscount = policy.isAntiTheftDeviceInstalled() ? new BigDecimal("0.90") : BigDecimal.ONE;
+        BigDecimal ncd = getNoClaimsDiscount(drivers);
 
-        return baseRate.multiply(territoryFactor)
+        return baseRate
+                .multiply(territoryFactor)
                 .multiply(ageMultiplier)
                 .multiply(valueDepreciationFactor)
                 .multiply(mileageFactor)
                 .multiply(useFactor)
-                .multiply(theftDiscount);
+                .multiply(theftDiscount)
+                .multiply(ncd);
+    }
+
+    private BigDecimal getBaseRate(String productCode) {
+        // Look up from motor.motor_rating_factors table
+        return ratingFactorRepository.findByCode("BASE_RATE_" + productCode)
+                .map(RatingFactor::getBaseValue)
+                .orElse(new BigDecimal("1000"));
     }
 }
 ```
@@ -277,10 +338,19 @@ Motor claims need specialized handling that should not leak into the core.
 ```java
 public class MotorClaim extends Claim {
     private String lossLocation;
+    private BigDecimal lossLatitude;
+    private BigDecimal lossLongitude;
+    private String accidentType;         // COLLISION, THEFT, FIRE, VANDALISM
+    private String accidentCause;
+    private String policeReportNumber;
+    private LocalDate policeReportDate;
+    private boolean atFault;
     private String repairShopId;
+    private BigDecimal repairCostEstimate;
     private boolean towTruckRequested;
     private Instant towTruckDispatchedAt;
     private String appraisalReference;
+    private BigDecimal salvageValue;
 
     // getters and setters
 }
@@ -302,6 +372,7 @@ Use a hybrid strategy:
 - Core business entities remain strongly typed in Java classes
 - Dynamic fields are stored in `JSONB` and resolved by the metadata layer
 - UI forms are rendered from `FieldDefinition` and `FormDefinition`
+- Configuration changes are event-sourced for full audit trail
 
 This enables the system to stay robust for the core while remaining flexible for business-driven changes.
 
@@ -322,7 +393,8 @@ CREATE TABLE customer (
   global_customer_id UUID NOT NULL,
   customer_type TEXT NOT NULL,
   core_profile JSONB NOT NULL,
-  line_specific_data JSONB NOT NULL DEFAULT '{}'::jsonb
+  line_specific_data JSONB NOT NULL DEFAULT '{}'::jsonb,
+  tenant_id VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE policy (
@@ -330,7 +402,8 @@ CREATE TABLE policy (
   global_customer_id UUID NOT NULL,
   line_of_business TEXT NOT NULL,
   status TEXT NOT NULL,
-  line_specific_data JSONB NOT NULL DEFAULT '{}'::jsonb
+  line_specific_data JSONB NOT NULL DEFAULT '{}'::jsonb,
+  tenant_id VARCHAR(50) NOT NULL
 );
 ```
 
@@ -510,6 +583,36 @@ public class UnderwritingService {
 
 Rules can be loaded from a database table such as `underwriting_rule_definition` or from an external rule repository service.
 
+### Extension Point E: Event-Sourced Metadata
+
+All configuration changes (product definitions, field definitions, form layouts) are stored as immutable events in the event store. This enables:
+
+- **Full audit trail**: Every change is recorded with who, what, when
+- **Point-in-time reconstruction**: Rebuild configuration state at any point in history
+- **Zero-downtime changes**: Configuration changes are applied by replaying events
+- **Event-driven propagation**: Downstream caches are invalidated via event notifications
+
+```java
+public interface MetadataEventStore {
+    void append(MetadataEvent event);
+    List<MetadataEvent> readEvents(String aggregateType, String aggregateId);
+    Optional<Snapshot> readSnapshot(String aggregateType, String aggregateId);
+    void saveSnapshot(Snapshot snapshot);
+}
+
+public record MetadataEvent(
+    UUID eventId,
+    String eventType,
+    String aggregateType,
+    String aggregateId,
+    int version,
+    JsonNode data,
+    JsonNode metadata,
+    String recordedBy,
+    Instant occurredAt
+) {}
+```
+
 ---
 
 ## Section 4: Repository and Team Structure
@@ -522,13 +625,15 @@ This repository structure is designed to keep Motor output fast today while keep
 /src
   /Core
     /Domain
-      Policy.cs
-      Claim.cs
-      Party.cs
-      FinancialTransaction.cs
+      Policy.java
+      Claim.java
+      Party.java
+      FinancialTransaction.java
+      Document.java
     /Contracts
-      IRatingCalculator.cs
-      IUnderwritingRule.cs
+      IRatingCalculator.java
+      IUnderwritingRule.java
+      IMetadataEventStore.java
     /SharedKernel
       enums/
       value-objects/
@@ -548,6 +653,11 @@ This repository structure is designed to keep Motor output fast today while keep
     /GL
     /Reinsurance
     /Documents
+    /Notification
+  /Infrastructure
+    /EventStore
+    /Metadata
+    /Reporting
 ```
 
 ### 4.2 Ownership Rules
@@ -556,6 +666,9 @@ This repository structure is designed to keep Motor output fast today while keep
 - `Lines/Motor` owns all Motor-specific code, APIs, database migrations, and workflow definitions
 - `Lines/Health` is empty today and acts as a future onboarding skeleton
 - `SharedServices` owns line-agnostic services used by all lines
+- `Infrastructure/EventStore` owns the event sourcing implementation
+- `Infrastructure/Metadata` owns the metadata engine and configuration workbench backend
+- `Infrastructure/Reporting` owns the reporting schema, materialized views, and SAMA report generation
 
 ### 4.3 Database Migration Strategy
 
@@ -563,27 +676,52 @@ Motor must not force migrations against a central shared schema.
 
 #### Recommended Pattern
 
-- Shared kernel tables live in a shared schema or shared database
-- Motor-specific tables live in a `motor` schema or a `motor` database
-- Motor migrations run only against the Motor schema
-- Shared services remain independent and own their own migration sets
+- Shared kernel tables live in a shared schema (`core`)
+- Metadata tables live in `metadata` schema
+- Event store tables live in `event_store` schema
+- Motor-specific tables live in a `motor` schema
+- Reporting tables live in `reporting` schema
+- Each team owns migrations only for their schema
 
 #### Example
 
 ```sql
--- Shared schema
-CREATE TABLE policy (...);
-CREATE TABLE claim (...);
-CREATE TABLE customer (...);
+-- Core schema (Platform team)
+CREATE TABLE core.parties (...);
+CREATE TABLE core.customers (...);
+CREATE TABLE core.policies (...);
+CREATE TABLE core.claims (...);
+CREATE TABLE core.financial_transactions (...);
+CREATE TABLE core.documents (...);
+CREATE TABLE core.data_contracts (...);
 
--- Motor schema
-CREATE TABLE motor_policy_extension (...);
-CREATE TABLE motor_driver (...);
-CREATE TABLE motor_vehicle (...);
-CREATE TABLE motor_claim_detail (...);
+-- Metadata schema (Platform team)
+CREATE TABLE metadata.product_configurations (...);
+CREATE TABLE metadata.field_definitions (...);
+CREATE TABLE metadata.form_definitions (...);
+CREATE TABLE metadata.entity_definitions (...);
+CREATE TABLE metadata.data_quality_rules (...);
+CREATE TABLE metadata.reference_data (...);
+
+-- Event store schema (Platform team)
+CREATE TABLE event_store.metadata_events (...);
+CREATE TABLE event_store.domain_events (...);
+CREATE TABLE event_store.snapshot_store (...);
+
+-- Motor schema (Motor team)
+CREATE TABLE motor.motor_vehicles (...);
+CREATE TABLE motor.motor_drivers (...);
+CREATE TABLE motor.motor_claims_details (...);
+CREATE TABLE motor.motor_rating_factors (...);
+CREATE TABLE motor.motor_najm_results (...);
+
+-- Reporting schema (Data/Analytics team)
+CREATE TABLE reporting.policy_daily_snapshot (...);
+CREATE TABLE reporting.claims_daily_snapshot (...);
+CREATE TABLE reporting.sama_reporting (...);
 ```
 
-This means Team Motor can add a column to `motor_policy_extension` without changing the shared kernel schema.
+This means Team Motor can add a column to `motor.motor_vehicles` without changing the shared kernel schema.
 
 ---
 
@@ -596,6 +734,9 @@ This means Team Motor can add a column to `motor_policy_extension` without chang
 3. Register workflow states and transitions in the workflow engine configuration.
 4. Extend the base customer or policy via the `line_specific_data` JSONB column.
 5. Deploy an independently scalable microservice that registers itself with the API Gateway.
+6. Register new field definitions in `metadata.field_definitions` for health-specific fields.
+7. Add data quality rules in `metadata.data_quality_rules` for health data validation.
+8. Configure SAMA health reporting templates in `reporting.sama_reporting`.
 
 ### Detailed Execution Notes
 
@@ -603,6 +744,8 @@ This means Team Motor can add a column to `motor_policy_extension` without chang
 - Keep the new line's domain logic isolated under its own folder
 - Use the same API contract patterns as Motor for discoverability and future interoperability
 - Ensure the line service emits events compatible with the platform event bus
+- Register new reference data in `metadata.reference_data` for health-specific codes (ICD-10, etc.)
+- Add data classification entries in `metadata.data_classification` for health PII sensitivity
 
 ---
 
@@ -615,3 +758,7 @@ This means Team Motor can add a column to `motor_policy_extension` without chang
 | Underwriting | Rules such as driver age referral and violation-based review | `IUnderwritingRule` with runtime-loaded rules from DB or external repository |
 | Claims | `MotorClaim` with APD appraisal, tow truck dispatch, repair shop handling | Configurable workflow engine with line-specific states and transitions |
 | Billing | Line-agnostic financial transactions using `FinancialTransactionType` | Shared services in `/src/SharedServices` plus line-specific extension data for billing context |
+| Metadata | Product, field, and form definitions in metadata tables | Event-sourced metadata with immutable event log and snapshot store |
+| Data Quality | Completeness, uniqueness, consistency rules | `metadata.data_quality_rules` with scheduled monitoring and alerting |
+| Reporting | Daily snapshots and SAMA reports | `reporting` schema with materialized views and scheduled job generation |
+| Multi-Tenancy | Tenant isolation via `tenant_id` column | Row-level security (RLS) for SaaS; schema-per-tenant for self-hosted |

@@ -51,7 +51,6 @@ nav:
       - Business: knowledge-base/100-Business/index.md
       - Domains:
           - Overview: knowledge-base/200-Domains/index.md
-          - Authentication: knowledge-base/200-Domains/Authentication/README.md
       - Standards: knowledge-base/400-Standards/index.md
       - Templates: knowledge-base/950-Templates/index.md
       - AI: knowledge-base/990-AI/index.md
