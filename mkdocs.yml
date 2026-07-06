@@ -33,7 +33,7 @@ plugins:
 
 
 nav:
-  - Home: knowledge-base/architecture/README.md
+  - Home: index.md
   - Knowledge Base:
       - Architecture:
           - Overview: knowledge-base/architecture/overview.md
@@ -46,6 +46,7 @@ nav:
           - Operations and Observability: knowledge-base/architecture/operations-observability.md
           - Architecture Decisions: knowledge-base/architecture/architecture-decisions.md
           - Deployment Architecture: knowledge-base/architecture/deployment-architecture.md
+          - Architecture README: knowledge-base/architecture/README.md
       - Vision: knowledge-base/000-Vision/index.md
       - Business: knowledge-base/100-Business/index.md
       - Domains:
