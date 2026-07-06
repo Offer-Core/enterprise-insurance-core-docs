@@ -9,7 +9,7 @@ edit_uri: edit/master/
 
 copyright: Copyright &copy; 2026 Enterprise Insurance Platform
 
-docs_dir: site-docs
+docs_dir: mkdocs
 site_dir: site
 
 theme:
@@ -35,20 +35,26 @@ plugins:
 nav:
   - Home: index.md
   - Knowledge Base:
+      - Vision: knowledge-base/000-Vision/index.md
+      - Business: knowledge-base/100-Business/index.md
       - Architecture:
           - Overview: knowledge-base/architecture/overview.md
           - Domain Architecture: knowledge-base/architecture/domain-architecture.md
-          - Integration Architecture: knowledge-base/architecture/integration-architecture.md
-          - Security Architecture: knowledge-base/architecture/security-architecture.md
-          - API Architecture: knowledge-base/architecture/api-architecture.md
           - Data Architecture: knowledge-base/architecture/data-architecture.md
+          - Data Models: knowledge-base/architecture/data-models.md
+          - Integration Architecture: knowledge-base/architecture/integration-architecture.md
+          - Integration Specs: knowledge-base/architecture/integration-specs.md
+          - API Architecture: knowledge-base/architecture/api-architecture.md
+          - Security Architecture: knowledge-base/architecture/security-architecture.md
+          - Event Contracts: knowledge-base/architecture/event-contracts.md
           - UI Architecture: knowledge-base/architecture/ui-architecture.md
-          - Operations and Observability: knowledge-base/architecture/operations-observability.md
-          - Architecture Decisions: knowledge-base/architecture/architecture-decisions.md
           - Deployment Architecture: knowledge-base/architecture/deployment-architecture.md
+          - Deployment Artifacts: knowledge-base/architecture/deployment-artifacts.md
+          - Operations and Observability: knowledge-base/architecture/operations-observability.md
+          - Testing Strategy: knowledge-base/architecture/testing-strategy.md
+          - Migration Plan: knowledge-base/architecture/migration-plan.md
+          - Architecture Decisions: knowledge-base/architecture/architecture-decisions.md
           - Architecture README: knowledge-base/architecture/README.md
-      - Vision: knowledge-base/000-Vision/index.md
-      - Business: knowledge-base/100-Business/index.md
       - Domains:
           - Overview: knowledge-base/200-Domains/index.md
       - Standards: knowledge-base/400-Standards/index.md

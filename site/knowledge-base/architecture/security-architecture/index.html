@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://offer-core.github.io/enterprise-insurance-core-docs/knowledge-base/architecture/security-architecture/">
       
       
-        <link rel="prev" href="../integration-architecture/">
+        <link rel="prev" href="../api-architecture/">
       
       
-        <link rel="next" href="../api-architecture/">
+        <link rel="next" href="../event-contracts/">
       
       
         
@@ -307,6 +307,62 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../000-Vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../100-Business/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -322,10 +378,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
             
   
   
@@ -343,8 +399,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_1">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -417,6 +473,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../data-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../integration-architecture/" class="md-nav__link">
         
   
@@ -425,6 +537,62 @@
     
   
     Integration Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration-specs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Architecture
   
 
     
@@ -571,6 +739,56 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#tenant-resolution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tenant Resolution Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-logout-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session &amp; Logout Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session &amp; Logout Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logout-flow-angular-spa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logout Flow (Angular SPA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-termination-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Termination Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -638,6 +856,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rate-limiting-ddos-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate Limiting &amp; DDoS Protection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rate Limiting &amp; DDoS Protection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ddos-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DDoS Protection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data-security" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -677,6 +923,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#secrets-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Secrets Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secret-rotation-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret Rotation Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#audit-logging" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -699,10 +973,49 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#deployment-specific-security-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment-Specific Security Configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment-Specific Security Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#self-hosted-security-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-Hosted Security Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#security-checklist-per-service" class="md-nav__link">
     <span class="md-ellipsis">
       
         Security Checklist (Per Service)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Maintenance
       
     </span>
   </a>
@@ -725,42 +1038,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-architecture/" class="md-nav__link">
+      <a href="../event-contracts/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../data-architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Data Architecture
+    Event Contracts
   
 
     
@@ -809,6 +1094,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../deployment-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../operations-observability/" class="md-nav__link">
         
   
@@ -817,6 +1158,62 @@
     
   
     Operations and Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Plan
   
 
     
@@ -865,34 +1262,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../deployment-architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Deployment Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../" class="md-nav__link">
         
   
@@ -917,62 +1286,6 @@
           </ul>
         </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../000-Vision/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Vision
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../100-Business/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Business
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1042,34 +1355,6 @@
     
   
     Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../200-Domains/Authentication/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Authentication
   
 
     
@@ -1275,6 +1560,56 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#tenant-resolution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tenant Resolution Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-logout-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session &amp; Logout Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session &amp; Logout Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logout-flow-angular-spa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logout Flow (Angular SPA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-termination-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Termination Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1342,6 +1677,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rate-limiting-ddos-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate Limiting &amp; DDoS Protection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rate Limiting &amp; DDoS Protection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ddos-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DDoS Protection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data-security" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1381,6 +1744,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#secrets-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Secrets Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secret-rotation-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret Rotation Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#audit-logging" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1403,10 +1794,49 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#deployment-specific-security-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment-Specific Security Configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment-Specific Security Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#self-hosted-security-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-Hosted Security Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#security-checklist-per-service" class="md-nav__link">
     <span class="md-ellipsis">
       
         Security Checklist (Per Service)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Maintenance
       
     </span>
   </a>
@@ -1435,8 +1865,7 @@
 
 <h1 id="security-architecture">Security Architecture</h1>
 <h2 id="overview">Overview</h2>
-<p>The platform security architecture implements a <strong>defence-in-depth</strong> model aligned with Saudi Arabia insurance regulatory requirements (SAMA Cybersecurity Framework).
-Authentication is centralised through an OIDC-compliant identity provider (Keycloak), and authorisation is enforced at both the API Gateway and service layers using JWT claims and role-based rules.</p>
+<p>The platform security architecture implements a <strong>defence-in-depth</strong> model aligned with Saudi Arabia insurance regulatory requirements (SAMA Cybersecurity Framework). Authentication is centralised through an OIDC-compliant identity provider (Keycloak), and authorisation is enforced at both the API Gateway and service layers using JWT claims and role-based rules.</p>
 <hr />
 <h2 id="security-layers">Security Layers</h2>
 <div class="panzoom-box" data-key="none" id="panzoom0" oncontextmenu="return false;">
@@ -1575,6 +2004,74 @@ Use mouse to pan and zoom
 <span class="w">  </span><span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tenant-001&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3 id="tenant-resolution-flow">Tenant Resolution Flow</h3>
+<p>Every request must resolve to a valid tenant. The tenant is resolved in the following order:</p>
+<ol>
+<li><strong>Primary</strong>: From the <code>tenant_id</code> claim in the JWT (most secure, tamper-proof).</li>
+<li><strong>Fallback</strong>: From the <code>X-Tenant-ID</code> header (used for service-to-service and legacy clients).</li>
+<li><strong>Block</strong>: If no tenant is resolved, the request is rejected with a <code>400 Bad Request</code>.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TenantInterceptor</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">HandlerInterceptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">preHandle</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">handler</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">tenantId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Authentication</span><span class="w"> </span><span class="n">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SecurityContextHolder</span><span class="p">.</span><span class="na">getContext</span><span class="p">().</span><span class="na">getAuthentication</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">auth</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">auth</span><span class="p">.</span><span class="na">getPrincipal</span><span class="p">()</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Jwt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">tenantId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">Jwt</span><span class="p">)</span><span class="w"> </span><span class="n">auth</span><span class="p">.</span><span class="na">getPrincipal</span><span class="p">()).</span><span class="na">getClaimAsString</span><span class="p">(</span><span class="s">&quot;tenant_id&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tenantId</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">tenantId</span><span class="p">.</span><span class="na">isBlank</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">tenantId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="na">getHeader</span><span class="p">(</span><span class="s">&quot;X-Tenant-ID&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tenantId</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">tenantId</span><span class="p">.</span><span class="na">isBlank</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">response</span><span class="p">.</span><span class="na">setStatus</span><span class="p">(</span><span class="n">HttpServletResponse</span><span class="p">.</span><span class="na">SC_BAD_REQUEST</span><span class="p">);</span>
+<span class="w">            </span><span class="n">response</span><span class="p">.</span><span class="na">getWriter</span><span class="p">().</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;{\&quot;error\&quot;:\&quot;Missing tenant context\&quot;}&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">TenantContextHolder</span><span class="p">.</span><span class="na">setCurrentTenant</span><span class="p">(</span><span class="n">tenantId</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="session-logout-management">Session &amp; Logout Management</h2>
+<h3 id="logout-flow-angular-spa">Logout Flow (Angular SPA)</h3>
+<ol>
+<li><strong>Client-side</strong>: Clear token state in Angular.</li>
+<li><strong>IdP logout</strong>: Redirect to Keycloak's logout endpoint:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>GET https://auth.insurance.com.sa/realms/insurance/protocol/openid-connect/logout?id_token_hint={id_token}
+</code></pre></div>
+<ol>
+<li><strong>Cookie revocation</strong>: The refresh token cookie (HttpOnly) is invalidated.</li>
+</ol>
+<h3 id="session-termination-policies">Session Termination Policies</h3>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User-initiated logout</td>
+<td>Immediate session termination</td>
+</tr>
+<tr>
+<td>Idle timeout</td>
+<td>30 minutes of inactivity</td>
+</tr>
+<tr>
+<td>Absolute timeout</td>
+<td>8 hours (refresh token expiry)</td>
+</tr>
+<tr>
+<td>Admin revocation</td>
+<td>Admin can revoke user sessions via Keycloak admin console</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="authorisation-model">Authorisation Model</h2>
 <h3 id="role-definitions">Role Definitions</h3>
@@ -1694,6 +2191,51 @@ Use mouse to pan and zoom
 </tbody>
 </table>
 <hr />
+<h2 id="rate-limiting-ddos-protection">Rate Limiting &amp; DDoS Protection</h2>
+<p>Rate limiting is enforced at the API Gateway layer:</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint Category</th>
+<th>Rate Limit</th>
+<th>Enforcement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public endpoints (<code>/api/v1/auth/**</code>)</td>
+<td>20 requests per minute per IP</td>
+<td>API Gateway</td>
+</tr>
+<tr>
+<td>Authenticated user endpoints</td>
+<td>100 requests per minute per user</td>
+<td>API Gateway</td>
+</tr>
+<tr>
+<td>Admin endpoints</td>
+<td>500 requests per minute</td>
+<td>API Gateway</td>
+</tr>
+<tr>
+<td>Operational endpoints (<code>/actuator/health/**</code>)</td>
+<td>10 requests per minute per IP</td>
+<td>Kubernetes Readiness Probe</td>
+</tr>
+<tr>
+<td>Login attempts</td>
+<td>5 failed attempts = 5-minute lockout</td>
+<td>Keycloak</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ddos-protection">DDoS Protection</h3>
+<ul>
+<li><strong>WAF</strong>: AWS WAF or Cloudflare rules block SQL injection, XSS, and known attack patterns.</li>
+<li><strong>Global Rate Limiting</strong>: 10,000 requests per second per region at the CDN/Edge layer.</li>
+<li><strong>Auto-Scaling</strong>: Kubernetes HPA scales pods horizontally during traffic spikes.</li>
+</ul>
+<hr />
 <h2 id="data-security">Data Security</h2>
 <h3 id="encryption-at-rest">Encryption at Rest</h3>
 <table>
@@ -1741,6 +2283,63 @@ Use mouse to pan and zoom
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
+<hr />
+<h2 id="secrets-management">Secrets Management</h2>
+<p>All secrets (database passwords, API keys, JWT signing keys) are managed centrally:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HashiCorp Vault</td>
+<td>Store and rotate secrets, dynamic database credentials</td>
+</tr>
+<tr>
+<td>Kubernetes External Secrets</td>
+<td>Sync Vault secrets to K8s secrets for pod consumption</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>No secrets in source code — verified by pre-commit hooks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="secret-rotation-policy">Secret Rotation Policy</h3>
+<table>
+<thead>
+<tr>
+<th>Secret</th>
+<th>Rotation Period</th>
+<th>Automation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database passwords</td>
+<td>30 days</td>
+<td>Vault automatic rotation</td>
+</tr>
+<tr>
+<td>JWT signing keys</td>
+<td>90 days</td>
+<td>Manual rotation via Keycloak</td>
+</tr>
+<tr>
+<td>API keys (integrations)</td>
+<td>90 days</td>
+<td>Manual, with notification</td>
+</tr>
+<tr>
+<td>TLS certificates</td>
+<td>90 days</td>
+<td>Cert-manager automatic renewal</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="audit-logging">Audit Logging</h2>
 <p>All security-sensitive operations are written to the <code>core.audit_log</code> table and optionally streamed to a SIEM:</p>
@@ -1810,6 +2409,55 @@ Use mouse to pan and zoom
 </tbody>
 </table>
 <hr />
+<h2 id="deployment-specific-security-configurations">Deployment-Specific Security Configurations</h2>
+<p>The platform supports two deployment models with distinct security setups:</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Cloud SaaS (Managed by Us)</th>
+<th>Self-Hosted (Client-Managed)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity Provider</td>
+<td>Managed Keycloak instance</td>
+<td>Client's own Keycloak or Active Directory</td>
+</tr>
+<tr>
+<td>JWT Issuer URI</td>
+<td><code>https://auth.saas.insurance.sa/realms/insurance</code></td>
+<td>Client-defined (e.g., <code>https://auth.client-insurer.sa/...</code>)</td>
+</tr>
+<tr>
+<td>Certificate Management</td>
+<td>Platform team manages signing keys</td>
+<td>Client manages their own certificates</td>
+</tr>
+<tr>
+<td>Audit Log Storage</td>
+<td>Centralized SaaS database</td>
+<td>Client's on-premises database</td>
+</tr>
+<tr>
+<td>Network Security</td>
+<td>VPC, WAF, DDoS protection</td>
+<td>Client's internal security controls</td>
+</tr>
+</tbody>
+</table>
+<h3 id="self-hosted-security-configuration">Self-Hosted Security Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># application-selfhosted.yml</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">security</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">oauth2</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">resourceserver</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">jwt</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">issuer-uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SELF_HOSTED_ISSUER:https://auth.client-insurance.sa/realms/insurance-platform}</span>
+<span class="w">          </span><span class="nt">jwk-set-uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SELF_HOSTED_JWKS:https://auth.client-insurance.sa/realms/insurance-platform/protocol/openid-connect/certs}</span>
+</code></pre></div>
+<hr />
 <h2 id="security-checklist-per-service">Security Checklist (Per Service)</h2>
 <ul>
 <li>[ ] JWT validation enabled on all endpoints except health probes</li>
@@ -1821,6 +2469,34 @@ Use mouse to pan and zoom
 <li>[ ] CORS restricted to known origins</li>
 <li>[ ] Security scan passes before deployment</li>
 </ul>
+<hr />
+<h2 id="document-maintenance">Document Maintenance</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last Updated</td>
+<td>2026-07-06</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Enterprise Architecture Team</td>
+</tr>
+<tr>
+<td>Review Cycle</td>
+<td>Quarterly, or after significant security events</td>
+</tr>
+<tr>
+<td>Approval</td>
+<td>Security Review Board</td>
+</tr>
+</tbody>
+</table>
 
 
 
