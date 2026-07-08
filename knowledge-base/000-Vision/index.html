@@ -1,0 +1,1928 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Architecture and documentation for the Saudi Arabia insurance platform">
+      
+      
+        <meta name="author" content="Enterprise Architecture Team">
+      
+      
+        <link rel="canonical" href="https://offer-core.github.io/enterprise-insurance-core-docs/knowledge-base/000-Vision/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../100-Business/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Vision - Enterprise Insurance Platform</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/panzoom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vision-strategy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Insurance Platform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vision
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Offer-Core/enterprise-insurance-core-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Offer-Core/enterprise-insurance-core-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Insurance Platform
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Offer-Core/enterprise-insurance-core-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Offer-Core/enterprise-insurance-core-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Knowledge Base
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vision
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mission" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mission
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-vision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform Vision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strategic-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategic Goals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Strategic Goals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rapid-product-launch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Rapid Product Launch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-saudi-market-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Saudi Market Alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-operational-excellence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Operational Excellence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-developer-friendly-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Developer-Friendly Platform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-flexible-deployment-for-every-insurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Flexible Deployment for Every Insurer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-technology-choices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Technology Choices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Target Users
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-vs-buy-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build vs. Buy Decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap-initial-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roadmap (Initial Phases)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Roadmap (Initial Phases)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-0-metadata-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0 — Metadata Foundation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-platform-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 — Platform Foundation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-motor-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 — Motor Line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-multi-line-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 — Multi-Line Expansion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-platform-maturity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4 — Platform Maturity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#success-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Success Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../100-Business/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/domain-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/data-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/data-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/integration-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/integration-specs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/api-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/security-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/event-contracts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Contracts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/ui-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/deployment-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/deployment-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/operations-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations and Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/testing-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/migration-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/architecture-decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Domains
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../200-Domains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../400-Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../950-Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../990-AI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mission" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mission
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-vision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform Vision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strategic-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategic Goals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Strategic Goals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rapid-product-launch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Rapid Product Launch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-saudi-market-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Saudi Market Alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-operational-excellence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Operational Excellence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-developer-friendly-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Developer-Friendly Platform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-flexible-deployment-for-every-insurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Flexible Deployment for Every Insurer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-technology-choices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Technology Choices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Target Users
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-vs-buy-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build vs. Buy Decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap-initial-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roadmap (Initial Phases)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Roadmap (Initial Phases)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-0-metadata-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0 — Metadata Foundation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-platform-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 — Platform Foundation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-motor-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 — Motor Line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-multi-line-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 — Multi-Line Expansion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-platform-maturity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4 — Platform Maturity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#success-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Success Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="vision-strategy">Vision &amp; Strategy</h1>
+<h2 id="mission">Mission</h2>
+<p>Build a <strong>modern, configuration-driven enterprise insurance platform</strong> purpose-built for the Saudi Arabia market — enabling insurers to launch products faster, serve customers digitally, and comply with SAMA regulatory requirements without the cost and rigidity of legacy systems.</p>
+<hr />
+<h2 id="platform-vision">Platform Vision</h2>
+<p>The Enterprise Insurance Platform is the operating backbone for Saudi insurance companies, providing:</p>
+<ul>
+<li><strong>End-to-end digital policy lifecycle</strong> — from quote to issuance, endorsement, renewal, and cancellation</li>
+<li><strong>Claims management</strong> — intake, assessment, approval, and settlement</li>
+<li><strong>Billing and payments</strong> — integrated with MADA, SADAD, and bank transfer</li>
+<li><strong>Customer and agent portals</strong> — bilingual (Arabic/English), mobile-first experience</li>
+<li><strong>Regulatory compliance</strong> — built-in SAMA reporting, audit trail, and data residency</li>
+</ul>
+<hr />
+<h2 id="strategic-goals">Strategic Goals</h2>
+<h3 id="1-rapid-product-launch">1. Rapid Product Launch</h3>
+<p>Configure new insurance products (motor, health, travel, property) by defining metadata — not writing code. Business analysts can set field definitions, validation rules, underwriting parameters, and form layouts through the admin portal.</p>
+<h3 id="2-saudi-market-alignment">2. Saudi Market Alignment</h3>
+<ul>
+<li>Native Arabic (RTL) UI with dual-language support</li>
+<li>Integration with Saudi national systems: Yakeen (identity), Najm (accident history)</li>
+<li>SAMA cybersecurity framework compliance</li>
+<li>Data residency in the Saudi Arabia region</li>
+</ul>
+<h3 id="3-operational-excellence">3. Operational Excellence</h3>
+<p>Every capability is instrumented from day one:
+- Structured logs, Prometheus metrics, distributed traces
+- Health dashboards for business KPIs (policy issuance rate, claim settlement time)
+- Automated alerting for integration failures and SLA breaches</p>
+<h3 id="4-developer-friendly-platform">4. Developer-Friendly Platform</h3>
+<ul>
+<li>API-first design with OpenAPI 3.0 specifications</li>
+<li>Domain-driven code organisation with clear service boundaries</li>
+<li>Automated CI/CD pipeline from commit to production</li>
+<li>Infrastructure-as-code for environment reproducibility</li>
+</ul>
+<h3 id="5-flexible-deployment-for-every-insurer">5. Flexible Deployment for Every Insurer</h3>
+<ul>
+<li><strong>Cloud SaaS</strong>: A fully managed, multi-tenant or single-tenant offering for rapid onboarding.</li>
+<li><strong>Self-Hosted</strong>: A deployable package for clients requiring on-premises data residency.</li>
+<li><strong>Single Codebase</strong>: Both deployment models use the same source code and configuration mechanisms.</li>
+</ul>
+<hr />
+<h2 id="platform-principles">Platform Principles</h2>
+<ol>
+<li><strong>Configuration over code</strong> — new products, fields, and validation rules are defined through a <strong>metadata-driven UI (Configuration Workbench)</strong> and stored as <strong>immutable events</strong>, eliminating the need for code deployments or database migrations for schema changes.</li>
+<li><strong>Domain integrity</strong> — each service owns its data; no cross-service direct DB access</li>
+<li><strong>API-first</strong> — all capabilities exposed as versioned REST APIs before building any UI</li>
+<li><strong>Secure by default</strong> — JWT-secured, RBAC-enforced, audit-logged from the first line</li>
+<li><strong>Observable from day one</strong> — every service ships with logs, metrics, and traces</li>
+<li><strong>Saudi-first localisation</strong> — Arabic language, Hijri calendar, RTL layout as a primary concern, not an afterthought</li>
+<li><strong>Resilient integrations</strong> — all external dependencies wrapped with circuit breakers and fallbacks</li>
+</ol>
+<hr />
+<h2 id="key-technology-choices">Key Technology Choices</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Choice</th>
+<th style="text-align: left;">Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Backend</strong></td>
+<td style="text-align: left;">Spring Boot 3.x (Java 17+)</td>
+<td style="text-align: left;">Enterprise-grade, high performance, strong typing</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Frontend</strong></td>
+<td style="text-align: left;">Angular 17+ (Standalone)</td>
+<td style="text-align: left;">Enterprise SPA, Material Design, RTL support</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Database</strong></td>
+<td style="text-align: left;">PostgreSQL 15+ with JSONB</td>
+<td style="text-align: left;">ACID compliance, flexible schema, single source of truth</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Configuration</strong></td>
+<td style="text-align: left;">Event-Sourced Metadata</td>
+<td style="text-align: left;">Immutable audit trail, zero-downtime changes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dynamic Fields</strong></td>
+<td style="text-align: left;">JSONB column (<code>data</code>)</td>
+<td style="text-align: left;">No ALTER TABLE, backward compatibility</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Caching</strong></td>
+<td style="text-align: left;">Redis</td>
+<td style="text-align: left;">Low-latency reads for metadata views</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Real-Time Updates</strong></td>
+<td style="text-align: left;">WebSocket + Redis Pub/Sub</td>
+<td style="text-align: left;">Instant UI reactivity to configuration changes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Deployment</strong></td>
+<td style="text-align: left;">Docker + Kubernetes</td>
+<td style="text-align: left;">Cloud-native and self-hosted support</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="target-users">Target Users</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">User Type</th>
+<th style="text-align: left;">Role</th>
+<th style="text-align: left;">Primary Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Customer</strong></td>
+<td style="text-align: left;">Policyholders, claimants</td>
+<td style="text-align: left;">Customer portal (Angular SPA)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Agent / Broker</strong></td>
+<td style="text-align: left;">Insurance sales intermediaries</td>
+<td style="text-align: left;">Agent portal (Angular SPA)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Underwriter</strong></td>
+<td style="text-align: left;">Policy review and approval</td>
+<td style="text-align: left;">Operations portal (Angular SPA)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Claims Handler</strong></td>
+<td style="text-align: left;">Claims processing and settlement</td>
+<td style="text-align: left;">Operations portal (Angular SPA)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Business Analyst</strong></td>
+<td style="text-align: left;">Product and form configuration</td>
+<td style="text-align: left;">Admin portal (Angular SPA)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Platform Engineer</strong></td>
+<td style="text-align: left;">Service development and deployment</td>
+<td style="text-align: left;">Spring Boot services + CI/CD</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Operations</strong></td>
+<td style="text-align: left;">Monitoring, incident response</td>
+<td style="text-align: left;">Grafana dashboards + runbooks</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Core Engineering Team</strong></td>
+<td style="text-align: left;">Build the metadata engine, APIs, and core services</td>
+<td style="text-align: left;">Spring Boot, PostgreSQL, Kafka</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Frontend Engineering Team</strong></td>
+<td style="text-align: left;">Build portals, workbenches, and dynamic forms</td>
+<td style="text-align: left;">Angular, TypeScript, WebSocket</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DevOps Engineer</strong></td>
+<td style="text-align: left;">CI/CD, Kubernetes, monitoring, self-hosted packaging</td>
+<td style="text-align: left;">Terraform, Docker, Prometheus, Grafana</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>QA Engineer</strong></td>
+<td style="text-align: left;">Automate testing, performance/security testing</td>
+<td style="text-align: left;">Selenium, JMeter, OWASP ZAP</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="build-vs-buy-decision">Build vs. Buy Decision</h2>
+<p>We are building a custom platform because:</p>
+<ol>
+<li><strong>No vendor</strong> (e.g., Guidewire, Duck Creek) offers out-of-the-box integration with Saudi national systems (Yakeen, Najm, NPHIES).</li>
+<li>Existing solutions are <strong>rigid and costly</strong> to customize for the metadata-driven, rapid-configuration model we require.</li>
+<li>Commercial products do not offer the <strong>hybrid deployment model</strong> (self-hosted + cloud) essential for the Saudi market.</li>
+</ol>
+<hr />
+<h2 id="roadmap-initial-phases">Roadmap (Initial Phases)</h2>
+<h3 id="phase-0-metadata-foundation">Phase 0 — Metadata Foundation</h3>
+<ul>
+<li>Build the Metadata Engine (event-sourced configuration)</li>
+<li>Build the Configuration Workbench (Developer UI)</li>
+<li>Implement PostgreSQL JSONB data layer with GIN indexes</li>
+<li>Establish event-sourced metadata tables and caching</li>
+</ul>
+<h3 id="phase-1-platform-foundation">Phase 1 — Platform Foundation</h3>
+<ul>
+<li>Platform documentation and architecture design</li>
+<li>Database schema design (core, metadata, motor schemas)</li>
+<li>CI/CD pipeline and Kubernetes infrastructure</li>
+<li>Authentication service (Keycloak + OIDC)</li>
+<li>Core domain services: Policy, Claims, Billing (Motor line)</li>
+</ul>
+<h3 id="phase-2-motor-line">Phase 2 — Motor Line</h3>
+<ul>
+<li>Motor Comprehensive and Motor TPL product launch</li>
+<li>Yakeen integration (identity verification)</li>
+<li>Najm integration (accident history)</li>
+<li>MADA/SADAD payment integration</li>
+<li>Customer and agent portal (Angular)</li>
+<li>SAMA motor reporting</li>
+</ul>
+<h3 id="phase-3-multi-line-expansion">Phase 3 — Multi-Line Expansion</h3>
+<ul>
+<li>Health insurance line (individual and group)</li>
+<li>Travel insurance line</li>
+<li>Property insurance line</li>
+<li>Cross-line reporting and analytics dashboard</li>
+</ul>
+<h3 id="phase-4-platform-maturity">Phase 4 — Platform Maturity</h3>
+<ul>
+<li>Partner API (B2B integration layer)</li>
+<li>Native mobile applications (iOS / Android)</li>
+<li>AI-assisted underwriting recommendations</li>
+<li>Advanced analytics and BI integration</li>
+</ul>
+<hr />
+<h2 id="success-metrics">Success Metrics</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Policy issuance end-to-end time</td>
+<td>&lt; 5 minutes (motor)</td>
+</tr>
+<tr>
+<td>Platform API availability</td>
+<td>99.9% uptime</td>
+</tr>
+<tr>
+<td>Claims registration time</td>
+<td>&lt; 3 minutes</td>
+</tr>
+<tr>
+<td>SAMA regulatory report delivery</td>
+<td>100% on-time</td>
+</tr>
+<tr>
+<td>UI page load time (P95)</td>
+<td>&lt; 2 seconds</td>
+</tr>
+<tr>
+<td>New product configuration time</td>
+<td>&lt; 1 day (without code changes)</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Enterprise Insurance Platform
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../assets/javascripts/zoompan.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2459 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Architecture and documentation for the Saudi Arabia insurance platform">
+      
+      
+        <meta name="author" content="Enterprise Architecture Team">
+      
+      
+        <link rel="canonical" href="https://offer-core.github.io/enterprise-insurance-core-docs/knowledge-base/architecture/testing-strategy/">
+      
+      
+        <link rel="prev" href="../operations-observability/">
+      
+      
+        <link rel="next" href="../migration-plan/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Testing Strategy - Enterprise Insurance Platform</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#testing-strategy-integration-performance-security" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Insurance Platform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Testing Strategy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Offer-Core/enterprise-insurance-core-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Offer-Core/enterprise-insurance-core-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Insurance Platform
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Offer-Core/enterprise-insurance-core-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Offer-Core/enterprise-insurance-core-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Knowledge Base
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../000-Vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../100-Business/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domain-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration-specs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../event-contracts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Contracts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ui-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations and Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Strategy
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-test-pyramid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Test Pyramid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-unit-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Unit Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Unit Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Standards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-example-premium-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Example: Premium Calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-integration-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Integration Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Integration Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-database-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Database Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-kafka-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Kafka Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-external-api-integration-tests-wiremock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 External API Integration Tests (WireMock)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-performance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Performance Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Performance Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-load-test-scenarios-gatling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Load Test Scenarios (Gatling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-performance-test-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Performance Test Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-stress-test-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Stress Test Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-security-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Security Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Security Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-security-test-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Security Test Categories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-owasp-top-10-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 OWASP Top 10 Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-security-test-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Security Test Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-test-automation-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Test Automation Framework
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Test Automation Framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-test-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Test Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-test-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Test Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-test-data-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Test Data Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Test Data Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-test-data-builders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Test Data Builders
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cicd-test-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. CI/CD Test Gates
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Domains
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../200-Domains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../400-Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../950-Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../990-AI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-test-pyramid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Test Pyramid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-unit-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Unit Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Unit Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Standards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-example-premium-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Example: Premium Calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-integration-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Integration Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Integration Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-database-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Database Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-kafka-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Kafka Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-external-api-integration-tests-wiremock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 External API Integration Tests (WireMock)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-performance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Performance Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Performance Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-load-test-scenarios-gatling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Load Test Scenarios (Gatling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-performance-test-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Performance Test Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-stress-test-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Stress Test Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-security-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Security Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Security Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-security-test-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Security Test Categories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-owasp-top-10-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 OWASP Top 10 Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-security-test-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Security Test Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-test-automation-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Test Automation Framework
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Test Automation Framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-test-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Test Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-test-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Test Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-test-data-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Test Data Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Test Data Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-test-data-builders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Test Data Builders
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cicd-test-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. CI/CD Test Gates
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="testing-strategy-integration-performance-security">Testing Strategy — Integration, Performance &amp; Security</h1>
+<h2 id="overview">Overview</h2>
+<p>This document defines the comprehensive testing strategy for the Enterprise Insurance Platform. It covers integration testing, performance/load testing, security testing, and the test automation framework.</p>
+<hr />
+<h2 id="1-test-pyramid">1. Test Pyramid</h2>
+<div class="highlight"><pre><span></span><code>         ╱╲
+        ╱  ╲
+       ╱ E2E╲           ← 5%  — Critical business flows (Cypress, Playwright)
+      ╱──────╲
+     ╱Integration╲       ← 20% — Service-to-service, DB, external APIs (Spring Boot Test, WireMock)
+    ╱────────────╲
+   ╱  Component   ╲      ← 25% — Slice tests (Web MVC, Data JPA, Kafka)
+  ╱────────────────╲
+ ╱    Unit Tests     ╲    ← 50% — Business logic, domain rules (JUnit 5, Mockito)
+╱──────────────────────╲
+</code></pre></div>
+<hr />
+<h2 id="2-unit-testing">2. Unit Testing</h2>
+<h3 id="21-standards">2.1 Standards</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Standard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Framework</td>
+<td>JUnit 5 + Mockito</td>
+</tr>
+<tr>
+<td>Coverage Target</td>
+<td>≥ 85% line coverage, ≥ 70% branch coverage</td>
+</tr>
+<tr>
+<td>Naming Convention</td>
+<td><code>{methodName}_should_{expectedBehavior}_when_{condition}</code></td>
+</tr>
+<tr>
+<td>Assertion Library</td>
+<td>AssertJ (fluent assertions)</td>
+</tr>
+<tr>
+<td>Test Data</td>
+<td>Builder pattern for domain objects</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-example-premium-calculation">2.2 Example: Premium Calculation</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">PremiumCalculationServiceTest</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">PremiumCalculationService</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PremiumCalculationService</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">calculatePremium_should_applyNoClaimsDiscount_when_driverHasNCD</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Given</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">vehicle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorVehicle</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">vehicleValue</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;100000&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">vehicleUse</span><span class="p">(</span><span class="s">&quot;PRIVATE&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorDriver</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">noClaimsDiscount</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.30&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">yearsOfExperience</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">violationsCount</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// When</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">premium</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="na">calculate</span><span class="p">(</span><span class="n">vehicle</span><span class="p">,</span><span class="w"> </span><span class="n">driver</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Then</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">premium</span><span class="p">.</span><span class="na">basePremium</span><span class="p">()).</span><span class="na">isGreaterThan</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">.</span><span class="na">ZERO</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">premium</span><span class="p">.</span><span class="na">discountApplied</span><span class="p">()).</span><span class="na">isTrue</span><span class="p">();</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">premium</span><span class="p">.</span><span class="na">finalPremium</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">isLessThan</span><span class="p">(</span><span class="n">premium</span><span class="p">.</span><span class="na">basePremium</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">calculatePremium_should_applyLoadingFactor_when_driverHasViolations</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Given</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">vehicle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorVehicle</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">vehicleValue</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;100000&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">vehicleUse</span><span class="p">(</span><span class="s">&quot;PRIVATE&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorDriver</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">noClaimsDiscount</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">.</span><span class="na">ZERO</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">yearsOfExperience</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">violationsCount</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// When</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">premium</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="na">calculate</span><span class="p">(</span><span class="n">vehicle</span><span class="p">,</span><span class="w"> </span><span class="n">driver</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Then</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">premium</span><span class="p">.</span><span class="na">loadingApplied</span><span class="p">()).</span><span class="na">isTrue</span><span class="p">();</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">premium</span><span class="p">.</span><span class="na">finalPremium</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">isGreaterThan</span><span class="p">(</span><span class="n">premium</span><span class="p">.</span><span class="na">basePremium</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">calculatePremium_should_throwException_when_vehicleValueIsZero</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Given</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">vehicle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorVehicle</span><span class="p">.</span><span class="na">builder</span><span class="p">().</span><span class="na">vehicleValue</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">.</span><span class="na">ZERO</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorDriver</span><span class="p">.</span><span class="na">builder</span><span class="p">().</span><span class="na">build</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// When / Then</span>
+<span class="w">        </span><span class="n">assertThatThrownBy</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="na">calculate</span><span class="p">(</span><span class="n">vehicle</span><span class="p">,</span><span class="w"> </span><span class="n">driver</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">isInstanceOf</span><span class="p">(</span><span class="n">IllegalArgumentException</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">hasMessageContaining</span><span class="p">(</span><span class="s">&quot;Vehicle value must be greater than zero&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="3-integration-testing">3. Integration Testing</h2>
+<h3 id="31-database-integration-tests">3.1 Database Integration Tests</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@DataJpaTest</span>
+<span class="nd">@AutoConfigureTestDatabase</span><span class="p">(</span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AutoConfigureTestDatabase</span><span class="p">.</span><span class="na">Replace</span><span class="p">.</span><span class="na">NONE</span><span class="p">)</span>
+<span class="nd">@Testcontainers</span>
+<span class="kd">class</span> <span class="nc">PolicyRepositoryIntegrationTest</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Container</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">PostgreSQLContainer</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">postgres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PostgreSQLContainer</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;postgres:16-alpine&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">withDatabaseName</span><span class="p">(</span><span class="s">&quot;testdb&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">withUsername</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">withPassword</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nd">@DynamicPropertySource</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configureProperties</span><span class="p">(</span><span class="n">DynamicPropertyRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">registry</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;spring.datasource.url&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">postgres</span><span class="p">::</span><span class="n">getJdbcUrl</span><span class="p">);</span>
+<span class="w">        </span><span class="n">registry</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;spring.datasource.username&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">postgres</span><span class="p">::</span><span class="n">getUsername</span><span class="p">);</span>
+<span class="w">        </span><span class="n">registry</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;spring.datasource.password&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">postgres</span><span class="p">::</span><span class="n">getPassword</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">PolicyRepository</span><span class="w"> </span><span class="n">policyRepository</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">CustomerRepository</span><span class="w"> </span><span class="n">customerRepository</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shouldFindActivePoliciesByCustomer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Given</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">customer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createCustomer</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Policy</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">policyNumber</span><span class="p">(</span><span class="s">&quot;POL-TEST-001&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">customer</span><span class="p">(</span><span class="n">customer</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="s">&quot;ACTIVE&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">effectiveDate</span><span class="p">(</span><span class="n">LocalDate</span><span class="p">.</span><span class="na">now</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">expiryDate</span><span class="p">(</span><span class="n">LocalDate</span><span class="p">.</span><span class="na">now</span><span class="p">().</span><span class="na">plusYears</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">annualPremium</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;2500&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="n">policyRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">policy</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// When</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">activePolicies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">policyRepository</span>
+<span class="w">            </span><span class="p">.</span><span class="na">findByCustomerIdAndStatus</span><span class="p">(</span><span class="n">customer</span><span class="p">.</span><span class="na">getId</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;ACTIVE&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Then</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">activePolicies</span><span class="p">).</span><span class="na">hasSize</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">activePolicies</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="na">getPolicyNumber</span><span class="p">()).</span><span class="na">isEqualTo</span><span class="p">(</span><span class="s">&quot;POL-TEST-001&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="32-kafka-integration-tests">3.2 Kafka Integration Tests</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@EmbeddedKafka</span><span class="p">(</span><span class="n">partitions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">topics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;insurance.policy.events&quot;</span><span class="p">})</span>
+<span class="kd">class</span> <span class="nc">PolicyEventPublisherIntegrationTest</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">KafkaTemplate</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">DomainEvent</span><span class="o">&gt;</span><span class="w"> </span><span class="n">kafkaTemplate</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">EmbeddedKafkaBroker</span><span class="w"> </span><span class="n">embeddedKafka</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shouldPublishAndConsumePolicyIssuedEvent</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Given</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DomainEvent</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">eventId</span><span class="p">(</span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">eventType</span><span class="p">(</span><span class="s">&quot;PolicyIssued&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">sourceService</span><span class="p">(</span><span class="s">&quot;policy-service&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">data</span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;policyNumber&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;POL-TEST-001&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// When</span>
+<span class="w">        </span><span class="n">kafkaTemplate</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="s">&quot;insurance.policy.events&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getSourceEntityId</span><span class="p">(),</span><span class="w"> </span><span class="n">event</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Then</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">consumer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">KafkaConsumer</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">            </span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">                </span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">BOOTSTRAP_SERVERS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">embeddedKafka</span><span class="p">.</span><span class="na">getBrokersAsString</span><span class="p">(),</span>
+<span class="w">                </span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">GROUP_ID_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test-group&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">KEY_DESERIALIZER_CLASS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">StringDeserializer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">                </span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">VALUE_DESERIALIZER_CLASS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">StringDeserializer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">                </span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">AUTO_OFFSET_RESET_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;earliest&quot;</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="n">consumer</span><span class="p">.</span><span class="na">subscribe</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;insurance.policy.events&quot;</span><span class="p">));</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumer</span><span class="p">.</span><span class="na">poll</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofSeconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">records</span><span class="p">).</span><span class="na">hasSize</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">records</span><span class="p">.</span><span class="na">iterator</span><span class="p">().</span><span class="na">next</span><span class="p">();</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">received</span><span class="p">.</span><span class="na">value</span><span class="p">()).</span><span class="na">contains</span><span class="p">(</span><span class="s">&quot;POL-TEST-001&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="33-external-api-integration-tests-wiremock">3.3 External API Integration Tests (WireMock)</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@WireMockTest</span><span class="p">(</span><span class="n">httpPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9090</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">YakeenIntegrationTest</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">YakeenIdentityAdapter</span><span class="w"> </span><span class="n">yakeenAdapter</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shouldVerifyCitizenSuccessfully</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Given</span>
+<span class="w">        </span><span class="n">stubFor</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="n">urlEqualTo</span><span class="p">(</span><span class="s">&quot;/yakeen/v1/verify-citizen&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="n">aResponse</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withStatus</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withHeader</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withBody</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">                    {</span>
+<span class="s">                        &quot;status&quot;: &quot;VALID&quot;,</span>
+<span class="s">                        &quot;citizenId&quot;: &quot;1098765432&quot;,</span>
+<span class="s">                        &quot;firstNameAr&quot;: &quot;أحمد&quot;,</span>
+<span class="s">                        &quot;lastNameAr&quot;: &quot;الحربي&quot;,</span>
+<span class="s">                        &quot;gender&quot;: &quot;M&quot;,</span>
+<span class="s">                        &quot;dateOfBirthG&quot;: &quot;1990-05-15&quot;</span>
+<span class="s">                    }</span>
+<span class="s">                &quot;&quot;&quot;</span><span class="p">)));</span>
+
+<span class="w">        </span><span class="c1">// When</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yakeenAdapter</span><span class="p">.</span><span class="na">verify</span><span class="p">(</span>
+<span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">IdentityVerificationRequest</span><span class="p">(</span><span class="s">&quot;1098765432&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1410-02-15&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">IdentityType</span><span class="p">.</span><span class="na">CITIZEN</span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Then</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">verified</span><span class="p">()).</span><span class="na">isTrue</span><span class="p">();</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">fullNameAr</span><span class="p">()).</span><span class="na">contains</span><span class="p">(</span><span class="s">&quot;أحمد&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shouldHandleYakeenNotFound</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Given</span>
+<span class="w">        </span><span class="n">stubFor</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="n">urlEqualTo</span><span class="p">(</span><span class="s">&quot;/yakeen/v1/verify-citizen&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="n">aResponse</span><span class="p">().</span><span class="na">withStatus</span><span class="p">(</span><span class="mi">404</span><span class="p">)));</span>
+
+<span class="w">        </span><span class="c1">// When</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yakeenAdapter</span><span class="p">.</span><span class="na">verify</span><span class="p">(</span>
+<span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">IdentityVerificationRequest</span><span class="p">(</span><span class="s">&quot;0000000000&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1410-02-15&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">IdentityType</span><span class="p">.</span><span class="na">CITIZEN</span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Then</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">verified</span><span class="p">()).</span><span class="na">isFalse</span><span class="p">();</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">status</span><span class="p">()).</span><span class="na">isEqualTo</span><span class="p">(</span><span class="n">VerificationStatus</span><span class="p">.</span><span class="na">NOT_FOUND</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="4-performance-testing">4. Performance Testing</h2>
+<h3 id="41-load-test-scenarios-gatling">4.1 Load Test Scenarios (Gatling)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// PolicyIssuanceSimulation.scala</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PolicyIssuanceSimulation</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nc">Simulation</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="n">httpProtocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">http</span>
+<span class="w">    </span><span class="p">.</span><span class="n">baseUrl</span><span class="p">(</span><span class="s">&quot;https://api.insurance.sa&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">header</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">header</span><span class="p">(</span><span class="s">&quot;Authorization&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bearer ${jwtToken}&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">header</span><span class="p">(</span><span class="s">&quot;X-Tenant-ID&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tenant-001&quot;</span><span class="p">)</span>
+
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="n">policyFeeder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">csv</span><span class="p">(</span><span class="s">&quot;data/policies.csv&quot;</span><span class="p">).</span><span class="n">circular</span>
+
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="n">scn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scenario</span><span class="p">(</span><span class="s">&quot;Policy Issuance Flow&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">feed</span><span class="p">(</span><span class="n">policyFeeder</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">exec</span><span class="p">(</span>
+<span class="w">      </span><span class="n">http</span><span class="p">(</span><span class="s">&quot;Step 1: Verify Identity (Yakeen)&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;/api/v1/policies/verify-identity&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">body</span><span class="p">(</span><span class="nc">StringBody</span><span class="p">(</span><span class="s">&quot;&quot;&quot;{ &quot;nationalId&quot;: &quot;${nationalId}&quot;, &quot;dateOfBirth&quot;: &quot;${dob}&quot; }&quot;&quot;&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">check</span><span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">is</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">check</span><span class="p">(</span><span class="n">jsonPath</span><span class="p">(</span><span class="s">&quot;$.verified&quot;</span><span class="p">).</span><span class="n">is</span><span class="p">(</span><span class="s">&quot;true&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">pause</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">exec</span><span class="p">(</span>
+<span class="w">      </span><span class="n">http</span><span class="p">(</span><span class="s">&quot;Step 2: Get Najm History&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;/api/v1/policies/najm-history&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">body</span><span class="p">(</span><span class="nc">StringBody</span><span class="p">(</span><span class="s">&quot;&quot;&quot;{ &quot;sequenceNumber&quot;: &quot;${sequenceNumber}&quot; }&quot;&quot;&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">check</span><span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">is</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">pause</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">exec</span><span class="p">(</span>
+<span class="w">      </span><span class="n">http</span><span class="p">(</span><span class="s">&quot;Step 3: Calculate Premium&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;/api/v1/policies/calculate-premium&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">body</span><span class="p">(</span><span class="nc">StringBody</span><span class="p">(</span><span class="s">&quot;&quot;&quot;{ &quot;vehicleValue&quot;: ${vehicleValue}, &quot;ncd&quot;: ${ncd} }&quot;&quot;&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">check</span><span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">is</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">check</span><span class="p">(</span><span class="n">jsonPath</span><span class="p">(</span><span class="s">&quot;$.finalPremium&quot;</span><span class="p">).</span><span class="n">saveAs</span><span class="p">(</span><span class="s">&quot;premium&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">pause</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">exec</span><span class="p">(</span>
+<span class="w">      </span><span class="n">http</span><span class="p">(</span><span class="s">&quot;Step 4: Issue Policy&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;/api/v1/policies&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">body</span><span class="p">(</span><span class="nc">StringBody</span><span class="p">(</span><span class="s">&quot;&quot;&quot;{ &quot;productCode&quot;: &quot;MOTOR_COMP&quot;, &quot;premium&quot;: ${premium} }&quot;&quot;&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">check</span><span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">is</span><span class="p">(</span><span class="mi">201</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">check</span><span class="p">(</span><span class="n">jsonPath</span><span class="p">(</span><span class="s">&quot;$.policyNumber&quot;</span><span class="p">).</span><span class="n">saveAs</span><span class="p">(</span><span class="s">&quot;policyNumber&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="w">  </span><span class="n">setUp</span><span class="p">(</span>
+<span class="w">    </span><span class="n">scn</span><span class="p">.</span><span class="n">inject</span><span class="p">(</span>
+<span class="w">      </span><span class="n">nothingFor</span><span class="p">(</span><span class="mi">10</span><span class="w"> </span><span class="n">seconds</span><span class="p">),</span>
+<span class="w">      </span><span class="n">rampUsers</span><span class="p">(</span><span class="mi">50</span><span class="p">).</span><span class="n">during</span><span class="p">(</span><span class="mi">60</span><span class="w"> </span><span class="n">seconds</span><span class="p">),</span>
+<span class="w">      </span><span class="n">constantUsersPerSec</span><span class="p">(</span><span class="mi">20</span><span class="p">).</span><span class="n">during</span><span class="p">(</span><span class="mi">300</span><span class="w"> </span><span class="n">seconds</span><span class="p">),</span>
+<span class="w">      </span><span class="n">rampUsers</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">during</span><span class="p">(</span><span class="mi">60</span><span class="w"> </span><span class="n">seconds</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">).</span><span class="n">protocols</span><span class="p">(</span><span class="n">httpProtocol</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="42-performance-test-scenarios">4.2 Performance Test Scenarios</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Target</th>
+<th>Load Pattern</th>
+<th>Success Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Policy Issuance</td>
+<td>20 req/s</td>
+<td>Ramp to 50 users, sustain 20 req/s for 5 min</td>
+<td>p95 &lt; 3s, error rate &lt; 1%</td>
+</tr>
+<tr>
+<td>Premium Calculation</td>
+<td>50 req/s</td>
+<td>Ramp to 100 users, sustain 50 req/s for 5 min</td>
+<td>p95 &lt; 1s, error rate &lt; 0.5%</td>
+</tr>
+<tr>
+<td>Claim Registration</td>
+<td>10 req/s</td>
+<td>Ramp to 30 users, sustain 10 req/s for 5 min</td>
+<td>p95 &lt; 4s, error rate &lt; 1%</td>
+</tr>
+<tr>
+<td>Customer Lookup</td>
+<td>100 req/s</td>
+<td>Ramp to 200 users, sustain 100 req/s for 5 min</td>
+<td>p95 &lt; 500ms, error rate &lt; 0.1%</td>
+</tr>
+<tr>
+<td>Yakeen Integration</td>
+<td>5 req/s</td>
+<td>Ramp to 15 users, sustain 5 req/s for 5 min</td>
+<td>p95 &lt; 2s, error rate &lt; 2%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-stress-test-scenarios">4.3 Stress Test Scenarios</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Load Pattern</th>
+<th>Success Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spike Test</td>
+<td>0 → 100 req/s in 10 seconds</td>
+<td>No crash, auto-scale within 2 min</td>
+</tr>
+<tr>
+<td>Soak Test</td>
+<td>20 req/s for 8 hours</td>
+<td>No memory leak, no degradation</td>
+</tr>
+<tr>
+<td>Burst Test</td>
+<td>50 req/s for 30 seconds, idle 60s, repeat</td>
+<td>Recovery within 30 seconds</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-security-testing">5. Security Testing</h2>
+<h3 id="51-security-test-categories">5.1 Security Test Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Tools</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAST (Static Analysis)</td>
+<td>SonarQube, SpotBugs</td>
+<td>Every commit</td>
+</tr>
+<tr>
+<td>DAST (Dynamic Analysis)</td>
+<td>OWASP ZAP</td>
+<td>Weekly</td>
+</tr>
+<tr>
+<td>Dependency Scanning</td>
+<td>OWASP Dependency-Check, Trivy</td>
+<td>Every build</td>
+</tr>
+<tr>
+<td>Container Scanning</td>
+<td>Trivy, Grype</td>
+<td>Every build</td>
+</tr>
+<tr>
+<td>Secret Scanning</td>
+<td>GitLeaks, TruffleHog</td>
+<td>Every commit</td>
+</tr>
+<tr>
+<td>Penetration Testing</td>
+<td>External vendor</td>
+<td>Quarterly</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-owasp-top-10-coverage">5.2 OWASP Top 10 Coverage</h3>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Mitigation</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A01: Broken Access Control</td>
+<td>RBAC + RLS + JWT validation</td>
+<td>Integration tests for each role</td>
+</tr>
+<tr>
+<td>A02: Cryptographic Failures</td>
+<td>AES-256-GCM for PII, TLS 1.3</td>
+<td>Encryption/decryption unit tests</td>
+</tr>
+<tr>
+<td>A03: Injection</td>
+<td>Parameterized queries, input validation</td>
+<td>SQL injection scan (ZAP)</td>
+</tr>
+<tr>
+<td>A04: Insecure Design</td>
+<td>Threat modeling, security review</td>
+<td>Architecture review</td>
+</tr>
+<tr>
+<td>A05: Security Misconfiguration</td>
+<td>CIS benchmarks, hardened images</td>
+<td>Trivy config scan</td>
+</tr>
+<tr>
+<td>A06: Vulnerable Components</td>
+<td>Dependency scanning, SBOM</td>
+<td>OWASP Dependency-Check</td>
+</tr>
+<tr>
+<td>A07: Auth Failures</td>
+<td>Keycloak, MFA, session management</td>
+<td>Auth integration tests</td>
+</tr>
+<tr>
+<td>A08: Data Integrity Failures</td>
+<td>Event signing, audit log</td>
+<td>Event signature verification</td>
+</tr>
+<tr>
+<td>A09: Logging Failures</td>
+<td>Structured logging, SIEM integration</td>
+<td>Log review</td>
+</tr>
+<tr>
+<td>A10: SSRF</td>
+<td>Network policies, URL allowlist</td>
+<td>Network policy tests</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-security-test-example">5.3 Security Test Example</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@AutoConfigureMockMvc</span>
+<span class="kd">class</span> <span class="nc">PolicyApiSecurityTest</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">MockMvc</span><span class="w"> </span><span class="n">mockMvc</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shouldRejectRequestWithoutJwt</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">mockMvc</span><span class="p">.</span><span class="na">perform</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;/api/v1/policies&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">contentType</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">content</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">andExpect</span><span class="p">(</span><span class="n">status</span><span class="p">().</span><span class="na">isUnauthorized</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shouldRejectRequestWithExpiredJwt</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">expiredToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">generateExpiredToken</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">mockMvc</span><span class="p">.</span><span class="na">perform</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;/api/v1/policies&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="s">&quot;Authorization&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bearer &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">expiredToken</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">contentType</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">content</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">andExpect</span><span class="p">(</span><span class="n">status</span><span class="p">().</span><span class="na">isUnauthorized</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shouldRejectRequestWithWrongRole</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">generateTokenWithRole</span><span class="p">(</span><span class="s">&quot;CLAIMS_ADJUSTER&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">mockMvc</span><span class="p">.</span><span class="na">perform</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;/api/v1/policies&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="s">&quot;Authorization&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bearer &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">token</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">contentType</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">content</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">                    {</span>
+<span class="s">                        &quot;productCode&quot;: &quot;MOTOR_COMP&quot;,</span>
+<span class="s">                        &quot;annualPremium&quot;: 2500.00</span>
+<span class="s">                    }</span>
+<span class="s">                &quot;&quot;&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">andExpect</span><span class="p">(</span><span class="n">status</span><span class="p">().</span><span class="na">isForbidden</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shouldAllowRequestWithCorrectRole</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">generateTokenWithRole</span><span class="p">(</span><span class="s">&quot;POLICY_UNDERWRITER&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">mockMvc</span><span class="p">.</span><span class="na">perform</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;/api/v1/policies&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="s">&quot;Authorization&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bearer &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">token</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">contentType</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">content</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">                    {</span>
+<span class="s">                        &quot;productCode&quot;: &quot;MOTOR_COMP&quot;,</span>
+<span class="s">                        &quot;annualPremium&quot;: 2500.00</span>
+<span class="s">                    }</span>
+<span class="s">                &quot;&quot;&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">andExpect</span><span class="p">(</span><span class="n">status</span><span class="p">().</span><span class="na">isCreated</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="6-test-automation-framework">6. Test Automation Framework</h2>
+<h3 id="61-test-configuration">6.1 Test Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># application-test.yml</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">datasource</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jdbc:tc:postgresql:16-alpine:///testdb</span>
+<span class="w">    </span><span class="nt">driver-class-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.testcontainers.jdbc.ContainerDatabaseDriver</span>
+<span class="w">  </span><span class="nt">kafka</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">bootstrap-servers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${spring.embedded.kafka.brokers}</span>
+<span class="w">  </span><span class="nt">jpa</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">hibernate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ddl-auto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">create-drop</span>
+<span class="w">    </span><span class="nt">show-sql</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">app</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">yakeen</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">base-url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:9090</span>
+<span class="w">  </span><span class="nt">najm</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsdl-url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:9091/najmws</span>
+<span class="w">  </span><span class="nt">payment</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">gateway-url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:9092</span>
+</code></pre></div>
+<h3 id="62-test-dependencies">6.2 Test Dependencies</h3>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- pom.xml test dependencies --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.testcontainers<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>testcontainers<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.testcontainers<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>postgresql<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.testcontainers<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>kafka<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-contract-stub-runner<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.wiremock<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>wiremock-standalone<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.gatling.highcharts<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>gatling-charts-highcharts<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="7-test-data-management">7. Test Data Management</h2>
+<h3 id="71-test-data-builders">7.1 Test Data Builders</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TestDataBuilders</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Customer</span><span class="p">.</span><span class="na">CustomerBuilder</span><span class="w"> </span><span class="nf">aCustomer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Customer</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">customerNumber</span><span class="p">(</span><span class="s">&quot;CUST-TEST-&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">().</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">nationalIdEncrypted</span><span class="p">(</span><span class="s">&quot;encrypted_nin&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">identityType</span><span class="p">(</span><span class="s">&quot;CITIZEN&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fullNameAr</span><span class="p">(</span><span class="s">&quot;عميل اختبار&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fullNameEn</span><span class="p">(</span><span class="s">&quot;Test Customer&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">mobileNumber</span><span class="p">(</span><span class="s">&quot;+966501234567&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">tenantId</span><span class="p">(</span><span class="s">&quot;tenant-001&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Policy</span><span class="p">.</span><span class="na">PolicyBuilder</span><span class="w"> </span><span class="nf">aMotorPolicy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Policy</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">policyNumber</span><span class="p">(</span><span class="s">&quot;POL-TEST-&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">().</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">productCode</span><span class="p">(</span><span class="s">&quot;MOTOR_COMP&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">lineOfBusiness</span><span class="p">(</span><span class="s">&quot;MOTOR&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="s">&quot;ACTIVE&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">effectiveDate</span><span class="p">(</span><span class="n">LocalDate</span><span class="p">.</span><span class="na">now</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">expiryDate</span><span class="p">(</span><span class="n">LocalDate</span><span class="p">.</span><span class="na">now</span><span class="p">().</span><span class="na">plusYears</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">annualPremium</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;2500&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">currency</span><span class="p">(</span><span class="s">&quot;SAR&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">tenantId</span><span class="p">(</span><span class="s">&quot;tenant-001&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Claim</span><span class="p">.</span><span class="na">ClaimBuilder</span><span class="w"> </span><span class="nf">aMotorClaim</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Claim</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">claimNumber</span><span class="p">(</span><span class="s">&quot;CLM-TEST-&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">().</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="s">&quot;REGISTERED&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">incidentDate</span><span class="p">(</span><span class="n">LocalDate</span><span class="p">.</span><span class="na">now</span><span class="p">().</span><span class="na">minusDays</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">claimedAmount</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;15000&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">currency</span><span class="p">(</span><span class="s">&quot;SAR&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">tenantId</span><span class="p">(</span><span class="s">&quot;tenant-001&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="8-cicd-test-gates">8. CI/CD Test Gates</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Enterprise Insurance Platform
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
+      
+    
+  </body>
+</html>

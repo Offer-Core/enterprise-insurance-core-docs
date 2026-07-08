@@ -1,0 +1,2461 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Architecture and documentation for the Saudi Arabia insurance platform">
+      
+      
+        <meta name="author" content="Enterprise Architecture Team">
+      
+      
+        <link rel="canonical" href="https://offer-core.github.io/enterprise-insurance-core-docs/knowledge-base/architecture/migration-plan/">
+      
+      
+        <link rel="prev" href="../testing-strategy/">
+      
+      
+        <link rel="next" href="../architecture-decisions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Migration Plan - Enterprise Insurance Platform</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#migration-plan-legacy-to-platform" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Insurance Platform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Migration Plan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Offer-Core/enterprise-insurance-core-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Offer-Core/enterprise-insurance-core-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Insurance Platform
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Offer-Core/enterprise-insurance-core-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Offer-Core/enterprise-insurance-core-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Knowledge Base
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../000-Vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../100-Business/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domain-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration-specs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../event-contracts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Contracts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ui-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations and Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Plan
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-migration-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Migration Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-migration-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Migration Phases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Migration Phases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-0-foundation-weeks-1-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0: Foundation (Weeks 1-4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-motor-new-business-only-weeks-5-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Motor — New Business Only (Weeks 5-8)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-motor-renewals-migration-weeks-9-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Motor — Renewals Migration (Weeks 9-12)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-motor-claims-migration-weeks-13-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Motor — Claims Migration (Weeks 13-16)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-motor-legacy-decommission-weeks-17-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Motor — Legacy Decommission (Weeks 17-18)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-5-health-line-weeks-19-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5: Health Line (Weeks 19-30)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-6-travel-line-weeks-31-38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6: Travel Line (Weeks 31-38)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-data-migration-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Data Migration Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Data Migration Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-migration-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Migration Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-data-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Data Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-etl-script-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 ETL Script Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-reconciliation-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Reconciliation Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-rollback-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Rollback Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Rollback Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-rollback-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Rollback Triggers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-rollback-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Rollback Procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cutover-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cutover Checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Cutover Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-pre-cutover-t-7-days" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Pre-Cutover (T-7 days)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-cutover-day" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Cutover Day
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-post-cutover-t7-days" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Post-Cutover (T+7 days)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-risk-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Risk Assessment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Domains
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../200-Domains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../400-Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../950-Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../990-AI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-migration-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Migration Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-migration-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Migration Phases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Migration Phases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-0-foundation-weeks-1-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0: Foundation (Weeks 1-4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-motor-new-business-only-weeks-5-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Motor — New Business Only (Weeks 5-8)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-motor-renewals-migration-weeks-9-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Motor — Renewals Migration (Weeks 9-12)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-motor-claims-migration-weeks-13-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Motor — Claims Migration (Weeks 13-16)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-motor-legacy-decommission-weeks-17-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Motor — Legacy Decommission (Weeks 17-18)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-5-health-line-weeks-19-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5: Health Line (Weeks 19-30)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-6-travel-line-weeks-31-38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6: Travel Line (Weeks 31-38)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-data-migration-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Data Migration Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Data Migration Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-migration-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Migration Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-data-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Data Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-etl-script-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 ETL Script Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-reconciliation-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Reconciliation Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-rollback-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Rollback Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Rollback Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-rollback-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Rollback Triggers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-rollback-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Rollback Procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cutover-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cutover Checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Cutover Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-pre-cutover-t-7-days" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Pre-Cutover (T-7 days)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-cutover-day" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Cutover Day
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-post-cutover-t7-days" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Post-Cutover (T+7 days)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-risk-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Risk Assessment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="migration-plan-legacy-to-platform">Migration Plan — Legacy to Platform</h1>
+<h2 id="overview">Overview</h2>
+<p>This document defines the strategy and execution plan for migrating from legacy insurance systems to the new Enterprise Insurance Platform. The migration follows a <strong>strangler fig pattern</strong> — gradually replacing legacy functionality while maintaining business continuity.</p>
+<hr />
+<h2 id="1-migration-principles">1. Migration Principles</h2>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Business Continuity</strong></td>
+<td>No downtime during migration. Legacy and new systems run in parallel.</td>
+</tr>
+<tr>
+<td><strong>Data Integrity</strong></td>
+<td>Every record migrated must be verifiable via checksums and reconciliation.</td>
+</tr>
+<tr>
+<td><strong>Incremental Migration</strong></td>
+<td>Migrate one product line at a time (Motor first, then Health, then Travel).</td>
+</tr>
+<tr>
+<td><strong>Rollback Capability</strong></td>
+<td>Every migration phase must have a tested rollback plan.</td>
+</tr>
+<tr>
+<td><strong>Regulatory Compliance</strong></td>
+<td>SAMA reporting must be continuous — no gaps during migration.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-migration-phases">2. Migration Phases</h2>
+<h3 id="phase-0-foundation-weeks-1-4">Phase 0: Foundation (Weeks 1-4)</h3>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Owner</th>
+<th>Duration</th>
+<th>Deliverable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set up platform infrastructure</td>
+<td>DevOps</td>
+<td>Week 1</td>
+<td>K8s cluster, CI/CD, monitoring</td>
+</tr>
+<tr>
+<td>Deploy metadata engine</td>
+<td>Platform</td>
+<td>Week 2</td>
+<td>Product configuration, field definitions</td>
+</tr>
+<tr>
+<td>Set up event infrastructure</td>
+<td>Platform</td>
+<td>Week 2</td>
+<td>Kafka cluster, topics, schema registry</td>
+</tr>
+<tr>
+<td>Deploy Keycloak</td>
+<td>Security</td>
+<td>Week 3</td>
+<td>Realm, clients, roles, users</td>
+</tr>
+<tr>
+<td>Set up data pipelines</td>
+<td>Data</td>
+<td>Week 3-4</td>
+<td>CDC from legacy DB, initial sync</td>
+</tr>
+<tr>
+<td>Integration testing</td>
+<td>QA</td>
+<td>Week 4</td>
+<td>WireMock stubs, integration test suite</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-1-motor-new-business-only-weeks-5-8">Phase 1: Motor — New Business Only (Weeks 5-8)</h3>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Owner</th>
+<th>Duration</th>
+<th>Deliverable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deploy Policy Service</td>
+<td>Motor Team</td>
+<td>Week 5</td>
+<td>Motor policy issuance API</td>
+</tr>
+<tr>
+<td>Deploy Customer Service</td>
+<td>Platform</td>
+<td>Week 5</td>
+<td>Customer management API</td>
+</tr>
+<tr>
+<td>Yakeen integration</td>
+<td>Motor Team</td>
+<td>Week 5-6</td>
+<td>Identity verification working</td>
+</tr>
+<tr>
+<td>Najm integration</td>
+<td>Motor Team</td>
+<td>Week 6</td>
+<td>Accident history retrieval</td>
+</tr>
+<tr>
+<td>MADA payment integration</td>
+<td>Billing Team</td>
+<td>Week 6-7</td>
+<td>Payment processing</td>
+</tr>
+<tr>
+<td>Premium calculation engine</td>
+<td>Motor Team</td>
+<td>Week 7</td>
+<td>Rating factors, NCD, loading</td>
+</tr>
+<tr>
+<td>UAT with new business</td>
+<td>Business</td>
+<td>Week 8</td>
+<td>Sign-off on new business flow</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scope:</strong> All new Motor policies are issued on the new platform. Legacy system continues to service existing policies.</p>
+<h3 id="phase-2-motor-renewals-migration-weeks-9-12">Phase 2: Motor — Renewals Migration (Weeks 9-12)</h3>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Owner</th>
+<th>Duration</th>
+<th>Deliverable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Build renewal data migration</td>
+<td>Data Team</td>
+<td>Week 9</td>
+<td>ETL scripts for policy data</td>
+</tr>
+<tr>
+<td>Migrate active policies</td>
+<td>Data Team</td>
+<td>Week 10</td>
+<td>50,000 policies migrated</td>
+</tr>
+<tr>
+<td>Migrate customer data</td>
+<td>Data Team</td>
+<td>Week 10</td>
+<td>30,000 customers migrated</td>
+</tr>
+<tr>
+<td>Reconciliation</td>
+<td>Data Team</td>
+<td>Week 10-11</td>
+<td>100% data match verified</td>
+</tr>
+<tr>
+<td>Renewal cutover</td>
+<td>Motor Team</td>
+<td>Week 11</td>
+<td>All renewals on new platform</td>
+</tr>
+<tr>
+<td>Legacy read-only</td>
+<td>Operations</td>
+<td>Week 12</td>
+<td>Legacy system set to read-only for Motor</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scope:</strong> All Motor policy renewals are processed on the new platform. Legacy system is read-only for Motor data.</p>
+<h3 id="phase-3-motor-claims-migration-weeks-13-16">Phase 3: Motor — Claims Migration (Weeks 13-16)</h3>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Owner</th>
+<th>Duration</th>
+<th>Deliverable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deploy Claims Service</td>
+<td>Motor Team</td>
+<td>Week 13</td>
+<td>Motor claims API</td>
+</tr>
+<tr>
+<td>Migrate open claims</td>
+<td>Data Team</td>
+<td>Week 13-14</td>
+<td>5,000 open claims migrated</td>
+</tr>
+<tr>
+<td>Migrate closed claims</td>
+<td>Data Team</td>
+<td>Week 14</td>
+<td>20,000 closed claims migrated</td>
+</tr>
+<tr>
+<td>Claims reconciliation</td>
+<td>Data Team</td>
+<td>Week 14-15</td>
+<td>100% data match verified</td>
+</tr>
+<tr>
+<td>FNOL cutover</td>
+<td>Motor Team</td>
+<td>Week 15</td>
+<td>All new claims on new platform</td>
+</tr>
+<tr>
+<td>Legacy decommission prep</td>
+<td>Operations</td>
+<td>Week 16</td>
+<td>Legacy Motor system ready for shutdown</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-4-motor-legacy-decommission-weeks-17-18">Phase 4: Motor — Legacy Decommission (Weeks 17-18)</h3>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Owner</th>
+<th>Duration</th>
+<th>Deliverable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Final data reconciliation</td>
+<td>Data Team</td>
+<td>Week 17</td>
+<td>Complete data audit</td>
+</tr>
+<tr>
+<td>Archive legacy data</td>
+<td>Data Team</td>
+<td>Week 17</td>
+<td>Cold storage archive</td>
+</tr>
+<tr>
+<td>Update SAMA reporting</td>
+<td>Compliance</td>
+<td>Week 17</td>
+<td>Reporting from new platform</td>
+</tr>
+<tr>
+<td>Decommission legacy</td>
+<td>Operations</td>
+<td>Week 18</td>
+<td>Legacy Motor system shutdown</td>
+</tr>
+<tr>
+<td>Post-mortem</td>
+<td>All</td>
+<td>Week 18</td>
+<td>Lessons learned</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-5-health-line-weeks-19-30">Phase 5: Health Line (Weeks 19-30)</h3>
+<p><em>Repeat phases 1-4 for Health insurance line of business.</em></p>
+<h3 id="phase-6-travel-line-weeks-31-38">Phase 6: Travel Line (Weeks 31-38)</h3>
+<p><em>Repeat phases 1-4 for Travel insurance line of business.</em></p>
+<hr />
+<h2 id="3-data-migration-strategy">3. Data Migration Strategy</h2>
+<h3 id="31-migration-approach">3.1 Migration Approach</h3>
+<div class="highlight"><pre><span></span><code>┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   Legacy DB     │────▶│  CDC Pipeline   │────▶│   New Platform  │
+│  (PostgreSQL)   │     │  (Debezium)     │     │  (PostgreSQL)   │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+         │                       │                        │
+         │                       │                        │
+         ▼                       ▼                        ▼
+  ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+  │  Full Export    │     │  Change Events  │     │  Reconciliation │
+  │  (pg_dump)      │     │  (Kafka)        │     │  (Checksum)     │
+  └─────────────────┘     └─────────────────┘     └─────────────────┘
+</code></pre></div>
+<h3 id="32-data-mapping">3.2 Data Mapping</h3>
+<table>
+<thead>
+<tr>
+<th>Legacy Table</th>
+<th>New Table</th>
+<th>Mapping Complexity</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>legacy.customers</code></td>
+<td><code>core.customers</code></td>
+<td>Medium</td>
+<td>NIN encryption, Arabic name split</td>
+</tr>
+<tr>
+<td><code>legacy.policies</code></td>
+<td><code>core.policies</code></td>
+<td>High</td>
+<td>JSONB restructuring, line-specific split</td>
+</tr>
+<tr>
+<td><code>legacy.claims</code></td>
+<td><code>core.claims</code></td>
+<td>High</td>
+<td>JSONB restructuring, motor details split</td>
+</tr>
+<tr>
+<td><code>legacy.vehicles</code></td>
+<td><code>motor.motor_vehicles</code></td>
+<td>Low</td>
+<td>Direct mapping</td>
+</tr>
+<tr>
+<td><code>legacy.drivers</code></td>
+<td><code>motor.motor_drivers</code></td>
+<td>Low</td>
+<td>Direct mapping</td>
+</tr>
+<tr>
+<td><code>legacy.payments</code></td>
+<td><code>core.financial_transactions</code></td>
+<td>Medium</td>
+<td>Status mapping, gateway refs</td>
+</tr>
+<tr>
+<td><code>legacy.documents</code></td>
+<td><code>core.documents</code></td>
+<td>Low</td>
+<td>Storage path migration</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-etl-script-example">3.3 ETL Script Example</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Migration: Legacy policies to new platform</span>
+<span class="c1">-- Phase: Initial bulk load</span>
+
+<span class="k">BEGIN</span><span class="p">;</span>
+
+<span class="c1">-- Create staging table</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">TEMP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">staging_policies</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="n">lp</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">legacy_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lp</span><span class="p">.</span><span class="n">policy_number</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CASE</span><span class="w"> </span><span class="n">lp</span><span class="p">.</span><span class="n">product_type</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;MOTOR_COMP&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;MOTOR_COMP&#39;</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;MOTOR_TPL&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;MOTOR_TPL&#39;</span>
+<span class="w">        </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;MOTOR_COMP&#39;</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">product_code</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;MOTOR&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">line_of_business</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nc</span><span class="p">.</span><span class="n">new_customer_id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CASE</span><span class="w"> </span><span class="n">lp</span><span class="p">.</span><span class="n">status</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;ACTIVE&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ACTIVE&#39;</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;CANCELLED&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;CANCELLED&#39;</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;EXPIRED&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;EXPIRED&#39;</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;DRAFT&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;DRAFT&#39;</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">status</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lp</span><span class="p">.</span><span class="n">effective_date</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lp</span><span class="p">.</span><span class="n">expiry_date</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lp</span><span class="p">.</span><span class="n">premium</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">annual_premium</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;SAR&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">currency</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lp</span><span class="p">.</span><span class="n">tax_amount</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lp</span><span class="p">.</span><span class="n">commission_amount</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lp</span><span class="p">.</span><span class="n">commission_rate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">jsonb_build_object</span><span class="p">(</span>
+<span class="w">        </span><span class="s1">&#39;vehicle&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">jsonb_build_object</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;sequence_number&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">lv</span><span class="p">.</span><span class="n">sequence_number</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;plate_number&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">lv</span><span class="p">.</span><span class="n">plate_number</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;make&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">lv</span><span class="p">.</span><span class="n">make</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;model&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">lv</span><span class="p">.</span><span class="n">model</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;model_year&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">lv</span><span class="p">.</span><span class="n">model_year</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;vehicle_value&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">lv</span><span class="p">.</span><span class="n">vehicle_value</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;vehicle_use&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">lv</span><span class="p">.</span><span class="n">vehicle_use</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span><span class="s1">&#39;drivers&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="k">SELECT</span><span class="w"> </span><span class="n">jsonb_agg</span><span class="p">(</span>
+<span class="w">                </span><span class="n">jsonb_build_object</span><span class="p">(</span>
+<span class="w">                    </span><span class="s1">&#39;driver_type&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ld</span><span class="p">.</span><span class="n">driver_type</span><span class="p">,</span>
+<span class="w">                    </span><span class="s1">&#39;national_id&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">pgp_sym_encrypt</span><span class="p">(</span><span class="n">ld</span><span class="p">.</span><span class="n">national_id</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;${encryption_key}&#39;</span><span class="p">),</span>
+<span class="w">                    </span><span class="s1">&#39;full_name_ar&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ld</span><span class="p">.</span><span class="n">full_name_ar</span><span class="p">,</span>
+<span class="w">                    </span><span class="s1">&#39;license_number&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ld</span><span class="p">.</span><span class="n">license_number</span><span class="p">,</span>
+<span class="w">                    </span><span class="s1">&#39;no_claims_discount&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ld</span><span class="p">.</span><span class="n">ncd</span><span class="p">,</span>
+<span class="w">                    </span><span class="s1">&#39;years_of_experience&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ld</span><span class="p">.</span><span class="n">experience_years</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="n">legacy</span><span class="p">.</span><span class="n">drivers</span><span class="w"> </span><span class="n">ld</span>
+<span class="w">            </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ld</span><span class="p">.</span><span class="n">policy_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lp</span><span class="p">.</span><span class="n">id</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">line_specific_data</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lp</span><span class="p">.</span><span class="n">issued_at</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lp</span><span class="p">.</span><span class="n">cancelled_at</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lp</span><span class="p">.</span><span class="n">cancellation_reason</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;tenant-001&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">tenant_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NOW</span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">created_at</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NOW</span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">updated_at</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;00000000-0000-0000-0000-000000000000&#39;</span><span class="p">::</span><span class="n">UUID</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">created_by</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">version</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">legacy</span><span class="p">.</span><span class="n">policies</span><span class="w"> </span><span class="n">lp</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">legacy</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="n">lc</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">lc</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lp</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">customer_mapping</span><span class="w"> </span><span class="n">nc</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">nc</span><span class="p">.</span><span class="n">legacy_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lc</span><span class="p">.</span><span class="n">id</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">legacy</span><span class="p">.</span><span class="n">vehicles</span><span class="w"> </span><span class="n">lv</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">lv</span><span class="p">.</span><span class="n">policy_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lp</span><span class="p">.</span><span class="n">id</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">lp</span><span class="p">.</span><span class="n">line_of_business</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MOTOR&#39;</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">lp</span><span class="p">.</span><span class="n">created_at</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Insert into new platform</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">policy_number</span><span class="p">,</span><span class="w"> </span><span class="n">product_code</span><span class="p">,</span><span class="w"> </span><span class="n">line_of_business</span><span class="p">,</span>
+<span class="w">    </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">effective_date</span><span class="p">,</span><span class="w"> </span><span class="n">expiry_date</span><span class="p">,</span>
+<span class="w">    </span><span class="n">annual_premium</span><span class="p">,</span><span class="w"> </span><span class="n">currency</span><span class="p">,</span><span class="w"> </span><span class="n">tax_amount</span><span class="p">,</span>
+<span class="w">    </span><span class="n">commission_amount</span><span class="p">,</span><span class="w"> </span><span class="n">commission_rate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">line_specific_data</span><span class="p">,</span><span class="w"> </span><span class="n">tenant_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">issued_at</span><span class="p">,</span><span class="w"> </span><span class="n">cancelled_at</span><span class="p">,</span><span class="w"> </span><span class="n">cancellation_reason</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="p">,</span><span class="w"> </span><span class="n">updated_at</span><span class="p">,</span><span class="w"> </span><span class="n">created_by</span><span class="p">,</span><span class="w"> </span><span class="k">version</span>
+<span class="p">)</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="n">policy_number</span><span class="p">,</span><span class="w"> </span><span class="n">product_code</span><span class="p">,</span><span class="w"> </span><span class="n">line_of_business</span><span class="p">,</span>
+<span class="w">    </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">effective_date</span><span class="p">,</span><span class="w"> </span><span class="n">expiry_date</span><span class="p">,</span>
+<span class="w">    </span><span class="n">annual_premium</span><span class="p">,</span><span class="w"> </span><span class="n">currency</span><span class="p">,</span><span class="w"> </span><span class="n">tax_amount</span><span class="p">,</span>
+<span class="w">    </span><span class="n">commission_amount</span><span class="p">,</span><span class="w"> </span><span class="n">commission_rate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">line_specific_data</span><span class="p">,</span><span class="w"> </span><span class="n">tenant_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">issued_at</span><span class="p">,</span><span class="w"> </span><span class="n">cancelled_at</span><span class="p">,</span><span class="w"> </span><span class="n">cancellation_reason</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="p">,</span><span class="w"> </span><span class="n">updated_at</span><span class="p">,</span><span class="w"> </span><span class="n">created_by</span><span class="p">,</span><span class="w"> </span><span class="k">version</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">staging_policies</span><span class="p">;</span>
+
+<span class="c1">-- Record migration audit</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">migration</span><span class="p">.</span><span class="n">audit_log</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">batch_id</span><span class="p">,</span><span class="w"> </span><span class="n">entity_type</span><span class="p">,</span><span class="w"> </span><span class="n">records_migrated</span><span class="p">,</span>
+<span class="w">    </span><span class="n">checksum</span><span class="p">,</span><span class="w"> </span><span class="n">migrated_at</span>
+<span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;BATCH-001&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;POLICY&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">staging_policies</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">MD5</span><span class="p">(</span><span class="n">string_agg</span><span class="p">(</span><span class="n">policy_number</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">annual_premium</span><span class="p">::</span><span class="nb">text</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">policy_number</span><span class="p">))</span>
+<span class="w">     </span><span class="k">FROM</span><span class="w"> </span><span class="n">staging_policies</span><span class="p">),</span>
+<span class="w">    </span><span class="n">NOW</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="k">COMMIT</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="34-reconciliation-query">3.4 Reconciliation Query</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Reconciliation: Compare legacy vs new platform</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="s1">&#39;POLICY&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">entity_type</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_records</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">match_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MATCH&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">matched</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">match_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MISMATCH&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mismatched</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">match_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MISSING_IN_NEW&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">missing_in_new</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">match_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MISSING_IN_LEGACY&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">missing_in_legacy</span>
+<span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span>
+<span class="w">        </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">lp</span><span class="p">.</span><span class="n">policy_number</span><span class="p">,</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">policy_number</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">policy_number</span><span class="p">,</span>
+<span class="w">        </span><span class="k">CASE</span>
+<span class="w">            </span><span class="k">WHEN</span><span class="w"> </span><span class="n">lp</span><span class="p">.</span><span class="n">policy_number</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;MISSING_IN_LEGACY&#39;</span>
+<span class="w">            </span><span class="k">WHEN</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">policy_number</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;MISSING_IN_NEW&#39;</span>
+<span class="w">            </span><span class="k">WHEN</span><span class="w"> </span><span class="n">lp</span><span class="p">.</span><span class="n">premium</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">annual_premium</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;MISMATCH&#39;</span>
+<span class="w">            </span><span class="k">WHEN</span><span class="w"> </span><span class="n">lp</span><span class="p">.</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">status</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;MISMATCH&#39;</span>
+<span class="w">            </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;MATCH&#39;</span>
+<span class="w">        </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">match_status</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">legacy</span><span class="p">.</span><span class="n">policies</span><span class="w"> </span><span class="n">lp</span>
+<span class="w">    </span><span class="k">FULL</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">core</span><span class="p">.</span><span class="n">policies</span><span class="w"> </span><span class="n">np</span>
+<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">policy_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lp</span><span class="p">.</span><span class="n">policy_number</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">lp</span><span class="p">.</span><span class="n">line_of_business</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MOTOR&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MOTOR&#39;</span>
+<span class="p">)</span><span class="w"> </span><span class="n">subquery</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h2 id="4-rollback-plan">4. Rollback Plan</h2>
+<h3 id="41-rollback-triggers">4.1 Rollback Triggers</h3>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Threshold</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data mismatch rate &gt; 0.1%</td>
+<td>After migration</td>
+<td>Stop migration, revert to legacy</td>
+</tr>
+<tr>
+<td>Error rate &gt; 2% on new platform</td>
+<td>During UAT</td>
+<td>Route traffic back to legacy</td>
+</tr>
+<tr>
+<td>Performance degradation &gt; 20%</td>
+<td>During UAT</td>
+<td>Scale up new platform, investigate</td>
+</tr>
+<tr>
+<td>Security vulnerability found</td>
+<td>Any time</td>
+<td>Halt migration, patch, resume</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-rollback-procedure">4.2 Rollback Procedure</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Stop new traffic</span>
+kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>api-gateway<span class="w"> </span>-n<span class="w"> </span>insurance-ingress<span class="w"> </span>--replicas<span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># 2. Revert DNS to legacy</span>
+kubectl<span class="w"> </span>patch<span class="w"> </span>ingress<span class="w"> </span>insurance-ingress<span class="w"> </span>-n<span class="w"> </span>insurance-ingress<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;rules&quot;:[{&quot;host&quot;:&quot;api.insurance.sa&quot;,&quot;http&quot;:{&quot;paths&quot;:[{&quot;path&quot;:&quot;/api/v1/policies&quot;,&quot;pathType&quot;:&quot;Prefix&quot;,&quot;backend&quot;:{&quot;service&quot;:{&quot;name&quot;:&quot;legacy-gateway&quot;,&quot;port&quot;:{&quot;number&quot;:8080}}}}]}}]}}&#39;</span>
+
+<span class="c1"># 3. Verify legacy is serving traffic</span>
+curl<span class="w"> </span>-f<span class="w"> </span>https://api.insurance.sa/api/v1/policies/health
+
+<span class="c1"># 4. Notify stakeholders</span>
+./scripts/notify.sh<span class="w"> </span><span class="s2">&quot;Rollback to legacy completed. Investigating root cause.&quot;</span>
+
+<span class="c1"># 5. Post-mortem</span>
+<span class="c1"># Document what went wrong, fix, and plan re-migration</span>
+</code></pre></div>
+<hr />
+<h2 id="5-cutover-checklist">5. Cutover Checklist</h2>
+<h3 id="51-pre-cutover-t-7-days">5.1 Pre-Cutover (T-7 days)</h3>
+<ul>
+<li>[ ] All integration tests passing</li>
+<li>[ ] Performance tests meeting SLAs</li>
+<li>[ ] Security scan completed (no CRITICAL/HIGH findings)</li>
+<li>[ ] Data migration dry run completed</li>
+<li>[ ] Reconciliation report shows 100% match</li>
+<li>[ ] Rollback plan reviewed and approved</li>
+<li>[ ] Stakeholders notified of cutover date</li>
+<li>[ ] Operations team briefed on monitoring dashboards</li>
+<li>[ ] Support team trained on new platform</li>
+<li>[ ] SAMA reporting continuity verified</li>
+</ul>
+<h3 id="52-cutover-day">5.2 Cutover Day</h3>
+<ul>
+<li>[ ] 08:00 — Final data sync from legacy</li>
+<li>[ ] 08:30 — Reconciliation check</li>
+<li>[ ] 09:00 — Deploy new platform services</li>
+<li>[ ] 09:15 — Health check: all services green</li>
+<li>[ ] 09:30 — Route 10% traffic to new platform</li>
+<li>[ ] 10:00 — Monitor error rates, latency</li>
+<li>[ ] 10:30 — Route 50% traffic</li>
+<li>[ ] 11:00 — Route 100% traffic</li>
+<li>[ ] 11:30 — Verify all business flows</li>
+<li>[ ] 12:00 — Legacy set to read-only</li>
+<li>[ ] 14:00 — Post-cutover review</li>
+</ul>
+<h3 id="53-post-cutover-t7-days">5.3 Post-Cutover (T+7 days)</h3>
+<ul>
+<li>[ ] Monitor error rates daily</li>
+<li>[ ] Verify SAMA report generation</li>
+<li>[ ] Run full reconciliation</li>
+<li>[ ] Collect user feedback</li>
+<li>[ ] Document lessons learned</li>
+<li>[ ] Plan next phase</li>
+</ul>
+<hr />
+<h2 id="6-risk-assessment">6. Risk Assessment</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Probability</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data loss during migration</td>
+<td>Low</td>
+<td>Critical</td>
+<td>Checksum verification at every step</td>
+</tr>
+<tr>
+<td>Performance degradation</td>
+<td>Medium</td>
+<td>High</td>
+<td>Load testing, auto-scaling, circuit breakers</td>
+</tr>
+<tr>
+<td>Integration failure (Yakeen/Najm)</td>
+<td>Medium</td>
+<td>High</td>
+<td>Circuit breaker, fallback to manual</td>
+</tr>
+<tr>
+<td>Regulatory reporting gap</td>
+<td>Low</td>
+<td>Critical</td>
+<td>Dual reporting during migration</td>
+</tr>
+<tr>
+<td>User adoption resistance</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Training, UAT, phased rollout</td>
+</tr>
+<tr>
+<td>Legacy system decommission delay</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Parallel run until confidence is high</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="document-maintenance">Document Maintenance</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last Updated</td>
+<td>2026-07-06</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Enterprise Architecture Team</td>
+</tr>
+<tr>
+<td>Review Cycle</td>
+<td>Weekly during active migration phases</td>
+</tr>
+<tr>
+<td>Related Documents</td>
+<td><a href="../data-architecture/">Data Architecture</a>, <a href="../deployment-architecture/">Deployment Architecture</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Enterprise Insurance Platform
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
+      
+    
+  </body>
+</html>

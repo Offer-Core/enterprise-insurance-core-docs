@@ -1,0 +1,3047 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Architecture and documentation for the Saudi Arabia insurance platform">
+      
+      
+        <meta name="author" content="Enterprise Architecture Team">
+      
+      
+        <link rel="canonical" href="https://offer-core.github.io/enterprise-insurance-core-docs/knowledge-base/architecture/integration-specs/">
+      
+      
+        <link rel="prev" href="../integration-architecture/">
+      
+      
+        <link rel="next" href="../api-architecture/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Integration Specs - Enterprise Insurance Platform</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#integration-specifications-saudi-national-systems" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Insurance Platform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Integration Specs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Offer-Core/enterprise-insurance-core-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Offer-Core/enterprise-insurance-core-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Insurance Platform
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Offer-Core/enterprise-insurance-core-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Offer-Core/enterprise-insurance-core-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Knowledge Base
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../000-Vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../100-Business/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domain-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Specs
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-yakeen-national-identity-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Yakeen — National Identity Verification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Yakeen — National Identity Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-yakeenv1verify-citizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /yakeen/v1/verify-citizen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-yakeenv1verify-resident" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /yakeen/v1/verify-resident
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-java-adapter-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Java Adapter Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-resilience-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Resilience Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-najm-accident-and-claims-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Najm — Accident and Claims History
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Najm — Accident and Claims History">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-soap-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 SOAP Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 SOAP Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getaccidenthistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GetAccidentHistory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-soap-client-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 SOAP Client Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-response-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Response Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mada-payment-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. MADA Payment Gateway
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. MADA Payment Gateway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-payment-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Payment Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1paymentsinitiate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/payments/initiate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1paymentswebhook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/payments/webhook
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-webhook-signature-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Webhook Signature Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sadad-bill-payment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. SADAD Bill Payment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. SADAD Bill Payment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-bill-presentment-file-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Bill Presentment File Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-payment-confirmation-file-received-from-sadad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Payment Confirmation File (Received from SADAD)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sama-regulatory-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. SAMA Regulatory Reporting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. SAMA Regulatory Reporting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-motor-policy-register-xml-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Motor Policy Register XML Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-report-generation-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Report Generation Job
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-integration-error-handling-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Integration Error Handling Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-integration-testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Integration Testing Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Integration Testing Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-wiremock-stubs-for-yakeen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 WireMock Stubs for Yakeen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-integration-test-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Integration Test Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../event-contracts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Contracts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ui-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations and Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Domains
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../200-Domains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../400-Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../950-Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../990-AI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-yakeen-national-identity-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Yakeen — National Identity Verification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Yakeen — National Identity Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-yakeenv1verify-citizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /yakeen/v1/verify-citizen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-yakeenv1verify-resident" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /yakeen/v1/verify-resident
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-java-adapter-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Java Adapter Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-resilience-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Resilience Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-najm-accident-and-claims-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Najm — Accident and Claims History
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Najm — Accident and Claims History">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-soap-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 SOAP Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 SOAP Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getaccidenthistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GetAccidentHistory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-soap-client-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 SOAP Client Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-response-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Response Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mada-payment-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. MADA Payment Gateway
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. MADA Payment Gateway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-payment-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Payment Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1paymentsinitiate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/payments/initiate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1paymentswebhook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/payments/webhook
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-webhook-signature-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Webhook Signature Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sadad-bill-payment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. SADAD Bill Payment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. SADAD Bill Payment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-bill-presentment-file-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Bill Presentment File Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-payment-confirmation-file-received-from-sadad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Payment Confirmation File (Received from SADAD)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sama-regulatory-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. SAMA Regulatory Reporting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. SAMA Regulatory Reporting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-motor-policy-register-xml-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Motor Policy Register XML Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-report-generation-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Report Generation Job
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-integration-error-handling-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Integration Error Handling Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-integration-testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Integration Testing Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Integration Testing Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-wiremock-stubs-for-yakeen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 WireMock Stubs for Yakeen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-integration-test-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Integration Test Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="integration-specifications-saudi-national-systems">Integration Specifications — Saudi National Systems</h1>
+<h2 id="overview">Overview</h2>
+<p>This document provides the detailed, developer-ready integration specifications for connecting to Saudi Arabia national systems (Yakeen, Najm, SAMA) and payment gateways (MADA, SADAD). Each integration includes API specs, error handling, retry logic, and sample code.</p>
+<hr />
+<h2 id="1-yakeen-national-identity-verification">1. Yakeen — National Identity Verification</h2>
+<h3 id="11-overview">1.1 Overview</h3>
+<p>Yakeen is the Saudi government system for verifying citizen and resident identity (NIN/Iqama). It is operated by the National Information Center (NIC).</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Provider</strong></td>
+<td>National Information Center (NIC) / ELM</td>
+</tr>
+<tr>
+<td><strong>Protocol</strong></td>
+<td>REST over HTTPS (mTLS)</td>
+</tr>
+<tr>
+<td><strong>Authentication</strong></td>
+<td>Client certificate + API Key</td>
+</tr>
+<tr>
+<td><strong>Rate Limit</strong></td>
+<td>100 requests/minute per API key</td>
+</tr>
+<tr>
+<td><strong>SLA</strong></td>
+<td>99.5% uptime, &lt; 2s response time</td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td>Sandbox: <code>https://sandbox.yakeen.sa/api/v1</code></td>
+</tr>
+<tr>
+<td><strong>Production</strong></td>
+<td><code>https://api.yakeen.sa/api/v1</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-api-endpoints">1.2 API Endpoints</h3>
+<h4 id="post-yakeenv1verify-citizen">POST /yakeen/v1/verify-citizen</h4>
+<p>Verify a Saudi citizen's identity.</p>
+<p><strong>Request:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;nationalId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1098765432&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;dateOfBirthG&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1990-05-15&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;dateOfBirthH&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1410-02-15&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Success Response (200):</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VALID&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;citizenId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1098765432&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;firstNameAr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;أحمد&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fatherNameAr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;محمد&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;grandFatherNameAr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;عبدالله&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;lastNameAr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;الحربي&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;firstNameEn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ahmed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fatherNameEn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mohammed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;grandFatherNameEn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Abdullah&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;lastNameEn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Al-Harbi&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;gender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;M&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;dateOfBirthG&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1990-05-15&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;dateOfBirthH&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1410-02-15&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;nationalityCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAU&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;occupationCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ENG_001&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;occupationDescAr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;مهندس&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;occupationDescEn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Engineer&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Riyadh&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Riyadh&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;district&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Al-Malaz&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Error Responses:</strong></p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status</th>
+<th>Error Code</th>
+<th>Description</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td><code>INVALID_NATIONAL_ID</code></td>
+<td>NIN format invalid</td>
+<td>Return validation error to user</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>UNAUTHORIZED</code></td>
+<td>Invalid API key or certificate</td>
+<td>Alert operations team</td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>CITIZEN_NOT_FOUND</code></td>
+<td>NIN not found in Yakeen</td>
+<td>Prompt user to verify NIN</td>
+</tr>
+<tr>
+<td>429</td>
+<td><code>RATE_LIMIT_EXCEEDED</code></td>
+<td>Too many requests</td>
+<td>Retry with exponential backoff</td>
+</tr>
+<tr>
+<td>503</td>
+<td><code>SERVICE_UNAVAILABLE</code></td>
+<td>Yakeen system down</td>
+<td>Fallback to manual verification</td>
+</tr>
+</tbody>
+</table>
+<h4 id="post-yakeenv1verify-resident">POST /yakeen/v1/verify-resident</h4>
+<p>Verify a Saudi resident (Iqama) identity.</p>
+<p><strong>Request:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;iqamaNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2345678901&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;dateOfBirthG&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1985-08-20&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expiryDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-08-20&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Success Response (200):</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VALID&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;iqamaNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2345678901&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;firstNameAr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;محمد&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fatherNameAr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;علي&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;lastNameAr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;الهندي&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;firstNameEn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mohammed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fatherNameEn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ali&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;lastNameEn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Al-Hindi&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;gender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;M&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;dateOfBirthG&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1985-08-20&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;nationalityCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IND&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;occupationCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TCH_002&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;occupationDescEn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Technician&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;iqamaExpiryDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-08-20&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="13-java-adapter-implementation">1.3 Java Adapter Implementation</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">YakeenIdentityAdapter</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IdentityVerificationPort</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">YakeenApiClient</span><span class="w"> </span><span class="n">client</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">YakeenRequestMapper</span><span class="w"> </span><span class="n">mapper</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">MetricsRecorder</span><span class="w"> </span><span class="n">metrics</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="nd">@CircuitBreaker</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;yakeen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fallbackMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;verificationFallback&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@Retry</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;yakeen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fallbackMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;verificationFallback&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@TimeLimiter</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;yakeen&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">IdentityVerificationResult</span><span class="w"> </span><span class="nf">verify</span><span class="p">(</span><span class="n">IdentityVerificationRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">();</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">YakeenRequest</span><span class="w"> </span><span class="n">yakeenRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapper</span><span class="p">.</span><span class="na">toExternal</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+<span class="w">            </span><span class="n">YakeenResponse</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">getCitizenInfo</span><span class="p">(</span><span class="n">yakeenRequest</span><span class="p">);</span>
+<span class="w">            </span><span class="n">metrics</span><span class="p">.</span><span class="na">recordSuccess</span><span class="p">(</span><span class="s">&quot;yakeen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">mapper</span><span class="p">.</span><span class="na">toDomain</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">YakeenNotFoundException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">metrics</span><span class="p">.</span><span class="na">recordFailure</span><span class="p">(</span><span class="s">&quot;yakeen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NOT_FOUND&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">IdentityVerificationResult</span><span class="p">.</span><span class="na">notFound</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="na">getNationalId</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">YakeenRateLimitException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">metrics</span><span class="p">.</span><span class="na">recordFailure</span><span class="p">(</span><span class="s">&quot;yakeen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;RATE_LIMIT&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"> </span><span class="c1">// Let retry mechanism handle</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">metrics</span><span class="p">.</span><span class="na">recordFailure</span><span class="p">(</span><span class="s">&quot;yakeen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ERROR&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">IdentityVerificationResult</span><span class="w"> </span><span class="nf">verificationFallback</span><span class="p">(</span>
+<span class="w">            </span><span class="n">IdentityVerificationRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">&quot;Yakeen unavailable — deferring verification for NIN: {}&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">MaskUtil</span><span class="p">.</span><span class="na">maskNin</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="na">getNationalId</span><span class="p">()));</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">IdentityVerificationResult</span><span class="p">.</span><span class="na">deferred</span><span class="p">(</span>
+<span class="w">            </span><span class="n">request</span><span class="p">.</span><span class="na">getNationalId</span><span class="p">(),</span>
+<span class="w">            </span><span class="s">&quot;Yakeen unavailable, verification deferred&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="14-resilience-configuration">1.4 Resilience Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">resilience4j</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">circuitbreaker</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">instances</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">yakeen</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">slidingWindowSize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">        </span><span class="nt">minimumNumberOfCalls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">        </span><span class="nt">failureRateThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
+<span class="w">        </span><span class="nt">waitDurationInOpenState</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+<span class="w">        </span><span class="nt">permittedNumberOfCallsInHalfOpenState</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">        </span><span class="nt">recordExceptions</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.springframework.web.client.HttpServerErrorException</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java.net.ConnectException</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java.net.SocketTimeoutException</span>
+<span class="w">        </span><span class="nt">ignoreExceptions</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">com.insurance.integration.yakeen.YakeenNotFoundException</span>
+<span class="w">  </span><span class="nt">retry</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">instances</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">yakeen</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">maxAttempts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">        </span><span class="nt">waitDuration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1s</span>
+<span class="w">        </span><span class="nt">exponentialBackoffMultiplier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">        </span><span class="nt">retryExceptions</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.springframework.web.client.HttpServerErrorException</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java.net.ConnectException</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java.net.SocketTimeoutException</span>
+<span class="w">  </span><span class="nt">timelimiter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">instances</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">yakeen</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">timeoutDuration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">        </span><span class="nt">cancelRunningFuture</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<hr />
+<h2 id="2-najm-accident-and-claims-history">2. Najm — Accident and Claims History</h2>
+<h3 id="21-overview">2.1 Overview</h3>
+<p>Najm provides access to vehicle accident history for Saudi motor insurance underwriting. It is operated by the Najm Company for Insurance Services.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Provider</strong></td>
+<td>Najm Company for Insurance Services</td>
+</tr>
+<tr>
+<td><strong>Protocol</strong></td>
+<td>SOAP/XML (WSDL-based)</td>
+</tr>
+<tr>
+<td><strong>Authentication</strong></td>
+<td>WS-Security UsernameToken</td>
+</tr>
+<tr>
+<td><strong>Rate Limit</strong></td>
+<td>200 requests/minute per insurer</td>
+</tr>
+<tr>
+<td><strong>SLA</strong></td>
+<td>99.0% uptime, &lt; 3s response time</td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td>Sandbox: <code>https://sandbox.najm.sa/najmws/AccidentHistoryService</code></td>
+</tr>
+<tr>
+<td><strong>Production</strong></td>
+<td><code>https://api.najm.sa/najmws/AccidentHistoryService</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-soap-operations">2.2 SOAP Operations</h3>
+<h4 id="getaccidenthistory">GetAccidentHistory</h4>
+<p><strong>SOAP Request:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;soapenv:Envelope</span><span class="w"> </span><span class="na">xmlns:soapenv=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span>
+<span class="w">                  </span><span class="na">xmlns:naj=</span><span class="s">&quot;http://najm.sa/api/v2&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;soapenv:Header&gt;</span>
+<span class="w">      </span><span class="nt">&lt;wsse:Security</span><span class="w"> </span><span class="na">xmlns:wsse=</span><span class="s">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd&quot;</span><span class="nt">&gt;</span>
+<span class="w">         </span><span class="nt">&lt;wsse:UsernameToken&gt;</span>
+<span class="w">            </span><span class="nt">&lt;wsse:Username&gt;</span>INSURER_CODE<span class="nt">&lt;/wsse:Username&gt;</span>
+<span class="w">            </span><span class="nt">&lt;wsse:Password</span><span class="w"> </span><span class="na">Type=</span><span class="s">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText&quot;</span><span class="nt">&gt;</span>API_KEY<span class="nt">&lt;/wsse:Password&gt;</span>
+<span class="w">         </span><span class="nt">&lt;/wsse:UsernameToken&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/wsse:Security&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/soapenv:Header&gt;</span>
+<span class="w">   </span><span class="nt">&lt;soapenv:Body&gt;</span>
+<span class="w">      </span><span class="nt">&lt;naj:GetAccidentHistoryRequest&gt;</span>
+<span class="w">         </span><span class="nt">&lt;naj:RequestType&gt;</span>VEHICLE<span class="nt">&lt;/naj:RequestType&gt;</span>
+<span class="w">         </span><span class="nt">&lt;naj:Identifier&gt;</span>1234567890<span class="nt">&lt;/naj:Identifier&gt;</span>
+<span class="w">         </span><span class="nt">&lt;naj:InsuranceCompanyCode&gt;</span>INS_001<span class="nt">&lt;/naj:InsuranceCompanyCode&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/naj:GetAccidentHistoryRequest&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre></div></p>
+<p><strong>SOAP Response:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;soapenv:Envelope</span><span class="w"> </span><span class="na">xmlns:soapenv=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;soapenv:Body&gt;</span>
+<span class="w">      </span><span class="nt">&lt;naj:GetAccidentHistoryResponse&gt;</span>
+<span class="w">         </span><span class="nt">&lt;naj:ResponseCode&gt;</span>00<span class="nt">&lt;/naj:ResponseCode&gt;</span>
+<span class="w">         </span><span class="nt">&lt;naj:ResponseMessage&gt;</span>Success<span class="nt">&lt;/naj:ResponseMessage&gt;</span>
+<span class="w">         </span><span class="nt">&lt;naj:AccidentRecords&gt;</span>
+<span class="w">            </span><span class="nt">&lt;naj:AccidentRecord&gt;</span>
+<span class="w">               </span><span class="nt">&lt;naj:AccidentID&gt;</span>ACC-2024-12345<span class="nt">&lt;/naj:AccidentID&gt;</span>
+<span class="w">               </span><span class="nt">&lt;naj:AccidentDate&gt;</span>2024-03-15<span class="nt">&lt;/naj:AccidentDate&gt;</span>
+<span class="w">               </span><span class="nt">&lt;naj:AccidentType&gt;</span>COLLISION<span class="nt">&lt;/naj:AccidentType&gt;</span>
+<span class="w">               </span><span class="nt">&lt;naj:FaultPercentage&gt;</span>100<span class="nt">&lt;/naj:FaultPercentage&gt;</span>
+<span class="w">               </span><span class="nt">&lt;naj:ClaimStatus&gt;</span>PAID<span class="nt">&lt;/naj:ClaimStatus&gt;</span>
+<span class="w">               </span><span class="nt">&lt;naj:PaidAmount&gt;</span>8500.00<span class="nt">&lt;/naj:PaidAmount&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/naj:AccidentRecord&gt;</span>
+<span class="w">         </span><span class="nt">&lt;/naj:AccidentRecords&gt;</span>
+<span class="w">         </span><span class="nt">&lt;naj:TotalAccidents&gt;</span>1<span class="nt">&lt;/naj:TotalAccidents&gt;</span>
+<span class="w">         </span><span class="nt">&lt;naj:RiskScore&gt;</span>LOW<span class="nt">&lt;/naj:RiskScore&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/naj:GetAccidentHistoryResponse&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre></div></p>
+<h3 id="23-soap-client-configuration">2.3 SOAP Client Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">NajmSoapClientConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;${najm.wsdl.url}&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">wsdlUrl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;${najm.username}&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;${najm.password}&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Jaxb2Marshaller</span><span class="w"> </span><span class="nf">najmMarshaller</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Jaxb2Marshaller</span><span class="w"> </span><span class="n">marshaller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Jaxb2Marshaller</span><span class="p">();</span>
+<span class="w">        </span><span class="n">marshaller</span><span class="p">.</span><span class="na">setContextPath</span><span class="p">(</span><span class="s">&quot;com.insurance.integration.najm.generated&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">marshaller</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">NajmAccidentHistoryClient</span><span class="w"> </span><span class="nf">najmClient</span><span class="p">(</span><span class="n">Jaxb2Marshaller</span><span class="w"> </span><span class="n">najmMarshaller</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">NajmAccidentHistoryClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NajmAccidentHistoryClient</span><span class="p">();</span>
+<span class="w">        </span><span class="n">client</span><span class="p">.</span><span class="na">setDefaultUri</span><span class="p">(</span><span class="n">wsdlUrl</span><span class="p">);</span>
+<span class="w">        </span><span class="n">client</span><span class="p">.</span><span class="na">setMarshaller</span><span class="p">(</span><span class="n">najmMarshaller</span><span class="p">);</span>
+<span class="w">        </span><span class="n">client</span><span class="p">.</span><span class="na">setUnmarshaller</span><span class="p">(</span><span class="n">najmMarshaller</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add WS-Security header</span>
+<span class="w">        </span><span class="n">ClientInterceptor</span><span class="w"> </span><span class="n">interceptor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ClientInterceptor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">handleRequest</span><span class="p">(</span><span class="n">MessageContext</span><span class="w"> </span><span class="n">messageContext</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">SoapMessage</span><span class="w"> </span><span class="n">soapMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">SoapMessage</span><span class="p">)</span><span class="w"> </span><span class="n">messageContext</span><span class="p">.</span><span class="na">getRequest</span><span class="p">();</span>
+<span class="w">                </span><span class="n">soapMessage</span><span class="p">.</span><span class="na">setSoapAction</span><span class="p">(</span><span class="s">&quot;GetAccidentHistory&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="c1">// Add security header</span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">soapMessage</span><span class="p">.</span><span class="na">getDocument</span><span class="p">().</span><span class="na">getDocumentElement</span><span class="p">()</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">setAttribute</span><span class="p">(</span><span class="s">&quot;xmlns:wsse&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="s">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Failed to add security header&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">        </span><span class="n">client</span><span class="p">.</span><span class="na">setInterceptors</span><span class="p">(</span><span class="n">interceptor</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">client</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="24-error-handling">2.4 Error Handling</h3>
+<table>
+<thead>
+<tr>
+<th>SOAP Fault Code</th>
+<th>Meaning</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INVALID_IDENTIFIER</code></td>
+<td>Sequence number or NIN invalid</td>
+<td>Return validation error</td>
+</tr>
+<tr>
+<td><code>IDENTIFIER_NOT_FOUND</code></td>
+<td>No records found</td>
+<td>Return empty result</td>
+</tr>
+<tr>
+<td><code>AUTHENTICATION_FAILED</code></td>
+<td>Invalid credentials</td>
+<td>Alert operations, retry with new credentials</td>
+</tr>
+<tr>
+<td><code>RATE_LIMIT_EXCEEDED</code></td>
+<td>Too many requests</td>
+<td>Retry with backoff</td>
+</tr>
+<tr>
+<td><code>INTERNAL_ERROR</code></td>
+<td>Najm system error</td>
+<td>Fallback to manual underwriting</td>
+</tr>
+</tbody>
+</table>
+<h3 id="25-response-mapping">2.5 Response Mapping</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">NajmResponseMapper</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">AccidentHistoryResult</span><span class="w"> </span><span class="nf">toDomain</span><span class="p">(</span><span class="n">GetAccidentHistoryResponse</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">AccidentRecord</span><span class="o">&gt;</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="na">getAccidentRecords</span><span class="p">().</span><span class="na">stream</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="k">this</span><span class="p">::</span><span class="n">mapRecord</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">toList</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AccidentHistoryResult</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">totalAccidents</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">getTotalAccidents</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">riskScore</span><span class="p">(</span><span class="n">RiskScore</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">getRiskScore</span><span class="p">()))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">records</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">retrievedAt</span><span class="p">(</span><span class="n">Instant</span><span class="p">.</span><span class="na">now</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">AccidentRecord</span><span class="w"> </span><span class="nf">mapRecord</span><span class="p">(</span><span class="n">AccidentRecordXml</span><span class="w"> </span><span class="n">xml</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AccidentRecord</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">accidentId</span><span class="p">(</span><span class="n">xml</span><span class="p">.</span><span class="na">getAccidentID</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">accidentDate</span><span class="p">(</span><span class="n">LocalDate</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="n">xml</span><span class="p">.</span><span class="na">getAccidentDate</span><span class="p">()))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">accidentType</span><span class="p">(</span><span class="n">xml</span><span class="p">.</span><span class="na">getAccidentType</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">faultPercentage</span><span class="p">(</span><span class="n">xml</span><span class="p">.</span><span class="na">getFaultPercentage</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">claimStatus</span><span class="p">(</span><span class="n">xml</span><span class="p">.</span><span class="na">getClaimStatus</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">paidAmount</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="n">xml</span><span class="p">.</span><span class="na">getPaidAmount</span><span class="p">()))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="3-mada-payment-gateway">3. MADA Payment Gateway</h2>
+<h3 id="31-overview">3.1 Overview</h3>
+<p>MADA is the Saudi national payment card network. Integration is handled through a PCI-DSS compliant payment gateway.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Provider</strong></td>
+<td>MADA / Acquiring Bank</td>
+</tr>
+<tr>
+<td><strong>Protocol</strong></td>
+<td>REST over HTTPS</td>
+</tr>
+<tr>
+<td><strong>Authentication</strong></td>
+<td>API Key + HMAC Signature</td>
+</tr>
+<tr>
+<td><strong>PCI Scope</strong></td>
+<td>Tokenized flow (no raw PAN handling)</td>
+</tr>
+<tr>
+<td><strong>SLA</strong></td>
+<td>99.9% uptime, &lt; 3s response time</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-payment-flow">3.2 Payment Flow</h3>
+<div class="highlight"><pre><span></span><code>1. POST /api/v1/payments/initiate  →  Returns payment URL
+2. User redirected to MADA hosted payment page
+3. User completes authentication (3DS/OTP)
+4. POST webhook to /api/v1/payments/webhook  →  Payment result
+5. GET /api/v1/payments/{ref}/status  →  Verify status
+</code></pre></div>
+<h3 id="33-api-endpoints">3.3 API Endpoints</h3>
+<h4 id="post-apiv1paymentsinitiate">POST /api/v1/payments/initiate</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2500.00</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;merchantReference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;customer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ahmed Al-Harbi&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mobile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+966501234567&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ahmed@example.com&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;returnUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://app.insurance.sa/payment/success&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;cancelUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://app.insurance.sa/payment/cancel&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;webhookUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.insurance.sa/api/v1/payments/webhook&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Response:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;paymentId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pay_a1b2c3d4&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;paymentUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://mada-gateway.sa/pay/pay_a1b2c3d4&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expiresAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01T09:20:00.000Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PENDING&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="post-apiv1paymentswebhook">POST /api/v1/payments/webhook</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;paymentId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pay_a1b2c3d4&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;merchantReference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2500.00</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CAPTURED&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;gatewayReference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GW-987654321&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;paymentMethod&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MADA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;cardLastFour&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1234&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01T09:15:00.000Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;signature&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256_hmac_signature_here&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="34-webhook-signature-verification">3.4 Webhook Signature Verification</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PaymentWebhookHandler</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;${payment.gateway.secret}&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">webhookSecret</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">verifySignature</span><span class="p">(</span><span class="n">PaymentWebhook</span><span class="w"> </span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">signature</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">expectedSignature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HmacUtils</span><span class="p">.</span><span class="na">hmacSha256Hex</span><span class="p">(</span>
+<span class="w">            </span><span class="n">webhookSecret</span><span class="p">,</span>
+<span class="w">            </span><span class="n">payload</span><span class="p">.</span><span class="na">getPaymentId</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">            </span><span class="n">payload</span><span class="p">.</span><span class="na">getAmount</span><span class="p">().</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">            </span><span class="n">payload</span><span class="p">.</span><span class="na">getCurrency</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">            </span><span class="n">payload</span><span class="p">.</span><span class="na">getStatus</span><span class="p">()</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">expectedSignature</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">signature</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">handleWebhook</span><span class="p">(</span><span class="n">PaymentWebhook</span><span class="w"> </span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">signature</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">verifySignature</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">signature</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SecurityException</span><span class="p">(</span><span class="s">&quot;Invalid webhook signature&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">payload</span><span class="p">.</span><span class="na">getStatus</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;CAPTURED&quot;</span><span class="p">:</span>
+<span class="w">                </span><span class="n">billingService</span><span class="p">.</span><span class="na">confirmPayment</span><span class="p">(</span><span class="n">payload</span><span class="p">);</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;FAILED&quot;</span><span class="p">:</span>
+<span class="w">                </span><span class="n">billingService</span><span class="p">.</span><span class="na">handleFailedPayment</span><span class="p">(</span><span class="n">payload</span><span class="p">);</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;REFUNDED&quot;</span><span class="p">:</span>
+<span class="w">                </span><span class="n">billingService</span><span class="p">.</span><span class="na">handleRefund</span><span class="p">(</span><span class="n">payload</span><span class="p">);</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="4-sadad-bill-payment">4. SADAD Bill Payment</h2>
+<h3 id="41-overview">4.1 Overview</h3>
+<p>SADAD is the Saudi national bill payment system. Policies generate SADAD bill numbers for customer payment at banks or mobile apps.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Provider</strong></td>
+<td>Saudi Arabian Monetary Authority (SAMA)</td>
+</tr>
+<tr>
+<td><strong>Protocol</strong></td>
+<td>SFTP + XML file exchange</td>
+</tr>
+<tr>
+<td><strong>Authentication</strong></td>
+<td>Digital certificate</td>
+</tr>
+<tr>
+<td><strong>Biller Code</strong></td>
+<td>Assigned by SAMA per insurer</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-bill-presentment-file-format">4.2 Bill Presentment File Format</h3>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;SadadBills&gt;</span>
+<span class="w">  </span><span class="nt">&lt;BatchHeader&gt;</span>
+<span class="w">    </span><span class="nt">&lt;BillerId&gt;</span>INS_001<span class="nt">&lt;/BillerId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;BatchDate&gt;</span>2026-01-01<span class="nt">&lt;/BatchDate&gt;</span>
+<span class="w">    </span><span class="nt">&lt;RecordCount&gt;</span>1<span class="nt">&lt;/RecordCount&gt;</span>
+<span class="w">    </span><span class="nt">&lt;TotalAmount&gt;</span>2500.00<span class="nt">&lt;/TotalAmount&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/BatchHeader&gt;</span>
+<span class="w">  </span><span class="nt">&lt;Bill&gt;</span>
+<span class="w">    </span><span class="nt">&lt;BillReference&gt;</span>POL-MTR-2026-00001<span class="nt">&lt;/BillReference&gt;</span>
+<span class="w">    </span><span class="nt">&lt;BillAmount&gt;</span>2500.00<span class="nt">&lt;/BillAmount&gt;</span>
+<span class="w">    </span><span class="nt">&lt;DueDate&gt;</span>2026-01-15<span class="nt">&lt;/DueDate&gt;</span>
+<span class="w">    </span><span class="nt">&lt;CustomerName&gt;</span>Ahmed<span class="w"> </span>Al-Harbi<span class="nt">&lt;/CustomerName&gt;</span>
+<span class="w">    </span><span class="nt">&lt;CustomerMobile&gt;</span>+966501234567<span class="nt">&lt;/CustomerMobile&gt;</span>
+<span class="w">    </span><span class="nt">&lt;CustomerNationalId&gt;</span>1098765432<span class="nt">&lt;/CustomerNationalId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;BillDescription&gt;</span>Motor<span class="w"> </span>Insurance<span class="w"> </span>Policy<span class="w"> </span>-<span class="w"> </span>Comprehensive<span class="nt">&lt;/BillDescription&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/Bill&gt;</span>
+<span class="nt">&lt;/SadadBills&gt;</span>
+</code></pre></div>
+<h3 id="43-payment-confirmation-file-received-from-sadad">4.3 Payment Confirmation File (Received from SADAD)</h3>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;SadadPayments&gt;</span>
+<span class="w">  </span><span class="nt">&lt;Payment&gt;</span>
+<span class="w">    </span><span class="nt">&lt;BillReference&gt;</span>POL-MTR-2026-00001<span class="nt">&lt;/BillReference&gt;</span>
+<span class="w">    </span><span class="nt">&lt;PaymentAmount&gt;</span>2500.00<span class="nt">&lt;/PaymentAmount&gt;</span>
+<span class="w">    </span><span class="nt">&lt;PaymentDate&gt;</span>2026-01-05<span class="nt">&lt;/PaymentDate&gt;</span>
+<span class="w">    </span><span class="nt">&lt;PaymentMethod&gt;</span>SADAD<span class="nt">&lt;/PaymentMethod&gt;</span>
+<span class="w">    </span><span class="nt">&lt;BankCode&gt;</span>RIBL<span class="nt">&lt;/BankCode&gt;</span>
+<span class="w">    </span><span class="nt">&lt;SADADReference&gt;</span>SDD-2026-123456<span class="nt">&lt;/SADADReference&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Status&gt;</span>PAID<span class="nt">&lt;/Status&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/Payment&gt;</span>
+<span class="nt">&lt;/SadadPayments&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="5-sama-regulatory-reporting">5. SAMA Regulatory Reporting</h2>
+<h3 id="51-overview">5.1 Overview</h3>
+<p>Motor insurance data is reported to SAMA at defined intervals.</p>
+<table>
+<thead>
+<tr>
+<th>Report</th>
+<th>Frequency</th>
+<th>Format</th>
+<th>Delivery Method</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Motor Policy Register</td>
+<td>Monthly</td>
+<td>XML/CSV</td>
+<td>SFTP</td>
+<td>10th of next month</td>
+</tr>
+<tr>
+<td>Claims Register</td>
+<td>Monthly</td>
+<td>XML/CSV</td>
+<td>SFTP</td>
+<td>10th of next month</td>
+</tr>
+<tr>
+<td>Financial Solvency</td>
+<td>Quarterly</td>
+<td>SAMA Portal</td>
+<td>Web upload</td>
+<td>30 days after quarter end</td>
+</tr>
+<tr>
+<td>Fraud Incident Report</td>
+<td>Ad-hoc</td>
+<td>SAMA Portal</td>
+<td>Web upload</td>
+<td>Within 24 hours</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-motor-policy-register-xml-format">5.2 Motor Policy Register XML Format</h3>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;SamaReport&gt;</span>
+<span class="w">  </span><span class="nt">&lt;ReportHeader&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ReportType&gt;</span>MOTOR_POLICY_REGISTER<span class="nt">&lt;/ReportType&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ReportPeriod&gt;</span>2026-Q1<span class="nt">&lt;/ReportPeriod&gt;</span>
+<span class="w">    </span><span class="nt">&lt;InsurerCode&gt;</span>INS_001<span class="nt">&lt;/InsurerCode&gt;</span>
+<span class="w">    </span><span class="nt">&lt;InsurerName&gt;</span>Insurance<span class="w"> </span>Company<span class="w"> </span>SA<span class="nt">&lt;/InsurerName&gt;</span>
+<span class="w">    </span><span class="nt">&lt;GeneratedAt&gt;</span>2026-04-01T02:00:00<span class="nt">&lt;/GeneratedAt&gt;</span>
+<span class="w">    </span><span class="nt">&lt;RecordCount&gt;</span>1500<span class="nt">&lt;/RecordCount&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/ReportHeader&gt;</span>
+<span class="w">  </span><span class="nt">&lt;Records&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Policy&gt;</span>
+<span class="w">      </span><span class="nt">&lt;PolicyNumber&gt;</span>POL-MTR-2026-00001<span class="nt">&lt;/PolicyNumber&gt;</span>
+<span class="w">      </span><span class="nt">&lt;ProductCode&gt;</span>MOTOR_COMP<span class="nt">&lt;/ProductCode&gt;</span>
+<span class="w">      </span><span class="nt">&lt;Status&gt;</span>ACTIVE<span class="nt">&lt;/Status&gt;</span>
+<span class="w">      </span><span class="nt">&lt;EffectiveDate&gt;</span>2026-01-01<span class="nt">&lt;/EffectiveDate&gt;</span>
+<span class="w">      </span><span class="nt">&lt;ExpiryDate&gt;</span>2026-12-31<span class="nt">&lt;/ExpiryDate&gt;</span>
+<span class="w">      </span><span class="nt">&lt;CustomerNationalId&gt;</span>1098765432<span class="nt">&lt;/CustomerNationalId&gt;</span>
+<span class="w">      </span><span class="nt">&lt;CustomerName&gt;</span>Ahmed<span class="w"> </span>Al-Harbi<span class="nt">&lt;/CustomerName&gt;</span>
+<span class="w">      </span><span class="nt">&lt;VehicleSequenceNumber&gt;</span>1234567890<span class="nt">&lt;/VehicleSequenceNumber&gt;</span>
+<span class="w">      </span><span class="nt">&lt;VehiclePlateNumber&gt;</span>ABC1234<span class="nt">&lt;/VehiclePlateNumber&gt;</span>
+<span class="w">      </span><span class="nt">&lt;Premium&gt;</span>2500.00<span class="nt">&lt;/Premium&gt;</span>
+<span class="w">      </span><span class="nt">&lt;Commission&gt;</span>250.00<span class="nt">&lt;/Commission&gt;</span>
+<span class="w">      </span><span class="nt">&lt;TaxAmount&gt;</span>375.00<span class="nt">&lt;/TaxAmount&gt;</span>
+<span class="w">      </span><span class="nt">&lt;IssuedAt&gt;</span>2026-01-01T09:15:00<span class="nt">&lt;/IssuedAt&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Policy&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/Records&gt;</span>
+<span class="nt">&lt;/SamaReport&gt;</span>
+</code></pre></div>
+<h3 id="53-report-generation-job">5.3 Report Generation Job</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SamaReportGenerator</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="w"> </span><span class="n">jdbcTemplate</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SftpClient</span><span class="w"> </span><span class="n">sftpClient</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Scheduled</span><span class="p">(</span><span class="n">cron</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0 0 2 1 * ?&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 2 AM on 1st of every month</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">generateMonthlyReports</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">generatePeriod</span><span class="p">();</span>
+<span class="w">        </span><span class="n">generatePolicyRegister</span><span class="p">(</span><span class="n">period</span><span class="p">);</span>
+<span class="w">        </span><span class="n">generateClaimsRegister</span><span class="p">(</span><span class="n">period</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">generatePolicyRegister</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">period</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">PolicyRecord</span><span class="o">&gt;</span><span class="w"> </span><span class="n">policies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jdbcTemplate</span><span class="p">.</span><span class="na">query</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">            SELECT p.policy_number, p.product_code, p.status,</span>
+<span class="s">                   p.effective_date, p.expiry_date, p.annual_premium,</span>
+<span class="s">                   p.commission_amount, p.tax_amount, p.issued_at,</span>
+<span class="s">                   c.national_id_encrypted, c.full_name_ar,</span>
+<span class="s">                   mv.sequence_number, mv.plate_number</span>
+<span class="s">            FROM core.policies p</span>
+<span class="s">            JOIN core.customers c ON c.id = p.customer_id</span>
+<span class="s">            LEFT JOIN motor.motor_vehicles mv ON mv.policy_id = p.id</span>
+<span class="s">            WHERE p.line_of_business = &#39;MOTOR&#39;</span>
+<span class="s">              AND p.created_at &gt;= DATE_TRUNC(&#39;month&#39;, CURRENT_DATE - INTERVAL &#39;1 month&#39;)</span>
+<span class="s">              AND p.created_at &lt; DATE_TRUNC(&#39;month&#39;, CURRENT_DATE)</span>
+<span class="s">            &quot;&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">PolicyRecordRowMapper</span><span class="p">()</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">xml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">generatePolicyRegisterXml</span><span class="p">(</span><span class="n">policies</span><span class="p">,</span><span class="w"> </span><span class="n">period</span><span class="p">);</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;MOTOR_POLICY_REGISTER_%s.xml&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">period</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">sftpClient</span><span class="p">.</span><span class="na">upload</span><span class="p">(</span><span class="s">&quot;/sama/incoming/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">xml</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="n">StandardCharsets</span><span class="p">.</span><span class="na">UTF_8</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Record in database</span>
+<span class="w">        </span><span class="n">jdbcTemplate</span><span class="p">.</span><span class="na">update</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;INSERT INTO reporting.sama_reporting (report_type, report_period, status, data, file_reference) VALUES (?, ?, &#39;GENERATED&#39;, ?::jsonb, ?)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;MOTOR_POLICY_REGISTER&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">period</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="s">&quot;{\&quot;recordCount\&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">policies</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;}&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="n">filename</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="6-integration-error-handling-summary">6. Integration Error Handling Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Integration</th>
+<th>Error Scenario</th>
+<th>HTTP/Fault Code</th>
+<th>Retry?</th>
+<th>Fallback</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Yakeen</td>
+<td>Invalid NIN</td>
+<td>400</td>
+<td>No</td>
+<td>Return validation error</td>
+</tr>
+<tr>
+<td>Yakeen</td>
+<td>Rate limited</td>
+<td>429</td>
+<td>Yes (3x, backoff)</td>
+<td>Defer verification</td>
+</tr>
+<tr>
+<td>Yakeen</td>
+<td>Service down</td>
+<td>503</td>
+<td>Yes (3x, backoff)</td>
+<td>Defer verification</td>
+</tr>
+<tr>
+<td>Yakeen</td>
+<td>Auth failure</td>
+<td>401</td>
+<td>No</td>
+<td>Alert operations</td>
+</tr>
+<tr>
+<td>Najm</td>
+<td>Invalid identifier</td>
+<td>SOAP fault</td>
+<td>No</td>
+<td>Return validation error</td>
+</tr>
+<tr>
+<td>Najm</td>
+<td>Rate limited</td>
+<td>SOAP fault</td>
+<td>Yes (3x, backoff)</td>
+<td>Manual underwriting</td>
+</tr>
+<tr>
+<td>Najm</td>
+<td>Service down</td>
+<td>SOAP fault</td>
+<td>Yes (3x, backoff)</td>
+<td>Manual underwriting</td>
+</tr>
+<tr>
+<td>MADA</td>
+<td>Payment declined</td>
+<td>200 (status=FAILED)</td>
+<td>No</td>
+<td>Notify customer</td>
+</tr>
+<tr>
+<td>MADA</td>
+<td>Gateway timeout</td>
+<td>504</td>
+<td>Yes (2x)</td>
+<td>Return error to user</td>
+</tr>
+<tr>
+<td>SADAD</td>
+<td>File rejected</td>
+<td>N/A (next-day)</td>
+<td>Yes (regenerate)</td>
+<td>Alert operations</td>
+</tr>
+<tr>
+<td>SAMA</td>
+<td>Report rejected</td>
+<td>N/A (next-day)</td>
+<td>Yes (fix + resend)</td>
+<td>Alert compliance team</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-integration-testing-strategy">7. Integration Testing Strategy</h2>
+<h3 id="71-wiremock-stubs-for-yakeen">7.1 WireMock Stubs for Yakeen</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@TestConfiguration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">YakeenWireMockConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">WireMockServer</span><span class="w"> </span><span class="nf">yakeenWireMock</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">WireMockServer</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WireMockServer</span><span class="p">(</span><span class="n">options</span><span class="p">().</span><span class="na">port</span><span class="p">(</span><span class="mi">9090</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Successful verification</span>
+<span class="w">        </span><span class="n">server</span><span class="p">.</span><span class="na">stubFor</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="n">urlEqualTo</span><span class="p">(</span><span class="s">&quot;/yakeen/v1/verify-citizen&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">withRequestBody</span><span class="p">(</span><span class="n">matchingJsonPath</span><span class="p">(</span><span class="s">&quot;$.nationalId&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">equalTo</span><span class="p">(</span><span class="s">&quot;1098765432&quot;</span><span class="p">)))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="n">aResponse</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withStatus</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withHeader</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withBody</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">                    {</span>
+<span class="s">                        &quot;status&quot;: &quot;VALID&quot;,</span>
+<span class="s">                        &quot;citizenId&quot;: &quot;1098765432&quot;,</span>
+<span class="s">                        &quot;firstNameAr&quot;: &quot;أحمد&quot;,</span>
+<span class="s">                        &quot;lastNameAr&quot;: &quot;الحربي&quot;,</span>
+<span class="s">                        &quot;gender&quot;: &quot;M&quot;,</span>
+<span class="s">                        &quot;dateOfBirthG&quot;: &quot;1990-05-15&quot;</span>
+<span class="s">                    }</span>
+<span class="s">                &quot;&quot;&quot;</span><span class="p">)));</span>
+
+<span class="w">        </span><span class="c1">// Not found</span>
+<span class="w">        </span><span class="n">server</span><span class="p">.</span><span class="na">stubFor</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="n">urlEqualTo</span><span class="p">(</span><span class="s">&quot;/yakeen/v1/verify-citizen&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">withRequestBody</span><span class="p">(</span><span class="n">matchingJsonPath</span><span class="p">(</span><span class="s">&quot;$.nationalId&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">equalTo</span><span class="p">(</span><span class="s">&quot;0000000000&quot;</span><span class="p">)))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="n">aResponse</span><span class="p">().</span><span class="na">withStatus</span><span class="p">(</span><span class="mi">404</span><span class="p">)));</span>
+
+<span class="w">        </span><span class="c1">// Timeout simulation</span>
+<span class="w">        </span><span class="n">server</span><span class="p">.</span><span class="na">stubFor</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="n">urlEqualTo</span><span class="p">(</span><span class="s">&quot;/yakeen/v1/verify-citizen&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">withRequestBody</span><span class="p">(</span><span class="n">matchingJsonPath</span><span class="p">(</span><span class="s">&quot;$.nationalId&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">equalTo</span><span class="p">(</span><span class="s">&quot;1111111111&quot;</span><span class="p">)))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="n">aResponse</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withFixedDelay</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span><span class="w"> </span><span class="c1">// 10 second delay</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withStatus</span><span class="p">(</span><span class="mi">200</span><span class="p">)));</span>
+
+<span class="w">        </span><span class="n">server</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">server</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="72-integration-test-example">7.2 Integration Test Example</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@AutoConfigureMockMvc</span>
+<span class="nd">@Import</span><span class="p">(</span><span class="n">YakeenWireMockConfig</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">YakeenIntegrationTest</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">IdentityVerificationPort</span><span class="w"> </span><span class="n">identityVerification</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shouldVerifyValidCitizen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IdentityVerificationRequest</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;1098765432&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1410-02-15&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">IdentityType</span><span class="p">.</span><span class="na">CITIZEN</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">identityVerification</span><span class="p">.</span><span class="na">verify</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">verified</span><span class="p">()).</span><span class="na">isTrue</span><span class="p">();</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">fullNameAr</span><span class="p">()).</span><span class="na">contains</span><span class="p">(</span><span class="s">&quot;أحمد&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">status</span><span class="p">()).</span><span class="na">isEqualTo</span><span class="p">(</span><span class="n">VerificationStatus</span><span class="p">.</span><span class="na">VERIFIED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shouldReturnNotFoundForInvalidNIN</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IdentityVerificationRequest</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;0000000000&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1410-02-15&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">IdentityType</span><span class="p">.</span><span class="na">CITIZEN</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">identityVerification</span><span class="p">.</span><span class="na">verify</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">verified</span><span class="p">()).</span><span class="na">isFalse</span><span class="p">();</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">status</span><span class="p">()).</span><span class="na">isEqualTo</span><span class="p">(</span><span class="n">VerificationStatus</span><span class="p">.</span><span class="na">NOT_FOUND</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shouldFallbackOnTimeout</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IdentityVerificationRequest</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;1111111111&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1410-02-15&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">IdentityType</span><span class="p">.</span><span class="na">CITIZEN</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">identityVerification</span><span class="p">.</span><span class="na">verify</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">verified</span><span class="p">()).</span><span class="na">isFalse</span><span class="p">();</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">status</span><span class="p">()).</span><span class="na">isEqualTo</span><span class="p">(</span><span class="n">VerificationStatus</span><span class="p">.</span><span class="na">DEFERRED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="document-maintenance">Document Maintenance</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last Updated</td>
+<td>2026-07-06</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Enterprise Architecture Team</td>
+</tr>
+<tr>
+<td>Review Cycle</td>
+<td>Quarterly, or when integration contracts change</td>
+</tr>
+<tr>
+<td>Related Documents</td>
+<td><a href="../integration-architecture/">Integration Architecture</a>, <a href="../api-architecture/">API Architecture</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Enterprise Insurance Platform
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
+      
+    
+  </body>
+</html>

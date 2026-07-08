@@ -1,0 +1,2770 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Architecture and documentation for the Saudi Arabia insurance platform">
+      
+      
+        <meta name="author" content="Enterprise Architecture Team">
+      
+      
+        <link rel="canonical" href="https://offer-core.github.io/enterprise-insurance-core-docs/knowledge-base/architecture/event-contracts/">
+      
+      
+        <link rel="prev" href="../security-architecture/">
+      
+      
+        <link rel="next" href="../ui-architecture/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Event Contracts - Enterprise Insurance Platform</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#event-contracts-domain-event-schemas" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-header__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Insurance Platform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Event Contracts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Offer-Core/enterprise-insurance-core-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Offer-Core/enterprise-insurance-core-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Enterprise Insurance Platform" class="md-nav__button md-logo" aria-label="Enterprise Insurance Platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Insurance Platform
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Offer-Core/enterprise-insurance-core-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Offer-Core/enterprise-insurance-core-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Knowledge Base
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../000-Vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../100-Business/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domain-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration-specs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Contracts
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Contracts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-event-envelope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Event Envelope
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Event Envelope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#envelope-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Envelope Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-event-catalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Event Catalog
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Event Catalog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-policy-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Policy Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Policy Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policyissued-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PolicyIssued (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policycancelled-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PolicyCancelled (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policyrenewed-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PolicyRenewed (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policyendorsed-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PolicyEndorsed (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-claim-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Claim Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Claim Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#claimregistered-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClaimRegistered (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claimupdated-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClaimUpdated (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claimclosed-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClaimClosed (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fraudalerttriggered-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FraudAlertTriggered (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-billing-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Billing Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Billing Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paymentreceived-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PaymentReceived (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paymentfailed-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PaymentFailed (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refundprocessed-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RefundProcessed (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-customer-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Customer Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Customer Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customercreated-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CustomerCreated (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identityverified-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IdentityVerified (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-integration-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Integration Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Integration Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#najmdataretrieved-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NajmDataRetrieved (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#samareportgenerated-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SamaReportGenerated (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-kafka-topic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Kafka Topic Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Kafka Topic Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-topic-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Topic Definitions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-producer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Producer Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-consumer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Consumer Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-event-publishing-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Event Publishing Pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-event-consumer-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Event Consumer Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dead-letter-queue-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Dead Letter Queue Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-event-versioning-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Event Versioning Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ui-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations and Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Domains
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../200-Domains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../400-Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../950-Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../990-AI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-event-envelope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Event Envelope
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Event Envelope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#envelope-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Envelope Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-event-catalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Event Catalog
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Event Catalog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-policy-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Policy Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Policy Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policyissued-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PolicyIssued (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policycancelled-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PolicyCancelled (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policyrenewed-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PolicyRenewed (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policyendorsed-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PolicyEndorsed (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-claim-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Claim Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Claim Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#claimregistered-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClaimRegistered (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claimupdated-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClaimUpdated (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claimclosed-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClaimClosed (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fraudalerttriggered-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FraudAlertTriggered (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-billing-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Billing Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Billing Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paymentreceived-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PaymentReceived (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paymentfailed-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PaymentFailed (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refundprocessed-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RefundProcessed (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-customer-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Customer Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Customer Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customercreated-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CustomerCreated (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identityverified-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IdentityVerified (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-integration-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Integration Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Integration Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#najmdataretrieved-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NajmDataRetrieved (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#samareportgenerated-v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SamaReportGenerated (v1.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-kafka-topic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Kafka Topic Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Kafka Topic Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-topic-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Topic Definitions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-producer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Producer Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-consumer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Consumer Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-event-publishing-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Event Publishing Pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-event-consumer-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Event Consumer Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dead-letter-queue-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Dead Letter Queue Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-event-versioning-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Event Versioning Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="event-contracts-domain-event-schemas">Event Contracts — Domain Event Schemas</h1>
+<h2 id="overview">Overview</h2>
+<p>This document defines the complete event catalog for the Enterprise Insurance Platform. All domain events follow a standard envelope and are published to Apache Kafka topics. Each event represents a business fact that has occurred and is immutable once published.</p>
+<hr />
+<h2 id="1-event-envelope">1. Event Envelope</h2>
+<p>Every event follows this standard envelope structure:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;evt_a1b2c3d4-e5f6-7890-abcd-ef1234567890&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PolicyIssued&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;policy-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceEntityType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POLICY&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceEntityId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-e5f6-7890-abcd-ef1234567890&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;occurredAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-07-06T10:30:00.000Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;correlationId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;corr_abc123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;causationId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;evt_prev-event-id&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;traceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;trace_xyz789&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tenantId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tenant-001&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="envelope-fields">Envelope Fields</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td><code>UUID</code></td>
+<td>Yes</td>
+<td>Unique event identifier</td>
+</tr>
+<tr>
+<td><code>eventType</code></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td>PascalCase event name (e.g., <code>PolicyIssued</code>)</td>
+</tr>
+<tr>
+<td><code>eventVersion</code></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td>Semantic version of the event schema</td>
+</tr>
+<tr>
+<td><code>sourceService</code></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td>Service that produced the event</td>
+</tr>
+<tr>
+<td><code>sourceEntityType</code></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td>Entity type (POLICY, CLAIM, CUSTOMER, etc.)</td>
+</tr>
+<tr>
+<td><code>sourceEntityId</code></td>
+<td><code>UUID</code></td>
+<td>Yes</td>
+<td>ID of the entity that changed</td>
+</tr>
+<tr>
+<td><code>occurredAt</code></td>
+<td><code>DateTime</code></td>
+<td>Yes</td>
+<td>When the event occurred (UTC)</td>
+</tr>
+<tr>
+<td><code>correlationId</code></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td>Links events across a business transaction</td>
+</tr>
+<tr>
+<td><code>causationId</code></td>
+<td><code>UUID</code></td>
+<td>No</td>
+<td>ID of the event that caused this one</td>
+</tr>
+<tr>
+<td><code>traceId</code></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td>Distributed tracing ID</td>
+</tr>
+<tr>
+<td><code>tenantId</code></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td>Multi-tenant identifier</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>Object</code></td>
+<td>Yes</td>
+<td>Event-specific payload</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-event-catalog">2. Event Catalog</h2>
+<h3 id="21-policy-events">2.1 Policy Events</h3>
+<h4 id="policyissued-v10">PolicyIssued (v1.0)</h4>
+<p><strong>Producer:</strong> Policy Service<br />
+<strong>Consumers:</strong> Billing Service, Notification Service, Audit<br />
+<strong>Trigger:</strong> Policy binding confirmed after payment</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PolicyIssued&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;policy-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;policyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;productCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MOTOR_COMP&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lineOfBusiness&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MOTOR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;customerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b2c3d4e5-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;agentId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;c3d4e5f6-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;annualPremium&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2500.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;taxAmount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">375.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;effectiveDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;expiryDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-12-31&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;coverageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;COMPREHENSIVE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;vehicleInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;plateNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ABC 1234&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;make&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Corolla&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;modelYear&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="policycancelled-v10">PolicyCancelled (v1.0)</h4>
+<p><strong>Producer:</strong> Policy Service<br />
+<strong>Consumers:</strong> Billing Service, Notification Service, Audit<br />
+<strong>Trigger:</strong> Policy cancellation approved</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PolicyCancelled&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;policy-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;policyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cancellationReason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CUSTOMER_REQUEST&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cancellationDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-06-15&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;refundAmount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1250.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;effectiveDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;originalExpiryDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-12-31&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="policyrenewed-v10">PolicyRenewed (v1.0)</h4>
+<p><strong>Producer:</strong> Policy Service<br />
+<strong>Consumers:</strong> Billing Service, Notification Service, Audit<br />
+<strong>Trigger:</strong> Policy renewal processed</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PolicyRenewed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;policy-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;oldPolicyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;oldPolicyNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;newPolicyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d4e5f6a7-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;newPolicyNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-MTR-2027-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;customerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b2c3d4e5-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;annualPremium&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2600.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;effectiveDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2027-01-01&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;expiryDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2027-12-31&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;premiumChange&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;premiumChangeReason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NCD_IMPROVED&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="policyendorsed-v10">PolicyEndorsed (v1.0)</h4>
+<p><strong>Producer:</strong> Policy Service<br />
+<strong>Consumers:</strong> Billing Service, Audit<br />
+<strong>Trigger:</strong> Mid-term policy change (e.g., vehicle change, driver addition)</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PolicyEndorsed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;policy-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;policyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;endorsementType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VEHICLE_CHANGE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;endorsementNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;END-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;premiumAdjustment&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">200.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;effectiveDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-01&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;previousState&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="nt">&quot;newState&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="22-claim-events">2.2 Claim Events</h3>
+<h4 id="claimregistered-v10">ClaimRegistered (v1.0)</h4>
+<p><strong>Producer:</strong> Claims Service<br />
+<strong>Consumers:</strong> Notification Service, Audit, Policy Service<br />
+<strong>Trigger:</strong> New claim filed (FNOL)</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ClaimRegistered&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;claims-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;claimId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e5f6a7b8-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;claimNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CLM-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;customerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b2c3d4e5-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;incidentDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;incidentType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;COLLISION&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;claimedAmount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">15000.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lossLocation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Riyadh, King Fahd Road&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policeReportNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PR-2026-12345&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;atFault&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="claimupdated-v10">ClaimUpdated (v1.0)</h4>
+<p><strong>Producer:</strong> Claims Service<br />
+<strong>Consumers:</strong> Notification Service, Audit<br />
+<strong>Trigger:</strong> Claim status or details changed</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ClaimUpdated&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;claims-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;claimId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e5f6a7b8-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;claimNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CLM-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;previousStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;INVESTIGATING&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;newStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ADJUDICATED&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;approvedAmount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">12000.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;handlerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f6a7b8c9-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;updatedFields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;approved_amount&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="claimclosed-v10">ClaimClosed (v1.0)</h4>
+<p><strong>Producer:</strong> Claims Service<br />
+<strong>Consumers:</strong> Billing Service, Notification Service, Audit<br />
+<strong>Trigger:</strong> Claim fully settled and closed</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ClaimClosed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;claims-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;claimId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e5f6a7b8-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;claimNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CLM-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;customerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b2c3d4e5-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;claimedAmount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">15000.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;approvedAmount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">12000.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;paidAmount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">12000.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;excessAmount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;closedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-20T14:30:00.000Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;settlementDays&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fraudScore&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="fraudalerttriggered-v10">FraudAlertTriggered (v1.0)</h4>
+<p><strong>Producer:</strong> Claims Service<br />
+<strong>Consumers:</strong> Audit, Notification Service<br />
+<strong>Trigger:</strong> Fraud detection system flags a claim</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FraudAlertTriggered&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;claims-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;claimId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e5f6a7b8-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;claimNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CLM-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fraudScore&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.85</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fraudIndicators&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;CLAIM_FILED_AFTER_POLICY_ISSUE_30_DAYS&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;INCIDENT_TIME_INCONSISTENT&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;MULTIPLE_CLAIMS_SAME_VEHICLE&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;policyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;customerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b2c3d4e5-...&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="23-billing-events">2.3 Billing Events</h3>
+<h4 id="paymentreceived-v10">PaymentReceived (v1.0)</h4>
+<p><strong>Producer:</strong> Billing Service<br />
+<strong>Consumers:</strong> Policy Service, Notification Service, Audit<br />
+<strong>Trigger:</strong> Payment confirmed by gateway</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PaymentReceived&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;billing-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;transactionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;g7h8i9j0-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;transactionReference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TXN-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2500.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;paymentMethod&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MADA&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gatewayReference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GW-987654321&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;COMPLETED&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;processedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01T09:15:00.000Z&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="paymentfailed-v10">PaymentFailed (v1.0)</h4>
+<p><strong>Producer:</strong> Billing Service<br />
+<strong>Consumers:</strong> Notification Service, Audit<br />
+<strong>Trigger:</strong> Payment declined or failed</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PaymentFailed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;billing-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;transactionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;g7h8i9j0-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;transactionReference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TXN-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2500.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;paymentMethod&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MADA&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;failureReason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;INSUFFICIENT_FUNDS&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gatewayErrorCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DECLINED_51&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;retryCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;failedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01T09:15:00.000Z&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="refundprocessed-v10">RefundProcessed (v1.0)</h4>
+<p><strong>Producer:</strong> Billing Service<br />
+<strong>Consumers:</strong> Policy Service, Notification Service, Audit<br />
+<strong>Trigger:</strong> Refund issued for cancelled policy or claim overpayment</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RefundProcessed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;billing-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;refundId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;h8i9j0k1-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;originalTransactionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;g7h8i9j0-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policyNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POL-MTR-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;refundAmount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1250.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;refundReason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POLICY_CANCELLATION&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;paymentMethod&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MADA&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gatewayReference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RF-987654321&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;processedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-06-15T10:00:00.000Z&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="24-customer-events">2.4 Customer Events</h3>
+<h4 id="customercreated-v10">CustomerCreated (v1.0)</h4>
+<p><strong>Producer:</strong> Customer Service<br />
+<strong>Consumers:</strong> Audit<br />
+<strong>Trigger:</strong> New customer registered</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CustomerCreated&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;customer-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;customerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b2c3d4e5-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;customerNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CUST-2026-00001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;identityType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CITIZEN&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fullNameAr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;أحمد بن محمد الحربي&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fullNameEn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ahmed Mohammed Al-Harbi&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;nationalityCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAU&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;regionCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RIYADH&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01T08:00:00.000Z&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="identityverified-v10">IdentityVerified (v1.0)</h4>
+<p><strong>Producer:</strong> Policy Service<br />
+<strong>Consumers:</strong> Audit<br />
+<strong>Trigger:</strong> Yakeen identity verification completed</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IdentityVerified&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;policy-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;customerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b2c3d4e5-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;nationalId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;***masked***&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;verificationStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VERIFIED&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;verificationReference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;YAK-2026-89123&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;verifiedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01T08:05:00.000Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;identityProvider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;YAKEEN&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="25-integration-events">2.5 Integration Events</h3>
+<h4 id="najmdataretrieved-v10">NajmDataRetrieved (v1.0)</h4>
+<p><strong>Producer:</strong> Policy Service<br />
+<strong>Consumers:</strong> Audit<br />
+<strong>Trigger:</strong> Najm accident history data fetched</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NajmDataRetrieved&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;policy-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;policyId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;requestType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VEHICLE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;requestIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;claimsCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;riskScore&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LOW&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;retrievedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01T08:10:00.000Z&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="samareportgenerated-v10">SamaReportGenerated (v1.0)</h4>
+<p><strong>Producer:</strong> Reporting Service<br />
+<strong>Consumers:</strong> Audit<br />
+<strong>Trigger:</strong> SAMA regulatory report generated</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eventType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SamaReportGenerated&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;reporting-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;reportType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MOTOR_POLICY_REGISTER&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;reportPeriod&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-Q1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;recordCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;totalPremium&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3750000.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fileReference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAMA-2026-Q1-MOTOR-POLICY.xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;generatedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-01T02:00:00.000Z&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="3-kafka-topic-configuration">3. Kafka Topic Configuration</h2>
+<h3 id="31-topic-definitions">3.1 Topic Definitions</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># kafka-topics.yaml</span>
+<span class="nt">topics</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance.policy.events</span>
+<span class="w">    </span><span class="nt">partitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<span class="w">    </span><span class="nt">replicationFactor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">retentionMs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">604800000</span><span class="w">    </span><span class="c1"># 7 days</span>
+<span class="w">    </span><span class="nt">cleanupPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delete</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">min.insync.replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance.claims.events</span>
+<span class="w">    </span><span class="nt">partitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<span class="w">    </span><span class="nt">replicationFactor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">retentionMs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">604800000</span>
+<span class="w">    </span><span class="nt">cleanupPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delete</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">min.insync.replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance.billing.events</span>
+<span class="w">    </span><span class="nt">partitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">replicationFactor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">retentionMs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">604800000</span>
+<span class="w">    </span><span class="nt">cleanupPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delete</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">min.insync.replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance.customer.events</span>
+<span class="w">    </span><span class="nt">partitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">replicationFactor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">retentionMs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">604800000</span>
+<span class="w">    </span><span class="nt">cleanupPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delete</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">min.insync.replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance.integration.events</span>
+<span class="w">    </span><span class="nt">partitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">replicationFactor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">retentionMs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">604800000</span>
+<span class="w">    </span><span class="nt">cleanupPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delete</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">min.insync.replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">insurance.dead.letter.queue</span>
+<span class="w">    </span><span class="nt">partitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">replicationFactor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">retentionMs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2592000000</span><span class="w">   </span><span class="c1"># 30 days</span>
+<span class="w">    </span><span class="nt">cleanupPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delete</span>
+</code></pre></div>
+<h3 id="32-producer-configuration">3.2 Producer Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># application.yml — Kafka producer</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">kafka</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">bootstrap-servers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${KAFKA_BOOTSTRAP_SERVERS}</span>
+<span class="w">    </span><span class="nt">producer</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">key-serializer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.apache.kafka.common.serialization.StringSerializer</span>
+<span class="w">      </span><span class="nt">value-serializer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.springframework.kafka.support.serializer.JsonSerializer</span>
+<span class="w">      </span><span class="nt">acks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">enable.idempotence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">max.in.flight.requests.per.connection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">        </span><span class="nt">compression.type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snappy</span>
+<span class="w">        </span><span class="nt">linger.ms</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">        </span><span class="nt">batch.size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16384</span>
+</code></pre></div>
+<h3 id="33-consumer-configuration">3.3 Consumer Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># application.yml — Kafka consumer</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">kafka</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">consumer</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">group-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${spring.application.name}</span>
+<span class="w">      </span><span class="nt">key-deserializer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.apache.kafka.common.serialization.StringDeserializer</span>
+<span class="w">      </span><span class="nt">value-deserializer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.springframework.kafka.support.serializer.JsonDeserializer</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">spring.json.trusted.packages</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+<span class="w">        </span><span class="nt">spring.json.type.mapping</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;event:com.enterprise.insurance.core.event.DomainEvent&quot;</span>
+<span class="w">      </span><span class="nt">auto-offset-reset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">earliest</span>
+<span class="w">      </span><span class="nt">enable-auto-commit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">max-poll-records</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
+<span class="w">    </span><span class="nt">listener</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ack-mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">manual</span>
+<span class="w">      </span><span class="nt">concurrency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</code></pre></div>
+<hr />
+<h2 id="4-event-publishing-pattern">4. Event Publishing Pattern</h2>
+<div class="highlight"><pre><span></span><code><span class="c1">// Event publisher interface</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">EventPublisher</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">publish</span><span class="p">(</span><span class="n">DomainEvent</span><span class="w"> </span><span class="n">event</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Implementation</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">KafkaEventPublisher</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">EventPublisher</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">KafkaTemplate</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">DomainEvent</span><span class="o">&gt;</span><span class="w"> </span><span class="n">kafkaTemplate</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">TopicResolver</span><span class="w"> </span><span class="n">topicResolver</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">publish</span><span class="p">(</span><span class="n">DomainEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">topicResolver</span><span class="p">.</span><span class="na">resolve</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">getEventType</span><span class="p">());</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getSourceEntityId</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">kafkaTemplate</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">whenComplete</span><span class="p">((</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ex</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Failed to publish event: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getEventId</span><span class="p">(),</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
+<span class="w">                    </span><span class="c1">// Publish to DLQ</span>
+<span class="w">                    </span><span class="n">kafkaTemplate</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="s">&quot;insurance.dead.letter.queue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Event published: {} to topic: {} at offset: {}&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">event</span><span class="p">.</span><span class="na">getEventType</span><span class="p">(),</span><span class="w"> </span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">getRecordMetadata</span><span class="p">().</span><span class="na">offset</span><span class="p">());</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Topic resolution</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TopicResolver</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">TOPIC_MAP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Map</span><span class="p">.</span><span class="na">ofEntries</span><span class="p">(</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;PolicyIssued&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.policy.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;PolicyCancelled&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.policy.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;PolicyRenewed&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.policy.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;PolicyEndorsed&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.policy.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;ClaimRegistered&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.claims.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;ClaimUpdated&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.claims.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;ClaimClosed&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.claims.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;FraudAlertTriggered&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.claims.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;PaymentReceived&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.billing.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;PaymentFailed&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.billing.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;RefundProcessed&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.billing.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;CustomerCreated&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.customer.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;IdentityVerified&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.customer.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;NajmDataRetrieved&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.integration.events&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Map</span><span class="p">.</span><span class="na">entry</span><span class="p">(</span><span class="s">&quot;SamaReportGenerated&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.integration.events&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolve</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">eventType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">TOPIC_MAP</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">eventType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;insurance.dead.letter.queue&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="5-event-consumer-example">5. Event Consumer Example</h2>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PolicyEventConsumer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@KafkaListener</span><span class="p">(</span><span class="n">topics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;insurance.policy.events&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">groupId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;notification-service&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onPolicyIssued</span><span class="p">(</span><span class="n">PolicyIssuedEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">Acknowledgment</span><span class="w"> </span><span class="n">ack</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Processing PolicyIssued event: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getEventId</span><span class="p">());</span>
+
+<span class="w">        </span><span class="c1">// Send policy issuance SMS/email</span>
+<span class="w">        </span><span class="n">notificationService</span><span class="p">.</span><span class="na">sendPolicyIssuedNotification</span><span class="p">(</span>
+<span class="w">            </span><span class="n">event</span><span class="p">.</span><span class="na">getData</span><span class="p">().</span><span class="na">getCustomerId</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">event</span><span class="p">.</span><span class="na">getData</span><span class="p">().</span><span class="na">getPolicyNumber</span><span class="p">()</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">ack</span><span class="p">.</span><span class="na">acknowledge</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@KafkaListener</span><span class="p">(</span><span class="n">topics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;insurance.billing.events&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">groupId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;policy-service&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onPaymentReceived</span><span class="p">(</span><span class="n">PaymentReceivedEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">Acknowledgment</span><span class="w"> </span><span class="n">ack</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Processing PaymentReceived event: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getEventId</span><span class="p">());</span>
+
+<span class="w">        </span><span class="c1">// Activate policy after payment</span>
+<span class="w">        </span><span class="n">policyService</span><span class="p">.</span><span class="na">activatePolicy</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">getData</span><span class="p">().</span><span class="na">getPolicyId</span><span class="p">());</span>
+
+<span class="w">        </span><span class="n">ack</span><span class="p">.</span><span class="na">acknowledge</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="6-dead-letter-queue-handling">6. Dead Letter Queue Handling</h2>
+<p>Events that fail to process after retries are routed to the dead letter queue:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DeadLetterQueueProcessor</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@KafkaListener</span><span class="p">(</span><span class="n">topics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;insurance.dead.letter.queue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">groupId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dlq-processor&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">processDeadLetter</span><span class="p">(</span><span class="n">DomainEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">Acknowledgment</span><span class="w"> </span><span class="n">ack</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Processing dead letter event: {} type: {}&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">event</span><span class="p">.</span><span class="na">getEventId</span><span class="p">(),</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getEventType</span><span class="p">());</span>
+
+<span class="w">        </span><span class="c1">// Store in database for manual review</span>
+<span class="w">        </span><span class="n">deadLetterRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">DeadLetterEntry</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">eventId</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">getEventId</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">eventType</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">getEventType</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">payload</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">failedAt</span><span class="p">(</span><span class="n">Instant</span><span class="p">.</span><span class="na">now</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="s">&quot;PENDING_REVIEW&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">());</span>
+
+<span class="w">        </span><span class="c1">// Alert operations team</span>
+<span class="w">        </span><span class="n">alertService</span><span class="p">.</span><span class="na">sendAlert</span><span class="p">(</span><span class="s">&quot;DLQ_EVENT&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="s">&quot;Event &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getEventId</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; failed processing&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">ack</span><span class="p">.</span><span class="na">acknowledge</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="7-event-versioning-strategy">7. Event Versioning Strategy</h2>
+<table>
+<thead>
+<tr>
+<th>Version Change</th>
+<th>Action</th>
+<th>Backward Compatible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add optional field</td>
+<td>New schema version</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Add required field</td>
+<td>New schema version + consumer update</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rename field</td>
+<td>New schema version + consumer update</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Remove field</td>
+<td>New schema version + consumer update</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Change field type</td>
+<td>New schema version + consumer update</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rules:</strong>
+- Producers must not remove fields from existing event versions
+- New fields must be optional (nullable) for at least one minor version
+- Consumers must tolerate unknown fields
+- Event schema versions follow semantic versioning (MAJOR.MINOR)</p>
+<hr />
+<h2 id="document-maintenance">Document Maintenance</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last Updated</td>
+<td>2026-07-06</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Enterprise Architecture Team</td>
+</tr>
+<tr>
+<td>Review Cycle</td>
+<td>Quarterly, or when new events are added</td>
+</tr>
+<tr>
+<td>Related Documents</td>
+<td><a href="../integration-architecture/">Integration Architecture</a>, <a href="../data-architecture/">Data Architecture</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Enterprise Insurance Platform
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../../assets/javascripts/zoompan.js"></script>
+      
+    
+  </body>
+</html>
